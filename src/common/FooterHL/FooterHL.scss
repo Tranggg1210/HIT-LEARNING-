@@ -1,0 +1,94 @@
+.footerhl {
+  background: #f4a91e;
+  z-index: 99;
+  padding: 100px 162px 30px 162px;
+  position: relative;
+  margin-top: 60px;
+  font-size: 20px;
+  .footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+    padding-bottom: 20px;
+    .infor {
+      // width: 285px;
+      .logo-img {
+        margin-bottom: 40px;
+      }
+      .infor-icon {
+        display: flex;
+        margin-bottom: 20px;
+
+        .fa-solid {
+          margin-right: 6px;
+        }
+      }
+    }
+
+    .departments {
+      & > h2 {
+        margin-bottom: 14px;
+      }
+      & > ul {
+        list-style-type: none;
+
+        & > li {
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    .CLB {
+      & > h2 {
+        margin-bottom: 14px;
+      }
+      & > ul {
+        list-style-type: none;
+        & > li {
+          margin-bottom: 8px;
+        }
+      }
+    }
+
+    .icon {
+      display: flex;
+
+      gap: 10px;
+
+      .box-icon {
+        border-radius: 8px;
+        border: 1px solid var(--White-95, #f1f1f3);
+        background: var(--White-97, #f7f7f8);
+        width: 52px;
+        height: 52px;
+        padding: 14px;
+        text-align: center;
+        cursor: pointer;
+        & > i {
+          font-size: 24px;
+
+          &.fa-facebook {
+            color: #3b5998;
+          }
+
+          &.fa-twitter {
+            color: #1da1f2;
+          }
+          &.fa-instagram {
+            color: #bc2a8d;
+          }
+        }
+
+        &:hover {
+          background-color: #e7dede;
+          border: 1px solid #e7dede;
+        }
+      }
+    }
+  }
+  .brand {
+    text-align: center;
+    margin-top: 20px;
+  }
+}
