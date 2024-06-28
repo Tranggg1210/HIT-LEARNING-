@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 .banner-container {
   position: relative;
   width: 100%;
@@ -16,6 +17,10 @@
         height: 400px; // Adjust this height as needed
         object-fit: cover;
         border-radius: 8px;
+        @include mobile {
+          height: 375px;
+          width: 100%;
+        }
       }
 
       .banner-title {

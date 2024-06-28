@@ -12,16 +12,26 @@
   grid-template-columns: repeat(3, 1fr);
   z-index: 999;
   @include mobile {
-    height: 40px;
+    height: 92px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 210px;
   }
   .logo {
     justify-content: right;
-    width: 300px;
-
+    width: 380px;
+    @include mobile {
+      width: 82px;
+    }
     .box-logo {
       .img-logo {
         height: 3rem;
         cursor: pointer;
+
+        @include mobile {
+          height: 4rem;
+        }
       }
     }
   }
@@ -30,16 +40,25 @@
     position: relative;
     display: flex;
     align-items: center;
-
+    @include mobile {
+      & > input::placeholder {
+        font-size: 20px;
+      }
+      margin-right: 20px;
+    }
     .fa-magnifying-glass {
       position: absolute;
       left: 0.75rem;
       color: #888;
       cursor: pointer;
+      @include mobile {
+        font-size: 35px;
+        margin-left: 5px;
+      }
     }
 
     .input {
-      width: 10rem;
+      width: 20rem;
       height: 2.5rem;
       padding-left: 2.5rem;
       border: 1px solid #ddd;
@@ -47,8 +66,13 @@
       outline: none;
       transition: width 0.3s ease;
 
-      &:focus {
-        width: 20rem;
+      // &:focus {
+      //   width: 20rem;
+      // }
+      @include mobile {
+        height: 52px;
+        width: 390px;
+        margin-left: 10px;
       }
     }
   }
@@ -59,24 +83,34 @@
       justify-content: right;
       align-items: center;
       text-align: center;
+      @include mobile {
+        width: 92px;
+      }
       .avatar {
         background-color: white;
         border-radius: 30px;
-        height: 50px;
-        width: 50px;
+        height: 30px;
+        width: 30px;
         position: relative;
+        @include mobile {
+          height: 50px;
+          width: 50px;
+        }
 
         & > .fa-regular {
           align-items: center;
-          font-size: 30px;
-          padding: 10px;
+          font-size: 20px;
+          padding: 5px;
+          @include mobile {
+            font-size: 30px;
+          }
         }
 
         & > .box-avatar {
           position: absolute;
           height: 110px;
           border: 1px solid white;
-          margin-left: -165px;
+          margin-left: -170px;
           margin-top: 5px;
           min-width: 200px;
           padding: 8px 24px !important;
@@ -87,7 +121,9 @@
           border-radius: 10px;
           overflow: hidden;
           color: #1d2129;
-
+          @include mobile {
+            margin-top: 20px;
+          }
           & > p {
             font-size: 1.4rem;
             color: #666;
@@ -117,6 +153,9 @@
       justify-content: right;
       align-items: center;
       text-align: center;
+      @include mobile {
+        width: 102px;
+      }
       .login {
         display: flex;
         align-items: center;

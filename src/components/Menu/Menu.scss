@@ -1,13 +1,24 @@
+@import '../../styles/mixins';
 .aside-container {
   border-right: 1px solid #898787;
   position: fixed;
-  top: 5rem;
-  padding-left: 1rem;
+  top: 4rem;
   height: 100vh;
   padding-top: 1.5rem;
   background-color: #f8f8f8;
   z-index: 3;
-  padding-right: 1rem;
+  @include mobile {
+    border-right: none;
+    border-top: 1px solid #898787;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    z-index: 100;
+    margin-left: 209px;
+  }
   &.hidden {
     display: none;
   }
@@ -18,6 +29,13 @@
   ul {
     margin-top: 1.5rem;
     list-style-type: none;
+    @include mobile {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
 
     &:first-of-type {
       margin-top: 0;
@@ -32,19 +50,41 @@
       cursor: pointer;
       padding: 1rem;
       border-radius: 20px;
-
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0.5rem;
+        border-radius: 0;
+      }
       i {
         color: black;
         font-size: 25px;
+        margin-bottom: 15px;
+        @include mobile {
+          font-size: 30px;
+          &:hover {
+            color: #f4a91e;
+          }
+        }
       }
 
       p {
         color: black;
         font-size: 15px;
+        @include mobile {
+          font-size: 25px;
+        }
       }
 
       &:hover {
         background-color: #f9eac4;
+        @include mobile {
+          background-color: #f8f8f8;
+        }
       }
     }
   }

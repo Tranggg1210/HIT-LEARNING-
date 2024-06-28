@@ -1,3 +1,4 @@
+@import '../../styles/mixins';
 .footerhl {
   background: #f4a91e;
   z-index: 99;
@@ -5,12 +6,22 @@
   position: relative;
   margin-top: 60px;
   font-size: 20px;
+  width: 100%;
+  @include mobile {
+    margin-left: 205px;
+    margin-right: 260px;
+    width: 75%;
+    padding: 30px 40px 30px 40px;
+  }
   .footer {
     display: flex;
     width: 100%;
     justify-content: space-around;
     border-bottom: 1px solid black;
     padding-bottom: 20px;
+    @include mobile {
+      display: block;
+    }
     .infor {
       // width: 285px;
       .logo-img {
@@ -22,6 +33,15 @@
 
         .fa-solid {
           margin-right: 6px;
+          @include mobile {
+            font-size: 30px;
+          }
+        }
+        & > p {
+          @include mobile {
+            width: 85%;
+            font-size: 30px;
+          }
         }
       }
     }
@@ -29,12 +49,21 @@
     .departments {
       & > h2 {
         margin-bottom: 14px;
+        @include mobile {
+          width: 85%;
+          font-size: 35px;
+          margin-top: 60px;
+        }
       }
       & > ul {
         list-style-type: none;
 
         & > li {
           margin-bottom: 8px;
+          @include mobile {
+            width: 85%;
+            font-size: 30px;
+          }
         }
       }
     }
@@ -42,20 +71,35 @@
     .CLB {
       & > h2 {
         margin-bottom: 14px;
+        @include mobile {
+          width: 85%;
+          font-size: 35px;
+          margin-top: 60px;
+        }
       }
       & > ul {
         list-style-type: none;
         & > li {
           margin-bottom: 8px;
+          @include mobile {
+            width: 85%;
+            font-size: 30px;
+          }
         }
       }
     }
 
     .icon {
       display: flex;
-
       gap: 10px;
-
+      @include mobile {
+        width: 95%;
+        gap: 25px;
+        margin-top: 40px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
       .box-icon {
         border-radius: 8px;
         border: 1px solid var(--White-95, #f1f1f3);
@@ -65,8 +109,15 @@
         padding: 14px;
         text-align: center;
         cursor: pointer;
+        @include mobile {
+          width: 70px;
+          height: 70px;
+        }
         & > i {
           font-size: 24px;
+          @include mobile {
+            font-size: 40px;
+          }
 
           &.fa-facebook {
             color: #3b5998;
@@ -90,5 +141,10 @@
   .brand {
     text-align: center;
     margin-top: 20px;
+    @include mobile {
+      font-size: 30px;
+      margin-top: 25px;
+      margin-bottom: 100px;
+    }
   }
 }

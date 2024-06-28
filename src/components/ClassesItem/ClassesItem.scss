@@ -1,7 +1,11 @@
+@import '../../styles/mixins';
 .films {
   margin-top: 50px;
   margin-left: 160px;
   position: relative;
+  @include mobile {
+    margin-left: 235px;
+  }
   .title-list {
     display: flex;
     justify-content: space-between;
@@ -24,6 +28,16 @@
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
+
+    @include mobile {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(1, auto);
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-bottom: 10px;
+      overflow: hidden;
+    }
     .film-item {
       position: relative;
       min-width: 25%;

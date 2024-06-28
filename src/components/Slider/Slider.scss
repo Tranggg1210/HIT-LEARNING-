@@ -1,9 +1,15 @@
+@import '../../styles/mixins';
 .banner {
   width: 85%;
   margin-left: 160px;
   padding-top: 110px;
   height: 100%;
   border-radius: 8px;
+  @include mobile {
+    width: 70%;
+    height: 50%;
+    margin-left: 230px;
+  }
   .banner-container {
     position: relative;
     width: 100%;
