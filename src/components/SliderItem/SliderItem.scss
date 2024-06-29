@@ -7,6 +7,9 @@
     height: 100%;
     width: 100%;
   }
+  @include small-tablet {
+    width: 100%;
+  }
   .banner-slider {
     display: flex;
     transition: transform 0.5s ease; // chuyển động mượt ease hiệu ứng chuyển tiếp bắt đầu chậm, sau đó nhanh dần, rồi chậm lại trước khi kết thúc.
@@ -14,11 +17,17 @@
       height: 100%;
       width: 100%;
     }
+    @include small-tablet {
+      width: 100%;
+    }
     .banner-item {
       flex: 0 0 100%;
       position: relative;
       @include tablet {
         height: 100%;
+      }
+      @include small-tablet {
+        width: 100%;
       }
 
       .banner-image {
@@ -33,6 +42,10 @@
         @include tablet {
           width: 100%;
           height: 100%;
+        }
+        @include small-tablet {
+          height: 250px;
+          width: 100%;
         }
       }
 

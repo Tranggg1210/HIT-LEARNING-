@@ -14,13 +14,13 @@
   @include mobile {
     height: 92px;
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
     margin-left: 210px;
   }
   @include tablet {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+  }
+  @include small-tablet {
+    height: 92px;
     width: 100%;
   }
   .logo {
@@ -32,6 +32,9 @@
     @include tablet {
       width: 60px;
       margin-right: 50px;
+    }
+    @include small-tablet {
+      width: 85px;
     }
     .box-logo {
       margin-left: 15px;
@@ -87,6 +90,10 @@
 
       @include tablet {
         width: 500px;
+      }
+      @include small-tablet {
+        margin-right: 15px;
+        width: 310px;
       }
     }
   }
@@ -177,6 +184,9 @@
       @include tablet {
         width: 105px;
         margin-left: 40px;
+      }
+      @include small-tablet {
+        width: 115px;
       }
       .login {
         display: flex;

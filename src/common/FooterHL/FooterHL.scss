@@ -16,6 +16,10 @@
   @include tablet {
     padding: 40px 30px 30px 30px;
   }
+  @include small-tablet {
+    width: 100%;
+    padding: 30px 40px 30px 40px;
+  }
   .footer {
     display: flex;
     width: 100%;
@@ -27,6 +31,9 @@
       display: block;
     }
     @include tablet {
+      display: block;
+    }
+    @include small-tablet {
       display: block;
     }
     .infor {
@@ -66,12 +73,20 @@
         grid-template-columns: repeat(3, 1fr);
         margin-bottom: 20px;
       }
+      @include small-tablet {
+        display: block;
+      }
       .departments {
         & > h2 {
           margin-bottom: 14px;
           @include mobile {
             width: 85%;
             font-size: 35px;
+            margin-top: 60px;
+          }
+          @include small-tablet {
+            width: 85%;
+            font-size: 30px;
             margin-top: 60px;
           }
         }
@@ -83,6 +98,10 @@
             @include mobile {
               width: 85%;
               font-size: 30px;
+            }
+            @include small-tablet {
+              width: 85%;
+              font-size: 20x;
             }
           }
         }
@@ -96,6 +115,11 @@
             font-size: 35px;
             margin-top: 60px;
           }
+          @include small-tablet {
+            width: 85%;
+            font-size: 30px;
+            margin-top: 60px;
+          }
         }
         & > ul {
           list-style-type: none;
@@ -104,6 +128,10 @@
             @include mobile {
               width: 85%;
               font-size: 30px;
+            }
+            @include small-tablet {
+              width: 85%;
+              font-size: 20px;
             }
           }
         }
@@ -120,7 +148,14 @@
           justify-content: center;
           margin-bottom: 10px;
         }
-
+        @include small-tablet {
+          width: 95%;
+          gap: 25px;
+          margin-top: 40px;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
         .box-icon {
           border-radius: 8px;
           border: 1px solid var(--White-95, #f1f1f3);
@@ -133,6 +168,10 @@
           @include mobile {
             width: 70px;
             height: 70px;
+          }
+          @include small-tablet {
+            width: 55px;
+            height: 55px;
           }
           & > i {
             font-size: 24px;
@@ -171,6 +210,11 @@
     }
     @include tablet {
       margin-top: 35px;
+    }
+    @include small-tablet {
+      font-size: 20px;
+      margin-top: 25px;
+      margin-bottom: 100px;
     }
   }
 }

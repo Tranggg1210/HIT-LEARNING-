@@ -1,3 +1,7 @@
+@import '../../styles//mixins';
 .category-container {
   margin-right: 20px;
+  @include small-tablet {
+    margin-left: 20px;
+  }
 }
