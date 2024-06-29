@@ -13,17 +13,27 @@
     width: 75%;
     padding: 30px 40px 30px 40px;
   }
+  @include tablet {
+    padding: 40px 30px 30px 30px;
+  }
   .footer {
     display: flex;
     width: 100%;
     justify-content: space-around;
     border-bottom: 1px solid black;
     padding-bottom: 20px;
+    gap: 30px;
     @include mobile {
+      display: block;
+    }
+    @include tablet {
       display: block;
     }
     .infor {
       // width: 285px;
+      @include tablet {
+        margin-bottom: 50px;
+      }
       .logo-img {
         margin-bottom: 40px;
       }
@@ -45,99 +55,112 @@
         }
       }
     }
-
-    .departments {
-      & > h2 {
-        margin-bottom: 14px;
-        @include mobile {
-          width: 85%;
-          font-size: 35px;
-          margin-top: 60px;
-        }
-      }
-      & > ul {
-        list-style-type: none;
-
-        & > li {
-          margin-bottom: 8px;
-          @include mobile {
-            width: 85%;
-            font-size: 30px;
-          }
-        }
-      }
-    }
-
-    .CLB {
-      & > h2 {
-        margin-bottom: 14px;
-        @include mobile {
-          width: 85%;
-          font-size: 35px;
-          margin-top: 60px;
-        }
-      }
-      & > ul {
-        list-style-type: none;
-        & > li {
-          margin-bottom: 8px;
-          @include mobile {
-            width: 85%;
-            font-size: 30px;
-          }
-        }
-      }
-    }
-
-    .icon {
+    .other-infor {
       display: flex;
-      gap: 10px;
+      gap: 50px;
       @include mobile {
-        width: 95%;
-        gap: 25px;
-        margin-top: 40px;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 10px;
+        display: block;
       }
-      .box-icon {
-        border-radius: 8px;
-        border: 1px solid var(--White-95, #f1f1f3);
-        background: var(--White-97, #f7f7f8);
-        width: 52px;
-        height: 52px;
-        padding: 14px;
-        text-align: center;
-        cursor: pointer;
-        @include mobile {
-          width: 70px;
-          height: 70px;
-        }
-        & > i {
-          font-size: 24px;
+      @include tablet {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 20px;
+      }
+      .departments {
+        & > h2 {
+          margin-bottom: 14px;
           @include mobile {
-            font-size: 40px;
-          }
-
-          &.fa-facebook {
-            color: #3b5998;
-          }
-
-          &.fa-twitter {
-            color: #1da1f2;
-          }
-          &.fa-instagram {
-            color: #bc2a8d;
+            width: 85%;
+            font-size: 35px;
+            margin-top: 60px;
           }
         }
+        & > ul {
+          list-style-type: none;
 
-        &:hover {
-          background-color: #e7dede;
-          border: 1px solid #e7dede;
+          & > li {
+            margin-bottom: 8px;
+            @include mobile {
+              width: 85%;
+              font-size: 30px;
+            }
+          }
+        }
+      }
+
+      .CLB {
+        & > h2 {
+          margin-bottom: 14px;
+          @include mobile {
+            width: 85%;
+            font-size: 35px;
+            margin-top: 60px;
+          }
+        }
+        & > ul {
+          list-style-type: none;
+          & > li {
+            margin-bottom: 8px;
+            @include mobile {
+              width: 85%;
+              font-size: 30px;
+            }
+          }
+        }
+      }
+
+      .icon {
+        display: flex;
+        gap: 10px;
+        @include mobile {
+          width: 95%;
+          gap: 25px;
+          margin-top: 40px;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
+
+        .box-icon {
+          border-radius: 8px;
+          border: 1px solid var(--White-95, #f1f1f3);
+          background: var(--White-97, #f7f7f8);
+          width: 52px;
+          height: 52px;
+          padding: 14px;
+          text-align: center;
+          cursor: pointer;
+          @include mobile {
+            width: 70px;
+            height: 70px;
+          }
+          & > i {
+            font-size: 24px;
+            @include mobile {
+              font-size: 40px;
+            }
+
+            &.fa-facebook {
+              color: #3b5998;
+            }
+
+            &.fa-twitter {
+              color: #1da1f2;
+            }
+            &.fa-instagram {
+              color: #bc2a8d;
+            }
+          }
+
+          &:hover {
+            background-color: #e7dede;
+            border: 1px solid #e7dede;
+          }
         }
       }
     }
   }
+
   .brand {
     text-align: center;
     margin-top: 20px;
@@ -145,6 +168,9 @@
       font-size: 30px;
       margin-top: 25px;
       margin-bottom: 100px;
+    }
+    @include tablet {
+      margin-top: 35px;
     }
   }
 }

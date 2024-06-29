@@ -22,32 +22,34 @@ const FooterHL = () => {
               <p>HaNoi university of in dustry</p>
             </div>
           </div>
-          <div className='departments'>
-            <h2>Các phòng ban</h2>
-            <ul>
-              <li>Ban quản trị</li>
-              <li>Ban thiết kế</li>
-              <li>Ban truyền thông và sự kiện</li>
-              <li>Ban phát triển</li>
-            </ul>
-          </div>
-          <div className='CLB'>
-            <h2>CLB HIT</h2>
-            <ul>
-              <li>Học tập</li>
-              <li>Vui chơi</li>
-              <li>Giao tiếp, kết bạn</li>
-            </ul>
-          </div>
-          <div className='icon'>
-            <div className='box-icon'>
-              <i className='fa-brands fa-facebook'></i>
+          <div className='other-infor'>
+            <div className='departments'>
+              <h2>Các phòng ban</h2>
+              <ul>
+                <li>Ban quản trị</li>
+                <li>Ban thiết kế</li>
+                <li>Ban truyền thông và sự kiện</li>
+                <li>Ban phát triển</li>
+              </ul>
             </div>
-            <div className='box-icon'>
-              <i className='fa-brands fa-twitter'></i>
+            <div className='CLB'>
+              <h2>CLB HIT</h2>
+              <ul>
+                <li>Học tập</li>
+                <li>Vui chơi</li>
+                <li>Giao tiếp, kết bạn</li>
+              </ul>
             </div>
-            <div className='box-icon'>
-              <i className='fa-brands fa-instagram'></i>
+            <div className='icon'>
+              <div className='box-icon'>
+                <i className='fa-brands fa-facebook'></i>
+              </div>
+              <div className='box-icon'>
+                <i className='fa-brands fa-twitter'></i>
+              </div>
+              <div className='box-icon'>
+                <i className='fa-brands fa-instagram'></i>
+              </div>
             </div>
           </div>
         </div>
