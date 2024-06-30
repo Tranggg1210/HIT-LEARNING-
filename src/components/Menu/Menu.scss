@@ -1,12 +1,20 @@
 @import '../../styles/mixins';
+.zone {
+  width: 120px !important;
+}
 .aside-container {
   border-right: 1px solid #898787;
   position: fixed;
-  top: 4rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
   height: 100vh;
   padding-top: 1.5rem;
-  background-color: #f8f8f8;
-  z-index: 3;
+  background-color: white;
+  z-index: 10000;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 120px;
   @include mobile {
     border-right: none;
     border-top: 1px solid #898787;
@@ -60,7 +68,7 @@
     }
 
     li {
-      background-color: #f8f8f8;
+      background-color: white;
       align-items: center;
       text-align: center;
       margin-top: 0.25rem;

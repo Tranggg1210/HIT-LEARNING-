@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { IconAB2 } from '@tabler/icons-react'
+import { Button } from '@mui/material'
 import './Menu.scss'
 
 const Menu = () => {
@@ -12,6 +13,9 @@ const Menu = () => {
   return (
     // <aside className={`aside-container ${isAsideOpening ? 'block' : 'hidden'}`}>
     <>
+      <div className='zone'>
+        <p>áds</p>
+      </div>
       <div className='aside-container'>
         <ul>
           <li onClick={() => navigate('/')}>
