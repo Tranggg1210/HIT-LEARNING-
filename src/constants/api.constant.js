@@ -1,5 +1,5 @@
 export const ApiConstant = {
-    auth:{
-        login: '/login'
-    }
+  auth: {
+    login: '/login',
+  },
 }

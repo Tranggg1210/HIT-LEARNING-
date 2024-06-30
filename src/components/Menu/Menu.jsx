@@ -13,6 +13,9 @@ const Menu = () => {
   return (
     // <aside className={`aside-container ${isAsideOpening ? 'block' : 'hidden'}`}>
     <>
+      <div className='zone'>
+        <p>áds</p>
+      </div>
       <div className='aside-container'>
         <ul>
           <li onClick={() => navigate('/')}>
@@ -26,12 +29,6 @@ const Menu = () => {
           <li onClick={() => navigate('/club-hit')}>
             <i className='fa-solid fa-users'></i>
             <p>Clb HIT</p>
-          </li>
-          <li>
-            <IconAB2 stroke={2}></IconAB2>
-          </li>
-          <li>
-            <Button variant='contained'>Contained</Button>
           </li>
         </ul>
       </div>
