@@ -1,0 +1,33 @@
+@import '../../styles/mixins';
+.banner {
+  width: 85%;
+  margin-left: 160px;
+  padding-top: 110px;
+  height: 100%;
+  border-radius: 8px;
+  @include mobile {
+    width: 70%;
+    height: 50%;
+    margin-left: 230px;
+  }
+  @include tablet {
+    margin-left: 135px;
+    width: 80%;
+    height: 400px;
+  }
+  @include small-tablet {
+    width: 93%;
+    margin-left: 20px;
+  }
+  .banner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+    @include tablet {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
