@@ -2,7 +2,7 @@ import { Route, Router, Routes, useRoutes } from 'react-router-dom'
 import './App.scss'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
-import MainLayout from './layouts/Layout/MainLayout'
+import MainLayout from './layouts/MainLayout'
 
 function App() {
   const router = useRoutes([
