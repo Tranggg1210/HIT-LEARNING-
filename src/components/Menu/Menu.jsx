@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { IconAB2 } from '@tabler/icons-react'
+import { Button } from '@mui/material'
 import './Menu.scss'
 
 const Menu = () => {
@@ -25,6 +26,12 @@ const Menu = () => {
           <li onClick={() => navigate('/club-hit')}>
             <i className='fa-solid fa-users'></i>
             <p>Clb HIT</p>
+          </li>
+          <li>
+            <IconAB2 stroke={2}></IconAB2>
+          </li>
+          <li>
+            <Button variant='contained'>Contained</Button>
           </li>
         </ul>
       </div>
