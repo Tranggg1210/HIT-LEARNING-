@@ -1,14 +1,18 @@
 import { Outlet } from 'react-router-dom'
 import HeaderHL from '../../common/HeaderHL/HeaderHL'
-import Menu from '../../components/Menu/Menu'
+import SideBar from '../../components/SideBar/SideBar'
 
 const MainLayout = () => {
   return (
     <div className='main-layout'>
-      <Menu className='sidebar' />
+      <div className='layout-sidebar'>
+        <SideBar  />
+      </div>
       <div className='content'>
         <HeaderHL />
-        <Outlet />
+        <div className="mt-72px" >
+          <Outlet />
+        </div>
       </div>
     </div>
   )

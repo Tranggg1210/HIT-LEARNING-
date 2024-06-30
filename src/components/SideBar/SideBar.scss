@@ -1,20 +1,16 @@
 @import '../../styles/mixins';
-.zone {
-  width: 120px !important;
-}
 .aside-container {
-  border-right: 1px solid #898787;
+  width: 120px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  height: 100vh;
-  padding-top: 1.5rem;
+  padding-top: 0.75rem;
   background-color: white;
   z-index: 10000;
-  padding-left: 5px;
-  padding-right: 5px;
-  width: 120px;
+  box-shadow: 0 0 12px rgba(0 0 0/10%);
+  @include flex(unset, center);
+  flex-direction: column;
   @include mobile {
     border-right: none;
     border-top: 1px solid #898787;
@@ -44,10 +40,34 @@
   &.block {
     display: block;
   }
+  .logo {
+    height: 72px;
+    @include mobile {
+      width: 82px;
+    }
+    @include tablet {
+      width: 60px;
+      margin-right: 50px;
+    }
+    @include small-tablet {
+      width: 85px;
+    }
+    .box-logo {
+      margin-bottom: 20px;
+      .img-logo {
+        height: 3rem;
+        cursor: pointer;
 
-  ul {
-    margin-top: 1.5rem;
+        @include mobile {
+          height: 4rem;
+        }
+      }
+    }
+  }
+  .navlink-container {
     list-style-type: none;
+    @include flex(center, unset);
+    flex-direction: column;
     @include mobile {
       display: flex;
       justify-content: space-around;
@@ -67,7 +87,9 @@
       margin-top: 0;
     }
 
-    li {
+    a {
+      display: inline-block;
+      text-decoration: none;
       background-color: white;
       align-items: center;
       text-align: center;
@@ -75,7 +97,7 @@
       margin-bottom: 1rem;
       cursor: pointer;
       padding: 1rem;
-      border-radius: 20px;
+      border-radius: 12px;
       @include mobile {
         display: flex;
         flex-direction: column;
@@ -132,5 +154,8 @@
         }
       }
     }
+  }
+  .active {
+    background-color: #f9eac4 !important;
   }
 }

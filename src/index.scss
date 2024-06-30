@@ -1,9 +1,15 @@
 .main-layout {
   display: flex;
-  .sidebar {
-    width: 120px;
+  justify-content: center;
+  .layout-sidebar {
+    width: 120px !important;
+    padding: 0 60px;
   }
   .content {
-    flex-grow: 1;
+    flex-grow: 1 !important;
   }
+}
+.mt-72px{
+  margin-top: 72px !important;
+  padding: 24px 24px 0;
 }
