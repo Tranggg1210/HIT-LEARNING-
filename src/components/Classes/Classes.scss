@@ -3,5 +3,9 @@
   margin-right: 20px;
   @include small-tablet {
     margin-left: 20px;
+    margin-bottom: 100px;
+  }
+  @include mobile {
+    margin-right: 0;
   }
 }

@@ -6,11 +6,11 @@ const MainLayout = () => {
   return (
     <div className='main-layout'>
       <div className='layout-sidebar'>
-        <SideBar  />
+        <SideBar />
       </div>
       <div className='content'>
         <HeaderHL />
-        <div className="mt-72px" >
+        <div className='mt-72px'>
           <Outlet />
         </div>
       </div>

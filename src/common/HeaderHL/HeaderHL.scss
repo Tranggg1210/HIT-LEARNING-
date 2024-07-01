@@ -13,16 +13,47 @@
   @include mobile {
     height: 92px;
     width: 100%;
-    margin-left: 210px;
+    left: 0;
+    padding: 0;
+    gap: 10px;
   }
   @include tablet {
     width: 100%;
+    left: 160px;
+    justify-content: normal;
+    gap: 20px;
   }
   @include small-tablet {
     height: 92px;
     width: 100%;
+    left: 0;
+    padding: 0;
+    gap: 10px;
   }
-
+  .logo {
+    display: none;
+    @include mobile {
+      display: block;
+    }
+    @include mobile {
+      display: block;
+      .box-logo {
+        .img-logo {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+    @include small-tablet {
+      display: block;
+      .box-logo {
+        .img-logo {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+  }
   .search {
     position: relative;
     display: flex;
@@ -31,7 +62,6 @@
       & > input::placeholder {
         font-size: 20px;
       }
-      margin-right: 20px;
     }
     .fa-magnifying-glass {
       position: absolute;
@@ -53,31 +83,32 @@
       outline: none;
       transition: width 0.3s ease;
       transition: all 0.3s linear;
-      &:hover{
+      &:hover {
         border: 2px solid #ffb26a;
       }
       @include mobile {
         height: 52px;
-        width: 390px;
+        width: 215px;
         margin-left: 10px;
       }
 
       @include tablet {
-        width: 500px;
+        width: 470px;
       }
       @include small-tablet {
-        margin-right: 15px;
         width: 310px;
       }
     }
   }
   .button {
     .top-signIn {
-      width: 300px;
-      display: flex;
-      justify-content: right;
-      align-items: center;
-      text-align: center;
+      @include flex(center, center);
+      justify-content: center !important;
+      cursor: pointer;
+      height: 3rem;
+      justify-content: space-around;
+      width: 127px;
+
       @include mobile {
         width: 92px;
       }
@@ -155,7 +186,15 @@
       width: 127px;
       border-radius: 25px;
       background: linear-gradient(103deg, #f67102 5.1%, #f4a91e 86.29%);
-
+      @include small-tablet {
+        width: 110px;
+      }
+      @include mobile {
+        width: 95px;
+      }
+      @include tablet {
+        width: 110px;
+      }
       h4 {
         color: white;
         font-size: 17px;

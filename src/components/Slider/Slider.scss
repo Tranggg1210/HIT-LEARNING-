@@ -1,14 +1,15 @@
 @import '../../styles/mixins';
 .banner {
-  width: 85%;
-  margin-left: 160px;
+  width: 92%;
+  margin-left: 70px;
   padding-top: 110px;
   height: 100%;
   border-radius: 8px;
   @include mobile {
-    width: 70%;
+    width: 100%;
     height: 50%;
-    margin-left: 230px;
+    margin-left: 0;
+    padding-top: 0;
   }
   @include tablet {
     margin-left: 135px;
@@ -18,6 +19,7 @@
   @include small-tablet {
     width: 93%;
     margin-left: 20px;
+    padding-top: 0;
   }
   .banner-container {
     position: relative;

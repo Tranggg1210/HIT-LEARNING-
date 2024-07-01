@@ -1,16 +1,20 @@
 @import '../../styles/mixins';
+.zone {
+  width: 120px !important;
+}
 .aside-container {
-  width: 120px;
+  border-right: 1px solid #898787;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  padding-top: 0.75rem;
+  height: 100vh;
+  padding-top: 1.5rem;
   background-color: white;
   z-index: 10000;
-  box-shadow: 0 0 12px rgba(0 0 0/10%);
-  @include flex(unset, center);
-  flex-direction: column;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 120px;
   @include mobile {
     border-right: none;
     border-top: 1px solid #898787;
@@ -21,6 +25,7 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     z-index: 100;
+    margin-left: 209px;
   }
   @include small-tablet {
     border-right: none;
@@ -39,44 +44,16 @@
   &.block {
     display: block;
   }
-  .logo {
-    height: 72px;
-    @include mobile {
-      width: 82px;
-      display: none;
-    }
-    @include tablet {
-      width: 60px;
-      margin-right: 50px;
-    }
-    @include small-tablet {
-      width: 85px;
-      display: none;
-    }
-    .box-logo {
-      margin-bottom: 20px;
-      .img-logo {
-        height: 3rem;
-        cursor: pointer;
 
-        @include mobile {
-          height: 4rem;
-        }
-      }
-    }
-  }
-  .navlink-container {
+  ul {
+    margin-top: 1.5rem;
     list-style-type: none;
-    @include flex(center, unset);
-    flex-direction: column;
     @include mobile {
-      gap: 25px;
+      display: flex;
       justify-content: space-around;
       align-items: center;
       margin-top: 0;
       margin-bottom: 0;
-      display: flex;
-      flex-direction: row;
     }
     @include small-tablet {
       display: flex;
@@ -84,17 +61,13 @@
       align-items: center;
       margin-top: 0;
       margin-bottom: 0;
-      flex-direction: row;
-      gap: 80px;
     }
 
     &:first-of-type {
       margin-top: 0;
     }
 
-    a {
-      display: inline-block;
-      text-decoration: none;
+    li {
       background-color: white;
       align-items: center;
       text-align: center;
@@ -102,7 +75,7 @@
       margin-bottom: 1rem;
       cursor: pointer;
       padding: 1rem;
-      border-radius: 12px;
+      border-radius: 20px;
       @include mobile {
         display: flex;
         flex-direction: column;
@@ -111,7 +84,7 @@
         margin-top: 0;
         margin-bottom: 0;
         padding: 0.5rem;
-        border-radius: 20px;
+        border-radius: 0;
       }
       @include small-tablet {
         display: flex;
@@ -121,21 +94,20 @@
         margin-top: 0;
         margin-bottom: 0;
         padding: 0.5rem;
-        border-radius: 20px;
+        border-radius: 0;
       }
       i {
         color: black;
         font-size: 25px;
         margin-bottom: 15px;
         @include mobile {
-          font-size: 25px;
+          font-size: 30px;
           &:hover {
             color: #f4a91e;
           }
         }
         @include small-tablet {
           margin-bottom: 10px;
-          font-size: 20px;
         }
       }
 
@@ -143,10 +115,10 @@
         color: black;
         font-size: 15px;
         @include mobile {
-          font-size: 20px;
+          font-size: 25px;
         }
         @include small-tablet {
-          font-size: 15px;
+          font-size: 20px;
         }
       }
 
@@ -160,8 +132,5 @@
         }
       }
     }
-  }
-  .active {
-    background-color: #f9eac4 !important;
   }
 }

@@ -4,8 +4,9 @@ import logo from '../../assets/images/logo1.png'
 import './SideBar.scss'
 
 const SideBar = () => {
-  const navigate = useNavigate();
-  const getClassName = ({ isActive }) => (isActive ? 'active' : '');
+  const navigate = useNavigate()
+  const getClassName = ({ isActive }) => (isActive ? 'active' : '')
+
   //   const dispatch = useDispatch()
   //   const isAsideOpening = useSelector((state) => state.asideStatus)
   //   const user = useSelector((state) => state.user.account)
@@ -20,22 +21,21 @@ const SideBar = () => {
           </div>
         </div>
         <div className='navlink-container'>
-          <NavLink to="/"  className={getClassName}>
+          <NavLink to='/' className={getClassName}>
             <i className='fa-solid fa-house'></i>
             <p>Trang chủ</p>
           </NavLink>
-          <NavLink to="/course"  className={getClassName}>
+          <NavLink to='/course' className={getClassName}>
             <i className='fa-solid fa-book'></i>
             <p>Khoá học</p>
           </NavLink>
-          <NavLink to="/club-hit"  className={getClassName}>
+          <NavLink to='/club-hit' className={getClassName}>
             <i className='fa-solid fa-users'></i>
             <p>CLB HIT</p>
           </NavLink>
         </div>
       </div>
     </>
-
   )
 }
 

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './HeaderHL.scss'
 import { useState } from 'react'
-
+import logo from '../../assets/images/logo1.png'
 const HeaderHL = () => {
   const navigate = useNavigate()
   const [click, setClick] = useState(false)
@@ -31,7 +31,12 @@ const HeaderHL = () => {
   }
   return (
     <div className='header-container'>
-      <div className="zone"></div>
+      <div className='zone'></div>
+      <div className='logo' onClick={() => navigate('/')}>
+        <div className='box-logo'>
+          <img className='img-logo' src={logo} alt='Logo' />
+        </div>
+      </div>
       <div className='search'>
         <i className='fa-solid fa-magnifying-glass'></i>
         <input
