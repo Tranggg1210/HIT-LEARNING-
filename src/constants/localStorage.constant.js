@@ -1,5 +1,5 @@
-const appname = 'HIT';
+const appname = 'HIT'
 
 export const LocalStorage = {
-    auth: appname + '-auth'
+  auth: appname + '-auth',
 }

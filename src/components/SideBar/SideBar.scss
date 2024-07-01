@@ -1,0 +1,167 @@
+@import '../../styles/mixins';
+.aside-container {
+  width: 120px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  padding-top: 0.75rem;
+  background-color: white;
+  z-index: 10000;
+  box-shadow: 0 0 12px rgba(0 0 0/10%);
+  @include flex(unset, center);
+  flex-direction: column;
+  @include mobile {
+    border-right: none;
+    border-top: 1px solid #898787;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    z-index: 100;
+  }
+  @include small-tablet {
+    border-right: none;
+    border-top: 1px solid #898787;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    z-index: 100;
+  }
+  &.hidden {
+    display: none;
+  }
+  &.block {
+    display: block;
+  }
+  .logo {
+    height: 72px;
+    @include mobile {
+      width: 82px;
+      display: none;
+    }
+    @include tablet {
+      width: 60px;
+      margin-right: 50px;
+    }
+    @include small-tablet {
+      width: 85px;
+      display: none;
+    }
+    .box-logo {
+      margin-bottom: 20px;
+      .img-logo {
+        height: 3rem;
+        cursor: pointer;
+
+        @include mobile {
+          height: 4rem;
+        }
+      }
+    }
+  }
+  .navlink-container {
+    list-style-type: none;
+    @include flex(center, unset);
+    flex-direction: column;
+    @include mobile {
+      gap: 25px;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 0;
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: row;
+    }
+    @include small-tablet {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 0;
+      margin-bottom: 0;
+      flex-direction: row;
+      gap: 80px;
+    }
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      background-color: white;
+      align-items: center;
+      text-align: center;
+      margin-top: 0.25rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 12px;
+      @include mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0.5rem;
+        border-radius: 20px;
+      }
+      @include small-tablet {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0.5rem;
+        border-radius: 20px;
+      }
+      i {
+        color: black;
+        font-size: 25px;
+        margin-bottom: 15px;
+        @include mobile {
+          font-size: 25px;
+          &:hover {
+            color: #f4a91e;
+          }
+        }
+        @include small-tablet {
+          margin-bottom: 10px;
+          font-size: 20px;
+        }
+      }
+
+      p {
+        color: black;
+        font-size: 15px;
+        @include mobile {
+          font-size: 20px;
+        }
+        @include small-tablet {
+          font-size: 15px;
+        }
+      }
+
+      &:hover {
+        background-color: #f9eac4;
+        @include mobile {
+          background-color: #f8f8f8;
+        }
+        @include small-tablet {
+          background-color: #f8f8f8;
+        }
+      }
+    }
+  }
+  .active {
+    background-color: #f9eac4 !important;
+  }
+}
