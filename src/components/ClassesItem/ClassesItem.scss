@@ -1,10 +1,10 @@
 @import '../../styles/mixins';
 .films {
   margin-top: 50px;
-  margin-left: 160px;
+  margin-left: 70px;
   position: relative;
   @include mobile {
-    margin-left: 235px;
+    margin-left: 0;
   }
   @include small-tablet {
     margin-left: 0px;

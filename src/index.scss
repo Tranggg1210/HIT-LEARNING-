@@ -1,9 +1,24 @@
+@import './styles//mixins';
 .main-layout {
   display: flex;
-  .sidebar {
-    width: 120px;
+  justify-content: center;
+  .layout-sidebar {
+    width: 120px !important;
+    padding: 0 60px;
+    @include small-tablet {
+      padding: 0;
+      width: 0px !important;
+    }
+    @include mobile {
+      padding: 0;
+      width: 0px !important;
+    }
   }
   .content {
-    flex-grow: 1;
+    flex-grow: 1 !important;
   }
+}
+.mt-72px {
+  margin-top: 72px !important;
+  padding: 24px 24px 0;
 }

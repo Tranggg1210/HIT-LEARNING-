@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom'
-import logo from '../../assets/images/logo1.png'
 import './HeaderHL.scss'
 import { useState } from 'react'
-
+import logo from '../../assets/images/logo1.png'
 const HeaderHL = () => {
   const navigate = useNavigate()
   const [click, setClick] = useState(false)
@@ -30,9 +29,9 @@ const HeaderHL = () => {
       setClick(false)
     }
   }
-  console.log(click)
   return (
     <div className='header-container'>
+      <div className='zone'></div>
       <div className='logo' onClick={() => navigate('/')}>
         <div className='box-logo'>
           <img className='img-logo' src={logo} alt='Logo' />
@@ -67,11 +66,9 @@ const HeaderHL = () => {
             </div>
           </div>
         ) : (
-          <div className='top-login'>
-            <div className='login' onClick={handleClickSignIn}>
-              <h4>Login</h4>
-              <i className='fa-solid fa-user'></i>
-            </div>
+          <div className='login' onClick={handleClickSignIn}>
+            <h4>Login</h4>
+            <i className='fa-solid fa-user'></i>
           </div>
         )}
       </div>

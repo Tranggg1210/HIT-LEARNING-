@@ -1,11 +1,12 @@
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { IconAB2 } from '@tabler/icons-react'
-import { Button } from '@mui/material'
+import logo from '../../assets/images/logo1.png'
 import './SideBar.scss'
 
-const Menu = () => {
+const SideBar = () => {
   const navigate = useNavigate()
+  const getClassName = ({ isActive }) => (isActive ? 'active' : '')
+
   //   const dispatch = useDispatch()
   //   const isAsideOpening = useSelector((state) => state.asideStatus)
   //   const user = useSelector((state) => state.user.account)
@@ -13,29 +14,29 @@ const Menu = () => {
   return (
     // <aside className={`aside-container ${isAsideOpening ? 'block' : 'hidden'}`}>
     <>
-      <div className='zone'>
-        <p>áds</p>
-      </div>
       <div className='aside-container'>
-        <ul>
-          <li onClick={() => navigate('/')}>
+        <div className='logo' onClick={() => navigate('/')}>
+          <div className='box-logo'>
+            <img className='img-logo' src={logo} alt='Logo' />
+          </div>
+        </div>
+        <div className='navlink-container'>
+          <NavLink to='/' className={getClassName}>
             <i className='fa-solid fa-house'></i>
             <p>Trang chủ</p>
-          </li>
-          <li onClick={() => navigate('/courses')}>
+          </NavLink>
+          <NavLink to='/course' className={getClassName}>
             <i className='fa-solid fa-book'></i>
             <p>Khoá học</p>
-          </li>
-          <li onClick={() => navigate('/club-hit')}>
+          </NavLink>
+          <NavLink to='/club-hit' className={getClassName}>
             <i className='fa-solid fa-users'></i>
-            <p>Clb HIT</p>
-          </li>
-        </ul>
+            <p>CLB HIT</p>
+          </NavLink>
+        </div>
       </div>
     </>
-
-    // </aside>
   )
 }
 
-export default Menu
+export default SideBar
