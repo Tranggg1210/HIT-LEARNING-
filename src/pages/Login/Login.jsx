@@ -42,7 +42,6 @@ const Login = () => {
                   values,
                 )
 
-                console.log('API response:', data)
 
                 localStorage.setItem('token', data.token)
                 sessionStorage.setItem('user', data.token)
