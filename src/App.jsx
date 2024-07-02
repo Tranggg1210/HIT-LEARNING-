@@ -39,5 +39,4 @@ function App() {
 
   return router
 }
-
 export default App
