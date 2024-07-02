@@ -1,20 +1,20 @@
-import './Login.scss';
-import { IoIosArrowBack } from 'react-icons/io';
-import { FaUser } from 'react-icons/fa';
-import { FaLock } from 'react-icons/fa6';
-import { Link, useNavigate } from 'react-router-dom';
-import { loginValidate } from '../../utils/loginValidate';
-import { Field, Formik, Form } from 'formik';
-import logo from '../../assets/images/logo.jpg';
-import { toast } from 'react-toastify';
-import axios from 'axios';
+import './Login.scss'
+import { IoIosArrowBack } from 'react-icons/io'
+import { FaUser } from 'react-icons/fa'
+import { FaLock } from 'react-icons/fa6'
+import { Link, useNavigate } from 'react-router-dom'
+import { loginValidate } from '../../utils/loginValidate'
+import { Field, Formik, Form } from 'formik'
+import logo from '../../assets/images/logo.jpg'
+import { toast } from 'react-toastify'
+import axios from 'axios'
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const goBack = () => {
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   return (
     <>
@@ -36,24 +36,24 @@ const Login = () => {
             validationSchema={loginValidate()}
             onSubmit={async (values) => {
               try {
-                console.log('Submitting values:', values);
+                console.log('Submitting values:', values)
                 const { data } = await axios.post(
                   'https://hitproduct2024-production.up.railway.app/user',
                   values,
-                );
+                )
 
-                console.log('API response:', data);
+                console.log('API response:', data)
 
-                localStorage.setItem('token', data.token);
-                sessionStorage.setItem('user', data.token);
-                const token = localStorage.getItem('token');
+                localStorage.setItem('token', data.token)
+                sessionStorage.setItem('user', data.token)
+                const token = localStorage.getItem('token')
                 if (token) {
-                  toast.success('Đăng nhập thành công');
-                  navigate('/');
+                  toast.success('Đăng nhập thành công')
+                  navigate('/')
                 }
               } catch (error) {
-                toast.error('Đăng nhập thất bại');
-                console.error('API error:', error.response || error.message);
+                toast.error('Đăng nhập thất bại')
+                console.error('API error:', error.response || error.message)
               }
             }}>
             {({ errors, touched }) => (
@@ -98,7 +98,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login
