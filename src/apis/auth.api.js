@@ -2,9 +2,9 @@ import { apiDefault } from '.'
 import { ApiConstant } from '../constants/api.constant'
 
 const authApi = () => ({
-  login: async ({ id, password }) =>
+  login: async ({ username, password }) =>
     apiDefault.post(ApiConstant.auth.login, {
-      id,
+      username,
       password,
     }),
 })

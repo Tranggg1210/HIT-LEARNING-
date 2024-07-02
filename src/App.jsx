@@ -9,6 +9,7 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 function App() {
   const router = useRoutes([
     {
+      
       path: '/',
       element: <MainLayout />,
       children: [
