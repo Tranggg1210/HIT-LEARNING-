@@ -6,6 +6,7 @@
   background-color: #f7b483;
 }
 
+
 .box {
   background-color: #fff;
   border-radius: 10px;
@@ -59,8 +60,6 @@
   cursor: pointer;
 
   & span {
-    display: flex;
-    align-items: flex-start;
     color: gray;
     font-weight: 600;
   }
