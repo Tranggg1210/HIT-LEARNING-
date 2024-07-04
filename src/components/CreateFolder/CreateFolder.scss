@@ -1,0 +1,40 @@
+.create-folder-container {
+  margin-left: 400px;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 400px;
+  height: 400px;
+  & > h2 {
+    margin-bottom: 80px;
+  }
+  & > input {
+    margin-bottom: 150px;
+    width: 355px;
+    padding: 15px 15px;
+    border-radius: 10px;
+    background: #f0eeee;
+  }
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+
+    .cancel-button,
+    .create-button {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+    }
+    .create-button {
+      background-color: #f4b81e;
+      color: white;
+    }
+    .cancel-button {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+  }
+}
