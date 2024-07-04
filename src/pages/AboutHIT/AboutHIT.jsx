@@ -38,7 +38,7 @@ const AboutHIT = () => {
     arrow.addEventListener('click', () => {
       if (answer.classList.contains('show')) {
         answer.classList.remove('show')
-        answer.classNameList.add('hidden')
+        answer.classList.add('hidden')
       } else {
         answer.classList.remove('hidden')
         answer.classList.add('show')
