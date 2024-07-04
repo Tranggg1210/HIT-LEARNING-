@@ -1,0 +1,93 @@
+// .edit-course {
+//   padding: 20px;
+// }
+
+// .edit-course form {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+// .edit-course form input {
+//   margin-bottom: 10px;
+//   padding: 10px;
+//   font-size: 16px;
+// }
+
+// .edit-course form button {
+//   padding: 10px;
+//   font-size: 16px;
+//   cursor: pointer;
+//   margin-top: 10px;
+// }
+.course-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.course-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.course-logo {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+.edit-course-button {
+  background-color: #ffc107;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.course-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.folder {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.folder-header {
+  background-color: #f8f9fa;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.folder-items {
+  padding: 10px;
+}
+
+.folder-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.edit-icon {
+  cursor: pointer;
+}
+
+.add-button {
+  background-color: #ffc107;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.create-folder-button {
+  background-color: #ffc107;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
