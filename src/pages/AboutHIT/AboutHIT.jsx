@@ -29,9 +29,24 @@ import FooterHL from '../../common/FooterHL/FooterHL'
 import { IconCircleArrowDownFilled } from '@tabler/icons-react'
 
 const AboutHIT = () => {
+  const faqs = document.querySelectorAll('.faq')
+
+  faqs.forEach((faq) => {
+    const arrow = faq.querySelector('.faq-arrow')
+    const answer = faq.querySelector('.faq-answer')
+
+    arrow.addEventListener('click', () => {
+      if (answer.classList.contains('show')) {
+        answer.classList.remove('show')
+        answer.classNameList.add('hidden')
+      } else {
+        answer.classList.remove('hidden')
+        answer.classList.add('show')
+      }
+    })
+  })
   return (
     <>
-    
       <div className='container'>
         <header>
           <div className='logo'>
@@ -324,6 +339,7 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
+                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
@@ -346,6 +362,7 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
+                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
@@ -368,6 +385,7 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
+                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
