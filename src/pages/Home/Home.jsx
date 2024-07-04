@@ -16,7 +16,7 @@ const Home = () => {
         {/* <CreateFolder /> */}
         {/* <CreateSubFolder /> */}
       </div>
-      {/* <FooterHL /> */}
+
     </>
   )
 }
