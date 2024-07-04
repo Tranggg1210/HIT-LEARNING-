@@ -3,7 +3,6 @@ import './App.scss'
 import Home from './pages/Home/Home'
 import MainLayout from './layouts/Layout/MainLayout'
 
-
 import AboutHIT from './pages/AboutHIT/AboutHIT'
 function App() {
   // const router = useRoutes([
@@ -21,13 +20,16 @@ function App() {
   //     path: '/signIn',
   //     element: <Login />,
   //   },
+  //   {
+  //     path: '/signIn',
+  //     element: <Login />,
+  //   },
   // ])
 
   // return router
   return (
     <>
-      
-      <AboutHIT/>
+      <AboutHIT />
     </>
   )
 }
