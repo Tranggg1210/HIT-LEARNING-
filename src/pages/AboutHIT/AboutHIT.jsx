@@ -31,6 +31,7 @@ import { IconCircleArrowDownFilled } from '@tabler/icons-react'
 const AboutHIT = () => {
   return (
     <>
+    
       <div className='container'>
         <header>
           <div className='logo'>
