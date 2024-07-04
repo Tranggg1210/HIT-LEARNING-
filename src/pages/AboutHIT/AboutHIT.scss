@@ -3,7 +3,7 @@
 
 
 
-header {
+.header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -30,6 +30,7 @@ header {
         margin: 0;
         padding: 0;
         
+        
 
         li {
             margin-right: 20px;
@@ -46,6 +47,13 @@ header {
                 }
             }
         }
+    }
+}
+@include mobile{
+    .header{
+       ul{
+        display: none;
+       }
     }
 }
 
@@ -101,7 +109,7 @@ header {
 
         }
     }
-    @media (max-width: 768px) {
+    @include small-tablet {
         flex-direction: column;
         width: 90%;
     
@@ -116,9 +124,35 @@ header {
         }
         
       }
-      @media (max-width: 360px) {
-        ul{
-           display: none;
+      @include tablet {
+        flex-direction: column;
+        width: 90%;
+    
+        .banner-tittle, .banner-img {
+          width: 100%;
+          padding: 0;
+          text-align: center;
+        }
+    
+        .banner-tittle {
+          padding-bottom: 20px;
+        }
+        
+      }
+
+      @include mobile {
+        flex-direction: column;
+        width: 80%;
+        margin-left: 40px;
+    
+        .banner-tittle, .banner-img {
+          width: 100%;
+          padding: 0;
+          text-align: center;
+        }
+    
+        .banner-tittle {
+          padding-bottom: 20px;
         }
 
       }
@@ -199,14 +233,42 @@ header {
         }
     }
 
-    @media (max-width: 768px) {
+    @include small-tablet {
+        .title{
+                margin-top: 650px;
+        }
+        
         .cards {
             flex-direction:column;
             gap: 20px;
             align-items: center;
             margin-bottom: 80px;
             
+            
+            
         }
+    }
+    @include mobile{
+        .title{
+            
+            font-size: 35px;
+        }
+        .cards {
+            flex-direction:column;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 190px;  
+               
+        }
+    }
+    @include tablet{
+        margin-top: 600px;
+        .cards {
+            gap: 40px;
+            align-items: center;
+                
+        }
+        
     }
 }
 
@@ -227,6 +289,11 @@ header {
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
         font-family: Arial, Helvetica, sans-serif;
+
+        @include mobile{
+            font-size: 35px;
+            width: 90%;
+        }
     }
 
     .teams,
@@ -265,7 +332,7 @@ header {
         }
     }
 
-    @media (max-width: 768px) {
+    @include small-tablet {
 
         .teams,
         .departments {
@@ -273,8 +340,20 @@ header {
             gap: 20px;
         }
     }
+    @include mobile{
+        .teams,
+        .departments {
+            flex-direction: column;
+            gap: 40px;
+            width: 80%;
+           
+        }
+    
+    }
+    
 
 }
+
 
 .vechungtoi {
     max-width: 980px;
@@ -292,8 +371,15 @@ header {
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
         font-family: Arial, Helvetica, sans-serif;
         margin-top: 70px;
+        @include mobile{
+            margin-top: 120px;
+            font-size:35px;
+           
+        
+        }
+    
     }
-
+    
 
     .container-section {
         display: flex;
@@ -397,8 +483,20 @@ header {
             }
         }
 
-        @media (max-width: 768px) {
+        @include small-tablet {
             flex-direction: column;
+            .image-container img{
+                width: 80%;
+                margin-left: 1px;
+            }
+        }
+
+        @include mobile{
+            flex-direction: column;
+            .image-container img{
+                width: 80%;
+                margin-left: 1px;
+            }
         }
     }
 
@@ -469,7 +567,8 @@ header {
 
         }     
     }
-    @media (max-width: 768px) {
+    
+    @include small-tablet {
         .container-section1 {
           flex-direction: column;
           align-items: center;
@@ -482,6 +581,20 @@ header {
             margin-top: 10px;
           }
         }
+      }
+      @include mobile{
+        .container-section1 {
+            flex-direction: column;
+            align-items: center;
+            .section1 {
+              width: 90%;
+              margin-right: 0;
+            }
+            .image-container1 img {
+              width: 100%;
+              margin-top: 10px;
+            }
+          }
       }
 }
 
@@ -502,6 +615,10 @@ header {
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
         font-family: Arial, Helvetica, sans-serif;
+
+        @include mobile{
+            font-size: 35px;
+        }
 
     }
 
@@ -567,25 +684,30 @@ header {
         }
 
     }
-    @media (max-width: 768px) {
+    @include tablet{
+        .card1-list {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            width: 90%;
+            
+          }
+    }
+    @include small-tablet {
         .card1-list {
           grid-template-columns: repeat(2, 1fr);
-          gap: 20px;
-          width: 90%;
+          gap: 40px;
+          width: 80%;
           
         }
       }
     
-      @media (max-width: 480px) {
+      @include mobile {
         .card1-list {
           grid-template-columns: 1fr;
-          gap: 20px;
-          width: 100%;
+          gap: 40px;
+          width: 70%;
         }
       }
-
-
-
 }
 
 .hoidap {
@@ -604,6 +726,10 @@ header {
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
         font-family: Arial, Helvetica, sans-serif;
         margin-top: 70px;
+
+        @include mobile{
+            font-size: 35px;
+        }
     }
 
 
@@ -669,18 +795,42 @@ header {
             }
         }
     }
-    @media (max-width: 768px) {
+    @include tablet{
+      h1{
+        margin-top: -50px;
+      }
+    }
+    @include small-tablet {
         h1{
-            margin-top: 900px;
+            margin-top: 700px;
         }
         .content {
           flex-direction: column;
-          margin-top: 100px;
+          height: 800px;
+          width: 95%;
+          margin-left: 25px;
     
           .image-container {
             margin: 0;
             width: 100%;
           }
         }
-      }
+    }
+    @include mobile {
+        h1{
+            margin-top: 2990px;
+        }
+        .content {
+          flex-direction: column;
+          height: 800px;
+          margin-left: 15px;
+          width: 90%;
+          align-content: center;
+          .image-container {
+            margin: 0;
+            width: 100%;
+          }
+        }
+    }
+
 }
