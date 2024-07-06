@@ -3,13 +3,14 @@ import './App.scss'
 import Home from './pages/Home/Home'
 import MainLayout from './layouts/Layout/MainLayout'
 import Login from './pages/Login/Login'
-
 import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
 import CourseList from './pages/CourseList/CourseList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
+
+import BasicCourse from './pages/BasicCourse/BasicCourse'
 
 function App() {
   const router = useRoutes([
@@ -49,10 +50,15 @@ function App() {
     },
     {
       path: '/club-hit',
-      element: <AboutHIT />,
+      element:<AboutHIT/>
     },
+    {
+      path:'/course',
+      element:<BasicCourse/>
+    }
   ])
 
   return router
+  
 }
 export default App
