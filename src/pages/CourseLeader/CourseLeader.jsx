@@ -1,4 +1,4 @@
-import CourseLeaderItem from '../CourseLeaderItem/CourseLeaderItem'
+import CourseLeaderItem from '../../components/CourseLeaderItem/CourseLeaderItem'
 import './CourseLeader.scss'
 const CourseLeader = () => {
   const course_leader = [{ title: 'Cartoons', api: 'hoat-hinh' }]

@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
-import './CreateSubFolder.scss'
+import './EditSubFolder.scss'
 import { IconUpload } from '@tabler/icons-react'
 
-const CreateSubFolder = ({ onCreate, onCancel }) => {
+const EditSubFolder = ({ onCreate, onCancel }) => {
   const [subFolderName, setSubFolderName] = useState('')
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState([])
@@ -68,38 +68,41 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
   }
   return (
     <>
-      <div className='create-sub-folder'>
-        <h2>TẠO FOLDER CON</h2>
-        <div className='sub-folder-header'>
-          <div className='upload-file'>
-            <div className='icon-upload'>
+      <div className='edit-sub-folder'>
+        <h2>SỬA FOLDER CON</h2>
+        <div className='edit-sub-folder-header'>
+          <div className='edit-upload-file'>
+            <div className='edit-icon-upload'>
               {files ? (
                 [...files].map((file, idx) => (
-                  <section key={file.name} className='nameFile'>
+                  <section key={file.name} className='edit-nameFile'>
                     <ul>
                       <li>File name: {file.name}</li>
                     </ul>
                   </section>
                 ))
               ) : (
-                <div className='boxUpload'>
-                  <div className='boxIcon'>
-                    <IconUpload className='iconUpload' onClick={() => inputRef.current.click()} />
+                <div className='edit-boxUpload'>
+                  <div className='edit-boxIcon'>
+                    <IconUpload
+                      className='edit-iconUpload'
+                      onClick={() => inputRef.current.click()}
+                    />
                   </div>
 
                   <p>Kéo ảnh, video demo để tải lên</p>
                 </div>
               )}
             </div>
-            <div className='input-upload'>
+            <div className='edit-input-upload'>
               <input type='file' multiple onChange={handleFileChage} ref={inputRef} />
-              <button className='button-upload' onClick={() => inputRef.current.click()}>
+              <button className='edit-button-upload' onClick={() => inputRef.current.click()}>
                 Chọn tệp
               </button>
             </div>
           </div>
-          <div className='infors'>
-            <div className='infor-folder'>
+          <div className='edit-infors'>
+            <div className='edit-infor-folder'>
               <input
                 type='text'
                 placeholder='Tên folder con'
@@ -107,7 +110,7 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
                 onChange={(e) => setSubFolderName(e.target.value)}
               />
             </div>
-            <div className='infor-describe'>
+            <div className='edit-infor-describe'>
               <input
                 type='text'
                 placeholder='Mô tả folder con'
@@ -117,11 +120,11 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
             </div>
           </div>
         </div>
-        <div className='pots'>
-          <button className='post-button' onClick={handleSubmit}>
-            ĐĂNG
+        <div className='pots-edit'>
+          <button className='edit-post-button' onClick={handleSubmit}>
+            CẬP NHẬT
           </button>
-          <button className='post-button-cancel' onClick={onCancel}>
+          <button className='edit-post-button-cancel' onClick={onCancel}>
             HUỶ BỎ
           </button>
           <Result status={status} />
@@ -130,4 +133,4 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
     </>
   )
 }
-export default CreateSubFolder
+export default EditSubFolder

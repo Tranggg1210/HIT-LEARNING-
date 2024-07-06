@@ -8,6 +8,8 @@ import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
+import CourseList from './pages/CourseList/CourseList'
+import CreateFolder from './components/CreateFolder/CreateFolder'
 
 function App() {
   const router = useRoutes([
@@ -18,6 +20,14 @@ function App() {
         {
           path: '',
           element: <Home />,
+        },
+        {
+          path: '/editCours',
+          element: <CourseList />,
+        },
+        {
+          path: '/createFolder',
+          element: <CreateFolder />,
         },
       ],
     },
@@ -39,11 +49,10 @@ function App() {
     },
     {
       path: '/club-hit',
-      element:<AboutHIT/>
-    }
+      element: <AboutHIT />,
+    },
   ])
 
   return router
-
 }
 export default App

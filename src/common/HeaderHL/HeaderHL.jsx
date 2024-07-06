@@ -47,7 +47,7 @@ const HeaderHL = () => {
           placeholder='Search here'
         />
       </div>
-      <div className='button'>
+      <div className='button-signin'>
         {access_token ? (
           <div className='top-signIn'>
             <div className='avatar' onClick={handleClick}>

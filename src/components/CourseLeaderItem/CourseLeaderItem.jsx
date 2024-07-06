@@ -2,9 +2,14 @@ import fetchItems from '../../hooks/server'
 import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
 import './CourseLeaderItem.scss'
+import { useNavigate } from 'react-router-dom'
 const CourseLeaderItem = ({ title, api }) => {
   const { data: course } = fetchItems(`https://phimapi.com/v1/api/danh-sach/${api}?limit=12&page=2`)
   // console.log(course.data.data.items)
+  const navigate = useNavigate()
+  const handleClickEdit = () => {
+    navigate('/editCours')
+  }
   const inputElement = useRef()
   return (
     <>
@@ -35,7 +40,9 @@ const CourseLeaderItem = ({ title, api }) => {
                   </p>
                 </div>
                 <div className='button'>
-                  <button className='edit'>Chỉnh sửa</button>
+                  <button className='edit' onClick={handleClickEdit}>
+                    Chỉnh sửa
+                  </button>
                   <button className='delete'>Xoá</button>
                 </div>
               </div>
