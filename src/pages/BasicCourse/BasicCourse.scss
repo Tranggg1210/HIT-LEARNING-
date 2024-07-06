@@ -1,0 +1,155 @@
+@import '../../styles/index.scss';
+
+.course-page {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  .course-basic-left {
+    flex: 60%;
+    margin-left: 40px;
+
+    .course-header {
+      padding: 20px;
+      button{
+        margin-top: 10px;
+        color: #999;
+      }
+
+      h1 {
+        margin-bottom: 10px;
+        font-size: 35px;
+        margin-top: 40px;
+        font-weight: bold;
+      }
+
+      p {
+        margin-bottom: 20px;
+        width: 50%;
+        font-size: 15px;
+        font-weight: 300;
+        opacity: 0.8;
+      }
+    }
+
+    .course-content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin-left: 15px;
+
+      .lesson-content {
+        width: 748px;
+        background-color: white;
+        border-radius: 8px;
+        padding: 0 10px;
+        max-height: 90vh;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        h2 {
+          margin-top: 0;
+          font-size: 25px;
+          font-weight: bold;
+        }
+
+        .section {
+          margin-bottom: 10px;
+
+          &-header {
+            padding: 15px;
+            background-color: rgba(217, 217, 217,0.5); /* Màu xám #D9D9D9 với độ mờ 50% */ 
+            border-radius: 10px;
+            cursor: pointer;
+
+            .title {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-weight: bold;
+
+              .arrow {
+                font-size: 12px;
+              }
+            }
+          }
+
+          &-content {
+            padding: 10px;
+            background-color: #fff;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+
+            .lesson {
+              display: flex;
+              justify-content: space-between;
+              padding: 10px;
+              border-radius: 5px;
+              cursor: pointer;
+
+              &:not(:last-child) {
+                border-bottom: 1px solid #eee;
+              }
+
+              .duration {
+                color: #999;
+              }
+
+              &:hover {
+                background-color: rgba(255, 166, 0, 0.229);
+                color: $primary-color;
+
+                .duration {
+                  color: $primary-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .course-basic-right {
+    flex: 35%;
+    position: fixed;
+    top: 100px; 
+    right: 20px; 
+    
+    overflow-y: auto; 
+    .course-video {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        max-width: 70%;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      button {
+        width: 40%;
+        margin-top: 10px;
+        background: linear-gradient(45deg, #F4B81E, #F67102);
+        padding: 10px;
+        font-weight: bold;
+        color: white;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
