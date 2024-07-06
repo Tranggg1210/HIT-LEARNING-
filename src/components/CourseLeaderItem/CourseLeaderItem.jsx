@@ -39,7 +39,7 @@ const CourseLeaderItem = ({ title, api }) => {
                     <IconMessageCircle></IconMessageCircle>
                   </p>
                 </div>
-                <div className='button'>
+                <div className='button-course-leader-item'>
                   <button className='edit' onClick={handleClickEdit}>
                     Chỉnh sửa
                   </button>
