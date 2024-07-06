@@ -8,6 +8,7 @@ import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
+// import LessonDetail from './components/LessonDetail/LessonDetail'
 
 function App() {
   const router = useRoutes([
@@ -44,6 +45,11 @@ function App() {
   ])
 
   return router
+  // return(
+  //   <>
+  //     <LessonDetail/>
+  //   </>
+  // )
 
 }
 export default App
