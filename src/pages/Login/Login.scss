@@ -21,7 +21,6 @@
 .input {
   &-group {
     position: relative;
-    margin-bottom: 20px;
     width: 100%;
 
     & input {
@@ -42,7 +41,7 @@
 
     & .icon {
       position: absolute;
-      right: 30px;
+      right: 40px;
       top: 55%;
       transform: translateY(-50%);
       font-size: 20px;
@@ -62,6 +61,8 @@
   & span {
     color: gray;
     font-weight: 600;
+    display: flex;
+    align-items: center;
   }
   &:hover {
     text-decoration: underline;
@@ -70,7 +71,7 @@
 }
 
 .logo img {
-  width: 100px;
+  width: 80px;
   margin-bottom: 20px;
 }
 
