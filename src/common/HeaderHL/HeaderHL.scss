@@ -1,6 +1,6 @@
 @import '../../styles/mixins';
 .header-container {
-  position: fixed;
+  // position: fixed;
   top: 0;
   right: 0;
   left: 120px;
@@ -100,7 +100,7 @@
       }
     }
   }
-  .button {
+  .button-signin {
     .top-signIn {
       @include flex(center, center);
       justify-content: center !important;

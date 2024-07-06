@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 // import { useDispatch, useSelector } from 'react-redux'
-import logo from '../../assets/images/logo1.png'
+import logo from '../../assets/images/logo3.png'
 import './SideBar.scss'
 
 const SideBar = () => {
@@ -15,7 +15,7 @@ const SideBar = () => {
     // <aside className={`aside-container ${isAsideOpening ? 'block' : 'hidden'}`}>
     <>
       <div className='aside-container'>
-        <div className='logo' onClick={() => navigate('/')}>
+        <div className='logo-sideabar' onClick={() => navigate('/')}>
           <div className='box-logo'>
             <img className='img-logo' src={logo} alt='Logo' />
           </div>

@@ -1,15 +1,17 @@
 import { useRef, useState } from 'react'
-import './CreateSubFolder.scss'
+import './CreateNewCourse.scss'
 import { IconUpload } from '@tabler/icons-react'
 
-const CreateSubFolder = ({ onCreate, onCancel }) => {
+const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [subFolderName, setSubFolderName] = useState('')
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState([])
   const [status, setStatus] = useState('initial')
   const [files, setFiles] = useState(null)
+  const [classType, setClassType] = useState('Public')
+  const [location, setLocation] = useState('Hà Nội')
 
-  const handleFileChage = (e) => {
+  const handleFileChange = (e) => {
     if (e.target.files) {
       setStatus('initial')
       setFiles(e.target.files)
@@ -49,6 +51,8 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
           name: subFolderName,
           describe,
           files: uploadedFiles,
+          classType,
+          location,
         })
         onCancel()
       }
@@ -68,38 +72,41 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
   }
   return (
     <>
-      <div className='create-sub-folder'>
-        <h2>TẠO FOLDER CON</h2>
-        <div className='sub-folder-header'>
-          <div className='upload-file'>
-            <div className='icon-upload'>
+      <div className='create-new-course'>
+        <h2>TẠO KHOÁ HỌC MỚI</h2>
+        <div className='new-courser-header'>
+          <div className='new-upload-file'>
+            <div className='new-icon-upload'>
               {files ? (
                 [...files].map((file, idx) => (
-                  <section key={file.name} className='nameFile'>
+                  <section key={file.name} className='new-nameFile'>
                     <ul>
                       <li>File name: {file.name}</li>
                     </ul>
                   </section>
                 ))
               ) : (
-                <div className='boxUpload'>
-                  <div className='boxIcon'>
-                    <IconUpload className='iconUpload' onClick={() => inputRef.current.click()} />
+                <div className='new-boxUpload'>
+                  <div className='new-boxIcon'>
+                    <IconUpload
+                      className='new-iconUpload'
+                      onClick={() => inputRef.current.click()}
+                    />
                   </div>
 
                   <p>Kéo ảnh, video demo để tải lên</p>
                 </div>
               )}
             </div>
-            <div className='input-upload'>
-              <input type='file' multiple onChange={handleFileChage} ref={inputRef} />
-              <button className='button-upload' onClick={() => inputRef.current.click()}>
+            <div className='new-input-upload'>
+              <input type='file' multiple onChange={handleFileChange} ref={inputRef} />
+              <button className='new-button-upload' onClick={() => inputRef.current.click()}>
                 Chọn tệp
               </button>
             </div>
           </div>
-          <div className='infors'>
-            <div className='infor-folder'>
+          <div className='new-infors'>
+            <div className='new-infor-folder'>
               <input
                 type='text'
                 placeholder='Tên folder con'
@@ -107,7 +114,7 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
                 onChange={(e) => setSubFolderName(e.target.value)}
               />
             </div>
-            <div className='infor-describe'>
+            <div className='new-infor-describe'>
               <input
                 type='text'
                 placeholder='Mô tả folder con'
@@ -115,13 +122,43 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
                 onChange={(e) => setDescribe(e.target.value)}
               />
             </div>
+            <div className='new-button-class-type'>
+              <h2>Loại lớp học</h2>
+              <div className='new-box-button-type'>
+                <button
+                  className={`button-${classType === 'Public' ? 'active' : ''}`}
+                  onClick={() => setClassType('Public')}>
+                  PUBLIC
+                </button>
+                <button
+                  className={`button-${classType === 'Private' ? 'active' : ''}`}
+                  onClick={() => setClassType('Private')}>
+                  PRIVATE
+                </button>
+              </div>
+            </div>
+            <div className='new-button-location'>
+              <h2>Địa Chỉ Lớp học</h2>
+              <div className='new-box-button-location'>
+                <button
+                  className={`button-${location === 'Hà Nội' ? 'active' : ''}`}
+                  onClick={() => setLocation('Hà Nội')}>
+                  HÀ NỘI
+                </button>
+                <button
+                  className={`button-${location === 'Hà Nam' ? 'active' : ''}`}
+                  onClick={() => setLocation('Hà Nam')}>
+                  HÀ NAM
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-        <div className='pots'>
-          <button className='post-button' onClick={handleSubmit}>
-            ĐĂNG
+        <div className='new-pots'>
+          <button className='new-post-button' onClick={handleSubmit}>
+            ĐĂNG BÀI
           </button>
-          <button className='post-button-cancel' onClick={onCancel}>
+          <button className='new-post-button-cancel' onClick={onCancel}>
             HUỶ BỎ
           </button>
           <Result status={status} />
@@ -130,4 +167,4 @@ const CreateSubFolder = ({ onCreate, onCancel }) => {
     </>
   )
 }
-export default CreateSubFolder
+export default CreateNewCourse

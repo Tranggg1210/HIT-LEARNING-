@@ -1,17 +1,17 @@
-.create-sub-folder {
+.edit-sub-folder {
   display: block;
   margin-left: 70px;
-  .sub-folder-header {
+  .edit-sub-folder-header {
     display: flex;
     margin-top: 30px;
-    .upload-file {
+    .edit-upload-file {
       display: block;
       background: rgba(247, 247, 247, 0.6);
       width: 450px;
       height: 250px;
       position: relative;
       border-radius: 10px;
-      .icon-upload {
+      .edit-icon-upload {
         width: 100%;
         position: absolute;
         display: block;
@@ -23,24 +23,24 @@
           display: block;
           text-align: left;
         }
-        .nameFile {
+        .edit-nameFile {
           margin-top: 35px;
           margin-left: 60px;
         }
-        .boxUpload {
+        .edit-boxUpload {
           margin-top: 45px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          .boxIcon {
+          .edit-boxIcon {
             display: flex;
             justify-content: center;
             width: 100px;
             height: 100px;
             background-color: #f0eeee;
             border-radius: 100%;
-            .iconUpload {
+            .edit-iconUpload {
               cursor: pointer;
               width: 80px;
               height: 80px;
@@ -48,7 +48,7 @@
           }
         }
       }
-      .input-upload {
+      .edit-input-upload {
         position: absolute;
         margin-top: 195px;
         display: flex;
@@ -57,7 +57,7 @@
         & > input {
           display: none;
         }
-        .button-upload {
+        .edit-button-upload {
           background-color: #ffb626;
           border: none;
           border-radius: 6px;
@@ -71,10 +71,10 @@
         }
       }
     }
-    .infors {
+    .edit-infors {
       display: block;
       margin-left: 110px;
-      .infor-folder {
+      .edit-infor-folder {
         & > input {
           margin-bottom: 50px;
           width: 355px;
@@ -85,7 +85,7 @@
           border: none;
         }
       }
-      .infor-describe {
+      .edit-infor-describe {
         height: 200px;
         width: 355px;
         padding: 15px 15px;
@@ -102,7 +102,7 @@
       }
     }
   }
-  .pots {
+  .pots-edit {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -111,8 +111,8 @@
     justify-content: center;
     gap: 300px;
     margin-bottom: 50px;
-    .post-button,
-    .post-button-cancel {
+    .edit-post-button,
+    .edit-post-button-cancel {
       background-color: #ffb626;
       border: none;
       border-radius: 10px;
@@ -122,7 +122,7 @@
       text-decoration: none;
       display: inline-block;
       font-size: 20px;
-      width: 130px;
+      width: 145px;
       cursor: pointer;
     }
   }

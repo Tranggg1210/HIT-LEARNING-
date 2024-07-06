@@ -7,6 +7,8 @@ import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
+import CourseList from './pages/CourseList/CourseList'
+import CreateFolder from './components/CreateFolder/CreateFolder'
 
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 
@@ -19,6 +21,14 @@ function App() {
         {
           path: '',
           element: <Home />,
+        },
+        {
+          path: '/editCours',
+          element: <CourseList />,
+        },
+        {
+          path: '/createFolder',
+          element: <CreateFolder />,
         },
       ],
     },
@@ -50,6 +60,5 @@ function App() {
 
   return router
   
-
 }
 export default App

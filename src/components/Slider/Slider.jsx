@@ -9,7 +9,7 @@ const Slider = () => {
   )
 
   return (
-    <div className='banner'>
+    <div className='banner-sileders'>
       <div className='banner-container'>
         {bannerFilms && bannerFilms.data && <SliderItem films={bannerFilms} />}
       </div>

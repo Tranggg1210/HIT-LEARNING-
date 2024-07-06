@@ -8,8 +8,9 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    margin-left: 40px;
-    width: 400px;
+    // margin-left: 40px;
+    // width: 400px;
+    padding-left: 20px;
     .course-logo {
       width: 100px;
       height: 100px;
@@ -17,10 +18,22 @@
         margin-top: 10px;
       }
     }
+    .edit-course-button,
+    .cancel-course-button {
+      border-radius: 10px;
+      padding: 10px;
+      margin-left: 15px;
+      width: 150px;
+      font-size: 15px;
+      color: white;
+      background-color: #f4b81e;
+      border: none;
+      cursor: pointer;
+    }
   }
   .row2 {
     display: flex;
-    width: 900px;
+    width: 750px;
     background-color: #f9f9f9;
     border: 1px solid #f9f9f9;
     padding: 20px;
@@ -39,10 +52,11 @@
           border-radius: 10px;
           .folder-header {
             border-radius: 10px;
-            background-color: #9c9a9a;
+            background-color: #dad7d7;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 40px;
             cursor: pointer;
             & > h3 {
               flex-grow: 1;
@@ -61,6 +75,22 @@
           background-color: white;
           margin-top: 15px;
           border-radius: 10px;
+          .folder-item {
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+
+            & > p {
+              padding-left: 15px;
+            }
+            .subfolder-actions {
+              padding-right: 10px;
+              & > svg {
+                margin-left: 10px;
+                cursor: pointer;
+              }
+            }
+          }
         }
       }
     }
@@ -74,6 +104,9 @@
         width: 120px;
         font-size: 15px;
         color: white;
+        background-color: #f4b81e;
+        border: none;
+        cursor: pointer;
       }
     }
   }
