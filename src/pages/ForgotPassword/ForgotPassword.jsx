@@ -1,48 +1,50 @@
-import { useNavigate } from 'react-router-dom'
-import './ForgotPassword.scss'
-import { IoIosArrowBack } from 'react-icons/io'
-import { Field, Formik, Form } from 'formik'
-import { forgotPassValid } from '../../utils/forgotPassValid'
-import logo from '../../assets/images/logo.jpg'
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import './ForgotPassword.scss';
+import { IoIosArrowBack } from 'react-icons/io';
+import { Field, Formik, Form } from 'formik';
+import { forgotPassValid } from '../../utils/forgotPassValid';
+import logo from '../../assets/images/logo.jpg';
+import { useState } from 'react';
 
 const ForgotPassword = () => {
-  const navigate = useNavigate()
-  const [otpSent, setOtpSent] = useState(false)
-  const [timer, setTimer] = useState(0)
+  const navigate = useNavigate();
+  const [otpSent, setOtpSent] = useState(false);
+  const [timer, setTimer] = useState(0);
+  const [emailConfirmed, setEmailConfirmed] = useState('');
 
   const startTimer = () => {
-    setTimer(30)
+    setTimer(30);
     const countdown = setInterval(() => {
       setTimer((prevTimer) => {
         if (prevTimer <= 1) {
-          clearInterval(countdown)
-          return 0
+          clearInterval(countdown);
+          return 0;
         }
-        return prevTimer - 1
-      })
-    }, 1000)
-  }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  };
 
   const sendOtp = (email, errors) => {
     if (!email || errors.email) {
-      alert('Nhập email hợp lệ')
-      return
+      alert('Nhập email hợp lệ');
+      return;
     }
-    setOtpSent(true)
-    startTimer()
-  }
+    setEmailConfirmed(email); 
+    setOtpSent(true);
+    startTimer();
+  };
 
   const verifyOtp = (inputOtp) => {
-    if (inputOtp === '123456') { 
-      return true
+    if (inputOtp === '123456') {
+      return true;
     }
-    return false
-  }
+    return false;
+  };
 
   const goBack = () => {
-    navigate('/signin')
-  }
+    navigate('/signin');
+  };
 
   return (
     <>
@@ -62,11 +64,11 @@ const ForgotPassword = () => {
               otp: '',
             }}
             validationSchema={forgotPassValid()}
-            onSubmit={async (values) => {
+            onSubmit={(values) => {
               if (verifyOtp(values.otp)) {
-                navigate('/reset-password')
+                navigate('/reset-password', { state: { email: emailConfirmed } }); 
               } else {
-                alert('OTP không chính xác')
+                alert('OTP không chính xác');
               }
             }}>
             {({ errors, touched, values }) => (
@@ -121,7 +123,7 @@ const ForgotPassword = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

@@ -8,6 +8,7 @@ import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { loginUser } from '../../apis'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -36,22 +37,15 @@ const Login = () => {
             validationSchema={loginValidate()}
             onSubmit={async (values) => {
               try {
-                console.log('Submitting values:', values)
-                const { data } = await axios.post(
-                  'https://hitproduct2024-production.up.railway.app/user',
-                  values,
-                )
-
-                localStorage.setItem('token', data.token)
-                // sessionStorage.setItem('user', data.token)
-                const token = localStorage.getItem('token')
+                const response = await axios.post('https://reqres.in/api/login', values)
+                const { token } = response.data
                 if (token) {
+                  localStorage.setItem('token', token)
                   toast.success('Đăng nhập thành công')
                   navigate('/')
                 }
               } catch (error) {
                 toast.error('Đăng nhập thất bại')
-                console.error('API error:', error.response || error.message)
               }
             }}>
             {({ errors, touched }) => (

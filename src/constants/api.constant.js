@@ -1,5 +1,7 @@
 export const ApiConstant = {
   auth: {
-    login: '/login',
+    login: '/user',
+    forgotPassword: '/user',
+    resetPassword: '/user',
   },
 }
