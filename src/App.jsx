@@ -11,6 +11,7 @@ import CourseList from './pages/CourseList/CourseList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
 
 import BasicCourse from './pages/BasicCourse/BasicCourse'
+import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 
 function App() {
   const router = useRoutes([
@@ -29,6 +30,10 @@ function App() {
         {
           path: '/createFolder',
           element: <CreateFolder />,
+        },
+        {
+          path: '/createNewCourse',
+          element: <CreateNewCourse />,
         },
       ],
     },
@@ -50,15 +55,14 @@ function App() {
     },
     {
       path: '/club-hit',
-      element:<AboutHIT/>
+      element: <AboutHIT />,
     },
     {
-      path:'/course',
-      element:<BasicCourse/>
-    }
+      path: '/course',
+      element: <BasicCourse />,
+    },
   ])
 
   return router
-  
 }
 export default App
