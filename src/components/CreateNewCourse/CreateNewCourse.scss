@@ -1,9 +1,10 @@
 .create-new-course {
   display: block;
-  margin-left: 70px;
-  .new-course-header {
+  margin-left: 45px;
+  .new-courser-header {
     display: flex;
     margin-top: 30px;
+    justify-content: space-between;
     .new-upload-file {
       display: block;
       background: rgba(247, 247, 247, 0.6);
@@ -73,7 +74,7 @@
     }
     .new-infors {
       display: block;
-      margin-left: 110px;
+      margin-right: 100px;
       .new-infor-folder {
         & > input {
           margin-bottom: 50px;
@@ -171,19 +172,37 @@
     justify-content: center;
     gap: 300px;
     margin-bottom: 50px;
-    .new-post-button,
-    .new-post-button-cancel {
-      background-color: #ffb626;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 20px;
-      width: 140px;
-      cursor: pointer;
+    .new-pots1 {
+      display: block;
+      .new-post-button {
+        background-color: #ffb626;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        width: 140px;
+        cursor: pointer;
+        margin-bottom: 15px;
+      }
+    }
+    .new-pots2 {
+      .new-post-button-cancel {
+        background-color: #ffb626;
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 20px;
+        width: 140px;
+        cursor: pointer;
+      }
     }
   }
 }

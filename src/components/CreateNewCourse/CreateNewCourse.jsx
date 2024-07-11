@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import './CreateNewCourse.scss'
 import { IconUpload } from '@tabler/icons-react'
 
-const CreateNewCourse = ({ onCreate, onCancel }) => {
+const CreateNewCourse = ({ onCreate,  onCancel }) => {
   const [subFolderName, setSubFolderName] = useState('')
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState([])
@@ -155,13 +155,17 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
           </div>
         </div>
         <div className='new-pots'>
-          <button className='new-post-button' onClick={handleSubmit}>
-            ĐĂNG BÀI
-          </button>
-          <button className='new-post-button-cancel' onClick={onCancel}>
-            HUỶ BỎ
-          </button>
-          <Result status={status} />
+          <div className='new-pots1'>
+            <button className='new-post-button' onClick={handleSubmit}>
+              ĐĂNG BÀI
+            </button>
+            <Result status={status} />
+          </div>
+          <div className='new-pots2'>
+            <button className='new-post-button-cancel' onClick={onCancel}>
+              HUỶ BỎ
+            </button>
+          </div>
         </div>
       </div>
     </>

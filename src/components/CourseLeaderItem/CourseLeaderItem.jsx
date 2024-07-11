@@ -10,12 +10,17 @@ const CourseLeaderItem = ({ title, api }) => {
   const handleClickEdit = () => {
     navigate('/editCours')
   }
+  const handleClickNewFolder = () => {
+    navigate('/createNewCourse')
+  }
   const inputElement = useRef()
   return (
     <>
       <div className='more-course'>
         <p className='name'>Danh sách các khoá học</p>
-        <button className='button-course'>Tạo khoá học</button>
+        <button className='button-course' onClick={handleClickNewFolder}>
+          Tạo khoá học
+        </button>
       </div>
       <div className='courses'>
         <div className='more'>
