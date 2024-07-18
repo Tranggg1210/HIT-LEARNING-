@@ -20,4 +20,4 @@ const authApi = () => ({
     })
 })
 
-export const { login } = authApi()
+export const { login, forgotPassword, resetPassword } = authApi()
