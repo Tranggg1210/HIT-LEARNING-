@@ -1,0 +1,160 @@
+@import '../../styles/index.scss';
+
+.lesson{
+    &-detail{
+
+    }
+
+    &-box{
+        display: flex;
+    }
+
+    &-left{
+        // position: absolute;
+        padding: 20px;
+        width: 70%;
+        min-height: 90vh;
+        border-right: 1px solid black;
+
+        .goback{
+            display: flex;
+            align-items: center;
+            color: gray;
+            width: fit-content;
+            cursor: pointer;
+
+            &:hover{
+                color: $primary-color;
+
+            }
+        }
+
+        .player{
+            width: 100%;
+            // height: 100%;
+            border-radius: 10px;
+            margin-left: 30px;
+            margin-top: 20px;
+
+            &-des{
+                width: 80%;
+                margin-top: 20px;
+            }
+        }
+
+    }
+    &-comment{
+        position: relative;
+        left:85%;
+        // top: 50%;
+        // border: 1px solid black;
+        width: fit-content;
+        & button{
+            padding: 5px 10px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: red;
+            gap: 10px;
+            border-radius: 20px;
+        }
+    }
+    &-right{
+        padding: 30px;
+    }
+
+    &-footer{
+        background-color: rgba(128, 128, 128, 0.055);
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .button-footer{
+            display: flex;
+            justify-content: center;
+
+        }
+    }
+}
+
+.prev,
+.next{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 174px ;
+    // padding: 5px;
+    border-radius: 10px;
+    // border: 1px solid $primary-color;
+    color: gray;
+    outline:none;
+    border:none;
+    background: transparent;
+}
+
+.btn{
+    border: 1px solid $primary-color;
+    color: $primary-color;
+    margin-left: 10px;
+
+}
+
+.des{
+    &-box{
+
+        display: flex;
+        justify-content: space-between;
+    }
+    &-container{
+
+    }
+    &-left{
+
+    }
+    &-right{
+        // border: 1px solid black;
+        width: 30%;
+        & .button-des{
+            display: flex;
+            justify-content:space-between ;
+
+            & .btn-des{
+                border: none;
+                width: 45%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap:5px;
+                border-radius: 10px;
+                // border: none;
+                outline: none;
+            }
+        }
+    }
+}
+
+.sub{
+    color: rgba(128, 128, 128, 0.725);
+    
+}
+.eye{
+    display: flex;
+    align-items: center;
+    gap:5px
+}
+.list-box{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.link{
+    color: $primary-color;
+    cursor: pointer;
+}
+
+.comment-box{
+    margin-top: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
