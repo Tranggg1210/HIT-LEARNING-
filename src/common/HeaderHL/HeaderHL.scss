@@ -107,7 +107,8 @@
       cursor: pointer;
       height: 3rem;
       justify-content: space-around;
-      width: 127px;
+      width: max-content;
+      padding: 0.5rem 1rem;
 
       @include mobile {
         width: 92px;
@@ -183,7 +184,8 @@
       cursor: pointer;
       height: 3rem;
       justify-content: space-around;
-      width: 127px;
+      width: max-content;
+      padding: 0.5rem 1rem;
       border-radius: 25px;
       background: linear-gradient(103deg, #f67102 5.1%, #f4a91e 86.29%);
       margin-right: 24px;
