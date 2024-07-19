@@ -4,6 +4,7 @@ import './BasicCourse.scss';
 import { useState } from 'react';
 import CourseList1 from '../../assets/images/course-list-basic-1.png';
 import { useNavigate } from 'react-router-dom';
+import MainLayout from '../../layouts/Layout/MainLayout';
 
 const sections = [
     {
@@ -49,7 +50,7 @@ const BasicCourse = () => {
         navigate(-1)
     }
     const handleCourse =()=>{
-        navigate('/club-hit')
+        navigate('/courseLeader')
     }
     const [openSection, setOpenSection] = useState(null);
 
@@ -79,6 +80,8 @@ const BasicCourse = () => {
     //   };
 
     return (
+        <>
+        <MainLayout/>
         <div className="course-page">
             <div className="course-basic-left">
                 <div className="course-header">
@@ -127,6 +130,7 @@ const BasicCourse = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 
