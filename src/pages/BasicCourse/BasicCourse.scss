@@ -2,6 +2,7 @@
 
 
 
+
 .course-page {
   display: flex;
   align-items: center;
@@ -26,6 +27,7 @@
   .course-basic-left {
     flex: 60%;
     margin-left: 160px;
+    margin-top: -40px;
 
     @include tablet {
       flex: 100%;
@@ -78,7 +80,7 @@
         margin-bottom: 20px;
         width: 50%;
         font-size: 1rem;
-        font-weight: 300;
+        font-weight: 500;
         opacity: 0.8;
 
         @include tablet {

@@ -85,16 +85,15 @@ const BasicCourse = () => {
         <div className="course-page">
             <div className="course-basic-left">
                 <div className="course-header">
-                    <Button variant="text" startIcon={<IconChevronLeft />} onClick={handleBack} >QUAY LẠI</Button>
-                    <Typography variant="h3" component="h1">Lớp học React cơ bản, nâng cao</Typography>
-                    <Typography variant="body1" className='describe'>
+                    <h1>Lớp học React cơ bản, nâng cao</h1>
+                    <p  className='describe'>
                         Khóa học ReactJS từ cơ bản tới nâng cao, kết quả của khóa học này là bạn có thể làm hầu hết các dự án thường gặp với ReactJS.
                         Cuối khóa học này bạn sẽ sở hữu một dự án giống Tiktok.com, bạn có thể tự tin đi xin việc khi nắm chắc các kiến thức được chia sẻ trong khóa học này.
-                    </Typography>
+                    </p>
                 </div>
                 <div className="course-content">
                     <div className="lesson-content">
-                        <Typography variant="h4" component="h2">Nội dung khóa học</Typography>
+                        <h2 >Nội dung khóa học</h2>
                         <br />
                         {sections.map((section, index) => (
                             <div key={index} className="section">

@@ -1,8 +1,4 @@
 @import '../../styles/mixins';
-
-
-
-
 .header {
     display: flex;
     justify-content: space-evenly;
@@ -37,7 +33,6 @@
                 text-decoration: none;
                 color: #333;
                 font-size: 17px;
-                font-family: Arial, Helvetica, sans-serif;
                 transition: color 0.2s ease;
 
                 &:hover {
@@ -82,14 +77,14 @@
             font-size: 40px;
             margin-bottom: 40px;
             font-weight: 700;
-            font-family: Arial, Helvetica, sans-serif;
+            
         }
 
         p {
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
-            font-family: Arial, Helvetica, sans-serif;
+            
             opacity: 0.8;
 
         }
@@ -183,7 +178,6 @@
         margin-bottom: 70px;
         font-style: normal;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
-        font-family: Arial;
         color: #000;
         margin-top: 50px;
     }
@@ -219,7 +213,7 @@
                     font-size: 18px;
                     font-weight: 700;
                     margin-bottom: 10px;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                 }
 
                 .position {
@@ -228,7 +222,7 @@
                     color: #f37335;
                     ;
                     font-weight: 700;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                 }
 
                 a {
@@ -315,7 +309,7 @@
         margin-bottom: 60px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
-        font-family: Arial, Helvetica, sans-serif;
+        
 
         @include mobile {
             font-size: 35px;
@@ -347,7 +341,7 @@
 
             p {
                 color: #312f2f;
-                font-family: Arial, Helvetica, sans-serif;
+                
                 font-size: 15px;
                 font-style: normal;
                 font-weight: 700;
@@ -411,7 +405,7 @@
         margin-bottom: 60px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
-        font-family: Arial, Helvetica, sans-serif;
+        
         margin-top: 70px;
 
         @include mobile {
@@ -460,7 +454,6 @@
                     background: linear-gradient(77deg, #f05220 -2.83%, #ffb904);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
-                    font-family: Arial, Helvetica, sans-serif;
                     font-size: 18px;
                     font-weight: bold;
 
@@ -478,13 +471,13 @@
                     font-style: normal;
                     font-weight: 700;
                     margin-bottom: 10px;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
                 }
 
                 p {
                     color: #7e7979;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -505,7 +498,7 @@
                             background-clip: text;
                             -webkit-background-clip: text;
                             -webkit-text-fill-color: transparent;
-                            font-family: Arial, Helvetica, sans-serif;
+                            
                             font-size: 30px;
                             margin: 12px 0 0;
                             color: #000;
@@ -519,7 +512,7 @@
 
                         p {
                             color: #7e7979;
-                            font-family: Arial, Helvetica, sans-serif;
+                            
                             font-size: 15px;
                             font-style: normal;
                             font-weight: 500;
@@ -602,7 +595,7 @@
                     background: linear-gradient(77deg, #f05220 -2.83%, #ffb904);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 18px;
                     font-weight: bold;
 
@@ -620,13 +613,13 @@
                     font-style: normal;
                     font-weight: 700;
                     margin-bottom: 10px;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
                 }
 
                 p {
                     color: #7e7979;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -711,7 +704,7 @@
         margin-bottom: 70px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
-        font-family: Arial, Helvetica, sans-serif;
+        
 
         @include mobile {
             font-size: 35px;
@@ -755,7 +748,7 @@
                 .card-title {
                     color: #7e7979;
                     color: #000;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 500;
@@ -766,7 +759,7 @@
 
                 .card-text {
                     color: #7e7979;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -841,7 +834,7 @@
         margin-bottom: 60px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
-        font-family: Arial, Helvetica, sans-serif;
+        
         margin-top: 70px;
 
         @include mobile {
