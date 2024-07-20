@@ -49,7 +49,7 @@ const BasicCourse = () => {
         navigate(-1)
     }
     const handleCourse =()=>{
-        navigate('/club-hit')
+        navigate('/lesson')
     }
     const [openSection, setOpenSection] = useState(null);
 

@@ -5,4 +5,8 @@ export const ApiConstant = {
     // resetPassword:,
     
   },
+  courses: {
+    getAll: '/course',
+    createCourse: '/course',
+  },
 }

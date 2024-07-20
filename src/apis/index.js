@@ -3,10 +3,10 @@ import { LocalStorage } from '../constants/localStorage.constant'
 import { useNavigate } from 'react-router-dom'
 
 const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_SERVER}`,
-  // headers: {
-  //   'Content-Type': 'Application/json',
-  // },
+  baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
+  headers: {
+    'Content-Type': 'Application/json',
+  },
 })
 
 api.interceptors.request.use((config) => {

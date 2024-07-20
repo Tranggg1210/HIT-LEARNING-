@@ -5,8 +5,10 @@
     background-color: white;
     border-radius: 8px;
     padding: 0 10px;
-    max-height: 90vh; 
+    max-height: 100vh; 
     overflow-y: auto; 
+
+
   
     h2 {
       margin-top: 0;
@@ -15,6 +17,7 @@
   
     .section {
       margin-bottom: 10px;
+
   
       &-header {
         padding: 20px;
@@ -39,6 +42,7 @@
         background-color: #fff;
         border-top: none;
         border-radius: 0 0 4px 4px;
+        
   
         .lesson {
           display: flex;

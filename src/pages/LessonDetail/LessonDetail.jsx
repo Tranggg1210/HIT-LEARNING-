@@ -1,6 +1,5 @@
 import './LessonDetail.scss'
 import '../../styles/index.scss'
-import ReactPlayer from 'react-player'
 import { Typography, Button, Box, TextField, List, ListItem, ListItemText } from '@mui/material'
 import Modal from '@mui/material/Modal'
 
@@ -31,7 +30,7 @@ const LessonDetail = () => {
   const navigate = useNavigate()
 
   const handleBack = () => {
-    navigate(-1)
+    navigate('/course')
   }
   const [open, setOpen] = useState(false)
 
@@ -44,7 +43,9 @@ const LessonDetail = () => {
   }
 
   const [like, setLike] = useState(false)
+  const [countLike, setCountLike] = useState(0)
   const handleLike = () => {
+    setCountLike(like ? countLike - 1 : countLike + 1)
     setLike(!like)
   }
   return (
@@ -59,7 +60,7 @@ const LessonDetail = () => {
               </Typography>
             </div>
             <div className='player'>
-              <ReactPlayer url='https://www.youtube.com/watch?v=dQw4w9WgXcQ' controls width='80%' />
+            <iframe width="80%" height="400" src="https://www.youtube.com/embed/b6rUk3YLsN0?si=xaIvo5VvqqOMrKMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               <div className='player-des'>
                 <div className='des-container'>
                   <div className='des-box'>
@@ -76,7 +77,7 @@ const LessonDetail = () => {
                     <div className='des-right'>
                       <div className='button-des'>
                         <button className='btn-des' onClick={handleLike}>
-                          {like ? <IconHeartFilled /> : <IconHeart />}30
+                          {like ? <IconHeartFilled /> : <IconHeart />} {countLike}
                         </button>
                         <button className='btn-des'>
                           <IconDownload /> Tải xuống
