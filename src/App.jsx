@@ -13,6 +13,7 @@ import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
 
+
 function App() {
   const router = useRoutes([
     {
@@ -70,5 +71,6 @@ function App() {
   ])
 
   return router
+
 }
 export default App

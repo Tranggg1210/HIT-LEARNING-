@@ -1,0 +1,68 @@
+@import '../../styles/index.scss';
+
+.lesson-content {
+    width: 400px;
+    background-color: white;
+    border-radius: 8px;
+    padding: 0 10px;
+    max-height: 90vh; 
+    overflow-y: auto; 
+  
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+  
+    .section {
+      margin-bottom: 10px;
+  
+      &-header {
+        padding: 20px;
+        background-color: rgba(128, 128, 128, 0.079);
+        border-radius: 10px;
+        cursor: pointer;
+  
+        .title {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-weight: bold;
+  
+          .arrow {
+            font-size: 12px;
+          }
+        }
+      }
+  
+      &-content {
+        padding: 10px;
+        background-color: #fff;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+  
+        .lesson {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+  
+          &:not(:last-child) {
+            border-bottom: 1px solid #eee;
+          }
+  
+          .duration {
+            color: #999;
+          }
+          &:hover{
+            background-color: rgba(255, 166, 0, 0.229);
+            color: $primary-color;
+            .duration{
+              color: $primary-color;
+            }
+          }
+        }
+        
+      }
+    }
+  }
