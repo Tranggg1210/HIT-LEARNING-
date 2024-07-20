@@ -51,9 +51,6 @@ const AboutHIT = () => {
     <LayoutAboutHIT/>
       <div className='container-abouthit'>
         <div className="header">
-          <div className='logo'>
-            <img src={Logo1} alt='' />
-          </div>
           <ul>
             <li>
               <a href='#banchunhiem'>Ban chủ nhiệm </a>
