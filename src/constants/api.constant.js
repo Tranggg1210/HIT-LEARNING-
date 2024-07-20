@@ -5,5 +5,16 @@ export const ApiConstant = {
   courses: {
     getAll: '/course',
     createCourse: '/course',
+    deleteCourse: '/course/',
+  },
+  sections: {
+    getAll: '/section/course/',
+    createSection: '/section',
+    deleteSection: '/section/',
+  },
+  items: {
+    getAll: '/item',
+    createItem: '/item',
+    deleteItem: '/item/',
   },
 }
