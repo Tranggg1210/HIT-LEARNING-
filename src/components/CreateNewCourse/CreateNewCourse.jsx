@@ -1,61 +1,81 @@
 import { useRef, useState } from 'react'
 import './CreateNewCourse.scss'
 import { IconUpload } from '@tabler/icons-react'
+import { createCourse } from '../../apis/courses.api'
+import LinearProgress from '@mui/material/LinearProgress'
 
-const CreateNewCourse = ({ onCreate,  onCancel }) => {
-  const [subFolderName, setSubFolderName] = useState('')
+const CreateNewCourse = ({ onCreate, onCancel }) => {
+  const [folderName, setFolderName] = useState('')
   const [describe, setDescribe] = useState('')
-  const [upload, setUpload] = useState([])
+  const [upload, setUpload] = useState(null)
   const [status, setStatus] = useState('initial')
-  const [files, setFiles] = useState(null)
+  // const [files, setFiles] = useState(null)
   const [classType, setClassType] = useState('Public')
-  const [location, setLocation] = useState('Hà Nội')
+  const [progress, setProgress] = useState(0) // Thêm state cho progress
 
-  const handleFileChange = (e) => {
-    if (e.target.files) {
-      setStatus('initial')
-      setFiles(e.target.files)
-    }
-  }
+  // const handleFileChange = (e) => {
+  //   if (e.target.files) {
+  //     setStatus('initial')
+  //     setFiles(e.target.files)
+  //   }
+  // }
   const inputRef = useRef()
 
-  const handleUpload = async () => {
-    if (files) {
-      setStatus('Upload')
-      const formData = new FormData()
+  // const handleUpload = async () => {
+  //   if (files) {
+  //     setStatus('Upload')
+  //     const formData = new FormData()
 
-      ;[...files].forEach((file) => {
-        formData.append('files', file)
-      })
-      try {
-        const result = await fetch('https://httpbin.org/post', {
-          method: 'POST',
-          body: formData,
-        })
-        const data = await result.json()
-        setUpload(data.files)
-        setStatus('Success')
-        return data.files
-      } catch (error) {
-        setStatus('Fails')
-        return null
-      }
-    }
-    return null
+  //     ;[...files].forEach((file) => {
+  //       formData.append('files', file)
+  //     })
+  //     try {
+  //       // Giả lập tiến trình upload
+  //       for (let i = 0; i <= 100; i++) {
+  //         await new Promise((resolve) => setTimeout(resolve, 50))
+  //         setProgress(i)
+  //       }
+
+  //       const result = await fetch('https://httpbin.org/post', {
+  //         method: 'POST',
+  //         body: formData,
+  //       })
+  //       const data = await result.json()
+  //       setUpload(data.files)
+  //       setStatus('Success')
+  //       return data.files
+  //     } catch (error) {
+  //       setStatus('Fails')
+  //       return null
+  //     }
+  //   }
+  //   return null
+  // }
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    setUpload(file)
+    console.log(file)
   }
+
   const handleSubmit = async () => {
-    if (subFolderName && describe && files) {
-      const uploadedFiles = await handleUpload()
-      if (uploadedFiles) {
-        onCreate({
-          name: subFolderName,
-          describe,
-          files: uploadedFiles,
-          classType,
-          location,
-        })
-        onCancel()
+    if (folderName && describe && upload) {
+      // const uploadedFiles = await handleUpload()
+      // if (uploadedFiles) {
+      const courseData = {
+        userId: '0b602036-814e-4f53-8ee5-1f0b2e12452b',
+        name: folderName,
+        description: describe,
+        file: upload,
+        isPrivate: classType === 'Private',
       }
+      try {
+        await createCourse(courseData)
+        onCreate(courseData)
+        onCancel()
+      } catch (error) {
+        console.log('Error creating course:', error)
+      }
+      // }
     }
   }
 
@@ -72,19 +92,25 @@ const CreateNewCourse = ({ onCreate,  onCancel }) => {
   }
   return (
     <>
+      {status === 'Upload' && (
+        <div className='progress-bar'>
+          <LinearProgress variant='determinate' value={progress} />
+        </div>
+      )}
       <div className='create-new-course'>
         <h2>TẠO KHOÁ HỌC MỚI</h2>
         <div className='new-courser-header'>
           <div className='new-upload-file'>
             <div className='new-icon-upload'>
-              {files ? (
-                [...files].map((file, idx) => (
-                  <section key={file.name} className='new-nameFile'>
-                    <ul>
-                      <li>File name: {file.name}</li>
-                    </ul>
-                  </section>
-                ))
+              {upload ? (
+                // [...files].map((file, idx) => (
+                //   <section key={file.name} className='new-nameFile'>
+                //     <ul>
+                //       <li>File name: {file.name}</li>
+                //     </ul>
+                //   </section>
+                // ))
+                <p>File name: {upload?.name}</p>
               ) : (
                 <div className='new-boxUpload'>
                   <div className='new-boxIcon'>
@@ -99,7 +125,7 @@ const CreateNewCourse = ({ onCreate,  onCancel }) => {
               )}
             </div>
             <div className='new-input-upload'>
-              <input type='file' multiple onChange={handleFileChange} ref={inputRef} />
+              <input type='file' onChange={handleFileChange} ref={inputRef} />
               <button className='new-button-upload' onClick={() => inputRef.current.click()}>
                 Chọn tệp
               </button>
@@ -110,8 +136,8 @@ const CreateNewCourse = ({ onCreate,  onCancel }) => {
               <input
                 type='text'
                 placeholder='Tên folder con'
-                value={subFolderName}
-                onChange={(e) => setSubFolderName(e.target.value)}
+                value={folderName}
+                onChange={(e) => setFolderName(e.target.value)}
               />
             </div>
             <div className='new-infor-describe'>
@@ -137,38 +163,24 @@ const CreateNewCourse = ({ onCreate,  onCancel }) => {
                 </button>
               </div>
             </div>
-            <div className='new-button-location'>
-              <h2>Địa Chỉ Lớp học</h2>
-              <div className='new-box-button-location'>
-                <button
-                  className={`button-${location === 'Hà Nội' ? 'active' : ''}`}
-                  onClick={() => setLocation('Hà Nội')}>
-                  HÀ NỘI
-                </button>
-                <button
-                  className={`button-${location === 'Hà Nam' ? 'active' : ''}`}
-                  onClick={() => setLocation('Hà Nam')}>
-                  HÀ NAM
-                </button>
-              </div>
-            </div>
           </div>
         </div>
         <div className='new-pots'>
+          <div className='new-pots2'>
+            <button className='new-post-button-cancel' onClick={onCancel}>
+              HUỶ BỎ
+            </button>
+          </div>
           <div className='new-pots1'>
             <button className='new-post-button' onClick={handleSubmit}>
               ĐĂNG BÀI
             </button>
             <Result status={status} />
           </div>
-          <div className='new-pots2'>
-            <button className='new-post-button-cancel' onClick={onCancel}>
-              HUỶ BỎ
-            </button>
-          </div>
         </div>
       </div>
     </>
   )
 }
+
 export default CreateNewCourse

@@ -24,7 +24,11 @@ function App() {
           element: <Home />,
         },
         {
-          path: '/editCours',
+          path: 'detail-course/:id',
+          element: <BasicCourse />,
+        },
+        {
+          path: 'editCours',
           element: <CourseList />,
         },
         {
