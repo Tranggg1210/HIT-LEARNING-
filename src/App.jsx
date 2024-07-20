@@ -3,12 +3,16 @@ import './App.scss'
 import Home from './pages/Home/Home'
 import MainLayout from './layouts/Layout/MainLayout'
 import Login from './pages/Login/Login'
-
 import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
-// import LessonDetail from './components/LessonDetail/LessonDetail'
+import CourseList from './pages/CourseList/CourseList'
+import CreateFolder from './components/CreateFolder/CreateFolder'
+import BasicCourse from './pages/BasicCourse/BasicCourse'
+import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
+import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
+
 
 function App() {
   const router = useRoutes([
@@ -19,6 +23,22 @@ function App() {
         {
           path: '',
           element: <Home />,
+        },
+        {
+          path: 'detail-course/:paraj',
+          element: <BasicCourse />,
+        },
+        {
+          path: 'editCours',
+          element: <CourseList />,
+        },
+        {
+          path: '/createFolder',
+          element: <CreateFolder />,
+        },
+        {
+          path: '/createNewCourse',
+          element: <CreateNewCourse />,
         },
       ],
     },
@@ -40,16 +60,17 @@ function App() {
     },
     {
       path: '/club-hit',
-      element:<AboutHIT/>
-    }
+      element: <LayoutAboutHIT/>,
+      children: [
+        {
+          path:"",
+          element:<AboutHIT/>
+        }
+      ]
+    },
   ])
 
   return router
-  // return(
-  //   <>
-  //     <LessonDetail/>
-  //   </>
-  // )
 
 }
 export default App

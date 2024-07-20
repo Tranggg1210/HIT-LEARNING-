@@ -43,7 +43,7 @@ const Login = () => {
                 )
 
                 localStorage.setItem('token', data.token)
-                sessionStorage.setItem('user', data.token)
+                // sessionStorage.setItem('user', data.token)
                 const token = localStorage.getItem('token')
                 if (token) {
                   toast.success('Đăng nhập thành công')
@@ -77,7 +77,6 @@ const Login = () => {
                     <FaLock />
                   </span>
                 </div>
-                <br />
                 {errors.password && touched.password ? (
                   <p className='errorMsg'>{errors.password}</p>
                 ) : null}

@@ -3,7 +3,7 @@ import { LocalStorage } from '../constants/localStorage.constant'
 import { useNavigate } from 'react-router-dom'
 
 const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
+  baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'Application/json',
   },
@@ -28,10 +28,16 @@ api.interceptors.response.use(
 )
 
 const apiDefault = axios.create({
-  baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
+  baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'Application/json',
   },
 })
 
-export { apiDefault, api }
+const apiDefaultUpload = axios.create({
+  baseURL: `${import.meta.env.VITE_API_SERVER}`,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+})
+export { apiDefault, api, apiDefaultUpload }

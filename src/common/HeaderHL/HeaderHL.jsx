@@ -47,7 +47,7 @@ const HeaderHL = () => {
           placeholder='Search here'
         />
       </div>
-      <div className='button'>
+      <div className='button-signin'>
         {access_token ? (
           <div className='top-signIn'>
             <div className='avatar' onClick={handleClick}>
@@ -67,7 +67,7 @@ const HeaderHL = () => {
           </div>
         ) : (
           <div className='login' onClick={handleClickSignIn}>
-            <h4>Login</h4>
+            <h4>Đăng nhập</h4>
             <i className='fa-solid fa-user'></i>
           </div>
         )}

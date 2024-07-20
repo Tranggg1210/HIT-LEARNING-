@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './CreateFolder.scss'
+import { useNavigate } from 'react-router-dom'
 
 const CreateFolder = ({ onCreate, onCancel }) => {
   const [folderName, setFolderName] = useState('')

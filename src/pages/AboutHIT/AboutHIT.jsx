@@ -27,6 +27,7 @@ import Khoahoc12 from '../../assets/images/pngegg18.png'
 import Hoidap from '../../assets/images/team-building-hit14.png'
 import FooterHL from '../../common/FooterHL/FooterHL'
 import { IconCircleArrowDownFilled } from '@tabler/icons-react'
+import LayoutAboutHIT from '../../layouts/Layout/LayoutAboutHIT'
 
 const AboutHIT = () => {
   const faqs = document.querySelectorAll('.faq')
@@ -47,11 +48,9 @@ const AboutHIT = () => {
   })
   return (
     <>
+      
       <div className='container-abouthit'>
-        <div className="header">
-          <div className='logo'>
-            <img src={Logo1} alt='' />
-          </div>
+        <div className='header'>
           <ul>
             <li>
               <a href='#banchunhiem'>Ban chủ nhiệm </a>
@@ -339,7 +338,6 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
-                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
@@ -362,7 +360,6 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
-                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
@@ -385,7 +382,6 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
-                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
