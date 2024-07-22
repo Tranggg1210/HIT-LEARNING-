@@ -9,7 +9,6 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
 import CourseList from './pages/CourseList/CourseList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
-
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LessonDetail from './pages/LessonDetail/LessonDetail'
@@ -25,7 +24,11 @@ function App() {
           element: <Home />,
         },
         {
-          path: '/editCours',
+          path: 'detail-course/:id',
+          element: <BasicCourse />,
+        },
+        {
+          path: 'editCours',
           element: <CourseList />,
         },
         {
@@ -63,8 +66,14 @@ function App() {
       element: <BasicCourse />,
     },
     {
-      path:'/lesson',
-      element: <LessonDetail/>
+      path:'/lesson/:id',
+      element: <LessonDetail/>,
+      children: [
+        {
+          path: ''
+        }
+
+      ]
     }
   ])
 

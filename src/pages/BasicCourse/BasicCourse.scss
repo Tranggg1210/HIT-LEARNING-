@@ -1,34 +1,99 @@
 @import '../../styles/index.scss';
 
+
+
+
 .course-page {
   display: flex;
   align-items: center;
   width: 100%;
+  
+  @include tablet {
+    flex-direction: column;
+    margin-left: 140px;
+    width: 80%;
+  }
+
+  @include small-tablet {
+    flex-direction: column;
+    margin-left: 80px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    
+  }
 
   .course-basic-left {
     flex: 60%;
-    margin-left: 40px;
+    margin-left: 160px;
+    margin-top: -40px;
+
+    @include tablet {
+      flex: 100%;
+      margin-left: 0;
+      padding: 0 20px;
+      
+    }
+
+    @include small-tablet {
+      flex: 100%;
+      margin-left: 0;
+      padding: 0 20px;
+    }
+
+    @include mobile {
+      flex: 100%;
+      margin-left: 0;
+      padding: 0 10px;
+    }
 
     .course-header {
       padding: 20px;
-      button{
+      
+      button {
         margin-top: 10px;
         color: #999;
       }
 
       h1 {
         margin-bottom: 10px;
-        font-size: 35px;
+        font-size: 2.2rem;
         margin-top: 40px;
         font-weight: bold;
+
+        @include tablet {
+          font-size: 2rem;
+        }
+
+        @include small-tablet {
+          font-size: 1.8rem;
+        }
+
+        @include mobile {
+          font-size: 1.5rem;
+          margin-top: 20px;
+        }
       }
 
       p {
         margin-bottom: 20px;
         width: 50%;
-        font-size: 15px;
-        font-weight: 300;
+        font-size: 1rem;
+        font-weight: 500;
         opacity: 0.8;
+
+        @include tablet {
+          width: 100%;
+        }
+
+        @include small-tablet {
+          width: 100%;
+        }
+
+        @include mobile {
+          width: 100%;
+        }
       }
     }
 
@@ -39,6 +104,21 @@
       max-width: 1200px;
       margin-left: 15px;
 
+      @include tablet {
+        flex-direction: column;
+        margin-left: 0;
+      }
+
+      @include small-tablet {
+        flex-direction: column;
+        margin-left: 0;
+      }
+
+      @include mobile {
+        flex-direction: column;
+        margin-left: 0;
+      }
+
       .lesson-content {
         width: 748px;
         background-color: white;
@@ -46,6 +126,18 @@
         padding: 0 10px;
         max-height: 90vh;
         overflow-y: auto;
+
+        @include tablet {
+          width: 100%;
+        }
+
+        @include small-tablet {
+          width: 100%;
+        }
+
+        @include mobile {
+          width: 100%;
+        }
 
         &::-webkit-scrollbar {
           display: none;
@@ -56,8 +148,20 @@
 
         h2 {
           margin-top: 0;
-          font-size: 25px;
+          font-size: 1.8rem;
           font-weight: bold;
+
+          @include tablet {
+            font-size: 1.6rem;
+          }
+
+          @include small-tablet {
+            font-size: 1.4rem;
+          }
+
+          @include mobile {
+            font-size: 1.2rem;
+          }
         }
 
         .section {
@@ -65,7 +169,7 @@
 
           &-header {
             padding: 15px;
-            background-color: rgba(217, 217, 217,0.5); /* Màu xám #D9D9D9 với độ mờ 50% */ 
+            background-color: rgba(217, 217, 217, 0.5);
             border-radius: 10px;
             cursor: pointer;
 
@@ -110,6 +214,21 @@
                   color: $primary-color;
                 }
               }
+
+              @include tablet {
+                flex-direction: column;
+                align-items: flex-start;
+              }
+
+              @include small-tablet {
+                flex-direction: column;
+                align-items: flex-start;
+              }
+
+              @include mobile {
+                flex-direction: column;
+                align-items: flex-start;
+              }
             }
           }
         }
@@ -118,12 +237,25 @@
   }
 
   .course-basic-right {
-    flex: 35%;
-    position: fixed;
-    top: 100px; 
-    right: 20px; 
-    
-    overflow-y: auto; 
+    margin-top: -320px;
+
+    @include tablet {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    @include small-tablet {
+      margin-top: 20px;
+      width: 100%;
+      margin-bottom: 100px;
+    }
+
+    @include mobile {
+      margin-top: 20px;
+      width: 100%;
+      margin-bottom: 100px;
+    }
+
     .course-video {
       padding: 20px;
       display: flex;
@@ -134,6 +266,18 @@
         max-width: 70%;
         border-radius: 8px;
         margin-bottom: 20px;
+
+        @include tablet {
+          max-width: 100%;
+        }
+
+        @include small-tablet {
+          max-width: 100%;
+        }
+
+        @include mobile {
+          max-width: 100%;
+        }
       }
 
       button {
@@ -145,6 +289,18 @@
         color: white;
         border: none;
         cursor: pointer;
+
+        @include tablet {
+          width: 60%;
+        }
+
+        @include small-tablet {
+          width: 60%;
+        }
+
+        @include mobile {
+          width: 50%;
+        }
 
         &:hover {
           opacity: 0.8;

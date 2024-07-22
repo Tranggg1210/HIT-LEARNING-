@@ -1,8 +1,4 @@
 @import '../../styles/mixins';
-
-
-
-
 .header {
     display: flex;
     justify-content: space-evenly;
@@ -27,10 +23,8 @@
     ul {
         display: flex;
         list-style: none;
-        margin: 0;
-        padding: 0;
-        
-        
+
+
 
         li {
             margin-right: 20px;
@@ -39,7 +33,6 @@
                 text-decoration: none;
                 color: #333;
                 font-size: 17px;
-                font-family: Arial, Helvetica, sans-serif;
                 transition: color 0.2s ease;
 
                 &:hover {
@@ -49,11 +42,18 @@
         }
     }
 }
-@include mobile{
-    .header{
-       ul{
-        display: none;
-       }
+
+@include mobile {
+    .header {
+        ul {
+            display: none;
+        }
+    }
+}
+
+@include tablet {
+    ul {
+        margin-left: 80px;
     }
 }
 
@@ -77,14 +77,14 @@
             font-size: 40px;
             margin-bottom: 40px;
             font-weight: 700;
-            font-family: Arial, Helvetica, sans-serif;
+            
         }
 
         p {
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 20px;
-            font-family: Arial, Helvetica, sans-serif;
+            
             opacity: 0.8;
 
         }
@@ -109,54 +109,60 @@
 
         }
     }
+
     @include small-tablet {
         flex-direction: column;
         width: 90%;
-    
-        .banner-tittle, .banner-img {
-          width: 100%;
-          padding: 0;
-          text-align: center;
-        }
-    
-        .banner-tittle {
-          padding-bottom: 20px;
-        }
-        
-      }
-      @include tablet {
-        flex-direction: column;
-        width: 90%;
-    
-        .banner-tittle, .banner-img {
-          width: 100%;
-          padding: 0;
-          text-align: center;
-        }
-    
-        .banner-tittle {
-          padding-bottom: 20px;
-        }
-        
-      }
 
-      @include mobile {
+        .banner-tittle,
+        .banner-img {
+            width: 100%;
+            padding: 0;
+            text-align: center;
+        }
+
+        .banner-tittle {
+            padding-bottom: 20px;
+        }
+
+    }
+
+    @include tablet {
+        flex-direction: column;
+        width: 70%;
+        margin-left: 170px;
+
+        .banner-tittle,
+        .banner-img {
+            width: 100%;
+            padding: 0;
+            text-align: center;
+        }
+
+        .banner-tittle {
+            padding-bottom: 20px;
+        }
+
+    }
+
+    @include mobile {
         flex-direction: column;
         width: 80%;
         margin-left: 40px;
-    
-        .banner-tittle, .banner-img {
-          width: 100%;
-          padding: 0;
-          text-align: center;
-        }
-    
-        .banner-tittle {
-          padding-bottom: 20px;
+
+        .banner-tittle,
+        .banner-img {
+            width: 100%;
+            padding: 0;
+            text-align: center;
         }
 
-      }
-      
+        .banner-tittle {
+            padding-bottom: 20px;
+        }
+
+    }
+
 }
 
 .banchunhiem {
@@ -172,7 +178,6 @@
         margin-bottom: 70px;
         font-style: normal;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
-        font-family: Arial;
         color: #000;
         margin-top: 50px;
     }
@@ -208,7 +213,7 @@
                     font-size: 18px;
                     font-weight: 700;
                     margin-bottom: 10px;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                 }
 
                 .position {
@@ -217,7 +222,7 @@
                     color: #f37335;
                     ;
                     font-weight: 700;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                 }
 
                 a {
@@ -234,41 +239,57 @@
     }
 
     @include small-tablet {
-        .title{
-                margin-top: 650px;
+        .title {
+            margin-top: 650px;
         }
-        
+
         .cards {
-            flex-direction:column;
+            flex-direction: column;
             gap: 20px;
             align-items: center;
             margin-bottom: 80px;
-            
-            
-            
+
+
+
         }
     }
-    @include mobile{
-        .title{
-            
+
+    @include mobile {
+        .title {
+
             font-size: 35px;
         }
+
         .cards {
-            flex-direction:column;
+            flex-direction: column;
             gap: 40px;
             align-items: center;
-            margin-bottom: 190px;  
-               
+            margin-bottom: 190px;
+
         }
     }
-    @include tablet{
-        margin-top: 600px;
+
+    @include tablet {
+        width: 85%;
+        margin-left: 110px;
+
         .cards {
             gap: 40px;
             align-items: center;
-                
+
+            .card {
+                img {
+                    width: 60%;
+                    height: 200px;
+                }
+
+                .card-content {
+                    gap: -10px;
+                }
+            }
+
         }
-        
+
     }
 }
 
@@ -288,9 +309,9 @@
         margin-bottom: 60px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
-        font-family: Arial, Helvetica, sans-serif;
+        
 
-        @include mobile{
+        @include mobile {
             font-size: 35px;
             width: 90%;
         }
@@ -320,7 +341,7 @@
 
             p {
                 color: #312f2f;
-                font-family: Arial, Helvetica, sans-serif;
+                
                 font-size: 15px;
                 font-style: normal;
                 font-weight: 700;
@@ -340,17 +361,32 @@
             gap: 20px;
         }
     }
-    @include mobile{
+
+    @include mobile {
+
         .teams,
         .departments {
             flex-direction: column;
             gap: 40px;
             width: 80%;
-           
+
         }
-    
+
     }
-    
+
+    @include tablet {
+        .title {
+            width: 60%;
+            margin-left: 60px;
+        }
+
+        .teams,
+        .departments {
+            flex-direction: column;
+            gap: 20px;
+        }
+    }
+
 
 }
 
@@ -369,17 +405,24 @@
         margin-bottom: 60px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
-        font-family: Arial, Helvetica, sans-serif;
-        margin-top: 70px;
-        @include mobile{
-            margin-top: 120px;
-            font-size:35px;
-           
         
+        margin-top: 70px;
+
+        @include mobile {
+            margin-top: 120px;
+            font-size: 35px;
+
+
         }
-    
+        @include tablet {
+            margin-left: 90px;
+            font-size: 35px;
+
+
+        }
+
     }
-    
+
 
     .container-section {
         display: flex;
@@ -411,7 +454,6 @@
                     background: linear-gradient(77deg, #f05220 -2.83%, #ffb904);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
-                    font-family: Arial, Helvetica, sans-serif;
                     font-size: 18px;
                     font-weight: bold;
 
@@ -429,13 +471,13 @@
                     font-style: normal;
                     font-weight: 700;
                     margin-bottom: 10px;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
                 }
 
                 p {
                     color: #7e7979;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -456,7 +498,7 @@
                             background-clip: text;
                             -webkit-background-clip: text;
                             -webkit-text-fill-color: transparent;
-                            font-family: Arial, Helvetica, sans-serif;
+                            
                             font-size: 30px;
                             margin: 12px 0 0;
                             color: #000;
@@ -470,7 +512,7 @@
 
                         p {
                             color: #7e7979;
-                            font-family: Arial, Helvetica, sans-serif;
+                            
                             font-size: 15px;
                             font-style: normal;
                             font-weight: 500;
@@ -485,15 +527,35 @@
 
         @include small-tablet {
             flex-direction: column;
-            .image-container img{
+
+            .image-container img {
                 width: 80%;
                 margin-left: 1px;
             }
         }
 
-        @include mobile{
+        @include tablet {
             flex-direction: column;
-            .image-container img{
+
+            .image-container img {
+                width: 70%;
+                margin-left: 50px;
+            }
+
+            .section-content {
+                width: 80%;
+                margin-left: 130px;
+            }
+
+            .highlight1 {
+                margin-left: 130px;
+            }
+        }
+
+        @include mobile {
+            flex-direction: column;
+
+            .image-container img {
                 width: 80%;
                 margin-left: 1px;
             }
@@ -533,7 +595,7 @@
                     background: linear-gradient(77deg, #f05220 -2.83%, #ffb904);
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 18px;
                     font-weight: bold;
 
@@ -551,13 +613,13 @@
                     font-style: normal;
                     font-weight: 700;
                     margin-bottom: 10px;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     text-shadow: 2px 2px 2px rgba(83, 82, 81, .5);
                 }
 
                 p {
                     color: #7e7979;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -565,37 +627,65 @@
                 }
             }
 
-        }     
-    }
-    
-    @include small-tablet {
-        .container-section1 {
-          flex-direction: column;
-          align-items: center;
-          .section1 {
-            width: 100%;
-            margin-right: 0;
-          }
-          .image-container1 img {
-            width: 100%;
-            margin-top: 10px;
-          }
         }
-      }
-      @include mobile{
+    }
+
+    @include small-tablet {
         .container-section1 {
             flex-direction: column;
             align-items: center;
+
             .section1 {
-              width: 90%;
-              margin-right: 0;
+                width: 100%;
+                margin-right: 0;
             }
+
             .image-container1 img {
-              width: 100%;
-              margin-top: 10px;
+                width: 100%;
+                margin-top: 10px;
             }
-          }
-      }
+        }
+    }
+
+    @include tablet {
+        .container-section1 {
+            flex-direction: column;
+            align-items: center;
+
+            .section1 {
+                width: 90%;
+                margin-right: 0;
+            }
+
+            .image-container1 img {
+                width: 100%;
+                margin-top: 10px;
+            }
+            .section-content1{
+                margin-left: 100px;
+            }
+            .highlight1{
+                margin-left: 100px;
+            }
+        }
+    }
+
+    @include mobile {
+        .container-section1 {
+            flex-direction: column;
+            align-items: center;
+
+            .section1 {
+                width: 90%;
+                margin-right: 0;
+            }
+
+            .image-container1 img {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    }
 }
 
 .caclophoc {
@@ -614,10 +704,13 @@
         margin-bottom: 70px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
-        font-family: Arial, Helvetica, sans-serif;
+        
 
-        @include mobile{
+        @include mobile {
             font-size: 35px;
+        }
+        @include tablet {
+            margin-left: 80px;
         }
 
     }
@@ -655,7 +748,7 @@
                 .card-title {
                     color: #7e7979;
                     color: #000;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 19px;
                     font-style: normal;
                     font-weight: 500;
@@ -666,7 +759,7 @@
 
                 .card-text {
                     color: #7e7979;
-                    font-family: Arial, Helvetica, sans-serif;
+                    
                     font-size: 15px;
                     font-style: normal;
                     font-weight: 500;
@@ -684,30 +777,47 @@
         }
 
     }
-    @include tablet{
+
+    @include tablet {
+        
         .card1-list {
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            width: 90%;
-            
-          }
+            gap: 35px;
+            width: 80%;
+            margin-left: 120px;
+            .card1{
+                
+                width: 90%;
+                height: 230px;
+                img{
+                    width: 80px;
+                    height: 80px;
+                }
+                .card-content{
+                    width: 70%;
+                    
+                }
+            }
+
+        }
     }
+
     @include small-tablet {
         .card1-list {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 40px;
-          width: 80%;
-          
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            width: 80%;
+
         }
-      }
-    
-      @include mobile {
+    }
+
+    @include mobile {
         .card1-list {
-          grid-template-columns: 1fr;
-          gap: 40px;
-          width: 70%;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            width: 70%;
         }
-      }
+    }
 }
 
 .hoidap {
@@ -724,11 +834,16 @@
         margin-bottom: 60px;
         text-align: center;
         text-shadow: 2px 2px 2px rgba(83, 82, 81, 0.5);
-        font-family: Arial, Helvetica, sans-serif;
+        
         margin-top: 70px;
 
-        @include mobile{
+        @include mobile {
             font-size: 35px;
+        }
+        
+        @include tablet {
+            font-size: 35px;
+            margin-left: 90px;
         }
     }
 
@@ -795,41 +910,59 @@
             }
         }
     }
-    @include tablet{
-      h1{
-        margin-top: -50px;
-      }
+
+    @include tablet {
+        h1 {
+          margin-top: -300px;
+        }
+        .content {
+            flex-direction: column;
+            height: 800px;
+            width: 80%;
+            margin-left: 127px;
+
+            .image-container {
+                margin: 0;
+                width: 100%;
+            }
+        }
+
     }
+
     @include small-tablet {
-        h1{
+        h1 {
             margin-top: 700px;
         }
+
         .content {
-          flex-direction: column;
-          height: 800px;
-          width: 95%;
-          margin-left: 25px;
-    
-          .image-container {
-            margin: 0;
-            width: 100%;
-          }
+            flex-direction: column;
+            height: 800px;
+            width: 95%;
+            margin-left: 25px;
+
+            .image-container {
+                margin: 0;
+                width: 100%;
+            }
         }
     }
+
     @include mobile {
-        h1{
+        h1 {
             margin-top: 2990px;
         }
+
         .content {
-          flex-direction: column;
-          height: 800px;
-          margin-left: 15px;
-          width: 90%;
-          align-content: center;
-          .image-container {
-            margin: 0;
-            width: 100%;
-          }
+            flex-direction: column;
+            height: 800px;
+            margin-left: 15px;
+            width: 90%;
+            align-content: center;
+
+            .image-container {
+                margin: 0;
+                width: 100%;
+            }
         }
     }
 

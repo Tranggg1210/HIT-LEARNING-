@@ -50,4 +50,10 @@ export async function loginUser(login){
   }
 }
 
-export { apiDefault, api }
+const apiDefaultUpload = axios.create({
+  baseURL: `${import.meta.env.VITE_API_SERVER}`,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+})
+export { apiDefault, api, apiDefaultUpload }
