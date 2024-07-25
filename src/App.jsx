@@ -11,6 +11,7 @@ import CourseList from './pages/CourseList/CourseList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
+import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 
 function App() {
@@ -59,21 +60,17 @@ function App() {
     },
     {
       path: '/club-hit',
-      element: <AboutHIT />,
-    },
-    {
-      path: '/course',
-      element: <BasicCourse />,
-    },
-    {
-      path:'/lesson/:id',
-      element: <LessonDetail/>,
+      element: <LayoutAboutHIT/>,
       children: [
         {
-          path: ''
+          path:"",
+          element:<AboutHIT/>
         }
-
       ]
+    },
+    {
+      path:'/lesson/:lessonId',
+      element: <LessonDetail/>,
     }
   ])
 

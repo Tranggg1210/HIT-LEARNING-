@@ -2,7 +2,6 @@ import './LessonDetail.scss'
 import '../../styles/index.scss'
 import { Typography, Button, Box, TextField, List, ListItem, ListItemText } from '@mui/material'
 import Modal from '@mui/material/Modal'
-
 import { IconChevronLeft } from '@tabler/icons-react'
 import { IconChevronRight } from '@tabler/icons-react'
 import { IconHeart } from '@tabler/icons-react'
@@ -11,7 +10,7 @@ import { IconEye } from '@tabler/icons-react'
 import { IconDownload } from '@tabler/icons-react'
 import { IconBubbleText } from '@tabler/icons-react'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import LessonBar from '../../components/LessonBar/LessonBar'
 const LessonDetail = () => {
 
@@ -28,9 +27,12 @@ const LessonDetail = () => {
   };
 
   const navigate = useNavigate()
+  const lessonId = useParams()
+  console.log(lessonId)
+   
 
   const handleBack = () => {
-    navigate('/course')
+    navigate('/')
   }
   const [open, setOpen] = useState(false)
 
@@ -153,7 +155,7 @@ const LessonDetail = () => {
             </div>
           </div>
           <div className='lesson-right'>
-            <LessonBar />
+            <LessonBar param={lessonId} />
           </div>
         </div>
         <footer className='lesson-footer'>

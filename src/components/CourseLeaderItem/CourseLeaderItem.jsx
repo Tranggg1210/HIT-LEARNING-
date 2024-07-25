@@ -75,7 +75,12 @@ const CourseLeaderItem = () => {
                 <button className='edit' onClick={handleClickEdit}>
                   Chỉnh sửa
                 </button>
-                <button className='delete' onClick={() => handleDelete(item.id)}>
+                <button
+                  className='delete'
+                  onClick={(e) => {
+                    handleDelete(item.id)
+                    e.stopPropagation()
+                  }}>
                   Xoá
                 </button>
               </div>

@@ -1,83 +1,87 @@
-import { Typography } from '@mui/material';
-import { IconChevronUp, IconChevronDown } from '@tabler/icons-react';
+import { Box, Typography } from '@mui/material'
+import { IconChevronUp, IconChevronDown } from '@tabler/icons-react'
 import './LessonBar.scss'
-import { useState } from 'react';
+import { useEffect, useState } from 'react'
+import { getSectionByCourseId } from '../../apis/section.api'
+import { getItemBySectionId } from '../../apis/item.api'
+import { NavLink } from 'react-router-dom'
 
+const LessonBar = (param) => {
+  const [sections, setSections] = useState({}) 
+  const [items, setItems] = useState({}) 
+  const [openSection, setOpenSection] = useState(null)
 
-const sections = [
-    {
-      title: '1. Giới thiệu',
-      lessons: [
-        { name: '1. Giới thiệu', duration: '6:00' },
-        { name: '2. ReactJS là gì', duration: '6:00' },
-        { name: '3. Giới thiệu', duration: '6:00' },
-      ],
-    },
-    { title: '2. Bài 2', lessons: [
-        { name: '1. Giới thiệu', duration: '6:00' },
-        { name: '2. ReactJS là gì', duration: '6:00' },
-        { name: '3. Giới thiệu', duration: '6:00' },
-        { name: '1. Giới thiệu', duration: '6:00' },
-        { name: '2. ReactJS là gì', duration: '6:00' },
-        { name: '3. Giới thiệu', duration: '6:00' },
-        { name: '1. Giới thiệu', duration: '6:00' },
-        { name: '2. ReactJS là gì', duration: '6:00' },
-        { name: '3. Giới thiệu', duration: '6:00' },
-        { name: '1. Giới thiệu', duration: '6:00' },
-        { name: '2. ReactJS là gì', duration: '6:00' },
-        { name: '3. Giới thiệu', duration: '6:00' },
-    ] },
-    { title: '3. Bài 3', lessons: [] },
-    { title: '4. Bài 4', lessons: [] },
-    { title: '5. Bài 5', lessons: [] },
-    { title: '6. Bài 6', lessons: [] },
-    { title: '3. Bài 3', lessons: [] },
-    { title: '4. Bài 4', lessons: [] },
-    { title: '5. Bài 5', lessons: [] },
-    { title: '6. Bài 6', lessons: [] },
-    { title: '3. Bài 3', lessons: [] },
-    { title: '4. Bài 4', lessons: [] },
-    { title: '5. Bài 5', lessons: [] },
-    { title: '6. Bài 6', lessons: [] },
-    { title: '3. Bài 3', lessons: [] },
-    { title: '4. Bài 4', lessons: [] },
-    { title: '5. Bài 5', lessons: [] },
-    { title: '6. Bài 6', lessons: [] },
-];
-const LessonBar = () => {
-    const [openSection, setOpenSection] = useState(null);
+  // console.log('result param: ', param)
 
-    const handleToggle = (index) => {
-        setOpenSection(openSection === index ? null : index);
-    };
-    return (
-        <div className="lesson-content">
-          <Typography variant="h4" component="h2">Nội dung khóa học</Typography>
-          <br />
-          {sections.map((section, index) => (
-            <div key={index} className="section">
-              <div className="section-header" onClick={() => handleToggle(index)}>
-                <div className="title">
-                  <span>{section.title}</span>
-                  <span className="arrow">{openSection === index ? <IconChevronUp/> : <IconChevronDown/>}</span>
-                </div>
+  const showAllSection = async () => {
+    const result = await (await getSectionByCourseId(param?.param.lessonId)).data.data
+    // console.log('result lesson bar: ', result.content)
+
+    const sectionsObject = result.content.reduce((acc, section) => {
+      acc[section.id] = section
+      return acc
+    }, {})
+
+    setSections(sectionsObject)
+    // console.log('lesson bar: ', sectionsObject)
+  }
+
+  const showItemsBySectionId = async (sectionId) => {
+    const res = await getItemBySectionId(sectionId)
+    setItems(prevItems => ({
+      ...prevItems,
+      [sectionId]: res.data.data
+    }))
+    console.log(`Items for section ${sectionId}: `, res.data.data)
+  }
+
+  const handleToggle = (index, sectionId) => {
+    const newOpenSection = openSection === index ? null : index
+    setOpenSection(newOpenSection)
+    if (newOpenSection !== null && !items[sectionId]) {
+      showItemsBySectionId(sectionId)
+      // console.log('item[sectionid]>>>>',items[sectionId])
+      // console.log(sectionId)
+    }
+  }
+
+  useEffect(() => {
+    showAllSection()
+  }, [])
+
+  return (
+    <>
+      <Box m={2}>
+        <Typography variant='h4' component='h2' style={{}} align='center'>
+          Nội dung khóa học
+        </Typography>
+      </Box>
+      <div className='lesson-content'>
+        <br />
+        {Object.keys(sections).map((sectionId, index) => (
+          <div key={sectionId} className='section'>
+            <div className='section-header' onClick={() => handleToggle(index, sectionId)}>
+              <div className='title'>
+                <span>{sections[sectionId].name}</span>
+                <span className='arrow'>
+                  {openSection === index ? <IconChevronUp /> : <IconChevronDown />}
+                </span>
               </div>
-              {openSection === index && (
-                <div className="section-content">
-                  {section.lessons.map((lesson, idx) => (
-                    <div key={idx} className="lesson">
-                      <span>{lesson.name}</span>
-                      <span className="duration">{lesson.duration}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
-          ))}
-        </div>
-      );
+            {openSection === index && (
+              <div className='section-content'>
+                {Array.isArray(items[sectionId]) ? items[sectionId].map((item) => (
+                  <div key={item.id} className='lesson'>
+                    <NavLink to={'/'}>{item.description}</NavLink>
+                  </div>
+                )) : <div>Updating....</div>}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </>
+  )
 }
-
-
 
 export default LessonBar

@@ -36,7 +36,7 @@ const ForgotPassword = () => {
   };
 
   const verifyOtp = (inputOtp) => {
-    if (inputOtp === '123456') {
+    if (inputOtp === '123456') { 
       return true;
     }
     return false;
@@ -97,8 +97,7 @@ const ForgotPassword = () => {
                     <button
                       type='button'
                       className='button-otp'
-                      onClick={() => sendOtp(values.email, errors)}
-                    >
+                      onClick={() => sendOtp(values.email, errors)}>
                       Lấy mã OTP
                     </button>
                   ) : (
@@ -106,8 +105,7 @@ const ForgotPassword = () => {
                       type='button'
                       className='button-otp'
                       disabled={timer > 0}
-                      onClick={() => sendOtp(values.email, errors)}
-                    >
+                      onClick={() => sendOtp(values.email, errors)}>
                       {timer > 0 ? `Resend(${timer}s)` : 'Gửi lại mã'}
                     </button>
                   )}

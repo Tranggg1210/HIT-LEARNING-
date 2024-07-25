@@ -6,5 +6,6 @@ const sectionsApi = () => ({
   createSection: async (sectionData) =>
     apiDefault.post(ApiConstant.sections.createSection, sectionData),
   deleteSection: async (id) => apiDefault.delete(`${ApiConstant.sections.deleteSection}${id}`),
+  getSectionByCourseId: async (id) => apiDefault.get(`${ApiConstant.sections.getSectionByCourseId}${id}`),
 })
-export const { getAllSection, createSection, deleteSection } = sectionsApi()
+export const { getAllSection, createSection, deleteSection, getSectionByCourseId} = sectionsApi()
