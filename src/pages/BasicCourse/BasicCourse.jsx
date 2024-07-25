@@ -45,12 +45,12 @@ const sections = [
 
 const BasicCourse = () => {
   const navigate = useNavigate()
-
-  const handleBack = () => {
-    navigate(-1)
-  }
+  // const handleBack = () => {
+  //   navigate(-1)
+  // }
+  const param = useParams()
   const handleCourse = () => {
-    navigate('/courseLeader')
+    navigate(`/lesson/${param.id}`)
   }
   const [openSection, setOpenSection] = useState(null)
 
@@ -60,22 +60,16 @@ const BasicCourse = () => {
 
   const [courseDescription, setCourseDescription] = useState('')
 
-  const param = undefined;
-  console.log(param?.id)
-  
+  console.log('param: ',param?.id)
 
   const loadDataCoures = async () => {
-    
     try {
-      const result = await getCourseById(param.paraj);
-      // console.log(result)
+      const result = await getCourseById(param.id)
+      console.log('result: ',result)
     } catch (error) {
       // console.log(error)
       // alert(error.response.data.message)
     }
-   
-    
-
   }
   loadDataCoures()
 
