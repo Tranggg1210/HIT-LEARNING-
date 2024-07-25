@@ -38,6 +38,7 @@ const ForgotPassword = () => {
   const verifyOtp = (inputOtp) => {
     if (inputOtp === '123456') { 
       return true;
+
     }
     return false;
   };
