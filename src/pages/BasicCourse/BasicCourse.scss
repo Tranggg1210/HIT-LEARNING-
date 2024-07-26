@@ -93,148 +93,147 @@
       }
     }
 
-    .course-content {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 1200px;
-      margin-left: 15px;
+  //   .course-content {
+  //     display: flex;
+  //     justify-content: space-between;
+  //     width: 100%;
+  //     max-width: 1200px;
+  //     margin-left: 15px;
 
-      @include tablet {
-        flex-direction: column;
-        margin-left: 0;
-      }
+  //     @include tablet {
+  //       flex-direction: column;
+  //       margin-left: 0;
+  //     }
 
-      @include small-tablet {
-        flex-direction: column;
-        margin-left: 0;
-      }
+  //     @include small-tablet {
+  //       flex-direction: column;
+  //       margin-left: 0;
+  //     }
 
-      @include mobile {
-        flex-direction: column;
-        margin-left: 0;
-      }
+  //     @include mobile {
+  //       flex-direction: column;
+  //       margin-left: 0;
+  //     }
 
-      .lesson-content {
-        width: 748px;
-        background-color: white;
-        border-radius: 8px;
-        padding: 0 10px;
-        max-height: 90vh;
-        overflow-y: auto;
+  //     .lesson-content {
+  //       width: 748px;
+  //       background-color: white;
+  //       border-radius: 8px;
+  //       padding: 0 10px;
+  //       max-height: 90vh;
+  //       overflow-y: auto;
 
-        @include tablet {
-          width: 100%;
-        }
+  //       @include tablet {
+  //         width: 100%;
+  //       }
 
-        @include small-tablet {
-          width: 100%;
-        }
+  //       @include small-tablet {
+  //         width: 100%;
+  //       }
 
-        @include mobile {
-          width: 100%;
-        }
+  //       @include mobile {
+  //         width: 100%;
+  //       }
 
-        &::-webkit-scrollbar {
-          display: none;
-        }
+  //       &::-webkit-scrollbar {
+  //         display: none;
+  //       }
 
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+  //       -ms-overflow-style: none;
+  //       scrollbar-width: none;
 
-        h2 {
-          margin-top: 0;
-          font-size: 1.8rem;
-          font-weight: bold;
+  //       h2 {
+  //         margin-top: 0;
+  //         font-size: 1.8rem;
+  //         font-weight: bold;
 
-          @include tablet {
-            font-size: 1.6rem;
-          }
+  //         @include tablet {
+  //           font-size: 1.6rem;
+  //         }
 
-          @include small-tablet {
-            font-size: 1.4rem;
-          }
+  //         @include small-tablet {
+  //           font-size: 1.4rem;
+  //         }
 
-          @include mobile {
-            font-size: 1.2rem;
-          }
-        }
+  //         @include mobile {
+  //           font-size: 1.2rem;
+  //         }
+  //       }
 
-        .section {
-          margin-bottom: 10px;
+  //       .section {
+  //         margin-bottom: 10px;
 
-          &-header {
-            padding: 15px;
-            background-color: rgba(217, 217, 217, 0.5);
-            border-radius: 10px;
-            cursor: pointer;
+  //         &-header {
+  //           padding: 15px;
+  //           background-color: rgba(217, 217, 217, 0.5);
+  //           border-radius: 10px;
+  //           cursor: pointer;
 
-            .title {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              font-weight: bold;
+  //           .title {
+  //             display: flex;
+  //             justify-content: space-between;
+  //             align-items: center;
+  //             font-weight: bold;
 
-              .arrow {
-                font-size: 12px;
-              }
-            }
-          }
+  //             .arrow {
+  //               font-size: 12px;
+  //             }
+  //           }
+  //         }
 
-          &-content {
-            padding: 10px;
-            background-color: #fff;
-            border-top: none;
-            border-radius: 0 0 4px 4px;
+  //         &-content {
+  //           padding: 10px;
+  //           background-color: #fff;
+  //           border-top: none;
+  //           border-radius: 0 0 4px 4px;
 
-            .lesson {
-              display: flex;
-              justify-content: space-between;
-              padding: 10px;
-              border-radius: 5px;
-              cursor: pointer;
+  //           .lesson {
+  //             display: flex;
+  //             justify-content: space-between;
+  //             padding: 10px;
+  //             border-radius: 5px;
+  //             cursor: pointer;
 
-              &:not(:last-child) {
-                border-bottom: 1px solid #eee;
-              }
+  //             &:not(:last-child) {
+  //               border-bottom: 1px solid #eee;
+  //             }
 
-              .duration {
-                color: #999;
-              }
+  //             .duration {
+  //               color: #999;
+  //             }
 
-              &:hover {
-                background-color: rgba(255, 166, 0, 0.229);
-                color: $primary-color;
+  //             &:hover {
+  //               background-color: rgba(255, 166, 0, 0.229);
+  //               color: $primary-color;
 
-                .duration {
-                  color: $primary-color;
-                }
-              }
+  //               .duration {
+  //                 color: $primary-color;
+  //               }
+  //             }
 
-              @include tablet {
-                flex-direction: column;
-                align-items: flex-start;
-              }
+  //             @include tablet {
+  //               flex-direction: column;
+  //               align-items: flex-start;
+  //             }
 
-              @include small-tablet {
-                flex-direction: column;
-                align-items: flex-start;
-              }
+  //             @include small-tablet {
+  //               flex-direction: column;
+  //               align-items: flex-start;
+  //             }
 
-              @include mobile {
-                flex-direction: column;
-                align-items: flex-start;
-              }
-            }
-          }
-        }
-      }
-    }
+  //             @include mobile {
+  //               flex-direction: column;
+  //               align-items: flex-start;
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
   }
 
   .course-basic-right {
-    margin-top: -320px;
-
+   
     @include tablet {
       margin-top: 20px;
       width: 100%;
@@ -257,11 +256,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      
+      
 
       img {
         max-width: 70%;
         border-radius: 8px;
         margin-bottom: 20px;
+        width: 500px;
+        height: 200px;
+        box-shadow: 0 4px 8px rgba(2, 2, 2, 0.1);;
 
         @include tablet {
           max-width: 100%;

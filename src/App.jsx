@@ -13,6 +13,7 @@ import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
 
+
 function App() {
   const router = useRoutes([
     {
@@ -24,7 +25,7 @@ function App() {
           element: <Home />,
         },
         {
-          path: 'detail-course/:paraj',
+          path: 'detail-course/:id',
           element: <BasicCourse />,
         },
         {
@@ -71,4 +72,5 @@ function App() {
 
   return router
 }
+
 export default App
