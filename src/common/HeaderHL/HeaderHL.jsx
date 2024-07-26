@@ -1,14 +1,96 @@
+// import { useNavigate } from 'react-router-dom'
+// import './HeaderHL.scss'
+// import { useState } from 'react'
+// import logo from '../../assets/images/logo1.png'
+// const HeaderHL = () => {
+//   const navigate = useNavigate()
+//   const [click, setClick] = useState(false)
+//   const [searchInput, setSearchInput] = useState('')
+//   const [count, setCount] = useState(1)
+
+//   //
+//   const access_token = localStorage.getItem('access_token')
+//   const handleClickSignIn = () => {
+//     navigate('/signIn')
+//   }
+//   const handleLogOut = () => {
+//     localStorage.removeItem('access_token')
+//     window.location.reload()
+//     navigate('/')
+//   }
+//   //
+
+//   const handleClick = () => {
+//     setCount(count + 1)
+//     console.log(count)
+//     if (count % 2 != 0) {
+//       setClick(true)
+//     } else {
+//       setClick(false)
+//     }
+//   }
+//   return (
+//     <div className='header-container'>
+//       <div className='zone'></div>
+//       <div className='logo' onClick={() => navigate('/')}>
+//         <div className='box-logo'>
+//           <img className='img-logo' src={logo} alt='Logo' />
+//         </div>
+//       </div>
+//       <div className='search'>
+//         <i className='fa-solid fa-magnifying-glass'></i>
+//         <input
+//           className='input'
+//           type='text'
+//           value={searchInput}
+//           onChange={(e) => setSearchInput(e.target.value)}
+//           placeholder='Search here'
+//         />
+//       </div>
+//       <div className='button-signin'>
+//         {access_token ? (
+//           <div className='top-signIn'>
+//             <div className='avatar' onClick={handleClick}>
+//               <i className='fa-regular fa-user'></i>
+
+//               {click ? (
+//                 <div className='box-avatar'>
+//                   <p>Trang cá nhân</p>
+//                   <button className='btn-top' onClick={handleLogOut}>
+//                     Logout
+//                   </button>
+//                 </div>
+//               ) : (
+//                 ''
+//               )}
+//             </div>
+//           </div>
+//         ) : (
+//           <div className='login' onClick={handleClickSignIn}>
+//             <h4>Đăng nhập</h4>
+//             <i className='fa-solid fa-user'></i>
+//           </div>
+//         )}
+//       </div>
+//     </div>
+//   )
+// }
+
+// export default HeaderHL
 import { useNavigate } from 'react-router-dom'
 import './HeaderHL.scss'
 import { useState } from 'react'
 import logo from '../../assets/images/logo1.png'
+import * as React from 'react'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
+import Popover from '@mui/material/Popover'
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
+
 const HeaderHL = () => {
   const navigate = useNavigate()
-  const [click, setClick] = useState(false)
   const [searchInput, setSearchInput] = useState('')
-  const [count, setCount] = useState(1)
 
-  //
   const access_token = localStorage.getItem('access_token')
   const handleClickSignIn = () => {
     navigate('/signIn')
@@ -18,17 +100,7 @@ const HeaderHL = () => {
     window.location.reload()
     navigate('/')
   }
-  //
 
-  const handleClick = () => {
-    setCount(count + 1)
-    console.log(count)
-    if (count % 2 != 0) {
-      setClick(true)
-    } else {
-      setClick(false)
-    }
-  }
   return (
     <div className='header-container'>
       <div className='zone'></div>
@@ -50,20 +122,33 @@ const HeaderHL = () => {
       <div className='button-signin'>
         {access_token ? (
           <div className='top-signIn'>
-            <div className='avatar' onClick={handleClick}>
-              <i className='fa-regular fa-user'></i>
-
-              {click ? (
+            <PopupState variant='popover' popupId='demo-popup-popover' className='avatar'>
+              {(popupState) => (
                 <div className='box-avatar'>
-                  <p>Trang cá nhân</p>
-                  <button className='btn-top' onClick={handleLogOut}>
-                    Logout
-                  </button>
+                  <Button variant='contained' {...bindTrigger(popupState)} className='avatar'>
+                    <i className='fa-regular fa-user'></i>
+                  </Button>
+                  <Popover
+                    {...bindPopover(popupState)}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }}>
+                    <Typography sx={{ p: 2 }}>
+                      <span onClick={() => navigate('/profile')}>Thông tin cá nhân</span>
+                      <span>Thay đổi mật khẩu</span>
+                      <button className='btn-top' onClick={handleLogOut}>
+                        Logout
+                      </button>
+                    </Typography>
+                  </Popover>
                 </div>
-              ) : (
-                ''
               )}
-            </div>
+            </PopupState>
           </div>
         ) : (
           <div className='login' onClick={handleClickSignIn}>

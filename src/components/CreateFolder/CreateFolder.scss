@@ -6,21 +6,47 @@
   border: 1px solid black;
   border-radius: 10px;
   width: 400px;
-  height: 400px;
-  & > h2 {
-    margin-bottom: 80px;
-  }
-  & > input {
-    margin-bottom: 150px;
-    width: 355px;
-    padding: 15px 15px;
-    border-radius: 10px;
-    background: #f0eeee;
+  height: 500px;
+  display: block;
+  .new-infors {
+    display: block;
+    margin-right: 100px;
+    .new-infor-folder {
+      height: 50px;
+      margin-bottom: 30px;
+      .new-textarea {
+        width: 100%;
+        height: 50px;
+        resize: none;
+        padding: 15px 15px;
+        border-radius: 10px;
+        background: #f0eeee;
+        border: none;
+        outline: none;
+        box-sizing: border-box;
+        margin-top: 10px;
+      }
+    }
+    .new-infor-describe {
+      height: 125px;
+      .new-textarea {
+        width: 100%;
+        height: 125px;
+        resize: none;
+        box-sizing: border-box;
+        padding: 15px 15px;
+        border-radius: 10px;
+        background: #f0eeee;
+        border: none;
+        outline: none;
+        margin-top: 10px;
+      }
+    }
   }
   .buttons {
     display: flex;
     justify-content: space-around;
-
+    margin-top: 60px;
     .cancel-button,
     .create-button {
       padding: 10px 20px;

@@ -4,6 +4,7 @@ import './Home.scss'
 import Classess from '../../components/Classes2/Classess'
 import CourseLeader from '../../pages/CourseLeader/CourseLeader'
 import { Outlet } from 'react-router-dom'
+import CourseLeaderList from '../../components/CourseLeaderList/CourseLeaderList'
 
 const Home = () => {
   const access_token = localStorage.getItem('access_token')
@@ -12,7 +13,9 @@ const Home = () => {
       <div className='content'>
         <Slider />
         {/* {access_token ? <Classess /> : <Classes />} */}
-        <CourseLeader />
+        {/* <CourseLeader /> */}
+        <CourseLeaderList />
+        {/* <Classess /> */}
       </div>
     </>
   )

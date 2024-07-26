@@ -9,10 +9,10 @@ body {
   padding-right: 0 !important;
   overflow: scroll;
 }
-.create-new-course {
+.create-new-section {
   display: block;
   margin-left: 45px;
-  .new-courser-header {
+  .new-section-header {
     display: flex;
     margin-top: 30px;
     gap: 100px;
@@ -49,14 +49,14 @@ body {
           .new-boxIcon {
             display: flex;
             justify-content: center;
-            width: 100px;
-            height: 100px;
+            width: 70px;
+            height: 70px;
             background-color: #f0eeee;
             border-radius: 100%;
             .new-iconUpload {
               cursor: pointer;
-              width: 80px;
-              height: 80px;
+              width: 50px;
+              height: 65px;
             }
           }
         }
@@ -87,7 +87,8 @@ body {
     }
     .new-infors {
       display: block;
-      margin-right: 100px;
+      width: 350px;
+
       .new-infor-folder {
         height: 50px;
         margin-bottom: 30px;
@@ -119,7 +120,7 @@ body {
           margin-top: 10px;
         }
       }
-      .new-button-class-type {
+      .new-button-location-type {
         display: block;
         margin-top: 60px;
         .new-box-button-type {
@@ -172,7 +173,7 @@ body {
         text-decoration: none;
         display: inline-block;
         font-size: 20px;
-        width: 140px;
+        width: 170px;
         cursor: pointer;
         margin-bottom: 15px;
       }

@@ -3,54 +3,23 @@ import './CreateNewCourse.scss'
 import { IconUpload } from '@tabler/icons-react'
 import { createCourse } from '../../apis/courses.api'
 import LinearProgress from '@mui/material/LinearProgress'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select from '@mui/material/Select'
+import { useNavigate } from 'react-router-dom'
 
 const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [folderName, setFolderName] = useState('')
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState(null)
-  const [status, setStatus] = useState('initial')
-  // const [files, setFiles] = useState(null)
   const [classType, setClassType] = useState('Public')
-  const [progress, setProgress] = useState(0) // Thêm state cho progress
-
-  // const handleFileChange = (e) => {
-  //   if (e.target.files) {
-  //     setStatus('initial')
-  //     setFiles(e.target.files)
-  //   }
-  // }
   const inputRef = useRef()
 
-  // const handleUpload = async () => {
-  //   if (files) {
-  //     setStatus('Upload')
-  //     const formData = new FormData()
+  const [status, setStatus] = useState('initial')
+  const [progress, setProgress] = useState(0)
+  const navigate = useNavigate()
 
-  //     ;[...files].forEach((file) => {
-  //       formData.append('files', file)
-  //     })
-  //     try {
-  //       // Giả lập tiến trình upload
-  //       for (let i = 0; i <= 100; i++) {
-  //         await new Promise((resolve) => setTimeout(resolve, 50))
-  //         setProgress(i)
-  //       }
-
-  //       const result = await fetch('https://httpbin.org/post', {
-  //         method: 'POST',
-  //         body: formData,
-  //       })
-  //       const data = await result.json()
-  //       setUpload(data.files)
-  //       setStatus('Success')
-  //       return data.files
-  //     } catch (error) {
-  //       setStatus('Fails')
-  //       return null
-  //     }
-  //   }
-  //   return null
-  // }
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     setUpload(file)
@@ -59,8 +28,6 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
 
   const handleSubmit = async () => {
     if (folderName && describe && upload) {
-      // const uploadedFiles = await handleUpload()
-      // if (uploadedFiles) {
       const courseData = {
         userId: '0b602036-814e-4f53-8ee5-1f0b2e12452b',
         name: folderName,
@@ -75,41 +42,39 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
       } catch (error) {
         console.log('Error creating course:', error)
       }
-      // }
     }
+    navigate('/')
   }
 
-  const Result = ({ status }) => {
-    if (status === 'Success') {
-      return <p>✅ Uploaded successfully!</p>
-    } else if (status === 'Fails') {
-      return <p>❌ Upload failed!</p>
-    } else if (status === 'Upload') {
-      return <p>⏳ Uploading started...</p>
-    } else {
-      return null
-    }
+  // const Result = ({ status }) => {
+  //   if (status === 'Success') {
+  //     return <p>✅ Uploaded successfully!</p>
+  //   } else if (status === 'Fails') {
+  //     return <p>❌ Upload failed!</p>
+  //   } else if (status === 'Upload') {
+  //     return <p>⏳ Uploading started...</p>
+  //   } else {
+  //     return null
+  //   }
+  // }
+
+  const handleClassTypeChange = (event) => {
+    setClassType(event.target.value)
   }
+
   return (
     <>
-      {status === 'Upload' && (
+      {/* {status === 'Upload' && (
         <div className='progress-bar'>
           <LinearProgress variant='determinate' value={progress} />
         </div>
-      )}
+      )} */}
       <div className='create-new-course'>
         <h2>TẠO KHOÁ HỌC MỚI</h2>
         <div className='new-courser-header'>
           <div className='new-upload-file'>
             <div className='new-icon-upload'>
               {upload ? (
-                // [...files].map((file, idx) => (
-                //   <section key={file.name} className='new-nameFile'>
-                //     <ul>
-                //       <li>File name: {file.name}</li>
-                //     </ul>
-                //   </section>
-                // ))
                 <p>File name: {upload?.name}</p>
               ) : (
                 <div className='new-boxUpload'>
@@ -119,7 +84,6 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
                       onClick={() => inputRef.current.click()}
                     />
                   </div>
-
                   <p>Kéo ảnh, video demo để tải lên</p>
                 </div>
               )}
@@ -132,36 +96,39 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
             </div>
           </div>
           <div className='new-infors'>
+            <h2>Tên khoá học</h2>
             <div className='new-infor-folder'>
-              <input
-                type='text'
-                placeholder='Tên folder con'
+              <textarea
+                placeholder='Tên khoá học'
                 value={folderName}
                 onChange={(e) => setFolderName(e.target.value)}
+                rows={1}
+                className='new-textarea'
               />
             </div>
             <div className='new-infor-describe'>
-              <input
-                type='text'
-                placeholder='Mô tả folder con'
+              <h2>Mô tả khoá học</h2>
+              <textarea
+                placeholder='Mô tả khoá học'
                 value={describe}
                 onChange={(e) => setDescribe(e.target.value)}
+                rows={4}
+                className='new-textarea'
               />
             </div>
             <div className='new-button-class-type'>
-              <h2>Loại lớp học</h2>
-              <div className='new-box-button-type'>
-                <button
-                  className={`button-${classType === 'Public' ? 'active' : ''}`}
-                  onClick={() => setClassType('Public')}>
-                  PUBLIC
-                </button>
-                <button
-                  className={`button-${classType === 'Private' ? 'active' : ''}`}
-                  onClick={() => setClassType('Private')}>
-                  PRIVATE
-                </button>
-              </div>
+              <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+                <InputLabel className='class-type-select-label'>Loại lớp học</InputLabel>
+                <Select
+                  labelId='class-type-select-label'
+                  className='class-type-select'
+                  value={classType}
+                  label='Loại lớp học'
+                  onChange={handleClassTypeChange}>
+                  <MenuItem value='Public'>PUBLIC</MenuItem>
+                  <MenuItem value='Private'>PRIVATE</MenuItem>
+                </Select>
+              </FormControl>
             </div>
           </div>
         </div>
@@ -175,7 +142,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
             <button className='new-post-button' onClick={handleSubmit}>
               ĐĂNG BÀI
             </button>
-            <Result status={status} />
+            {/* <Result status={status} /> */}
           </div>
         </div>
       </div>
