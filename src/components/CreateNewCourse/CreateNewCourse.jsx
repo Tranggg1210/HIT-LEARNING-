@@ -2,12 +2,12 @@ import { useRef, useState } from 'react'
 import './CreateNewCourse.scss'
 import { IconUpload } from '@tabler/icons-react'
 import { createCourse } from '../../apis/courses.api'
-import LinearProgress from '@mui/material/LinearProgress'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { useNavigate } from 'react-router-dom'
+import { TextField } from '@mui/material'
 
 const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [folderName, setFolderName] = useState('')
@@ -37,8 +37,8 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
       }
       try {
         await createCourse(courseData)
-        onCreate(courseData)
-        onCancel()
+        // onCreate(courseData)
+        // onCancel()
       } catch (error) {
         console.log('Error creating course:', error)
       }
@@ -96,28 +96,40 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
             </div>
           </div>
           <div className='new-infors'>
-            <h2>Tên khoá học</h2>
             <div className='new-infor-folder'>
-              <textarea
-                placeholder='Tên khoá học'
+              <TextField
+                sx={{ width: '100%' }}
+                id='outlined-folder-input'
+                label='Tên khoá học'
+                type='text'
+                autoComplete='off'
                 value={folderName}
                 onChange={(e) => setFolderName(e.target.value)}
                 rows={1}
                 className='new-textarea'
+                InputProps={{
+                  style: { height: '50px' },
+                }}
               />
             </div>
             <div className='new-infor-describe'>
-              <h2>Mô tả khoá học</h2>
-              <textarea
-                placeholder='Mô tả khoá học'
+              <TextField
+                sx={{ width: '100%', height: '125px' }}
+                id='outlined-describe-input'
+                label='Mô tả khoá học'
+                type='text'
+                autoComplete='off'
                 value={describe}
                 onChange={(e) => setDescribe(e.target.value)}
                 rows={4}
                 className='new-textarea'
+                InputProps={{
+                  style: { height: '125px' },
+                }}
               />
             </div>
             <div className='new-button-class-type'>
-              <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+              <FormControl sx={{ width: '100%' }} size='small'>
                 <InputLabel className='class-type-select-label'>Loại lớp học</InputLabel>
                 <Select
                   labelId='class-type-select-label'
@@ -134,7 +146,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
         </div>
         <div className='new-pots'>
           <div className='new-pots2'>
-            <button className='new-post-button-cancel' onClick={onCancel}>
+            <button className='new-post-button-cancel' onClick={() => navigate('/')}>
               HUỶ BỎ
             </button>
           </div>

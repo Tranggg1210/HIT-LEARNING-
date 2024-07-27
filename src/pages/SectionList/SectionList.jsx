@@ -19,7 +19,7 @@ const CourseList = () => {
   const [isCreatingSubFolder, setIsCreatingSubFolder] = useState(false)
   const [section, setSection] = useState([])
   const [course, setCourse] = useState([])
-  const [sectionItems, setSectionItems] = useState({})
+  const [sectionItems, setSectionItems] = useState([])
   const [selectedItemId, setSelectedItemId] = useState('')
   const [openSection, setOpenSection] = useState(null)
   const [isEditingItem, setIsEditingItem] = useState(false)
@@ -29,13 +29,18 @@ const CourseList = () => {
   // const [items, setItems] = useState([])
   // const [folders, setFolders] = useState([])
   // const [parentFolderId, setParentFolderId] = useState(null)
-  // console.log(sectionItems)
+  console.log(sectionItems)
   const handleToggle = async (index, sectionId) => {
     setOpenSection(openSection === index ? null : index)
     if (openSection !== index) {
       try {
         const items = await getAllItem(sectionId)
-        setSectionItems((prevItems) => ({ ...prevItems, [sectionId]: items }))
+
+        if (items) {
+          setSectionItems(items.data.data.content)
+        } else {
+          setSectionItems([])
+        }
       } catch (error) {
         console.log(error)
       }
@@ -49,8 +54,6 @@ const CourseList = () => {
       const resultSection = await (await getAllSection(id)).data.data
       setSection(resultSection.content)
       // const resultItem = await getAllItem(section)
-      console.log('ID course', result)
-      console.log('Section: ', resultSection)
     } catch (error) {
       console.log(error)
     }
@@ -117,7 +120,7 @@ const CourseList = () => {
               <div className='sections'>
                 {section.map((sec, idx) => (
                   <div key={sec.id} className='section'>
-                    <div className='section-header' onClick={() => handleToggle(idx, sec.id)}>
+                    <div className='section-header' onClick={() => handleToggle(idx, sec?.id)}>
                       <div className='section-folder-header'>
                         {openSection === idx ? <IconChevronDown /> : <IconChevronRight />}
                         <h3>{sec.name}</h3>
@@ -133,9 +136,10 @@ const CourseList = () => {
                         </div>
                       </div>
                     </div>
-                    {openSection === idx && (
+
+                    {openSection === idx && sectionItems.length > 0 && (
                       <div className='section-items'>
-                        {sectionItems[sec.id]?.map((item) => (
+                        {sectionItems.map((item) => (
                           <div key={item.id} className='section-item'>
                             <p>{item.name}</p>
                             <div className='item-actions'>

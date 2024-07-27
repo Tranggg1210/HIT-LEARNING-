@@ -40,4 +40,5 @@ const apiDefaultUpload = axios.create({
     'Content-Type': 'multipart/form-data',
   },
 })
+
 export { apiDefault, api, apiDefaultUpload }

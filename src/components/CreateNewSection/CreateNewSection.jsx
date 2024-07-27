@@ -3,6 +3,7 @@ import './CreateNewSection.scss'
 import { IconUpload } from '@tabler/icons-react'
 import { useNavigate } from 'react-router-dom'
 import { createItem } from '../../apis/item.api'
+import { TextField } from '@mui/material'
 
 const CreateSubFolder = ({ itemId, onCancel, editingItemData }) => {
   // const [itemName, setItemName] = useState('')
@@ -89,22 +90,35 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData }) => {
           <div className='new-infors'>
             <h2>Tên Video</h2>
             <div className='new-infor-folder'>
-              <textarea
-                placeholder='Tên video buổi học'
+              <TextField
+                sx={{ width: '100%' }}
+                id='outlined-folder-input'
+                label='Tên video buổi học'
+                type='text'
+                autoComplete='off'
                 value={itemName}
                 onChange={(e) => setItemName(e.target.value)}
                 rows={1}
                 className='new-textarea'
+                InputProps={{
+                  style: { height: '50px' },
+                }}
               />
             </div>
             <div className='new-infor-describe'>
-              <h2>Mô tả Video</h2>
-              <textarea
-                placeholder='Mô tả video buổi học'
+              <TextField
+                sx={{ width: '100%', height: '125px' }}
+                id='outlined-describe-input'
+                label='Mô tả video buổi học'
+                type='text'
+                autoComplete='off'
                 value={describeItem}
                 onChange={(e) => setDescribeItem(e.target.value)}
                 rows={4}
                 className='new-textarea'
+                InputProps={{
+                  style: { height: '125px' },
+                }}
               />
             </div>
           </div>
