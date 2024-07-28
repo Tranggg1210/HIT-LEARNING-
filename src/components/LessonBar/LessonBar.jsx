@@ -30,24 +30,29 @@ const LessonBar = (param) => {
     const res = await getItemBySectionId(sectionId)
     setItems(prevItems => ({
       ...prevItems,
-      [sectionId]: res.data.data
+      [sectionId]: res.data.data.content
     }))
     console.log(`Items for section ${sectionId}: `, res.data.data)
+    console.log('>>>res',res)
   }
+
+  
+  useEffect(() => {
+    showAllSection()
+    // console.log('>>items',items)
+    // console.log('>>>sections',sections)
+  }, [])
 
   const handleToggle = (index, sectionId) => {
     const newOpenSection = openSection === index ? null : index
     setOpenSection(newOpenSection)
     if (newOpenSection !== null && !items[sectionId]) {
       showItemsBySectionId(sectionId)
+      
       // console.log('item[sectionid]>>>>',items[sectionId])
       // console.log(sectionId)
     }
   }
-
-  useEffect(() => {
-    showAllSection()
-  }, [])
 
   return (
     <>
@@ -72,9 +77,9 @@ const LessonBar = (param) => {
               <div className='section-content'>
                 {Array.isArray(items[sectionId]) ? items[sectionId].map((item) => (
                   <div key={item.id} className='lesson'>
-                    <NavLink to={'/'}>{item.description}</NavLink>
+                    <NavLink to={`/lesson/${item.id}`}>{item.name} - {item.id}</NavLink>
                   </div>
-                )) : <div>Updating....</div>}
+                )) : <div>Updating....</div> }
               </div>
             )}
           </div>
