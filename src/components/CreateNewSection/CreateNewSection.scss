@@ -9,10 +9,10 @@ body {
   padding-right: 0 !important;
   overflow: scroll;
 }
-.create-new-course {
+.create-new-section {
   display: block;
   margin-left: 45px;
-  .new-courser-header {
+  .new-section-header {
     display: flex;
     margin-top: 30px;
     gap: 100px;
@@ -93,9 +93,9 @@ body {
           margin-top: 10px;
         }
       }
-      .new-button-class-type {
+      .new-button-location-type {
         display: block;
-        margin-top: 10px;
+        margin-top: 60px;
         .new-box-button-type {
           display: flex;
           margin-top: 20px;
@@ -146,7 +146,7 @@ body {
         text-decoration: none;
         display: inline-block;
         font-size: 20px;
-        width: 140px;
+        width: 170px;
         cursor: pointer;
         margin-bottom: 15px;
       }

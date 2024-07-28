@@ -10,7 +10,7 @@ const MainLayout = () => {
       </div>
       <div className='content'>
         <HeaderHL />
-        <div className='mt-72px'>
+        <div>
           <Outlet />
         </div>
       </div>

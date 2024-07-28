@@ -1,10 +1,13 @@
-import { apiDefault } from '.'
+import { apiDefault, apiDefaultUpload } from '.'
 import { ApiConstant } from '../constants/api.constant'
 
 const itemsApi = () => ({
-  getAllitem: async () => apiDefault.get(ApiConstant.items.getAll),
-  createItem: async (ItemData) => apiDefault.post(ApiConstant.items.createItem, ItemData),
+  getAllItem: async (id) => apiDefault.get(`${ApiConstant.items.getAll}${id}`),
+  createItem: async (itemData) => apiDefaultUpload.post(ApiConstant.items.createItem, itemData),
   deleteItem: async (id) => apiDefault.delete(`${ApiConstant.items.deleteItem}${id}`),
+  updateItem: async (id, itemData) =>
+    apiDefaultUpload.put(`${ApiConstant.items.updateItem}${id}`, itemData),
   getItemBySectionId: async (id) => apiDefault.get(`${ApiConstant.items.getItemBySectionId}${id}`),
 })
-export const { getAllItem, createItem, deleteItem,getItemBySectionId } =  itemsApi()
+export const { getAllItem, createItem, deleteItem,updateItem,getItemBySectionId } =  itemsApi()
+

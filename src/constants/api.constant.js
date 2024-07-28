@@ -6,6 +6,8 @@ export const ApiConstant = {
     getAll: '/course',
     createCourse: '/course',
     deleteCourse: '/course/',
+    editCourse: '/course/',
+    getCourseById: '/course/',
     getId: '/course',
   },
   sections: {
@@ -15,9 +17,10 @@ export const ApiConstant = {
     getSectionByCourseId: '/section/course/',
   },
   items: {
-    getAll: '/item',
+    getAll: '/item/section/',
     createItem: '/item',
     deleteItem: '/item/',
+    updateItem: '/item/',
     getItemBySectionId: '/item/section/',
   },
 }
