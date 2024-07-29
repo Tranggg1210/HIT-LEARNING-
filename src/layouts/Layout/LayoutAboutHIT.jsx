@@ -6,10 +6,9 @@ const LayoutAboutHIT = () => {
   return (
     <>
       <div className='layout-sidebar'>
-        <SideBar/>
+        <SideBar />
       </div>
-      <Outlet/>
-
+      <Outlet />
     </>
   )
 }

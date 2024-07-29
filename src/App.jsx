@@ -11,6 +11,8 @@ import SectionList from './pages/SectionList/SectionList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
+import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
+
 
 function App() {
   const router = useRoutes([
@@ -58,14 +60,17 @@ function App() {
     },
     {
       path: '/club-hit',
-      element: <AboutHIT />,
-    },
-    {
-      path: '/course',
-      element: <BasicCourse />,
+      element: <LayoutAboutHIT/>,
+      children: [
+        {
+          path:"",
+          element:<AboutHIT/>
+        }
+      ]
     },
   ])
 
   return router
 }
+
 export default App

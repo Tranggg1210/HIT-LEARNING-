@@ -48,9 +48,9 @@ const AboutHIT = () => {
   })
   return (
     <>
-    <LayoutAboutHIT/>
+      
       <div className='container-abouthit'>
-        <div className="header">
+        <div className='header'>
           <ul>
             <li>
               <a href='#banchunhiem'>Ban chủ nhiệm </a>
@@ -338,7 +338,6 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
-                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
@@ -361,7 +360,6 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
-                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
@@ -384,7 +382,6 @@ const AboutHIT = () => {
                     </p>
                   </div>
                   <div className='faq-arrow'>
-                    
                     <IconCircleArrowDownFilled />
                   </div>
                 </div>
