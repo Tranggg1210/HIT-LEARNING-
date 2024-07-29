@@ -1,39 +1,32 @@
 import { useEffect, useRef, useState } from 'react'
 import './CreateNewSection.scss'
 import { IconUpload } from '@tabler/icons-react'
-import { useNavigate } from 'react-router-dom'
-import { createItem } from '../../apis/item.api'
+import { createItem, updateItem } from '../../apis/item.api'
 import { TextField } from '@mui/material'
 
-const CreateSubFolder = ({ itemId, onCancel, editingItemData }) => {
-  // const [itemName, setItemName] = useState('')
-  // const [describeItem, setDescribeItem] = useState('')
+const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
   const [itemName, setItemName] = useState(editingItemData ? editingItemData.name : '')
   const [describeItem, setDescribeItem] = useState(
     editingItemData ? editingItemData.description : '',
   )
   const [uploadItem, setUploadItem] = useState(null)
 
-  const navigate = useNavigate()
   const inputRef = useRef()
-
-  // console.log('Item id', itemId)
 
   useEffect(() => {
     if (editingItemData) {
       setItemName(editingItemData.name)
       setDescribeItem(editingItemData.description)
-      // Assuming the file URL or file itself is stored in editingItemData
       setUploadItem(editingItemData.file)
     }
   }, [editingItemData])
+
   const handleFileChangeItem = (e) => {
     const file = e.target.files[0]
     setUploadItem(file)
-    console.log(file)
   }
+
   const handleSubmitItem = async () => {
-    // if (itemName && describeItem && uploadItem) {
     if (itemName && describeItem && (uploadItem || editingItemData)) {
       const itemData = {
         name: itemName,
@@ -41,17 +34,14 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData }) => {
         sectionId: itemId,
         file: uploadItem,
       }
-      console.log(itemData)
       try {
         if (editingItemData) {
           await updateItem(itemId, itemData)
         } else {
           await createItem(itemData)
         }
-        // await createItem(itemData)
-        // onCreate(courseData)
-        // onCancel()
-        navigate(onCancel)
+        onCreate()
+        onCancel()
       } catch (error) {
         console.log('Error creating course:', error)
       }
@@ -86,9 +76,7 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData }) => {
               </button>
             </div>
           </div>
-
           <div className='new-infors'>
-            <h2>Tên Video</h2>
             <div className='new-infor-folder'>
               <TextField
                 sx={{ width: '100%' }}
@@ -133,11 +121,11 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData }) => {
             <button className='new-post-button' onClick={handleSubmitItem}>
               {editingItemData ? 'CẬP NHẬT VIDEO' : 'ĐĂNG VIDEO'}
             </button>
-            {/* <Result status={status} /> */}
           </div>
         </div>
       </div>
     </>
   )
 }
+
 export default CreateSubFolder

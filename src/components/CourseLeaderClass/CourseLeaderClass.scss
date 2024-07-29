@@ -3,7 +3,7 @@
   position: relative;
   margin-left: 40px;
   margin-right: 60px;
-  .more {
+  .back {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -88,34 +88,6 @@
           font-size: 1rem;
         }
       }
-      .button-course-leader-item:hover {
-        opacity: 1;
-      }
     }
   }
-  // .fa-solid {
-  //   position: absolute;
-  //   top: 50%;
-  //   cursor: pointer;
-  //   border-radius: 20px;
-  //   width: 2rem;
-  //   height: 2rem;
-  //   padding: 8px 11px;
-  //   transform: translateY(-50%);
-  //   box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-  //   color: black;
-  //   z-index: 10;
-  //   &.fa-chevron-left {
-  //     left: 10px;
-  //   }
-  //   &.fa-chevron-right {
-  //     right: 10px;
-  //   }
-  //   @include mobile {
-  //     display: none;
-  //   }
-  //   @include tablet {
-  //     display: none;
-  //   }
-  // }
 }
