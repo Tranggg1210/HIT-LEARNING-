@@ -18,6 +18,7 @@ const LessonDetail = () => {
   const [comments, setComments] = useState([]);  
   const handleCommentChange = (event) => setComment(event.target.value);
 
+
   const handleSubmit = () => {
     if (comment.trim()) {
       setComments([...comments, comment]);
@@ -28,7 +29,7 @@ const LessonDetail = () => {
 
   const navigate = useNavigate()
   const lessonId = useParams()
-  console.log(lessonId)
+  // console.log(lessonId)
    
 
   const handleBack = () => {
@@ -62,7 +63,7 @@ const LessonDetail = () => {
               </Typography>
             </div>
             <div className='player'>
-              <iframe width="80%" height="400" src="https://www.youtube.com/embed/b6rUk3YLsN0?si=xaIvo5VvqqOMrKMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <iframe width="80%" height="400" src="https://www.youtube.com/embed/b6rUk3YLsN0?si=xaIvo5VvqqOMrKMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               <div className='player-des'>
                 <div className='des-container'>
                   <div className='des-box'>
@@ -82,7 +83,7 @@ const LessonDetail = () => {
                           {like ? <IconHeartFilled /> : <IconHeart />} {countLike}
                         </button>
                         <button className='btn-des'>
-                          <IconDownload /> Tải xuống
+                          <IconDownload/> Tải xuống
                         </button>
                       </div>
                     </div>
