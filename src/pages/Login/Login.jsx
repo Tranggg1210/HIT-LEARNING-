@@ -7,9 +7,10 @@ import { loginValidate } from '../../utils/loginValidate'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
 import { Toaster, toast } from 'react-hot-toast'
-import { loginUser } from '../../apis'
+// import { loginUser } from '../../apis'
 import { login } from '../../apis/auth.api'
-import axios from 'axios'
+// import axios from 'axios'
+import {jwtDecode} from 'jwt-decode'
 
 
 const Login = () => {
@@ -41,34 +42,38 @@ const Login = () => {
             }}
             validationSchema={loginValidate()}
             onSubmit={async (values) => {
-              // try {
-              //   const res = await axios.post('https://hitproduct2024-production.up.railway.app/user', values)
-              //   // const res = await login(values)
-              //   if (res.data.token) {
-              //     localStorage.setItem('token', res.data)
-              //     localStorage.setItem('role', res.data.role)
-              //     toast.success('Đăng nhập thành công')
-              //     switch(res.data){
-              //       case 'admin':
-              //         navigate('/admin')
-              //         break
-              //       case 'user':
-              //         navigate('/user')
-              //         break
-              //       default:
-              //         navigate('/')
-              //     }
-              //   }
-              //     else{
-              //       toast.error('Khong nhan duoc token')
-
-              //     }
-              // } catch (error) {
-              //   toast.error('Đăng nhập thất bại')
-              //   console.error('API error:', error.response || error.message)
-              // }
+              try {
+                // const res = await axios.post('https://hitproduct2024-production.up.railway.app/authen', values)
+                // const res = await login(values)
+                const res = await login(values)
+                console.log('>>res',res)
+                if (res.data.token) {
+                  localStorage.setItem('token', res.data.token)
+                  localStorage.setItem('role', res.data.role)
+                  const decodetoken = jwtDecode(res.data.token) 
+                  console.log('>>>decode',decodetoken)
+                  
+                  toast.success('Đăng nhập thành công')
+                  // switch(res.data){
+                  //   case 'admin':
+                  //     navigate('/admin')
+                  //     break
+                  //   case 'user':
+                  //     navigate('/user')
+                  //     break
+                  //   default:
+                  //     navigate('/')
+                  // }
+                }
+                  else{
+                    toast.error('Lỗi token')
+                  }
+              } catch (error) {
+                toast.error('Đăng nhập thất bại')
+                console.error('API error:', error.response || error.message)
+              }
               console.log(values)
-              navigate('/')
+              // navigate('/')
             }}>
             {({ errors, touched }) => (
 

@@ -38,7 +38,7 @@ const apiDefault = axios.create({
 export async function loginUser(login){
   try{
 
-    const response = await apiDefault.post('/user', login)
+    const response = await api.post('/user', login)
     if(response.status >= 200 && response.status < 300){
       return response.data
     }else{
