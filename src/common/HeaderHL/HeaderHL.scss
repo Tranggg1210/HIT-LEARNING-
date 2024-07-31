@@ -54,53 +54,65 @@
     }
   }
 
-  .search {
+  .box-search {
     position: relative;
-    display: flex;
-    align-items: center;
-    @include mobile {
-      & > input::placeholder {
-        font-size: 20px;
-      }
-    }
-    .fa-magnifying-glass {
-      position: absolute;
-      left: 0.75rem;
-      color: #888;
-      cursor: pointer;
+    .search {
+      position: relative;
+      display: flex;
+      align-items: center;
       @include mobile {
-        font-size: 35px;
-        margin-left: 5px;
+        & > input::placeholder {
+          font-size: 20px;
+        }
       }
-    }
+      .fa-magnifying-glass {
+        position: absolute;
+        left: 0.75rem;
+        color: #888;
+        cursor: pointer;
+        @include mobile {
+          font-size: 35px;
+          margin-left: 5px;
+        }
+      }
 
-    .input {
-      width: 40rem;
-      height: 2.75rem;
-      padding-left: 2.5rem;
-      border: 2px solid #f67a06;
-      border-radius: 0.5rem;
-      outline: none;
-      transition: width 0.3s ease;
-      transition: all 0.3s linear;
-      &:hover {
-        border: 2px solid #ffb26a;
+      .input {
+        width: 40rem;
+        height: 2.75rem;
+        padding-left: 2.5rem;
+        border: 2px solid #f67a06;
+        border-radius: 0.5rem;
+        outline: none;
+        transition: width 0.3s ease;
+        transition: all 0.3s linear;
+        &:hover {
+          border: 2px solid #ffb26a;
+        }
+        @include mobile {
+          height: 52px;
+          width: 215px;
+          margin-left: 10px;
+        }
+
+        @include tablet {
+          width: 470px;
+        }
+        @include small-tablet {
+          width: 310px;
+        }
       }
-      @include mobile {
-        height: 52px;
-        width: 215px;
+
+      .api-endpoint-select {
         margin-left: 10px;
-      }
-
-      @include tablet {
-        width: 470px;
-      }
-      @include small-tablet {
-        width: 310px;
+        height: 2.75rem;
+        border: 2px solid #f67a06;
+        border-radius: 0.5rem;
+        @include mobile {
+          height: 52px;
+        }
       }
     }
   }
-
   .button-signin {
     .top-signIn {
       @include flex(center, center);

@@ -36,7 +36,7 @@ const SliderItem = ({ films }) => {
   return (
     <div className='banner-container'>
       <div className='banner-slider' style={{ transform: `translateX(${-index * 100}%)` }}>
-        {courses.map((item, idx) => (
+        {courses.slice(0, 8).map((item, idx) => (
           <div key={item.id} className='banner-item'>
             <img
               className='banner-image'
