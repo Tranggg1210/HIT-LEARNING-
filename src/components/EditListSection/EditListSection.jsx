@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import './CreateFolder.scss'
+import './EditListSection.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
-import { createSection } from '../../apis/section.api'
+import { updateSection } from '../../apis/section.api'
 
-const CreateFolder = ({ onCreate, onCancel }) => {
+const EditListSection = ({ onCreate, onCancel }) => {
   const [locationClass, setLocationClass] = useState('')
   const [sectionName, setSectionName] = useState('')
   const [describeSection, setDescribeSection] = useState('')
@@ -19,7 +19,7 @@ const CreateFolder = ({ onCreate, onCancel }) => {
         courseId: id,
       }
       try {
-        await createSection(sectionData)
+        await updateSection(id, sectionData)
         onCreate()
         onCancel()
       } catch (error) {
@@ -34,7 +34,7 @@ const CreateFolder = ({ onCreate, onCancel }) => {
     <>
       <div className='flex-center'>
         <div className='create-folder-container'>
-          <h2>TẠO BUỔI HỌC</h2>
+          <h2>SỬA BUỔI HỌC</h2>
           <div className='new-button-location-type'>
             <FormControl sx={{ m: 1, width: '100%', margin: '8px 0px' }} size='small'>
               <InputLabel className='location-type-select-label'>Loại Thứ tự</InputLabel>
@@ -48,10 +48,6 @@ const CreateFolder = ({ onCreate, onCancel }) => {
                 <MenuItem value='2'>2</MenuItem>
                 <MenuItem value='3'>3</MenuItem>
                 <MenuItem value='4'>4</MenuItem>
-                <MenuItem value='5'>5</MenuItem>
-                <MenuItem value='6'>6</MenuItem>
-                <MenuItem value='7'>7</MenuItem>
-                <MenuItem value='8'>8</MenuItem>
               </Select>
             </FormControl>
           </div>
@@ -94,7 +90,7 @@ const CreateFolder = ({ onCreate, onCancel }) => {
               HUỶ
             </button>
             <button className='create-button' onClick={handleCreateSection}>
-              TẠO BUỔI HỌC
+              SỬA BUỔI HỌC
             </button>
           </div>
         </div>
@@ -102,4 +98,4 @@ const CreateFolder = ({ onCreate, onCancel }) => {
     </>
   )
 }
-export default CreateFolder
+export default EditListSection

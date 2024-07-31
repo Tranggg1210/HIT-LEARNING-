@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom'
 import CourseLeaderList from '../../components/CourseLeaderList/CourseLeaderList'
 
 const Home = () => {
-  const access_token = localStorage.getItem('access_token')
+  const access_token = localStorage.getItem('token')
   return (
     <>
       <div className='content'>

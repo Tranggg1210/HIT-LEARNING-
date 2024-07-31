@@ -16,9 +16,14 @@ const BasicCourse = () => {
   const [sections, setSections] = useState([]);
   const [items, setItems] = useState([]);
   const navigate = useNavigate()
-  
+  const handleBack = () => {
+    navigate(-1)
+  }
+  const id = useParams().id
+  console.log('id', id)
+  // const lessonId = useParams()
   const handleCourse = () => {
-    navigate('/courseLeader')
+    navigate(`/lesson/${id}`)
   }
   const param = useParams();
   const loadDataCourses = async () => {
@@ -110,7 +115,6 @@ const BasicCourse = () => {
             </div>
           </div>
         </div>
-        
           <div className='course-basic-right'>
             <div className='course-video'>
               <img src={`https://hitproduct2024-production-a244.up.railway.app/stream/${basicCourses.videoId}`} alt='Khóa học' />

@@ -1,4 +1,4 @@
-import { apiDefault } from '.'
+import { apiDefault, apiDefaultUpload } from '.'
 import { ApiConstant } from '../constants/api.constant'
 
 const sectionsApi = () => ({
@@ -6,6 +6,10 @@ const sectionsApi = () => ({
   createSection: async (sectionData) =>
     apiDefault.post(ApiConstant.sections.createSection, sectionData),
   deleteSection: async (id) => apiDefault.delete(`${ApiConstant.sections.deleteSection}${id}`),
-  getSectionByCourseId: async (id) => apiDefault.get(`${ApiConstant.sections.getSectionByCourseId}${id}`),
+  updateSection: async (id, sectionData) =>
+    apiDefaultUpload.put(`${ApiConstant.sections.updateSection}${id}`, sectionData),
+  getSectionByCourseId: async (id) =>
+    apiDefault.get(`${ApiConstant.sections.getSectionByCourseId}${id}`),
 })
-export const { getAllSection, createSection, deleteSection,getSectionByCourseId} = sectionsApi()
+export const { getAllSection, createSection, deleteSection, updateSection, getSectionByCourseId } =
+  sectionsApi()
