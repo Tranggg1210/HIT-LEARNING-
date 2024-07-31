@@ -1,32 +1,38 @@
 .create-folder-container {
-  margin-left: 400px;
-  align-items: center;
   background-color: white;
-  padding: 20px;
-  border: 1px solid black;
+  padding: 32px 40px;
+  border: 2px solid #e0f2f3;
+  box-shadow: 0 0 12px rgba(0 0 0 /10%);
   border-radius: 10px;
-  width: 400px;
-  height: 400px;
+  width: 50%;
+  height: 415px;
+  display: block;
+  margin-top: 40px;
   & > h2 {
-    margin-bottom: 80px;
+    text-align: center;
   }
-  & > input {
-    margin-bottom: 150px;
-    width: 355px;
-    padding: 15px 15px;
-    border-radius: 10px;
-    background: #f0eeee;
+
+  .new-infors {
+    display: block;
+    .new-infor-describe {
+      height: 125px;
+      .new-textarea {
+        margin-top: 10px;
+      }
+    }
   }
   .buttons {
     display: flex;
     justify-content: space-around;
-
+    margin-top: 60px;
+    gap: 10px;
     .cancel-button,
     .create-button {
       padding: 10px 20px;
       cursor: pointer;
       border: none;
       border-radius: 10px;
+      width: 50%;
     }
     .create-button {
       background-color: #f4b81e;

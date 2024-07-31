@@ -7,12 +7,14 @@ import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
-import CourseList from './pages/CourseList/CourseList'
+import SectionList from './pages/SectionList/SectionList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
 import LessonDetail from './pages/LessonDetail/LessonDetail'
+
+
 
 function App() {
   const router = useRoutes([
@@ -29,8 +31,8 @@ function App() {
           element: <BasicCourse />,
         },
         {
-          path: 'editCours',
-          element: <CourseList />,
+          path: 'editCourse/:id',
+          element: <SectionList />,
         },
         {
           path: '/createFolder',
@@ -76,4 +78,5 @@ function App() {
 
   return router
 }
+
 export default App

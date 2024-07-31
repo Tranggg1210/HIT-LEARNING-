@@ -1,12 +1,10 @@
 @import '../../styles/mixins';
+
 .header-container {
-  // position: fixed;
   top: 0;
   right: 0;
   left: 120px;
   height: 72px;
-  // background-color: white;
-  // box-shadow: 0 0 12px rgba(0 0 0/10%);
   padding: 0 24px;
   @include flex(space-between, center);
   z-index: 999;
@@ -30,6 +28,7 @@
     padding: 0;
     gap: 10px;
   }
+
   .logo {
     display: none;
     @include mobile {
@@ -54,6 +53,7 @@
       }
     }
   }
+
   .search {
     position: relative;
     display: flex;
@@ -100,6 +100,7 @@
       }
     }
   }
+
   .button-signin {
     .top-signIn {
       @include flex(center, center);
@@ -117,17 +118,14 @@
         width: 80px;
         margin-left: 50px;
       }
-      .avatar {
+      .box-avatar {
         background-color: white;
         border-radius: 30px;
-        height: 30px;
-        width: 30px;
         position: relative;
         @include mobile {
           height: 50px;
           width: 50px;
         }
-
         & > .fa-regular {
           align-items: center;
           font-size: 20px;
@@ -136,48 +134,9 @@
             font-size: 30px;
           }
         }
-
-        & > .box-avatar {
-          position: absolute;
-          height: 110px;
-          border: 1px solid white;
-          margin-left: -170px;
-          margin-top: 5px;
-          min-width: 200px;
-          padding: 8px 24px !important;
-          background: white;
-          box-shadow: 0 -4px 32px #0003;
-          transition: all ease-in-out 0.3s;
-          animation: _fadeIn_pdmj5_1 ease 0.3s;
-          border-radius: 10px;
-          overflow: hidden;
-          color: #1d2129;
-          @include mobile {
-            margin-top: 20px;
-          }
-          & > p {
-            font-size: 1.4rem;
-            color: #666;
-            display: block;
-            padding: 10px 0;
-            cursor: pointer;
-            border-bottom: solid 1px rgba(0, 0, 0, 0.05);
-          }
-          & > .btn-top {
-            background: white;
-            font-size: 1.3rem;
-            color: #666;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: none;
-            margin-left: 14px;
-            margin-top: 10px;
-          }
-        }
       }
     }
+
     .login {
       @include flex(center, center);
       justify-content: center !important;
@@ -208,6 +167,23 @@
       .fa-user {
         color: white;
       }
+    }
+  }
+}
+
+.MuiPaper-root {
+  margin-top: 5px;
+  margin-right: 80px;
+  .MuiTypography-root {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    & > button,
+    span {
+      border: none;
+      background-color: white;
+      font-size: 1rem;
+      cursor: pointer;
     }
   }
 }

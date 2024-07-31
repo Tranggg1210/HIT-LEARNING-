@@ -46,7 +46,7 @@ const Login = () => {
                 console.log('>>res', res)
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
-                  console.log('>>json roles', JSON.stringify(roles))
+                  console.log('>>json roles', roles)
                   localStorage.setItem('token', res.data.data.tokenContent)
                   localStorage.setItem('role', JSON.stringify(roles))
                   localStorage.setItem('username', res.data.data.userName)
