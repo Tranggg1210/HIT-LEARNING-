@@ -50,6 +50,7 @@ const Login = () => {
                   localStorage.setItem('token', res.data.data.tokenContent)
                   localStorage.setItem('role', JSON.stringify(roles))
                   localStorage.setItem('username', res.data.data.userName)
+                  localStorage.setItem('id', res.data.data.userId)
                   // toast.success('Đăng nhập thành công')
                   if (roles.includes('ADMIN')) return navigate('/admin')
                   if (roles.includes('USER')){
@@ -66,7 +67,7 @@ const Login = () => {
                 toast.error('Đăng nhập thất bại')
                 console.error('API error:', error.response || error.message)
               }
-              // console.log(values)
+              console.log(values)
             }}>
             {({ errors, touched }) => (
               <Form>
