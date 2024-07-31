@@ -3,7 +3,7 @@ import { LocalStorage } from '../constants/localStorage.constant'
 import { useNavigate } from 'react-router-dom'
 
 const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_SERVER}`,
+  baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
   headers: {
     'Content-Type': 'Application/json',
   },
@@ -33,6 +33,22 @@ const apiDefault = axios.create({
     'Content-Type': 'Application/json',
   },
 })
+
+
+export async function loginUser(login){
+  try{
+
+    const response = await api.post('/user', login)
+    if(response.status >= 200 && response.status < 300){
+      return response.data
+    }else{
+      return null
+    }
+  }catch(error){
+    console.error(error)
+    return null
+  }
+}
 
 const apiDefaultUpload = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}`,

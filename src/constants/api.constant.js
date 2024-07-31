@@ -1,6 +1,9 @@
 export const ApiConstant = {
   auth: {
     login: '/login',
+    forgotPassword: '/',
+    resetPassword:'',
+    
   },
   courses: {
     getAll: '/course',
@@ -29,5 +32,10 @@ export const ApiConstant = {
     getAllSection: '/search/section/',
     getAllItem: '/search/item/',
     getAllCourse: '/search/course/',
+  },
+  comment: {
+    getComment: '/comment/',
+    createComment: '/comment/',
+    deleteComment: '/comment/',
   },
 }
