@@ -6,7 +6,6 @@ import CourseList1 from '../../assets/images/course-list-basic-1.png'
 import { useNavigate, useParams } from 'react-router-dom'
 import MainLayout from '../../layouts/Layout/MainLayout'
 import { getCourseById } from '../../apis/courses.api'
-
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 
@@ -100,7 +99,6 @@ const BasicCourse = () => {
                   </div>
                   {openSection === index && (
                     <div className='section-content'>
-
                       {items.length > 0 ? (
                       items.map((item) => (
                         <div key={item.id} className='item'>

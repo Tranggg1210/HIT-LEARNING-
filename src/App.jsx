@@ -14,8 +14,6 @@ import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 
-
-
 function App() {
   const router = useRoutes([
     {
@@ -74,6 +72,7 @@ function App() {
       path:'/lesson/:lessonId',
       element: <LessonDetail/>,
     }
+
   ])
 
   return router
