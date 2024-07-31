@@ -54,10 +54,10 @@ const Login = () => {
                   // toast.success('Đăng nhập thành công')
                   if (roles.includes('ADMIN')) return navigate('/admin')
                   if (roles.includes('USER')){
-                    return toast('Good Job!', {
-                      icon: '👏',
-                    })
-                    // return navigate('/')
+                    // return toast('Good Job!', {
+                    //   icon: '👏',
+                    // })
+                    return navigate('/')
                   }
                   // return '/'
                 } else {
