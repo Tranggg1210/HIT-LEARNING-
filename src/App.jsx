@@ -12,6 +12,7 @@ import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
+import Profile from './pages/Profile/Profile'
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
           path: '/createNewCourse',
           element: <CreateNewCourse />,
         },
+        
+        
       ],
     },
     {
@@ -68,6 +71,17 @@ function App() {
         }
       ]
     },
+    {
+      path:'/profile',
+      element: <LayoutAboutHIT/>,
+      children:[
+        {
+          path:"",
+          element:<Profile/>,
+        },
+      ]
+    }
+    
   ])
 
   return router

@@ -23,4 +23,7 @@ export const ApiConstant = {
     updateItem: '/item/',
     getItemBySectionId: '/item/section/',
   },
+  users:{
+    getUserById:'/user/'
+  }
 }

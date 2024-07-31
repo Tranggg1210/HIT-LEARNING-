@@ -129,6 +129,7 @@
         .MuiButtonBase-root {
           border-radius: 50px;
           height: 40px;
+          width: 40px;
           min-width: 40px;
         }
         & > .fa-regular {
@@ -185,9 +186,14 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    cursor: pointer;
     & > button {
       border: none;
       background-color: white;
+      font-size: 15px;
+      cursor: pointer;
     }
   }
 }
+
+
