@@ -126,10 +126,11 @@ const HeaderHL = () => {
                     horizontal: 'center',
                   }}>
                   <Typography sx={{ p: 2, width: '200px' }}>
-                    <span onClick={() => navigate('/profile')}>Thông tin cá nhân</span>
+                    <span onClick={() => navigate(`/profile/`)}>Thông tin cá nhân</span>
+                    <span onClick={()=>navigate('/edit-profile/')}>Chỉnh sửa thông tin </span>
                     <span>Thay đổi mật khẩu</span>
                     <button className='btn-top' onClick={handleLogOut}>
-                      Logout
+                      Đăng xuất
                     </button>
                   </Typography>
                 </Popover>

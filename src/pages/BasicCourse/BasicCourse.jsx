@@ -77,15 +77,12 @@ const BasicCourse = () => {
 
       <div className='course-page'>
         <div className='course-basic-left'>
-          
             <div className='course-header'>
               <h1>{basicCourses?.name}</h1>
               <p className='describe'>
                 {basicCourses?.description}
               </p>
             </div>
-
-          
           <div className='course-content'>
             <div className='lesson-content'>
               <h2>Nội dung khóa học</h2>

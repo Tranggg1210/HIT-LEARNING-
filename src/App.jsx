@@ -12,7 +12,12 @@ import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
+
+import Profile from './pages/Profile/Profile'
+
+
 import LessonDetail from './pages/LessonDetail/LessonDetail'
+
 
 function App() {
   const router = useRoutes([
@@ -40,6 +45,8 @@ function App() {
           path: '/createNewCourse',
           element: <CreateNewCourse />,
         },
+        
+        
       ],
     },
     {
@@ -69,9 +76,21 @@ function App() {
       ]
     },
     {
+
+      path:'/profile',
+      element: <LayoutAboutHIT/>,
+      children:[
+        {
+          path:"",
+          element:<Profile/>,
+        },
+      ]
+    },
+    {
       path:'/lesson/:lessonId',
       element: <LessonDetail/>,
     }
+
 
   ])
 

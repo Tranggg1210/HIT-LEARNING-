@@ -48,6 +48,10 @@ const CreateFolder = ({ onCreate, onCancel }) => {
                 <MenuItem value='2'>2</MenuItem>
                 <MenuItem value='3'>3</MenuItem>
                 <MenuItem value='4'>4</MenuItem>
+                <MenuItem value='5'>5</MenuItem>
+                <MenuItem value='6'>6</MenuItem>
+                <MenuItem value='7'>7</MenuItem>
+                <MenuItem value='8'>8</MenuItem>
               </Select>
             </FormControl>
           </div>
