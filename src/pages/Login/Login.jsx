@@ -10,8 +10,7 @@ import { Toaster, toast } from 'react-hot-toast'
 // import { loginUser } from '../../apis'
 import { login } from '../../apis/auth.api'
 // import axios from 'axios'
-import {jwtDecode} from 'jwt-decode'
-
+// import { jwtDecode } from 'jwt-decode'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -23,7 +22,7 @@ const Login = () => {
   return (
     <>
       <div>
-      <Toaster />
+        <Toaster />
       </div>
       <div className='container'>
         <div className='box'>
@@ -43,48 +42,36 @@ const Login = () => {
             validationSchema={loginValidate()}
             onSubmit={async (values) => {
               try {
-                // const res = await axios.post('https://hitproduct2024-production.up.railway.app/authen', values)
-                // const res = await login(values)
                 const res = await login(values)
-                console.log('>>res',res)
-                if (res.data.token) {
-                  localStorage.setItem('token', res.data.token)
-                  localStorage.setItem('role', res.data.role)
-                  const decodetoken = jwtDecode(res.data.token) 
-                  console.log('>>>decode',decodetoken)
-                  
-                  toast.success('Đăng nhập thành công')
-                  // switch(res.data){
-                  //   case 'admin':
-                  //     navigate('/admin')
-                  //     break
-                  //   case 'user':
-                  //     navigate('/user')
-                  //     break
-                  //   default:
-                  //     navigate('/')
-                  // }
-                }
-                  else{
-                    toast.error('Lỗi token')
+                console.log('>>res', res)
+                if (res.data.data.tokenContent) {
+                  const roles = res.data.data.roleName
+                  console.log('>>json roles', JSON.stringify(roles))
+                  localStorage.setItem('token', res.data.data.tokenContent)
+                  localStorage.setItem('role', JSON.stringify(roles))
+                  localStorage.setItem('username', res.data.data.userName)
+                  // toast.success('Đăng nhập thành công')
+                  if (roles.includes('ADMIN')) return navigate('/admin')
+                  if (roles.includes('USER')){
+                    return toast('Good Job!', {
+                      icon: '👏',
+                    })
+                    //return navigate('/user')
                   }
+                  // return '/'
+                } else {
+                  toast.error('Lỗi token')
+                }
               } catch (error) {
                 toast.error('Đăng nhập thất bại')
                 console.error('API error:', error.response || error.message)
               }
-              console.log(values)
-              // navigate('/')
+              // console.log(values)
             }}>
             {({ errors, touched }) => (
-
               <Form>
                 <div className='input-group'>
-                  <Field
-                    type='text'
-                    placeholder='Username'
-                    name='username'
-                    autoComplete='off'
-                  />
+                  <Field type='text' placeholder='Username' name='username' autoComplete='off' />
                   <span className='icon'>
                     <FaUser />
                   </span>
