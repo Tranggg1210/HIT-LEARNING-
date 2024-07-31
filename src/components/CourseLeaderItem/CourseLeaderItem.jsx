@@ -1,82 +1,3 @@
-// import { useRef, useState } from 'react'
-// import { IconMessageCircle } from '@tabler/icons-react'
-// import './CourseLeaderItem.scss'
-// import { useNavigate } from 'react-router-dom'
-// import CourseLeaderClass from '../CourseLeaderClass/CourseLeaderClass'
-
-// const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete }) => {
-//   const [isSeeMore, setIsSeeMore] = useState(false)
-//   const navigate = useNavigate()
-//   const inputElement = useRef()
-//   const handleRight = () => {
-//     inputElement.current?.scrollBy({ left: 300, behavior: 'smooth' })
-//   }
-
-//   const handleLeft = () => {
-//     inputElement.current?.scrollBy({ left: -300, behavior: 'smooth' })
-//   }
-//   const handleSeeMoreClick = () => {
-//     setIsSeeMore(true)
-//   }
-//   return (
-//     <>
-//       {isSeeMore && <CourseLeaderClass courses={courses} onCancel={() => setIsSeeMore(false)} />}
-//       {!isSeeMore && (
-//         <div className='courses'>
-//           <div className='more'>
-//             <h2>{title}</h2>
-//             <p className='xem_them' onClick={() => handleSeeMoreClick()}>
-//               Xem thêm &gt;
-//             </p>
-//           </div>
-//           <div ref={inputElement} className='course-list'>
-//             {courses.map((item, idx) => (
-//               <div
-//                 key={idx}
-//                 className='course-item'
-//                 onClick={() => navigate(`/detail-course/${item.id}`)}>
-//                 <img
-//                   className='course-img'
-//                   src={`https://hitproduct2024-production-a244.up.railway.app/stream/${item.videoId}`}
-//                   alt=''
-//                 />
-//                 <p className='course-name'>{item.name}</p>
-//                 <div className='infor'>
-//                   <p className='luot-xem'>Lượt xem</p>
-//                   <p className='icon'>
-//                     <IconMessageCircle></IconMessageCircle>
-//                   </p>
-//                 </div>
-//                 <div className='button-course-leader-item'>
-//                   <button
-//                     className='edit'
-//                     onClick={(e) => {
-//                       handleClickEdit(item.id)
-//                       e.stopPropagation()
-//                     }}>
-//                     Chỉnh sửa
-//                   </button>
-//                   <button
-//                     className='delete'
-//                     onClick={(e) => {
-//                       handleDelete(item.id)
-//                       e.stopPropagation()
-//                     }}>
-//                     Xoá
-//                   </button>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//           {/* <i className='fa-solid fa-chevron-left' onClick={handleLeft}></i>
-//         <i className='fa-solid fa-chevron-right' onClick={handleRight}></i> */}
-//         </div>
-//       )}
-//     </>
-//   )
-// }
-
-// export default CourseLeaderItem
 import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
 import './CourseLeaderItem.scss'
@@ -103,7 +24,7 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
         </p>
       </div>
       <div ref={inputElement} className='course-list'>
-        {courses.map((item, idx) => (
+        {courses.slice(0, 4).map((item, idx) => (
           <div
             key={idx}
             className='course-item'

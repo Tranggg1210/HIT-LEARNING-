@@ -24,4 +24,10 @@ export const ApiConstant = {
     updateItem: '/item/',
     getItemBySectionId: '/item/section/',
   },
+  searchs: {
+    getAllSuggest: '/search/suggest/',
+    getAllSection: '/search/section/',
+    getAllItem: '/search/item/',
+    getAllCourse: '/search/course/',
+  },
 }
