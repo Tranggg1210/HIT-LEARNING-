@@ -61,6 +61,9 @@ const HeaderHL = () => {
   }
   const handleLogOut = () => {
     localStorage.removeItem('token')
+    localStorage.removeItem('username')
+    localStorage.removeItem('role')
+    localStorage.removeItem('id')
     window.location.reload()
     navigate('/')
   }
