@@ -19,8 +19,11 @@ const BasicCourse = () => {
   const handleBack = () => {
     navigate(-1)
   }
+  const id = useParams().id
+  console.log('id', id)
+  // const lessonId = useParams()
   const handleCourse = () => {
-    navigate('/courseLeader')
+    navigate(`/lesson/${id}`)
   }
   const param = useParams();
   const loadDataCourses = async () => {

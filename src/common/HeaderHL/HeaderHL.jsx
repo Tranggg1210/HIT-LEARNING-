@@ -12,12 +12,12 @@ const HeaderHL = () => {
   const navigate = useNavigate()
   const [searchInput, setSearchInput] = useState('')
 
-  const access_token = localStorage.getItem('access_token')
+  const access_token = localStorage.getItem('token')
   const handleClickSignIn = () => {
     navigate('/signIn')
   }
   const handleLogOut = () => {
-    localStorage.removeItem('access_token')
+    localStorage.removeItem('token')
     window.location.reload()
     navigate('/')
   }
@@ -41,7 +41,7 @@ const HeaderHL = () => {
         />
       </div>
       <div className='button-signin'>
-        {/* {access_token ? ( */}
+        {access_token ? (
         <div className='top-signIn'>
           <PopupState variant='popover' popupId='demo-popup-popover' className='avatar'>
             {(popupState) => (
@@ -81,12 +81,12 @@ const HeaderHL = () => {
             )}
           </PopupState>
         </div>
-        {/* ) : (
+        ) : (
           <div className='login' onClick={handleClickSignIn}>
             <h4>Đăng nhập</h4>
             <i className='fa-solid fa-user'></i>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   )
