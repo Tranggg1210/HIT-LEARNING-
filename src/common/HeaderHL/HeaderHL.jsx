@@ -55,12 +55,12 @@ const HeaderHL = () => {
     setApiEndpoint(event.target.value)
   }
 
-  const access_token = localStorage.getItem('access_token')
+  const access_token = localStorage.getItem('token')
   const handleClickSignIn = () => {
     navigate('/signIn')
   }
   const handleLogOut = () => {
-    localStorage.removeItem('access_token')
+    localStorage.removeItem('token')
     window.location.reload()
     navigate('/')
   }
@@ -98,45 +98,45 @@ const HeaderHL = () => {
 
       <div className='button-signin'>
         {access_token ? (
-          <div className='top-signIn'>
-            <PopupState variant='popover' popupId='demo-popup-popover' className='avatar'>
-              {(popupState) => (
-                <div className='box-avatar'>
-                  <Button
-                    variant='contained'
-                    {...bindTrigger(popupState)}
-                    sx={{
-                      borderRadius: '50px',
-                      height: '50px',
-                      minWidth: '50px',
-                      marginRight: '25px',
-                    }}
-                    className='avatar'>
-                    <i className='fa-regular fa-user'></i>
-                  </Button>
-                  <Popover
-                    sx={{ width: '300px', marginLeft: '-47px' }}
-                    {...bindPopover(popupState)}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'center',
-                    }}>
-                    <Typography sx={{ p: 2, width: '200px' }}>
-                      <span onClick={() => navigate('/profile')}>Thông tin cá nhân</span>
-                      <span>Thay đổi mật khẩu</span>
-                      <button className='btn-top' onClick={handleLogOut}>
-                        Logout
-                      </button>
-                    </Typography>
-                  </Popover>
-                </div>
-              )}
-            </PopupState>
-          </div>
+        <div className='top-signIn'>
+          <PopupState variant='popover' popupId='demo-popup-popover' className='avatar'>
+            {(popupState) => (
+              <div className='box-avatar'>
+                <Button
+                  variant='contained'
+                  {...bindTrigger(popupState)}
+                  sx={{
+                    borderRadius: '50px',
+                    height: '50px',
+                    minWidth: '50px',
+                    marginRight: '25px',
+                  }}
+                  className='avatar'>
+                  <i className='fa-regular fa-user'></i>
+                </Button>
+                <Popover
+                  sx={{ width: '300px', marginLeft: '-47px' }}
+                  {...bindPopover(popupState)}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                  }}>
+                  <Typography sx={{ p: 2, width: '200px' }}>
+                    <span onClick={() => navigate('/profile')}>Thông tin cá nhân</span>
+                    <span>Thay đổi mật khẩu</span>
+                    <button className='btn-top' onClick={handleLogOut}>
+                      Logout
+                    </button>
+                  </Typography>
+                </Popover>
+              </div>
+            )}
+          </PopupState>
+        </div>
         ) : (
           <div className='login' onClick={handleClickSignIn}>
             <h4>Đăng nhập</h4>
