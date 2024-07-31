@@ -115,7 +115,6 @@ const BasicCourse = () => {
             </div>
           </div>
         </div>
-        
           <div className='course-basic-right'>
             <div className='course-video'>
               <img src={`https://hitproduct2024-production-a244.up.railway.app/stream/${basicCourses.videoId}`} alt='Khóa học' />
