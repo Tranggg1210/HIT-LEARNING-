@@ -54,7 +54,6 @@ const BasicCourse = () => {
       
     }
   }, [param.id]);
-  // console.log("Sections: ", sections);
   
   const loadDataItem =async (id) =>{
     try{

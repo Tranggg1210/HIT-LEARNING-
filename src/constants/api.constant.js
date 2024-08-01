@@ -3,6 +3,7 @@ export const ApiConstant = {
     login: '/login',
     forgotPassword: '/',
     resetPassword:'',
+    refreshToken: '/refresh/',
     
   },
   courses: {

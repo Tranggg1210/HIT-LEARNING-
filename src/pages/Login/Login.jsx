@@ -7,17 +7,19 @@ import { loginValidate } from '../../utils/loginValidate'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
 import { Toaster, toast } from 'react-hot-toast'
-// import { loginUser } from '../../apis'
-import { login } from '../../apis/auth.api'
-// import axios from 'axios'
-// import { jwtDecode } from 'jwt-decode'
+import { login, refreshToken } from '../../apis/auth.api'
+import useAuth from '../../hooks/useAuth' 
+
 
 const Login = () => {
   const navigate = useNavigate()
+  const authen = useAuth()
+
 
   const goBack = () => {
     navigate('/')
   }
+
 
   return (
     <>
@@ -43,23 +45,21 @@ const Login = () => {
             onSubmit={async (values) => {
               try {
                 const res = await login(values)
+
                 console.log('>>res', res)
+
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
-                  console.log('>>json roles', roles)
-                  localStorage.setItem('token', res.data.data.tokenContent)
-                  localStorage.setItem('role', JSON.stringify(roles))
-                  localStorage.setItem('username', res.data.data.userName)
-                  localStorage.setItem('id', res.data.data.userId)
-                  // toast.success('Đăng nhập thành công')
+                  authen.saveUser({
+                    token:res.data.data.tokenContent,
+                    role: roles,
+                    username: res.data.data.userName,
+                    id: res.data.data.userId
+                  })
                   if (roles.includes('ADMIN')) return navigate('/admin')
                   if (roles.includes('USER')){
-                    // return toast('Good Job!', {
-                    //   icon: '👏',
-                    // })
                     return navigate('/')
                   }
-                  // return '/'
                 } else {
                   toast.error('Lỗi token')
                 }
@@ -67,7 +67,6 @@ const Login = () => {
                 toast.error('Đăng nhập thất bại')
                 console.error('API error:', error.response || error.message)
               }
-              console.log(values)
             }}>
             {({ errors, touched }) => (
               <Form>
