@@ -2,16 +2,17 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './HeaderHL.scss'
 import logo from '../../assets/images/logo1.png'
-import * as React from 'react'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Popover from '@mui/material/Popover'
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
 import SearchResultList from '../../components/SearchResultList/SearchResultList'
 import { getAllSuggest, getAllSection, getAllItem, getAllCourse } from '../../apis/search.api'
+import useAuth from '../../hooks/useAuth'
 
 const HeaderHL = () => {
   const navigate = useNavigate()
+  const currentUser = useAuth()
   const [results, setResults] = useState([])
   const [searchInput, setSearchInput] = useState('')
   const [apiEndpoint, setApiEndpoint] = useState('suggest')
@@ -55,16 +56,13 @@ const HeaderHL = () => {
     setApiEndpoint(event.target.value)
   }
 
-  const access_token = localStorage.getItem('token')
+  const access_token = currentUser.user?.token
   const handleClickSignIn = () => {
     navigate('/signIn')
   }
   const handleLogOut = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('username')
-    localStorage.removeItem('role')
-    localStorage.removeItem('id')
-    window.location.reload()
+    currentUser.clearUser()
+    
     navigate('/')
   }
 
