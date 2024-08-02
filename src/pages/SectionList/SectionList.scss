@@ -1,7 +1,15 @@
+@import '../../styles/index.scss';
 .course-list-containers {
   display: flex;
   justify-content: space-around;
   padding: 20px;
+
+  @include mobile{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
 
   .course-header {
     display: flex;
@@ -10,6 +18,14 @@
     gap: 15px;
     text-align: center;
     padding-left: 20px;
+
+    @include mobile{
+      margin-bottom: 40px;
+    }
+    @include small-tablet{
+      margin-top: -10px;
+    }
+    
     .course-logo {
       width: 100px;
       height: 100px;
@@ -17,8 +33,8 @@
         margin-top: 10px;
       }
     }
-    .edit-course-button,
-    .cancel-course-button {
+    .edit-course-button
+    {
       border-radius: 10px;
       padding: 10px;
       margin-left: 15px;
@@ -26,6 +42,17 @@
       font-size: 15px;
       color: white;
       background-color: #f4b81e;
+      border: none;
+      cursor: pointer;
+    }
+    .cancel-course-button{
+      border-radius: 10px;
+      padding: 10px;
+      margin-left: 15px;
+      width: 150px;
+      font-size: 15px;
+      color: white;
+      background-color: #aeadaa;
       border: none;
       cursor: pointer;
     }
@@ -38,11 +65,23 @@
     padding: 20px;
     justify-content: space-between;
     border-radius: 10px;
+    @include mobile{
+      width:90%;
+      margin-left: 35px;
+    }
+    @include small-tablet{
+      width: 60%;
+    }
+    @include tablet{
+      width: 60%;
+    }
     .course-contents {
       width: 100%;
       max-width: 600px;
       display: block;
       margin-right: 50px;
+
+      
       .sections {
         .section {
           background-color: #f9f9f9;
@@ -71,6 +110,7 @@
                 flex-grow: 1;
               }
             }
+           
 
             .section-actions {
               display: flex;
@@ -113,6 +153,7 @@
     }
     .buttons {
       width: 140px;
+
 
       .create-section-button {
         border-radius: 10px;

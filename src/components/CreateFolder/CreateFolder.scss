@@ -12,8 +12,7 @@
   margin-top: 40px;
 
   @include mobile{
-    width: 80%;
-    
+    width: 100%;
     
   }
   @include small-tablet{
@@ -47,8 +46,8 @@
       width: 50%;
 
       @include mobile{
-        margin-top: -20px;
-        font-size: 11px;
+        margin-top: -30px;
+        font-size: 10px;
       }
       @include small-tablet{
 
