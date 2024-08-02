@@ -31,7 +31,17 @@
       position: relative;
       border-radius: 10px;
       @include mobile{
-        margin-left: 90px;
+       width: 90%;
+       margin-left: 20px;
+      }
+
+      @include small-tablet{
+        width: 40%;
+      }
+      @include tablet{
+        width: 45%;
+        margin-left: 30px;
+        
       }
 
       .new-icon-upload {
@@ -99,7 +109,15 @@
       display: block;
       width: 350px;
       @include mobile{
-        margin-left: 140px;
+        margin-left: 40px;
+      }
+      @include small-tablet{
+        margin-right: 40px;
+        width: 50%;
+      }
+      @include tablet{
+        width: 50%;
+        margin-right: 80px;
       }
       .new-infor-describe {
         .new-textarea {
@@ -148,6 +166,13 @@
     justify-content: center;
     gap: 300px;
     margin-bottom: 50px;
+    @include mobile{
+      gap: 40px;
+      margin-left: 10px;
+    }
+    @include small-tablet{
+      gap: 100px;
+    }
     .new-pots1 {
       display: block;
       .new-post-button {

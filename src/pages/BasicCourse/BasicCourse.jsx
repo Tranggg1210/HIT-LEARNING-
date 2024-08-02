@@ -10,6 +10,7 @@ import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 
 
+
 const BasicCourse = () => {
   const [basicCourses, setBasicCourses] = useState([]);
   const [openSection, setOpenSection] = useState(null);
@@ -20,8 +21,6 @@ const BasicCourse = () => {
     navigate(-1)
   }
   const id = useParams().id
-  console.log('id', id)
-  // const lessonId = useParams()
   const handleCourse = () => {
     navigate(`/lesson/${id}`)
   }
@@ -41,7 +40,7 @@ const BasicCourse = () => {
       const response = await getSectionByCourseId(param.id);
       if (response && response.data && response.data.data) {
         setSections(response.data.data.content);
-       
+
       }
     } catch (error) {
       console.log(error.response?.data?.message);
@@ -51,38 +50,53 @@ const BasicCourse = () => {
     if (param.id) {
       loadDataCourses();
       loadDataSections();
-      
+
     }
   }, [param.id]);
   // console.log("Sections: ", sections);
-  
-  const loadDataItem =async (id) =>{
-    try{
+
+  const loadDataItem = async (id) => {
+    try {
       const response = await getItemBySectionId(id);
       (response && response.data && response.data.data)
-      const result= response.data.data.content;
+      const result = response.data.data.content;
       setItems(result);
-    }catch(error){
+    } catch (error) {
       console.log(error.response?.data?.message);
     }
   };
 
-  const handleToggle = (index,id) => {
+  const handleToggle = (index, id) => {
     setOpenSection(openSection === index ? null : index)
     loadDataItem(id);
-    
-  }
-  return (
-    <>
 
+  }
+  const determineMediaType = (url= '') => {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif' ];
+    const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv'];
+    const isImage = imageExtensions.some(ext => url.endsWith(ext));
+    if (isImage) {
+      return 'image';
+    }
+
+    const isVideo = videoExtensions.some(ext => url.endsWith(ext));
+    if (isVideo) {
+      return 'video';
+    }
+    return 'empty';
+
+  };
+
+  return (
+    <div className='course-page-container'>
       <div className='course-page'>
         <div className='course-basic-left'>
-            <div className='course-header'>
-              <h1>{basicCourses?.name}</h1>
-              <p className='describe'>
-                {basicCourses?.description}
-              </p>
-            </div>
+          <div className='course-header'>
+            <h1>{basicCourses?.name}</h1>
+            <p className='describe'>
+              {basicCourses?.description}
+            </p>
+          </div>
           <div className='course-content'>
             <div className='lesson-content'>
               <h2>Nội dung khóa học</h2>
@@ -100,14 +114,14 @@ const BasicCourse = () => {
                   {openSection === index && (
                     <div className='section-content'>
                       {items.length > 0 ? (
-                      items.map((item) => (
-                        <div key={item.id} className='item'>
-                          <span>{item.name}</span>
-                        </div>
-                      ))
-                    ) : (
-                      <div className='no-lesson'>Không có bài học</div>
-                    )}
+                        items.map((item) => (
+                          <div key={item.id} className='item'>
+                            <span>{item.name}</span>
+                          </div>
+                        ))
+                      ) : (
+                        <div className='no-lesson'>Không có bài học</div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -115,16 +129,31 @@ const BasicCourse = () => {
             </div>
           </div>
         </div>
-          <div className='course-basic-right'>
-            <div className='course-video'>
-              <img src={`https://hitproduct2024-production-a244.up.railway.app/stream/${basicCourses.videoId}`} alt='Khóa học' />
-              <Button variant='contained' color='primary' onClick={handleCourse}>
-                Xem tài liệu
-              </Button>
-            </div>
+        <div className='course-basic-right'>
+          <div className='course-video'>
+            {/* <img src={basicCourses.videoId ? `${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`: CourseList1} alt='Khóa học' /> */}
+            {/* <iframe width="560" height="315" src={basicCourses.videoId} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+            {
+              determineMediaType(basicCourses.videoId) === "video" && <video controls width="600">
+                <source src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`} type="video/mp4" />
+              </video>
+            }
+            {
+              determineMediaType(basicCourses.videoId) === "image" &&
+              <img src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`} alt='Khóa học' />
+            }
+            {
+              determineMediaType(basicCourses.videoId) === "empty" &&
+              <img src={CourseList1} alt='Khóa học' />
+            }
+           
+            <Button variant='contained' color='primary' onClick={handleCourse}>
+              Xem tài liệu
+            </Button>
           </div>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

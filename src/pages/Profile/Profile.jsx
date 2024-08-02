@@ -8,6 +8,9 @@ import { IconMail } from '@tabler/icons-react';
 import { IconId } from '@tabler/icons-react';
 const Profile = () => {
 
+    const id = useParams();
+    console.log('id', id)
+
 
     return (
         <div className="profile-container">
@@ -15,9 +18,10 @@ const Profile = () => {
                 <div className="background-profile"><img src={BackgroundProfile} alt="" /></div>
                 <div className="profile">
                     <div className="profile-pic"><img src={ChuNhiem1} alt="" /></div>
-                    <h1>Nguyễn Bá Khương</h1>
                 </div>
+
             </div>
+            <div className="profile-name"> <h1>Nguyễn Bá Khương</h1></div>
             <div className="content-profile">
                 <div className="intro">
                     <h3>Giới thiệu</h3>
