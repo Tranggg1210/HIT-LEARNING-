@@ -53,10 +53,10 @@ const BasicCourse = () => {
 
     }
   }, [param.id]);
-  // console.log("Sections: ", sections);
 
-  const loadDataItem = async (id) => {
-    try {
+  
+  const loadDataItem =async (id) =>{
+    try{
       const response = await getItemBySectionId(id);
       (response && response.data && response.data.data)
       const result = response.data.data.content;
