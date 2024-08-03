@@ -23,7 +23,6 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     setUpload(file)
-    console.log(file)
   }
 
   const handleSubmit = async () => {
@@ -46,29 +45,12 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
     navigate('/')
   }
 
-  // const Result = ({ status }) => {
-  //   if (status === 'Success') {
-  //     return <p>✅ Uploaded successfully!</p>
-  //   } else if (status === 'Fails') {
-  //     return <p>❌ Upload failed!</p>
-  //   } else if (status === 'Upload') {
-  //     return <p>⏳ Uploading started...</p>
-  //   } else {
-  //     return null
-  //   }
-  // }
-
   const handleClassTypeChange = (event) => {
     setClassType(event.target.value)
   }
 
   return (
     <>
-      {/* {status === 'Upload' && (
-        <div className='progress-bar'>
-          <LinearProgress variant='determinate' value={progress} />
-        </div>
-      )} */}
       <div className='create-new-course'>
         <h2>TẠO KHOÁ HỌC MỚI</h2>
         <div className='new-courser-header'>

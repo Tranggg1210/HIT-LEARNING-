@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
 import './CourseLeaderItem.scss'
 import { useNavigate } from 'react-router-dom'
-
+import CourseList1 from '../../assets/images/course-list-basic-1.png'
 const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handleSeeMore }) => {
   const navigate = useNavigate()
   const inputElement = useRef()
@@ -15,6 +15,27 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
     inputElement.current?.scrollBy({ left: -300, behavior: 'smooth' })
   }
 
+  const isoDayMonthYear = (isoString) => {
+    const date = new Date(isoString)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
+    return `${day}/${month}/${year}`
+  }
+  const determineMediaType = (url = '') => {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif']
+    const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv']
+    const isImage = imageExtensions.some((ext) => url.endsWith(ext))
+    if (isImage) {
+      return 'image'
+    }
+
+    const isVideo = videoExtensions.some((ext) => url.endsWith(ext))
+    if (isVideo) {
+      return 'video'
+    }
+    return 'empty'
+  }
   return (
     <div className='courses'>
       <div className='more'>
@@ -31,15 +52,33 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
             onClick={() => navigate(`/detail-course/${item.id}`)}>
             <img
               className='course-img'
-              src={`https://hitproduct2024-production-a244.up.railway.app/stream/${item.videoId}`}
+              src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
               alt=''
             />
+            {/* {determineMediaType(item.videoId) === 'video' && (
+              <video controls width='600'>
+                <source
+                  src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
+                  type='video/mp4'
+                />
+              </video>
+            )}
+            {determineMediaType(item.videoId) === 'image' && (
+              <img
+                src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
+                alt='Khóa học'
+              />
+            )}
+            {determineMediaType(item.videoId) === 'empty' && (
+              <img src={CourseList1} alt='Khóa học' />
+            )} */}
             <p className='course-name'>{item.name}</p>
             <div className='infor'>
-              <p className='luot-xem'>Lượt xem</p>
+              <p>{() => isoDayMonthYear(item.createAt)}</p>
+              {/* <p className='luot-xem'>Lượt xem</p>
               <p className='icon'>
                 <IconMessageCircle></IconMessageCircle>
-              </p>
+              </p> */}
             </div>
             <div className='button-course-leader-item'>
               <button

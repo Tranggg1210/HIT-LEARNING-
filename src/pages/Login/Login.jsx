@@ -43,22 +43,15 @@ const Login = () => {
             onSubmit={async (values) => {
               try {
                 const res = await login(values)
-                console.log('>>res', res)
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
-                  console.log('>>json roles', roles)
                   localStorage.setItem('token', res.data.data.tokenContent)
                   localStorage.setItem('role', JSON.stringify(roles))
                   localStorage.setItem('username', res.data.data.userName)
-                  // toast.success('Đăng nhập thành công')
                   if (roles.includes('ADMIN')) return navigate('/admin')
-                  if (roles.includes('USER')){
-                    // return toast('Good Job!', {
-                    //   icon: '👏',
-                    // })
+                  if (roles.includes('USER')) {
                     return navigate('/')
                   }
-                  // return '/'
                 } else {
                   toast.error('Lỗi token')
                 }
@@ -66,7 +59,6 @@ const Login = () => {
                 toast.error('Đăng nhập thất bại')
                 console.error('API error:', error.response || error.message)
               }
-              // console.log(values)
             }}>
             {({ errors, touched }) => (
               <Form>
