@@ -7,15 +7,12 @@ import { getItemBySectionId } from '../../apis/item.api'
 import { NavLink } from 'react-router-dom'
 
 const LessonBar = (param) => {
-  const [sections, setSections] = useState({}) 
-  const [items, setItems] = useState({}) 
+  const [sections, setSections] = useState({})
+  const [items, setItems] = useState({})
   const [openSection, setOpenSection] = useState(null)
-
-  // console.log('result param: ', param)
 
   const showAllSection = async () => {
     const result = await (await getSectionByCourseId(param?.param.lessonId)).data.data
-    // console.log('result lesson bar: ', result.content)
 
     const sectionsObject = result.content.reduce((acc, section) => {
       acc[section.id] = section
@@ -23,24 +20,18 @@ const LessonBar = (param) => {
     }, {})
 
     setSections(sectionsObject)
-    // console.log('lesson bar: ', sectionsObject)
   }
 
   const showItemsBySectionId = async (sectionId) => {
     const res = await getItemBySectionId(sectionId)
-    setItems(prevItems => ({
+    setItems((prevItems) => ({
       ...prevItems,
-      [sectionId]: res.data.data.content
+      [sectionId]: res.data.data.content,
     }))
-    console.log(`Items for section ${sectionId}: `, res.data.data)
-    console.log('>>>res',res)
   }
 
-  
   useEffect(() => {
     showAllSection()
-    // console.log('>>items',items)
-    // console.log('>>>sections',sections)
   }, [])
 
   const handleToggle = (index, sectionId) => {
@@ -48,9 +39,6 @@ const LessonBar = (param) => {
     setOpenSection(newOpenSection)
     if (newOpenSection !== null && !items[sectionId]) {
       showItemsBySectionId(sectionId)
-      
-      // console.log('item[sectionid]>>>>',items[sectionId])
-      // console.log(sectionId)
     }
   }
 
@@ -75,11 +63,17 @@ const LessonBar = (param) => {
             </div>
             {openSection === index && (
               <div className='section-content'>
-                {Array.isArray(items[sectionId]) ? items[sectionId].map((item) => (
-                  <div key={item.id} className='lesson'>
-                    <NavLink to={`/lesson/${item.id}`}>{item.name} - {item.id}</NavLink>
-                  </div>
-                )) : <div>Updating....</div> }
+                {Array.isArray(items[sectionId]) ? (
+                  items[sectionId].map((item) => (
+                    <div key={item.id} className='lesson'>
+                      <NavLink to={`/lesson/${item.id}`}>
+                        {item.name} - {item.id}
+                      </NavLink>
+                    </div>
+                  ))
+                ) : (
+                  <div>Updating....</div>
+                )}
               </div>
             )}
           </div>

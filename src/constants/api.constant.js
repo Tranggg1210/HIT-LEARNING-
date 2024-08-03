@@ -4,7 +4,6 @@ export const ApiConstant = {
     forgotPassword: '/',
     resetPassword:'',
     refreshToken: '/refresh/',
-    
   },
   courses: {
     getAll: '/course',

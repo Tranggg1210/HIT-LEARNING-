@@ -45,19 +45,13 @@ const Login = () => {
             onSubmit={async (values) => {
               try {
                 const res = await login(values)
-
-                console.log('>>res', res)
-
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
-                  authen.saveUser({
-                    token:res.data.data.tokenContent,
-                    role: roles,
-                    username: res.data.data.userName,
-                    id: res.data.data.userId
-                  })
+                  localStorage.setItem('token', res.data.data.tokenContent)
+                  localStorage.setItem('role', JSON.stringify(roles))
+                  localStorage.setItem('username', res.data.data.userName)
                   if (roles.includes('ADMIN')) return navigate('/admin')
-                  if (roles.includes('USER')){
+                  if (roles.includes('USER')) {
                     return navigate('/')
                   }
                 } else {

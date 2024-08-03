@@ -9,13 +9,11 @@ import { getCourseById } from '../../apis/courses.api'
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 
-
-
 const BasicCourse = () => {
-  const [basicCourses, setBasicCourses] = useState([]);
-  const [openSection, setOpenSection] = useState(null);
-  const [sections, setSections] = useState([]);
-  const [items, setItems] = useState([]);
+  const [basicCourses, setBasicCourses] = useState([])
+  const [openSection, setOpenSection] = useState(null)
+  const [sections, setSections] = useState([])
+  const [items, setItems] = useState([])
   const navigate = useNavigate()
   const handleBack = () => {
     navigate(-1)
@@ -24,28 +22,27 @@ const BasicCourse = () => {
   const handleCourse = () => {
     navigate(`/lesson/${id}`)
   }
-  const param = useParams();
+  const param = useParams()
   const loadDataCourses = async () => {
     try {
-      const response = await getCourseById(param.id);
-      (response && response.data && response.data.data)
-      const result = response.data.data;
-      setBasicCourses(result);
+      const response = await getCourseById(param.id)
+      response && response.data && response.data.data
+      const result = response.data.data
+      setBasicCourses(result)
     } catch (error) {
-      console.log(error.response?.data?.message);
+      console.log(error.response?.data?.message)
     }
-  };
+  }
   const loadDataSections = async () => {
     try {
-      const response = await getSectionByCourseId(param.id);
+      const response = await getSectionByCourseId(param.id)
       if (response && response.data && response.data.data) {
         setSections(response.data.data.content);
-
       }
     } catch (error) {
-      console.log(error.response?.data?.message);
+      console.log(error.response?.data?.message)
     }
-  };
+  }
   useEffect(() => {
     if (param.id) {
       loadDataCourses();
@@ -64,13 +61,13 @@ const BasicCourse = () => {
     } catch (error) {
       console.log(error.response?.data?.message);
     }
-  };
+  }
 
   const handleToggle = (index, id) => {
     setOpenSection(openSection === index ? null : index)
-    loadDataItem(id);
-
+    loadDataItem(id)
   }
+
   const determineMediaType = (url= '') => {
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif' ];
     const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv'];
@@ -97,18 +94,21 @@ const BasicCourse = () => {
               {basicCourses?.description}
             </p>
           </div>
+
           <div className='course-content'>
             <div className='lesson-content'>
               <h2>Nội dung khóa học</h2>
               <br />
-              {Array.isArray(sections) && sections.map((section, index) => (
-                <div key={section.id} className='section'>
-                  <div className='section-header' onClick={() => handleToggle(index, section.id)}>
-                    <div className='title'>
-                      <span>{section.name}</span>
-                      <span className='arrow'>
-                        {openSection === index ? <IconChevronUp /> : <IconChevronDown />}
-                      </span>
+              {Array.isArray(sections) &&
+                sections.map((section, index) => (
+                  <div key={section.id} className='section'>
+                    <div className='section-header' onClick={() => handleToggle(index, section.id)}>
+                      <div className='title'>
+                        <span>{section.name}</span>
+                        <span className='arrow'>
+                          {openSection === index ? <IconChevronUp /> : <IconChevronDown />}
+                        </span>
+                      </div>
                     </div>
                   </div>
                   {openSection === index && (
@@ -146,7 +146,7 @@ const BasicCourse = () => {
               determineMediaType(basicCourses.videoId) === "empty" &&
               <img src={CourseList1} alt='Khóa học' />
             }
-           
+
             <Button variant='contained' color='primary' onClick={handleCourse}>
               Xem tài liệu
             </Button>

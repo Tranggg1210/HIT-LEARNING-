@@ -11,8 +11,6 @@ const SliderItem = ({ films }) => {
     try {
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
-      console.log('Result', result)
-      console.log(courses)
     } catch (error) {
       console.log(error)
     }
@@ -36,16 +34,14 @@ const SliderItem = ({ films }) => {
   return (
     <div className='banner-container'>
       <div className='banner-slider' style={{ transform: `translateX(${-index * 100}%)` }}>
-        {courses.slice(0, 8).map((item, idx) => (
+        {courses.map((item, idx) => (
           <div key={item.id} className='banner-item'>
             <img
               className='banner-image'
-              src={`https://hitproduct2024-production-a244.up.railway.app/stream/${item.videoId}`}
+              src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
               // alt={film.origin_name}
               loading='lazy'
             />
-            {/* <h1 className='banner-title'>{film.origin_name}</h1>
-            <p className='banner-year'>{film.year}</p> */}
             <div className='banner-overlay'>
               <h4 className='banner-watch'>Watch now</h4>
             </div>
