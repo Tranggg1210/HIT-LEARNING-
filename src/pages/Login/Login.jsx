@@ -7,17 +7,19 @@ import { loginValidate } from '../../utils/loginValidate'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
 import { Toaster, toast } from 'react-hot-toast'
-// import { loginUser } from '../../apis'
-import { login } from '../../apis/auth.api'
-// import axios from 'axios'
-// import { jwtDecode } from 'jwt-decode'
+import { login, refreshToken } from '../../apis/auth.api'
+import useAuth from '../../hooks/useAuth' 
+
 
 const Login = () => {
   const navigate = useNavigate()
+  const authen = useAuth()
+
 
   const goBack = () => {
     navigate('/')
   }
+
 
   return (
     <>

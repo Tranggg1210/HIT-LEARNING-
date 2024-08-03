@@ -17,7 +17,10 @@ const authApi = () => ({
     apiDefault.post(ApiConstant.auth.resetPassword, {
       token,
       password,
-    })
+    }),
+  refreshToken: async (refreshToken) =>
+  apiDefault.post(`${ApiConstant.auth.refreshToken}${refreshToken}`)
+    
 })
 
-export const { login, forgotPassword, resetPassword } = authApi()
+export const { login, forgotPassword, resetPassword, refreshToken } = authApi()

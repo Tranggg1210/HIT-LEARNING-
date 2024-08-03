@@ -1,14 +1,15 @@
-.progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9900;
-}
-body {
-  padding-right: 0 !important;
-  overflow: scroll;
-}
+@import '../../styles/index.scss';
+// .progress-bar {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   z-index: 9900;
+// }
+// body {
+//   padding-right: 0 !important;
+//   overflow: scroll;
+// }
 .create-new-course {
   display: block;
   margin-left: 45px;
@@ -17,6 +18,11 @@ body {
     margin-top: 30px;
     gap: 100px;
     justify-content: center;
+    @include mobile{
+      display: flex;
+      flex-direction: column;
+      
+    }
     .new-upload-file {
       display: block;
       background: rgba(247, 247, 247, 0.6);
@@ -24,6 +30,20 @@ body {
       height: 250px;
       position: relative;
       border-radius: 10px;
+      @include mobile{
+       width: 90%;
+       margin-left: 20px;
+      }
+
+      @include small-tablet{
+        width: 40%;
+      }
+      @include tablet{
+        width: 45%;
+        margin-left: 30px;
+        
+      }
+
       .new-icon-upload {
         width: 100%;
         position: absolute;
@@ -88,6 +108,17 @@ body {
     .new-infors {
       display: block;
       width: 350px;
+      @include mobile{
+        margin-left: 40px;
+      }
+      @include small-tablet{
+        margin-right: 40px;
+        width: 50%;
+      }
+      @include tablet{
+        width: 50%;
+        margin-right: 80px;
+      }
       .new-infor-describe {
         .new-textarea {
           margin-top: 10px;
@@ -96,6 +127,7 @@ body {
       .new-button-class-type {
         display: block;
         margin-top: 10px;
+       
         .new-box-button-type {
           display: flex;
           margin-top: 20px;
@@ -129,11 +161,18 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 60px;
     width: 100%;
     justify-content: center;
     gap: 300px;
     margin-bottom: 50px;
+    @include mobile{
+      gap: 40px;
+      margin-left: 10px;
+    }
+    @include small-tablet{
+      gap: 100px;
+    }
     .new-pots1 {
       display: block;
       .new-post-button {
@@ -141,29 +180,38 @@ body {
         border: none;
         border-radius: 10px;
         color: white;
-        padding: 10px 20px;
+        padding: 10px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 20px;
+        font-size: 17px;
         width: 140px;
         cursor: pointer;
-        margin-bottom: 15px;
+        margin-top: 20px;
+       
+      }
+      .new-post-button:hover{
+        background-color:#ffaa00 ;
+        opacity: 0.7;
       }
     }
     .new-pots2 {
       .new-post-button-cancel {
-        background-color: #ffb626;
+        background-color: #a9a7a2;
         border: none;
         border-radius: 10px;
         color: white;
-        padding: 10px 20px;
+        padding: 10px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 20px;
+        font-size:17px;
         width: 140px;
         cursor: pointer;
+        margin-top: 20px;
+      }
+      .new-post-button-cancel:hover{
+        background-color: #827f77;
       }
     }
   }
