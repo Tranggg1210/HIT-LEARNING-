@@ -7,7 +7,7 @@ import { loginValidate } from '../../utils/loginValidate'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
 import { Toaster, toast } from 'react-hot-toast'
-import { login, refreshToken } from '../../apis/auth.api'
+import { login } from '../../apis/auth.api'
 import useAuth from '../../hooks/useAuth' 
 
 
@@ -55,6 +55,8 @@ const Login = () => {
                     role: roles,
                     username: res.data.data.userName,
                     id: res.data.data.userId
+                    
+
                   })
                   if (roles.includes('ADMIN')) return navigate('/admin')
                   if (roles.includes('USER')){

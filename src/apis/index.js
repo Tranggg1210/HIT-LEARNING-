@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { LocalStorage } from '../constants/localStorage.constant'
 import { useNavigate } from 'react-router-dom'
-
+import { refreshToken } from './auth.api'
 const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
   headers: {
@@ -17,8 +17,11 @@ api.interceptors.request.use((config) => {
 
 api.interceptors.response.use(
   (value) => value.data,
-  (error) => {
+  async (error) => {
     if (error.code === 401) {
+      const refresh = await refreshToken()
+      console.log()
+
       const navigate = useNavigate()
       localStorage.removeItem(LocalStorage.auth)
       navigate('/login')
