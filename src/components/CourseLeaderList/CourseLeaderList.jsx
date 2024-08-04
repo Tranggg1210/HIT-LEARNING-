@@ -16,7 +16,6 @@ const CourseLeaderList = () => {
     try {
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
-      console.log('Result', result)
     } catch (error) {
       console.log(error)
     }

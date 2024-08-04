@@ -13,24 +13,20 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LessonBar from '../../components/LessonBar/LessonBar'
 const LessonDetail = () => {
-
-  const [comment, setComment] = useState('');
-  const [comments, setComments] = useState([]);  
-  const handleCommentChange = (event) => setComment(event.target.value);
-
+  const [comment, setComment] = useState('')
+  const [comments, setComments] = useState([])
+  const handleCommentChange = (event) => setComment(event.target.value)
 
   const handleSubmit = () => {
     if (comment.trim()) {
-      setComments([...comments, comment]);
-      setComment('');
-      handleClose();
+      setComments([...comments, comment])
+      setComment('')
+      handleClose()
     }
-  };
+  }
 
   const navigate = useNavigate()
   const lessonId = useParams()
-  // console.log(lessonId)
-   
 
   const handleBack = () => {
     navigate('/')
@@ -63,7 +59,14 @@ const LessonDetail = () => {
               </Typography>
             </div>
             <div className='player'>
-              <iframe width="80%" height="400" src="https://www.youtube.com/embed/b6rUk3YLsN0?si=xaIvo5VvqqOMrKMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              <iframe
+                width='80%'
+                height='400'
+                src='https://www.youtube.com/embed/b6rUk3YLsN0?si=xaIvo5VvqqOMrKMA'
+                title='YouTube video player'
+                frameborder='0'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                allowfullscreen></iframe>
               <div className='player-des'>
                 <div className='des-container'>
                   <div className='des-box'>
@@ -74,7 +77,7 @@ const LessonDetail = () => {
                       </span>
                       <br />
                       <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
-                        Người đăng: Trang Nguyễn 
+                        Người đăng: Trang Nguyễn
                       </span>
                     </div>
                     <div className='des-right'>
@@ -83,7 +86,7 @@ const LessonDetail = () => {
                           {like ? <IconHeartFilled /> : <IconHeart />} {countLike}
                         </button>
                         <button className='btn-des'>
-                          <IconDownload/> Tải xuống
+                          <IconDownload /> Tải xuống
                         </button>
                       </div>
                     </div>
@@ -142,10 +145,10 @@ const LessonDetail = () => {
                   <Button variant='contained' color='primary' onClick={handleSubmit}>
                     Gửi
                   </Button>
-                  <div className="comment-box">
+                  <div className='comment-box'>
                     <List sx={{ mt: 2 }}>
                       {comments.map((cmt, index) => (
-                        <ListItem key={index} alignItems="flex-start">
+                        <ListItem key={index} alignItems='flex-start'>
                           <ListItemText primary={cmt} />
                         </ListItem>
                       ))}
