@@ -14,8 +14,16 @@
       width: 0px !important;
     }
   }
-  .content {
+  .layout-content {
     flex-grow: 1 !important;
+    .outlet{
+      display: flex;
+      justify-content: center;
+      width: 1440px;
+      & > div{
+        width: 100%;
+      }
+    }
   }
 }
 .mt-72px {

@@ -17,6 +17,7 @@ import Profile from './pages/Profile/Profile'
 
 
 import LessonDetail from './pages/LessonDetail/LessonDetail'
+import { Toaster } from 'react-hot-toast'
 
 
 function App() {
@@ -94,7 +95,14 @@ function App() {
 
   ])
 
-  return router
+  return(
+    <>
+      <div>
+        <Toaster/>
+      </div>
+      {router}
+    </>
+  ) 
 }
 
 export default App
