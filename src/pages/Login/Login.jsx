@@ -7,7 +7,7 @@ import { loginValidate } from '../../utils/loginValidate'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
 import { Toaster, toast } from 'react-hot-toast'
-import { login, refreshToken } from '../../apis/auth.api'
+import { login} from '../../apis/auth.api'
 import useAuth from '../../hooks/useAuth' 
 
 
@@ -23,9 +23,6 @@ const Login = () => {
 
   return (
     <>
-      <div>
-        <Toaster />
-      </div>
       <div className='container'>
         <div className='box'>
           <div className='back'>
@@ -47,9 +44,14 @@ const Login = () => {
                 const res = await login(values)
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
-                  localStorage.setItem('token', res.data.data.tokenContent)
-                  localStorage.setItem('role', JSON.stringify(roles))
-                  localStorage.setItem('username', res.data.data.userName)
+                  authen.saveUser({
+                    token:res.data.data.tokenContent,
+                    role: roles,
+                    username: res.data.data.userName,
+                    id: res.data.data.userId
+                    // refreshToken: 
+                  })
+
                   if (roles.includes('ADMIN')) return navigate('/admin')
                   if (roles.includes('USER')) {
                     return navigate('/')

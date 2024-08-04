@@ -18,6 +18,7 @@ import Profile from './pages/Profile/Profile'
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
 
+
 function App() {
   const router = useRoutes([
     {
@@ -88,14 +89,16 @@ function App() {
     },
   ])
 
-  return (
+
+  return(
     <>
       <div>
-        <Toaster />
+        <Toaster/>
       </div>
       {router}
     </>
-  )
+  ) 
+
 }
 
 export default App

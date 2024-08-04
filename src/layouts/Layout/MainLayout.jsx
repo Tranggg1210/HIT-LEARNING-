@@ -8,10 +8,12 @@ const MainLayout = () => {
       <div className='layout-sidebar'>
         <SideBar />
       </div>
-      <div className='content'>
+      <div className='layout-content'>
         <HeaderHL />
-        <div>
-          <Outlet />
+        <div className='outlet'>
+          <div>
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

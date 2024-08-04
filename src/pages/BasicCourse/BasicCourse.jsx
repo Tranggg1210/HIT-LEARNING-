@@ -1,10 +1,9 @@
-import { Typography, Button } from '@mui/material'
-import { IconChevronUp, IconChevronDown, IconChevronLeft } from '@tabler/icons-react'
+import { Button } from '@mui/material'
+import { IconChevronUp, IconChevronDown} from '@tabler/icons-react'
 import './BasicCourse.scss'
 import { useEffect, useState } from 'react'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
 import { useNavigate, useParams } from 'react-router-dom'
-import MainLayout from '../../layouts/Layout/MainLayout'
 import { getCourseById } from '../../apis/courses.api'
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
@@ -15,9 +14,6 @@ const BasicCourse = () => {
   const [sections, setSections] = useState([])
   const [items, setItems] = useState([])
   const navigate = useNavigate()
-  const handleBack = () => {
-    navigate(-1)
-  }
   const id = useParams().id
   const handleCourse = () => {
     navigate(`/lesson/${id}`)
