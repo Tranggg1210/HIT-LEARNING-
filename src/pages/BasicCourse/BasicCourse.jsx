@@ -8,13 +8,21 @@ import { getCourseById } from '../../apis/courses.api'
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 
+import {useDispatch, useSelector} from 'react-redux'
+import { setSections } from '../../store/sections.store'
+import { setItems } from '../../store/items.store'
+
+
 const BasicCourse = () => {
   const [basicCourses, setBasicCourses] = useState([])
   const [openSection, setOpenSection] = useState(null)
-  const [sections, setSections] = useState([])
-  const [items, setItems] = useState([])
+  // const [sections, setSections] = useState([])
+  // const [items, setItems] = useState([])
   const navigate = useNavigate()
   const id = useParams().id
+  const dispatch = useDispatch()
+  const sections = useSelector((state)=>state.sections)
+  const items = useSelector((state)=>state.items)
   const handleCourse = () => {
     navigate(`/lesson/${id}`)
   }
@@ -33,7 +41,7 @@ const BasicCourse = () => {
     try {
       const response = await getSectionByCourseId(param.id)
       if (response && response.data && response.data.data) {
-        setSections(response.data.data.content)
+        dispatch(setSections(response.data.data.content)) 
       }
     } catch (error) {
       console.log(error.response?.data?.message)
@@ -51,7 +59,7 @@ const BasicCourse = () => {
       const response = await getItemBySectionId(id)
       response && response.data && response.data.data
       const result = response.data.data.content
-      setItems(result)
+      dispatch(setItems(result))
     } catch (error) {
       console.log(error.response?.data?.message)
     }
