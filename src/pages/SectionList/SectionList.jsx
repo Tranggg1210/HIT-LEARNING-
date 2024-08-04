@@ -7,6 +7,9 @@ import {
   IconPlus,
   IconTrash,
 } from '@tabler/icons-react'
+import { toast } from 'react-hot-toast'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
 import CreateFolder from '../../components/CreateFolder/CreateFolder'
 import './SectionList.scss'
 import CreateSubFolder from '../../components/CreateNewSection/CreateNewSection'
@@ -14,8 +17,6 @@ import { getCourseById } from '../../apis/courses.api'
 import { getAllSection } from '../../apis/section.api'
 import { deleteItem, getAllItem } from '../../apis/item.api'
 import EditListSection from '../../components/EditListSection/EditListSection'
-import { Alert, Snackbar } from '@mui/material'
-import { confirmAlert } from 'react-confirm-alert'
 
 const CourseList = () => {
   const [isCreatingFolder, setIsCreatingFolder] = useState(false)
@@ -28,9 +29,6 @@ const CourseList = () => {
   const [selectedItemId, setSelectedItemId] = useState('')
   const [openSection, setOpenSection] = useState(null)
   const [editingItemData, setEditingItemData] = useState(null)
-  const [snackbarOpen, setSnackbarOpen] = useState(false)
-  const [snackbarMessage, setSnackbarMessage] = useState('')
-  const [snackbarSeverity, setSnackbarSeverity] = useState('success')
   const navigate = useNavigate()
 
   const { id } = useParams()
@@ -42,10 +40,7 @@ const CourseList = () => {
       const resultSection = await getAllSection(id)
       setSections(resultSection.data.data.content)
     } catch (error) {
-      // console.log(error)
-      setSnackbarMessage('Đã xảy ra lỗi khi tải dữ liệu khóa học')
-      setSnackbarSeverity('error')
-      setSnackbarOpen(true)
+      toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     }
   }
 
@@ -63,18 +58,28 @@ const CourseList = () => {
           [sectionId]: items.data.data.content,
         }))
       } catch (error) {
-        // console.log(error)
-        setSnackbarMessage('Đã xảy ra lỗi khi tải dữ liệu buổi học')
-        setSnackbarSeverity('error')
-        setSnackbarOpen(true)
+        toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
       }
+    }
+  }
+
+  const handleDeleteItem = async (sectionId, itemId) => {
+    try {
+      await deleteItem(itemId)
+      setSectionItems((prevItems) => ({
+        ...prevItems,
+        [sectionId]: prevItems[sectionId].filter((item) => item.id !== itemId),
+      }))
+      toast.success('Xóa mục thành công')
+    } catch (error) {
+      toast.error('Đã xảy ra lỗi khi xóa mục')
     }
   }
 
   const confirmDeleteItem = (sectionId, itemId) => {
     confirmAlert({
       title: 'Xác nhận xóa',
-      message: 'Bạn có chắc chắn muốn xóa video buổi học này không?',
+      message: 'Bạn có chắc chắn muốn xóa mục này không?',
       buttons: [
         {
           label: 'Không',
@@ -87,25 +92,7 @@ const CourseList = () => {
       ],
     })
   }
-  const handleDeleteItem = async (sectionId, itemId) => {
-    try {
-      await deleteItem(itemId)
-      setSectionItems((prevItems) => ({
-        ...prevItems,
-        [sectionId]: prevItems[sectionId].filter((item) => item.id !== itemId),
-      }))
-      setSnackbarMessage('Xóa video buổi học thành công')
-      setSnackbarSeverity('success')
-      setSnackbarOpen(true)
-      console.log('Snackbar open:', snackbarOpen)
-    } catch (error) {
-      // console.log(error)
-      setSnackbarMessage('Đã xảy ra lỗi khi xóa video buổi học')
-      setSnackbarSeverity('error')
-      setSnackbarOpen(true)
-      console.log('Snackbar open:', snackbarOpen)
-    }
-  }
+
   const handleEditItem = (itemId, itemData) => {
     setSelectedItemId(itemId)
     setEditingItemData(itemData)
@@ -134,10 +121,6 @@ const CourseList = () => {
 
   const handleSectionCreated = () => {
     loadSectionCourse()
-  }
-
-  const handleSnackbarClose = () => {
-    setSnackbarOpen(false)
   }
 
   return (
@@ -239,15 +222,6 @@ const CourseList = () => {
           </div>
         </div>
       )}
-      <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-        <Alert
-          onClose={handleSnackbarClose}
-          severity={snackbarSeverity}
-          variant='filled'
-          sx={{ width: '100%', height: '60px', position: 'absolute' }}>
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
     </>
   )
 }
