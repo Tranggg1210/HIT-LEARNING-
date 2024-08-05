@@ -31,7 +31,7 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
             onClick={() => navigate(`/detail-course/${item.id}`)}>
             <img
               className='course-img'
-              src={`https://hitproduct2024-production-a244.up.railway.app/stream/${item.videoId}`}
+              src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
               alt=''
             />
             <p className='course-name'>{item.name}</p>

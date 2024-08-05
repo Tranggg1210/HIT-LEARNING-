@@ -8,70 +8,57 @@
   padding: 0 24px;
   @include flex(space-between, center);
   z-index: 999;
+  display: flex;
+  justify-content: space-evenly;
+  
+  
   @include mobile {
     height: 92px;
-    width: 100%;
-    left: 0;
-    padding: 0;
     gap: 10px;
   }
+
   @include tablet {
     width: 100%;
     left: 160px;
     justify-content: normal;
-    gap: 20px;
+    gap: 100px;
   }
+
   @include small-tablet {
     height: 92px;
     width: 100%;
-    left: 0;
-    padding: 0;
-    gap: 10px;
+    justify-content: center;
+    gap: 120px;
+     
   }
 
-  .logo {
-    display: none;
-    @include mobile {
-      display: block;
-    }
-    @include mobile {
-      display: block;
-      .box-logo {
-        .img-logo {
-          width: 60px;
-          height: 60px;
-        }
-      }
-    }
-    @include small-tablet {
-      display: block;
-      .box-logo {
-        .img-logo {
-          width: 60px;
-          height: 60px;
-        }
-      }
-    }
-  }
 
   .box-search {
     position: relative;
+    display: flex;
+    margin-left: 80px;
     .search {
       position: relative;
       display: flex;
       align-items: center;
+
       @include mobile {
-        & > input::placeholder {
-          font-size: 20px;
+        &>input::placeholder {
+          font-size: 14px;
         }
+
+        margin-right: 10px;
+
       }
+
       .fa-magnifying-glass {
         position: absolute;
         left: 0.75rem;
         color: #888;
         cursor: pointer;
+
         @include mobile {
-          font-size: 35px;
+          font-size: 20px;
           margin-left: 5px;
         }
       }
@@ -81,38 +68,54 @@
         height: 2.75rem;
         padding-left: 2.5rem;
         border: 2px solid #f67a06;
-        border-radius: 0.5rem;
+        border-radius: 0 5px 5px 0;
         outline: none;
         transition: width 0.3s ease;
         transition: all 0.3s linear;
+
         &:hover {
           border: 2px solid #ffb26a;
         }
+
         @include mobile {
           height: 52px;
-          width: 215px;
-          margin-left: 10px;
+          width: 190px;
+
         }
 
         @include tablet {
-          width: 470px;
+          width: 400px;
+          
         }
+
         @include small-tablet {
           width: 310px;
         }
       }
+    }
 
-      .api-endpoint-select {
-        margin-left: 10px;
-        height: 2.75rem;
-        border: 2px solid #f67a06;
-        border-radius: 0.5rem;
-        @include mobile {
-          height: 52px;
-        }
+    .api-endpoint-select {
+      padding-left: 10px;
+      height: 2.75rem;
+      width: 80px;
+      outline: none;
+      box-shadow: none;
+      border: 2px solid #f67a06;
+      border-right: none;
+      border-radius: 5px 0 0 5px;  
+      option {
+        padding: 20px;
+        font-size: 14px;
+        
+      }
+
+      @include mobile {
+        height: 52px;
       }
     }
+    
   }
+
   .button-signin {
     .top-signIn {
       @include flex(center, center);
@@ -126,28 +129,34 @@
       @include mobile {
         width: 92px;
       }
+
       @include tablet {
         width: 80px;
         margin-left: 50px;
       }
+
       .box-avatar {
         background-color: white;
         border-radius: 30px;
         position: relative;
+
         @include mobile {
           height: 50px;
           width: 50px;
         }
+
         .MuiButtonBase-root {
           border-radius: 50px;
           height: 40px;
           width: 40px;
           min-width: 40px;
         }
-        & > .fa-regular {
+
+        &>.fa-regular {
           align-items: center;
           font-size: 20px;
           padding: 5px;
+
           @include mobile {
             font-size: 30px;
           }
@@ -165,25 +174,55 @@
       padding: 0.5rem 1rem;
       border-radius: 25px;
       background: linear-gradient(103deg, #f67102 5.1%, #f4a91e 86.29%);
-      margin-right: 24px;
+      margin-left: 50px;
       @include small-tablet {
         width: 110px;
       }
+
       @include mobile {
         width: 95px;
       }
+
       @include tablet {
         width: 110px;
       }
+
       h4 {
         color: white;
         font-size: 17px;
         font-weight: 400;
         margin-right: 8px;
+        white-space: nowrap;
+
+        @include small-tablet {
+          font-size: 15px;
+
+        }
+
+        @include mobile {
+          font-size: 15px;
+          margin-left: 5px;
+        }
+
+        @include tablet {
+          font-size: 15px;
+        }
       }
 
       .fa-user {
         color: white;
+
+        @include small-tablet {
+          font-size: 15px;
+        }
+
+        @include mobile {
+          display: none;
+        }
+
+        @include tablet {
+          font-size: 15px;
+        }
       }
     }
   }
@@ -192,12 +231,13 @@
 .MuiPaper-root {
   margin-top: 5px;
   margin-right: 80px;
+
   .MuiTypography-root {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 
-    & > button,
+    &>button,
     span {
       border: none;
       background-color: white;
@@ -207,17 +247,16 @@
   }
 }
 
-.avatar{
+.avatar {
   overflow: hidden;
-  img{
+
+  img {
     width: 100%;
     height: 100%;
     object-position: center;
-    
-    
-    
-    
+
+
+
+
   }
 }
-
-
