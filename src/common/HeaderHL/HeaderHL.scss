@@ -5,23 +5,21 @@
   right: 0;
   left: 120px;
   height: 72px;
-  padding: 0 24px;
-  @include flex(space-between, center);
+  @include flex(space-around, center);
   z-index: 999;
-  display: flex;
-  justify-content: space-evenly;
-  
+  // display: flex;
+  // align-items: center;
   
   @include mobile {
+    width: 100%;
     height: 92px;
     gap: 10px;
   }
 
   @include tablet {
     width: 100%;
-    left: 160px;
-    justify-content: normal;
-    gap: 100px;
+    justify-content: center;
+    gap: 90px;
   }
 
   @include small-tablet {
@@ -32,91 +30,101 @@
      
   }
 
-
-  .box-search {
-    position: relative;
+  .search-container{
+    width: 80%;
     display: flex;
-    margin-left: 80px;
-    .search {
-      position: relative;
+    justify-content: center;
+    .box-search {
+      
+      
       display: flex;
-      align-items: center;
-
-      @include mobile {
-        &>input::placeholder {
-          font-size: 14px;
-        }
-
-        margin-right: 10px;
-
-      }
-
-      .fa-magnifying-glass {
-        position: absolute;
-        left: 0.75rem;
-        color: #888;
-        cursor: pointer;
-
+      
+      
+      .search {
+        position: relative;
+        display: flex;
+        align-items: center;
+  
         @include mobile {
-          font-size: 20px;
-          margin-left: 5px;
+          &>input::placeholder {
+            font-size: 14px;
+          }
+  
+          margin-right: 10px;
+  
+        }
+  
+        .fa-magnifying-glass {
+          position: absolute;
+          left: 0.75rem;
+          color: #888;
+          cursor: pointer;
+  
+          @include mobile {
+            font-size: 20px;
+           
+          }
+        }
+  
+        .input {
+          width: 40rem;
+          height: 2.75rem;
+          padding-left: 2.5rem;
+          border: 2px solid #f67a06;
+          border-radius: 0 5px 5px 0;
+          outline: none;
+          transition: width 0.3s ease;
+          transition: all 0.3s linear;
+  
+          &:hover {
+            border: 2px solid #ffb26a;
+          }
+  
+          @include mobile {
+            height: 45px;
+            width: 170px;
+            
+  
+          }
+  
+          @include tablet {
+            width: 350px;
+            
+          }
+  
+          @include small-tablet {
+            width: 310px;
+          }
         }
       }
-
-      .input {
-        width: 40rem;
+  
+      .api-endpoint-select {
+        padding-left: 10px;
         height: 2.75rem;
-        padding-left: 2.5rem;
-        border: 2px solid #f67a06;
-        border-radius: 0 5px 5px 0;
+        width: 80px;
         outline: none;
-        transition: width 0.3s ease;
-        transition: all 0.3s linear;
-
-        &:hover {
-          border: 2px solid #ffb26a;
-        }
-
-        @include mobile {
-          height: 52px;
-          width: 190px;
-
-        }
-
-        @include tablet {
-          width: 400px;
+        box-shadow: none;
+        border: 2px solid #f67a06;
+        border-right: none;
+        border-radius: 5px 0 0 5px;  
+        option {
+          padding: 20px;
+          font-size: 14px;
           
         }
-
-        @include small-tablet {
-          width: 310px;
+  
+        @include mobile {
+          height: 45px;
         }
       }
+      
     }
-
-    .api-endpoint-select {
-      padding-left: 10px;
-      height: 2.75rem;
-      width: 80px;
-      outline: none;
-      box-shadow: none;
-      border: 2px solid #f67a06;
-      border-right: none;
-      border-radius: 5px 0 0 5px;  
-      option {
-        padding: 20px;
-        font-size: 14px;
-        
-      }
-
-      @include mobile {
-        height: 52px;
-      }
-    }
-    
   }
 
   .button-signin {
+    width: 20%;
+    display: flex;
+    
     .top-signIn {
       @include flex(center, center);
       justify-content: center !important;
@@ -174,17 +182,17 @@
       padding: 0.5rem 1rem;
       border-radius: 25px;
       background: linear-gradient(103deg, #f67102 5.1%, #f4a91e 86.29%);
-      margin-left: 50px;
       @include small-tablet {
         width: 110px;
       }
 
       @include mobile {
-        width: 95px;
+        width: 80px;
+        height: 40px;
       }
 
       @include tablet {
-        width: 110px;
+        width: 100px;
       }
 
       h4 {
@@ -200,12 +208,12 @@
         }
 
         @include mobile {
-          font-size: 15px;
+          font-size: 13px;
           margin-left: 5px;
         }
 
         @include tablet {
-          font-size: 15px;
+          font-size: 14px;
         }
       }
 

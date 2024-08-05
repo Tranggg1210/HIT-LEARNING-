@@ -83,7 +83,6 @@ const HeaderHL = () => {
             <option value='item'>Item</option>
             <option value='course'>Course</option>
           </select>
-          
           <div className='search'>
             <i className='fa-solid fa-magnifying-glass'></i>
             <input

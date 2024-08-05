@@ -6,13 +6,13 @@
   border: 2px solid #e0f2f3;
   box-shadow: 0 0 12px rgba(0 0 0 /10%);
   border-radius: 10px;
-  width: 50%;
+  width: 50% ;
   height: 415px;
   display: block;
   margin-top: 40px;
 
   @include mobile{
-    width: 100%;
+    width: 80% !important;
     
   }
   @include small-tablet{

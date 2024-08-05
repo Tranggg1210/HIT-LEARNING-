@@ -12,7 +12,9 @@
 // }
 .create-new-course {
   display: block;
-  margin-left: 45px;
+  h2{
+    margin-left: 30px;
+  }
   .new-courser-header {
     display: flex;
     margin-top: 30px;
@@ -32,16 +34,16 @@
       border-radius: 10px;
       @include mobile{
        width: 90%;
-       margin-left: 20px;
+       margin-left: 30px;
       }
 
       @include small-tablet{
-        width: 40%;
+        width: 70%;
       }
       @include tablet{
-        width: 45%;
-        margin-left: 30px;
-        
+        width: 70%;
+        margin-left: 20px;
+         
       }
 
       .new-icon-upload {
