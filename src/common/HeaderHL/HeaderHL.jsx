@@ -13,6 +13,8 @@ import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
+import { IconLogout } from '@tabler/icons-react';
+import  Avatar  from "../../assets/images/user.png"
 
 const HeaderHL = () => {
   const navigate = useNavigate()
@@ -49,8 +51,7 @@ const HeaderHL = () => {
       console.error(error)
     }
   }
-  console.log(results)
-
+  
   const handleChange = (value) => {
     setSearchInput(value)
     fetchData(value)
@@ -71,7 +72,9 @@ const HeaderHL = () => {
   }
 
   return (
+    
     <div className='header-container'>
+      <div></div>
       <div className='search-container'>
         <div className='box-search'>
           <select
@@ -116,7 +119,7 @@ const HeaderHL = () => {
                       padding: '0',
                     }}
                     className='avatar'>
-                    <img src='' alt='' />
+                    <img src={currentUser?.user?.linkAvatar || Avatar} alt='' />
                   </Button>
                   <Popover
                     sx={{ width: '300px', marginLeft: '-47px' }}
@@ -129,12 +132,11 @@ const HeaderHL = () => {
                       vertical: 'top',
                       horizontal: 'center',
                     }}>
-                    <Typography sx={{ p: 2, width: '200px' }}>
-                      <span onClick={() => navigate(`/profile/`)}>Thông tin cá nhân</span>
-                      <span onClick={() => navigate('/edit-profile/')}>Chỉnh sửa thông tin </span>
-                      <span>Thay đổi mật khẩu</span>
-                      <button className='btn-top' onClick={handleLogOut}>
-                        Đăng xuất
+                    <Typography sx={{   width: '200px' }}>
+                      <span className='btn-dragger' style={{padding:'12px '}} onClick={() => navigate(`/profile/`)}> 👤 Thông tin cá nhân</span>
+                      <span className='btn-dragger' style={{padding:'12px '}}>🔒 Thay đổi mật khẩu</span>
+                      <button style={{padding:'12px ', color:'red',display:'flex',alignItems:'center',gap:'6px'}} className='btn-dragger' onClick={handleLogOut}>
+                       <IconLogout/> Đăng xuất
                       </button>
                     </Typography>
                   </Popover>

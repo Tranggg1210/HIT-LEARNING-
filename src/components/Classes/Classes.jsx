@@ -90,9 +90,7 @@ const Classes = () => {
     <>
       {!isSeeMore ? (
         <>
-          <div className='more-course'>
-            <h1>Danh sách các khoá học</h1>
-          </div>
+          
           <ClassesItem
             title='Lớp học Public'
             courses={classPublic}

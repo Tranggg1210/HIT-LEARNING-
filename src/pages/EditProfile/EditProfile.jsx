@@ -137,7 +137,7 @@ const EditProfile = () => {
         </div>
         <div className='edit-profile-actions'>
           <div className='edit-profile-cancel'>
-            <button className='edit-profile-cancel-button' onClick={() => navigate('/')}>
+            <button className='edit-profile-cancel-button' onClick={() => navigate(-1)}>
               HUỶ BỎ
             </button>
           </div>

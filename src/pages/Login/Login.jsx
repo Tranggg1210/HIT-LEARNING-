@@ -9,6 +9,7 @@ import logo from '../../assets/images/logo.jpg'
 import { Toaster, toast } from 'react-hot-toast'
 import { login } from '../../apis/auth.api'
 import useAuth from '../../hooks/useAuth'
+import { getUserById } from '../../apis/user.api'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -41,13 +42,18 @@ const Login = () => {
                 const res = await login(values)
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
-                  authen.saveUser({
-                    token: res.data.data.tokenContent,
-                    role: roles,
-                    username: res.data.data.userName,
-                    id: res.data.data.userId,
-                    // refreshToken:
-                  })
+                  const userCurrent =  await getUserById(res.data.data.userId);
+                  if(userCurrent){
+                    authen.saveUser({
+                      token: res.data.data.tokenContent,
+                      role: roles,
+                      username: res.data.data.userName,
+                      id: res.data.data.userId,
+                      refreshToken: res.data.data.refreshToken,
+                      username: userCurrent.data.data.username,
+                      linkAvatar: userCurrent.data.data.linkAvatar,
+                    })
+                  }
 
                   if (roles.includes('ADMIN')) return navigate('/')
                   if (roles.includes('USER')) {

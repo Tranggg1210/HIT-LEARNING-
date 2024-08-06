@@ -74,9 +74,7 @@ const SliderItem = ({ films }) => {
             {determineMediaType(item.videoId) === 'empty' && (
               <img src={CourseList1} alt='Khóa học' className='banner-image' />
             )}
-            <div className='banner-overlay'>
-              <h4 className='banner-watch'>Watch now</h4>
-            </div>
+            
           </div>
         ))}
       </div>
