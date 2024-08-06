@@ -1,9 +1,22 @@
+@import '../../styles/mixins';
 .more-course {
+  h1{
+    @include mobile{
+      
+      font-size: 27px;
+      margin-left: -20px;
+
+    }
+  }
   display: flex;
   justify-content: space-between;
   margin-left: 40px;
   margin-top: 20px;
-  margin-right: 60px;
+  margin-right: 50px;
+  @include mobile{
+    gap: 40px;
+    
+  }
   .name {
     font-size: 30px;
     font-weight: 700;
@@ -16,5 +29,12 @@
     border: 1px solid #f4b81e;
     cursor: pointer;
     padding: 0.5rem 1.5rem;
+    white-space: nowrap;
+    @include mobile{
+      height: 50px;
+      font-size: 14px;
+      margin-right: -30px;
+    
+    }
   }
 }

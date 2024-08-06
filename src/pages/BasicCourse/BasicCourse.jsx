@@ -120,9 +120,8 @@ const BasicCourse = () => {
           </div>
         </div>
         <div className='course-basic-right'>
+          <div className="course-bsic-right-container">
           <div className='course-video'>
-            {/* <img src={basicCourses.videoId ? `${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`: CourseList1} alt='Khóa học' /> */}
-            {/* <iframe width="560" height="315" src={basicCourses.videoId} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
             {determineMediaType(basicCourses.videoId) === 'video' && (
               <video controls width='600'>
                 <source
@@ -144,6 +143,7 @@ const BasicCourse = () => {
             <Button variant='contained' color='primary' onClick={handleCourse}>
               Xem tài liệu
             </Button>
+          </div>
           </div>
         </div>
       </div>

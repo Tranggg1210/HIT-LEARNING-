@@ -1,25 +1,106 @@
 @import '../../styles/index.scss';
 
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #777b80;
+    font-size: 16px;
+
+    .icon-chevron-left {
+        margin-right: 5px;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+
+    @include mobile {
+        display: none;
+    }
+
+    @include small-tablet {
+        display: none;
+    }
+
+    @include tablet {
+       display: none;
+    }
+}
+
 .header-profile {
     position: relative;
+
     .background-profile {
         opacity: 0.8;
         display: flex;
         justify-content: center;
 
-        
-        
-        
-        img {   
+        img {
             border-bottom-right-radius: 16px;
             border-bottom-left-radius: 16px;
-            @include mobile{
+            object-fit: cover;
+
+            @include mobile {
                 width: 80%;
                 height: 200px;
-                margin-left: -70px;
-                
-     
-             }
+            }
+            @include small-tablet {
+                width: 80%;
+                height: 200px;
+            }
+            @include tablet {
+                width: 80%;
+                height: 200px;
+            }
+        }
+    }
+
+    .edit-button {
+        position: absolute;
+        bottom: -60px;
+        left: 78%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        gap: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+
+        &:hover {
+            background: linear-gradient(90deg, #feb47b, #ff7e5f);
+        }
+
+        @include mobile {
+            width: 50%;
+            font-size: 14px;
+            padding: 8px 16px;
+            bottom: -160px;
+            left: 50%;
+            
+        }
+
+        @include small-tablet {
+            width: 23% !important ;
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+
+        @include tablet {
+            width: auto;
+            font-size: 16px;
+            padding: 10px 20px;
         }
     }
 
@@ -28,61 +109,100 @@
         bottom: -70px;
         left: 30%;
         display: flex;
-        
+
+        @include mobile {
+            left: 35%;
+        }
+        @include small-tablet {
+            left: 40%;
+        }
+        @include tablet {
+            left: 38%;
+        }
+
         .profile-pic {
             width: 172px;
             height: 172px;
             display: flex;
-            background-color:#fff;
+            background-color: #fff;
             font-size: 50px;
             border-radius: 50%;
             align-items: center;
             justify-content: center;
 
-            @include mobile{
+            @include mobile {
                 width: 120px;
                 height: 120px;
             }
-            
-            img{
-                width: 9rem;
-                height: 9rem;
-                border-radius: 50%;
-                @include mobile{
-                    width: 6rem;
-                    height: 6rem;
+            @include small-tablet {
+                width: 150px;
+                height: 150px;
+            }
+            @include tablet {
+                width: 160px;
+                height: 160px;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+
+                @include mobile {
+                    width: 100px;
+                    height: 100px;
+                }
+                @include small-tablet {
+                    width: 130px;
+                    height: 130px;
+                }
+                @include tablet {
+                    width: 140px;
+                    height: 140px;
+                }
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+
+                    @include mobile {
+                        width: 100%;
+                        height: 100%;
+                    }
                 }
             }
         }
-
-        
     }
-    
 }
-.profile-name{
+
+.profile-name {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     margin-left: 40px;
 
-    @include mobile{
+    @include mobile {
         margin-top: 70px;
-        margin-left: -40px;
+        margin-left: -15px;
     }
-    @include tablet{
-        margin-left: 220px;
+    @include small-tablet {
+        font-size: 19px;
+        margin-top: 80px;
+        margin-left: 50px;
     }
-    @include small-tablet{
-        margin-left: 350px;
+    @include tablet {
+        font-size: 19px;
+        margin-top: 80px;
+        margin-left: -10px;
     }
 }
 
 .content-profile {
     padding: 60px 20px 20px 20px;
-   
     display: flex;
     justify-content: center;
-    
+
     .intro {
         background-color: #fff;
         box-shadow: #0000001a 0 0 5px, #0000001a 0 0 1px;
@@ -93,28 +213,37 @@
         width: 50%;
         height: 350px;
 
-        @include mobile{
+        @include mobile {
             width: 80%;
-            margin-left: -70px;
         }
-        
-        h3 {
-            font-size: 22px;
-            
+        @include small-tablet {
+            width: 80%;
+        }
+        @include tablet {
+            width: 80%;
         }
 
-        .infor-profile{
+        h3 {
+            font-size: 22px;
+        }
+
+        .infor-profile {
             margin-top: 10px;
             border-bottom: 1px solid #d0d7de;
             padding-bottom: 15px;
 
             p {
                 margin: 5px 0;
+                display: flex;
+
+                span {
+                    margin-left: 6px;
+                }
             }
         }
-        .mysefl{
+
+        .mysefl {
             margin-top: 10px;
         }
-        
     }
 }

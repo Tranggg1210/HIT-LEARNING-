@@ -18,6 +18,7 @@ import { getAllSection } from '../../apis/section.api'
 import { deleteItem, getAllItem } from '../../apis/item.api'
 import EditListSection from '../../components/EditListSection/EditListSection'
 
+
 const CourseList = () => {
   const [isCreatingFolder, setIsCreatingFolder] = useState(false)
   const [isCreatingSubFolder, setIsCreatingSubFolder] = useState(false)
@@ -83,7 +84,7 @@ const CourseList = () => {
       buttons: [
         {
           label: 'Không',
-          onClick: () => {},
+          onClick: () => { },
         },
         {
           label: 'Có',
@@ -148,11 +149,13 @@ const CourseList = () => {
       {!isCreatingFolder && !isCreatingSubFolder && !isEditingSection && (
         <div className='course-list-containers'>
           <div className='course-header'>
-            <img
-              src={`${import.meta.env.VITE_API_SERVER}/stream/${course.videoId}`}
-              alt=''
-              className='course-logo'
-            />
+            <div className="course-img">
+              <img
+                src={`${import.meta.env.VITE_API_SERVER}/stream/${course.videoId}`}
+                alt=''
+                className='course-logo'
+              />
+            </div>
             <h2>{course.name}</h2>
             <p>Tổng số video hiện có: 12</p>
             <button className='edit-course-button'>SỬA KHOÁ HỌC</button>
