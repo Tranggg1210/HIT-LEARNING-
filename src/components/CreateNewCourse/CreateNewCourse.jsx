@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import { useNavigate } from 'react-router-dom'
 import { TextField } from '@mui/material'
+import useAuth from '../../hooks/useAuth'
 
 const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [folderName, setFolderName] = useState('')
@@ -24,11 +25,13 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
     const file = e.target.files[0]
     setUpload(file)
   }
+  const userAccess = useAuth();
+  const id_access_token = userAccess.user?.id ;
 
   const handleSubmit = async () => {
     if (folderName && describe && upload) {
       const courseData = {
-        userId: '0b602036-814e-4f53-8ee5-1f0b2e12452b',
+        userId: id_access_token,
         name: folderName,
         description: describe,
         file: upload,
