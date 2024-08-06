@@ -14,8 +14,9 @@ const Home = () => {
         <Slider />
         {/* {access_token ? <Classess /> : <Classes />} */}
         {/* <CourseLeader /> */}
-        <CourseLeaderList />
+        {/* <CourseLeaderList /> */}
         {/* <Classess /> */}
+        <Classes />
       </div>
     </>
   )
