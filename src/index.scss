@@ -16,10 +16,10 @@
   }
   .layout-content {
     flex-grow: 1 !important;
-    .outlet{
-      display: flex;
-      justify-content: center;
-      & > div{
+    .outlet {
+      padding: 0 60px;
+      & > div {
+
         width: 100%;
       }
     }

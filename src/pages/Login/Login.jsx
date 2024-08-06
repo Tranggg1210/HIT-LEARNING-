@@ -7,19 +7,16 @@ import { loginValidate } from '../../utils/loginValidate'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
 import { Toaster, toast } from 'react-hot-toast'
-import { login} from '../../apis/auth.api'
-import useAuth from '../../hooks/useAuth' 
-
+import { login } from '../../apis/auth.api'
+import useAuth from '../../hooks/useAuth'
 
 const Login = () => {
   const navigate = useNavigate()
   const authen = useAuth()
 
-
   const goBack = () => {
     navigate('/')
   }
-
 
   return (
     <>
@@ -45,14 +42,14 @@ const Login = () => {
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
                   authen.saveUser({
-                    token:res.data.data.tokenContent,
+                    token: res.data.data.tokenContent,
                     role: roles,
                     username: res.data.data.userName,
-                    id: res.data.data.userId
-                    // refreshToken: 
+                    id: res.data.data.userId,
+                    // refreshToken:
                   })
 
-                  if (roles.includes('ADMIN')) return navigate('/admin')
+                  if (roles.includes('ADMIN')) return navigate('/')
                   if (roles.includes('USER')) {
                     return navigate('/')
                   }

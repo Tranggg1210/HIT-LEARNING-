@@ -1,17 +1,13 @@
 import { Outlet } from 'react-router-dom'
-import HeaderHL from '../../common/HeaderHL/HeaderHL'
-import SideBar from '../../components/SideBar/SideBar'
 import AdminSideBar from '../../components/AdminSideBar/AdminSideBar'
 
-const MainLayout = () => {
+const AdminLayout = () => {
   return (
-    <div className='main-layout'>
+    <div className='admin-layout'>
       <div className='layout-sidebar'>
-        {/* <SideBar /> */}
         <AdminSideBar />
       </div>
       <div className='layout-content'>
-        <HeaderHL />
         <div className='outlet'>
           <div>
             <Outlet />
@@ -21,4 +17,4 @@ const MainLayout = () => {
     </div>
   )
 }
-export default MainLayout
+export default AdminLayout
