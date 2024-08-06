@@ -7,8 +7,8 @@ const MainLayout = () => {
   return (
     <div className='main-layout'>
       <div className='layout-sidebar'>
-        {/* <SideBar /> */}
-        <AdminSideBar />
+        <SideBar />
+        {/* <AdminSideBar /> */}
       </div>
       <div className='layout-content'>
         <HeaderHL />
