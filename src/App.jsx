@@ -100,9 +100,7 @@ function App() {
       <div>
         <Toaster/>
       </div>
-      {/* {router} */}
-      <EditProfile/>
-     
+      {router}
     </>
   ) 
 
