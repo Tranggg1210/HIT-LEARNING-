@@ -17,6 +17,7 @@ import Profile from './pages/Profile/Profile'
 
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
+import EditProfile from './pages/EditProfile/EditProfile'
 
 
 function App() {
@@ -87,6 +88,10 @@ function App() {
       path: '/lesson/:lessonId',
       element: <LessonDetail />,
     },
+    {
+      path: '/editprofile',
+      element: <EditProfile/>,
+    },
   ])
 
 
@@ -95,7 +100,9 @@ function App() {
       <div>
         <Toaster/>
       </div>
-      {router}
+      {/* {router} */}
+      <EditProfile/>
+     
     </>
   ) 
 
