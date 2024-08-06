@@ -1,143 +1,88 @@
-@import '../../styles/mixins';
-.films {
-  margin-top: 50px;
-  margin-left: 70px;
+
+@import '../../styles//mixins';
+.courses {
   position: relative;
-  @include mobile {
-    margin-left: 0;
-  }
-  @include small-tablet {
-    margin-left: 0px;
-  }
-  .title-list {
+  margin-top: 36px;
+  .more {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid black;
-
-    .view-all {
-      margin-right: 10px;
-      border: 1px solid black;
-      padding: 5px;
+    margin-bottom: 36px;
+    h2{
+      font-size: 32px ;
+      
+    }
+    .xem_them {
       cursor: pointer;
+      color: #f67102;
     }
   }
-  .film-list {
-    display: flex;
-    margin-top: 1rem;
-    gap: 1rem;
-    padding-bottom: 10px;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-
-    @include mobile {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(1, auto);
-      gap: 1rem;
-      margin-top: 1rem;
-      padding-bottom: 10px;
-      overflow: hidden;
-    }
-    @include tablet {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(1, auto);
-      gap: 1rem;
-      margin-top: 1rem;
-      padding-bottom: 10px;
-      overflow: hidden;
-    }
-    @include small-tablet {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(1, auto);
-      gap: 1rem;
-      margin-top: 1rem;
-      padding-bottom: 10px;
-      overflow: hidden;
-    }
-    .film-item {
+  .course-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, auto);
+    gap: 1.75rem;
+    .course-item {
       position: relative;
       min-width: 25%;
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.05);
-      }
-
-      .poster {
+      border-radius: 10px;
+      width: 320px;
+      box-shadow: 0 0 12px  rgba(0 0 0 /10%);
+      border: 1px solid #ccc;
+      .course-img {
         width: 100%;
-        height: 100%;
+        border-radius: 10px 10px 0 0;
+        height: 200px;
         object-fit: cover;
       }
 
-      .film-title,
-      .film-year,
-      .film-quality {
+      .course-name {
+        text-align: center;
+        color: #f37335;
+        font-size: 28px;
+        font-weight: 700;
+      }
+      .infor {
+        margin-top: 12px;
+        @include flex(center,center);
+        p{
+          font-size: 17px;
+          font-weight: 700;
+        }
+
+      }
+      .button-course-leader-item {
         position: absolute;
-      }
-
-      .film-title {
-        bottom: 0;
-        color: white;
-        font-size: 15px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        background-color: orange;
+        background-color: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: 0.6s;
         width: 100%;
-        padding: 0.5rem 1rem;
-      }
-
-      .film-year {
-        padding: 2px 4px;
-        margin: 4px 15px;
-        border-radius: 5px;
-        top: 0;
-        left: 0;
-        font-size: 13px;
-        background-color: orange;
-      }
-
-      .film-quality {
-        top: 1rem;
-        left: 0;
-        color: black;
-        font-size: 8px;
-        background-color: white;
-        border-radius: 5px;
-        padding: 2px 4px;
-        margin: 10px 15px;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        .edit,
+        .delete {
+          background: rgba(208, 201, 201, 0.4);
+          width: 130px;
+          height: 60px;
+          color: white;
+          border: none;
+          padding: 10px;
+          margin: 5px;
+          cursor: pointer;
+          border-radius: 50px;
+          transition: background-color 0.3s ease;
+          font-size: 1rem;
+        }
       }
     }
   }
-
-  .fa-solid {
-    position: absolute;
-    top: 50%;
-    cursor: pointer;
-    border-radius: 20px;
-    width: 2rem;
-    height: 2rem;
-    padding: 8px 11px;
-    transform: translateY(-50%);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 1);
-    color: white;
-    z-index: 10;
-    &.fa-chevron-left {
-      left: 10px;
-    }
-    &.fa-chevron-right {
-      right: 10px;
-    }
-    @include mobile {
-      display: none;
-    }
-    @include tablet {
-      display: none;
-    }
-  }
+}
+.infor-container{
+  padding: 24px;
 }

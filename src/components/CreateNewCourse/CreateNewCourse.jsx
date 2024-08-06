@@ -10,24 +10,23 @@ import { useNavigate } from 'react-router-dom'
 import { TextField } from '@mui/material'
 import useAuth from '../../hooks/useAuth'
 
+
 const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [folderName, setFolderName] = useState('')
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState(null)
   const [classType, setClassType] = useState('Public')
   const inputRef = useRef()
-
+  const userAccess = useAuth()
   const [status, setStatus] = useState('initial')
   const [progress, setProgress] = useState(0)
   const navigate = useNavigate()
-
+  const id_accsess_token = userAccess.user?.id
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     setUpload(file)
   }
-  const userAccess = useAuth();
   const id_access_token = userAccess.user?.id ;
-
   const handleSubmit = async () => {
     if (folderName && describe && upload) {
       const courseData = {
@@ -69,7 +68,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
                       onClick={() => inputRef.current.click()}
                     />
                   </div>
-                  <p>Kéo ảnh, video demo để tải lên</p>
+                  <p style={{marginTop:'12px'}}>Ảnh và video tải lên không quá 250MB </p>
                 </div>
               )}
             </div>
@@ -83,11 +82,12 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
           <div className='new-infors'>
             <div className='new-infor-folder'>
               <TextField
-                sx={{ width: '100%' }}
+                sx={{ width: '100%', marginBottom:'24px', }}
                 id='outlined-folder-input'
                 label='Tên khoá học'
                 type='text'
-                autoComplete='off'
+                size='medium'
+                autoComplete='on'
                 value={folderName}
                 onChange={(e) => setFolderName(e.target.value)}
                 rows={1}
@@ -99,10 +99,10 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
             </div>
             <div className='new-infor-describe'>
               <TextField
-                sx={{ width: '100%', height: '125px' }}
+                sx={{ width: '100%', height: '125px' ,marginBottom:'24px'}}
                 id='outlined-describe-input'
                 label='Mô tả khoá học'
-                type='text'
+                type=''
                 autoComplete='off'
                 value={describe}
                 onChange={(e) => setDescribe(e.target.value)}
@@ -112,9 +112,10 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
                   style: { height: '125px' },
                 }}
               />
+              
             </div>
             <div className='new-button-class-type'>
-              <FormControl sx={{ width: '100%' }} size='small'>
+              <FormControl sx={{ width: '100%' ,marginBottom:'24px' }} size='medium'>
                 <InputLabel className='class-type-select-label'>Loại lớp học</InputLabel>
                 <Select
                   labelId='class-type-select-label'

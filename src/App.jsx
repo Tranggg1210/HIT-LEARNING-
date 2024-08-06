@@ -3,7 +3,7 @@ import './App.scss'
 import Home from './pages/Home/Home'
 import MainLayout from './layouts/Layout/MainLayout'
 import Login from './pages/Login/Login'
-import CourseLeaderItem from './components/ClassesItem/ClassesItem'
+// import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
@@ -17,6 +17,7 @@ import Profile from './pages/Profile/Profile'
 
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
+import CourseLeaderList from './components/CourseLeaderList/CourseLeaderList'
 import EditProfile from './pages/EditProfile/EditProfile'
 
 
@@ -46,16 +47,20 @@ function App() {
           path: '/createNewCourse',
           element: <CreateNewCourse />,
         },
+        {
+          path: '/course',
+          element: <CourseLeaderList />,
+        },
       ],
     },
     {
       path: '/signin',
       element: <Login />,
     },
-    {
-      path: '/courseLeader',
-      element: <CourseLeaderItem />,
-    },
+    // {
+    //   path: '/courseLeader',
+    //   element: <CourseLeaderItem />,
+    // },
     {
       path: '/forgot-password',
       element: <ForgotPassword />,
@@ -94,16 +99,14 @@ function App() {
     },
   ])
 
-
-  return(
+  return (
     <>
       <div>
-        <Toaster/>
+        <Toaster />
       </div>
       {router}
     </>
-  ) 
-
+  )
 }
 
 export default App

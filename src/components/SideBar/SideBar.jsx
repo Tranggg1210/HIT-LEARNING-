@@ -2,17 +2,16 @@ import { NavLink, useNavigate } from 'react-router-dom'
 // import { useDispatch, useSelector } from 'react-redux'
 import logo from '../../assets/images/logo3.png'
 import './SideBar.scss'
+import useAuth from '../../hooks/useAuth'
 
 const SideBar = () => {
   const navigate = useNavigate()
+  const currentUser = useAuth()
   const getClassName = ({ isActive }) => (isActive ? 'active' : '')
 
-  //   const dispatch = useDispatch()
-  //   const isAsideOpening = useSelector((state) => state.asideStatus)
-  //   const user = useSelector((state) => state.user.account)
+  const accsess_token = currentUser.user?.role
 
   return (
-    // <aside className={`aside-container ${isAsideOpening ? 'block' : 'hidden'}`}>
     <>
       <div className='aside-container'>
         <div className='logo-sideabar' onClick={() => navigate('/')}>
@@ -25,10 +24,13 @@ const SideBar = () => {
             <i className='fa-solid fa-house'></i>
             <p>Trang chủ</p>
           </NavLink>
-          <NavLink to='/course' className={getClassName}>
-            <i className='fa-solid fa-book'></i>
-            <p>Khoá học</p>
-          </NavLink>
+          {(accsess_token?.includes('LEADER') || accsess_token?.includes('ADMIN')) && (
+            <NavLink to='/course' className={getClassName}>
+              <i className='fa-solid fa-book'></i>
+              <p>Khoá học</p>
+            </NavLink>
+          )}
+
           <NavLink to='/club-hit' className={getClassName}>
             <i className='fa-solid fa-users'></i>
             <p>CLB HIT</p>

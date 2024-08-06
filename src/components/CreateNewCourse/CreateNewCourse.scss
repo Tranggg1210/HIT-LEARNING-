@@ -1,20 +1,11 @@
 @import '../../styles/index.scss';
-// .progress-bar {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   z-index: 9900;
-// }
-// body {
-//   padding-right: 0 !important;
-//   overflow: scroll;
-// }
+
 .create-new-course {
   display: block;
   margin-top: 15px;
   h2{
-    margin-left: 30px;
+    text-align: center;
+    font-size: 32px;
   }
   .new-courser-header {
     display: flex;
@@ -30,8 +21,8 @@
       display: block;
       background: rgba(247, 247, 247, 0.6);
       width: 450px;
-      height: 250px;
-      position: relative;
+      height: max-content;
+      padding: 24px;
       border-radius: 10px;
       @include mobile{
        width: 90%;
@@ -49,7 +40,6 @@
 
       .new-icon-upload {
         width: 100%;
-        position: absolute;
         display: block;
         text-align: center;
         & > section {
@@ -85,8 +75,7 @@
         }
       }
       .new-input-upload {
-        position: absolute;
-        margin-top: 195px;
+        margin-top: 64px;
         display: flex;
         justify-content: center;
         width: 100%;
@@ -110,7 +99,8 @@
     }
     .new-infors {
       display: block;
-      width: 350px;
+      width: 480px;
+      
       @include mobile{
         margin-left: 40px;
       }
