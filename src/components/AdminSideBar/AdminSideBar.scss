@@ -1,0 +1,27 @@
+@import '../../styles/mixins';
+.admin-sidebar {
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 40;
+  width: 273px;
+  .admin-sidebar-logo {
+    @include flex(center, center);
+    //   color: $primary-color;
+    margin-right: 6px;
+    border-bottom: 1px solid #ccc;
+    padding: 12px 0 !important;
+    .admin-box-logo {
+      .admin-img-logo {
+        height: 3rem;
+        cursor: pointer;
+      }
+    }
+  }
+  ul {
+    margin-top: 1rem;
+  }
+}
