@@ -15,9 +15,9 @@ import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
 
 import Profile from './pages/Profile/Profile'
 
-
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
+import EditProfile from './pages/EditProfile/EditProfile'
 
 
 function App() {
@@ -46,8 +46,6 @@ function App() {
           path: '/createNewCourse',
           element: <CreateNewCourse />,
         },
-        
-        
       ],
     },
     {
@@ -68,32 +66,34 @@ function App() {
     },
     {
       path: '/club-hit',
-      element: <LayoutAboutHIT/>,
+      element: <LayoutAboutHIT />,
       children: [
         {
-          path:"",
-          element:<AboutHIT/>
-        }
-      ]
-    },
-    {
-
-      path:'/profile',
-      element: <LayoutAboutHIT/>,
-      children:[
-        {
-          path:"",
-          element:<Profile/>,
+          path: '',
+          element: <AboutHIT />,
         },
-      ]
+      ],
     },
     {
-      path:'/lesson/:lessonId',
-      element: <LessonDetail/>,
-    }
-
-
+      path: '/profile',
+      element: <LayoutAboutHIT />,
+      children: [
+        {
+          path: '',
+          element: <Profile />,
+        },
+      ],
+    },
+    {
+      path: '/lesson/:lessonId',
+      element: <LessonDetail />,
+    },
+    {
+      path: '/editprofile',
+      element: <EditProfile/>,
+    },
   ])
+
 
   return(
     <>
@@ -103,6 +103,7 @@ function App() {
       {router}
     </>
   ) 
+
 }
 
 export default App

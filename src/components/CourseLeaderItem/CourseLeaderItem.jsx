@@ -10,7 +10,7 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
   const handleRight = () => {
     inputElement.current?.scrollBy({ left: 300, behavior: 'smooth' })
   }
-
+  console.log(courses)
   const handleLeft = () => {
     inputElement.current?.scrollBy({ left: -300, behavior: 'smooth' })
   }
@@ -50,13 +50,13 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
             key={idx}
             className='course-item'
             onClick={() => navigate(`/detail-course/${item.id}`)}>
-            <img
+            {/* <img
               className='course-img'
               src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
               alt=''
-            />
-            {/* {determineMediaType(item.videoId) === 'video' && (
-              <video controls width='600'>
+            /> */}
+            {determineMediaType(item.videoId) === 'video' && (
+              <video controls width='600' className='course-img'>
                 <source
                   src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
                   type='video/mp4'
@@ -65,16 +65,17 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
             )}
             {determineMediaType(item.videoId) === 'image' && (
               <img
+                className='course-img'
                 src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
                 alt='Khóa học'
               />
             )}
             {determineMediaType(item.videoId) === 'empty' && (
-              <img src={CourseList1} alt='Khóa học' />
-            )} */}
+              <img src={CourseList1} alt='Khóa học' className='course-img' />
+            )}
             <p className='course-name'>{item.name}</p>
             <div className='infor'>
-              <p>{() => isoDayMonthYear(item.createAt)}</p>
+              <p>{isoDayMonthYear(item.createdAt)}</p>
               {/* <p className='luot-xem'>Lượt xem</p>
               <p className='icon'>
                 <IconMessageCircle></IconMessageCircle>

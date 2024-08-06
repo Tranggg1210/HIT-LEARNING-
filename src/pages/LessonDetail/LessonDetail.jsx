@@ -54,19 +54,20 @@ const LessonDetail = () => {
           <div className='lesson-left'>
             <div className='goback' onClick={handleBack}>
               <IconChevronLeft stroke={2} width={40} height={64} />
-              <Typography variant='h6' component='h6'>
+              <Typography variant='h6' component='h6' >
                 QUAY LẠI
               </Typography>
             </div>
             <div className='player'>
               <iframe
-                width='80%'
-                height='400'
+                width='0%'
+                height='500'
                 src='https://www.youtube.com/embed/b6rUk3YLsN0?si=xaIvo5VvqqOMrKMA'
                 title='YouTube video player'
                 frameborder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-                allowfullscreen></iframe>
+                allowfullscreen
+                className='iframe'></iframe>
               <div className='player-des'>
                 <div className='des-container'>
                   <div className='des-box'>
@@ -162,28 +163,7 @@ const LessonDetail = () => {
             <LessonBar param={lessonId} />
           </div>
         </div>
-        <footer className='lesson-footer'>
-          <div className='button-footer'>
-            <Button sx={{ color: 'gray' }} className='prev'>
-              <IconChevronLeft />
-              BÀI TRƯỚC
-            </Button>
-            <Button
-              sx={{
-                borderColor: 'orange',
-                color: 'orange',
-                '&:hover': {
-                  borderColor: 'orange',
-                  backgroundColor: 'rgba(17, 82, 147, 0.04)',
-                },
-              }}
-              variant='outlined'
-              className='next btn'>
-              BÀI TIẾP THEO
-              <IconChevronRight />
-            </Button>
-          </div>
-        </footer>
+       
       </div>
     </>
   )

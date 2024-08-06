@@ -1,51 +1,42 @@
-import "./EditProfile.scss"
+import "./EditProfile.scss";
 
-import { useRef, useState } from 'react'
-import { IconUpload } from '@tabler/icons-react'
-import { createCourse } from '../../apis/courses.api'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
-import { useNavigate } from 'react-router-dom'
-import { TextField } from '@mui/material'
+import { useRef, useState } from 'react';
+import { IconUpload } from '@tabler/icons-react';
+import { createCourse } from '../../apis/courses.api';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { useNavigate } from 'react-router-dom';
+import { TextField } from '@mui/material';
 
 const EditProfile = () => {
-  const [folderName, setFolderName] = useState('')
-  const [describe, setDescribe] = useState('')
-  const [upload, setUpload] = useState(null)
-  const [classType, setClassType] = useState('Public')
-  const inputRef = useRef()
-
-  const [status, setStatus] = useState('initial')
-  const [progress, setProgress] = useState(0)
-  const navigate = useNavigate()
-
+  const [folderName, setFolderName] = useState('');
+  const [describe, setDescribe] = useState('');
+  const [upload, setUpload] = useState(null);
+    const inputRef = useRef();
+ const navigate = useNavigate();
   const handleFileChange = (e) => {
-    const file = e.target.files[0]
-    setUpload(file)
-    
-  }
-
-  
+    const file = e.target.files[0];
+    setUpload(file);
+  };
 
   //
 
-  
   return (
     <>
-      <div className='create-new-course'>
-        <h2>CHỈNH SỬA THÔNG TIN</h2>
-        <div className='new-courser-header'>
-          <div className='new-upload-file'>
-            <div className='new-icon-upload'>
+      <div className='edit-profile-container'>
+        <h2>CHỈNH SỬA THÔNG TIN CÁ NHÂN</h2>
+        <div className='edit-profile-header'>
+          <div className='edit-profile-upload'>
+            <div className='edit-profile-icon'>
               {upload ? (
                 <p>File name: {upload?.name}</p>
               ) : (
-                <div className='new-boxUpload'>
-                  <div className='new-boxIcon'>
+                <div className='edit-profile-box-upload'>
+                  <div className='edit-profile-box-icon'>
                     <IconUpload
-                      className='new-iconUpload'
+                      className='edit-profile-icon-upload'
                       onClick={() => inputRef.current.click()}
                     />
                   </div>
@@ -53,31 +44,79 @@ const EditProfile = () => {
                 </div>
               )}
             </div>
-            <div className='new-input-upload'>
+            <div className='edit-profile-input-upload'>
               <input type='file' onChange={handleFileChange} ref={inputRef} />
-              <button className='new-button-upload' onClick={() => inputRef.current.click()}>
+              <button className='edit-profile-button-upload' onClick={() => inputRef.current.click()}>
                 Chọn tệp
               </button>
             </div>
           </div>
-          <div className='new-infors'>
-            <div className='new-infor-folder'>
+          <div className='edit-profile-infos'>
+            <div className='edit-profile-info-folder'>
               <TextField
                 sx={{ width: '100%' }}
                 id='outlined-folder-input'
-                label='Tên khoá học'
+                label='Họ Và Tên'
                 type='text'
                 autoComplete='off'
                 value={folderName}
                 onChange={(e) => setFolderName(e.target.value)}
                 rows={1}
-                className='new-textarea'
+                className='edit-profile-textarea'
                 InputProps={{
                   style: { height: '50px' },
                 }}
               />
             </div>
-            <div className='new-infor-describe'>
+            <div className='edit-profile-info-folder1'>
+              <TextField
+                sx={{ width: '100%' }}
+                id='outlined-folder-input'
+                label='FaceBook'
+                type='text'
+                autoComplete='off'
+                value={folderName}
+                onChange={(e) => setFolderName(e.target.value)}
+                rows={1}
+                className='edit-profile-textarea'
+                InputProps={{
+                  style: { height: '50px' },
+                }}
+              />
+            </div>
+            <div className='edit-profile-info-folder2'>
+              <TextField
+                sx={{ width: '100%' }}
+                id='outlined-folder-input'
+                label='Gmail'
+                type='text'
+                autoComplete='off'
+                value={folderName}
+                onChange={(e) => setFolderName(e.target.value)}
+                rows={1}
+                className='edit-profile-textarea'
+                InputProps={{
+                  style: { height: '50px' },
+                }}
+              />
+            </div>
+            <div className='edit-profile-info-folder3'>
+              <TextField
+                sx={{ width: '100%' }}
+                id='outlined-folder-input'
+                label='Gmail'
+                type='text'
+                autoComplete='off'
+                value={folderName}
+                onChange={(e) => setFolderName(e.target.value)}
+                rows={1}
+                className='edit-profile-textarea'
+                InputProps={{
+                  style: { height: '50px' },
+                }}
+              />
+            </div>
+            <div className='edit-profile-info-describe'>
               <TextField
                 sx={{ width: '100%', height: '125px' }}
                 id='outlined-describe-input'
@@ -87,36 +126,23 @@ const EditProfile = () => {
                 value={describe}
                 onChange={(e) => setDescribe(e.target.value)}
                 rows={4}
-                className='new-textarea'
+                className='edit-profile-textarea'
                 InputProps={{
                   style: { height: '125px' },
                 }}
               />
             </div>
-            <div className='new-button-class-type'>
-              <FormControl sx={{ width: '100%' }} size='small'>
-                <InputLabel className='class-type-select-label'>Loại lớp học</InputLabel>
-                <Select
-                  labelId='class-type-select-label'
-                  className='class-type-select'
-                  value={classType}
-                  label='Loại lớp học'
-                  onChange={handleClassTypeChange}>
-                  <MenuItem value='Public'>PUBLIC</MenuItem>
-                  <MenuItem value='Private'>PRIVATE</MenuItem>
-                </Select>
-              </FormControl>
-            </div>
+            
           </div>
         </div>
-        <div className='new-pots'>
-          <div className='new-pots2'>
-            <button className='new-post-button-cancel' onClick={() => navigate('/')}>
+        <div className='edit-profile-actions'>
+          <div className='edit-profile-cancel'>
+            <button className='edit-profile-cancel-button' onClick={() => navigate('/')}>
               HUỶ BỎ
             </button>
           </div>
-          <div className='new-pots1'>
-            <button className='new-post-button' onClick={handleSubmit}>
+          <div className='edit-profile-submit'>
+            <button className='edit-profile-submit-button'>
               CẬP NHẬT
             </button>
             {/* <Result status={status} /> */}
@@ -124,7 +150,7 @@ const EditProfile = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default EditProfile
+export default EditProfile;
