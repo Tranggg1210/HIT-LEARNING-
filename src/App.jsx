@@ -18,6 +18,8 @@ import Profile from './pages/Profile/Profile'
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
 import CourseLeaderList from './components/CourseLeaderList/CourseLeaderList'
+import EditProfile from './pages/EditProfile/EditProfile'
+
 
 function App() {
   const router = useRoutes([
@@ -90,6 +92,10 @@ function App() {
     {
       path: '/lesson/:lessonId',
       element: <LessonDetail />,
+    },
+    {
+      path: '/editprofile',
+      element: <EditProfile/>,
     },
   ])
 
