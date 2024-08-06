@@ -7,16 +7,21 @@
   box-shadow: 0 0 12px rgba(0 0 0 /10%);
   border-radius: 10px;
   width: 50% ;
-  height: 415px;
+  height: 450px !important;
   display: block;
   margin-top: 40px;
 
   @include mobile{
     width: 80% !important;
-    
+    height: 400px !important;
   }
   @include small-tablet{
     width: 80%;
+   
+  }
+  @include tablet{
+    width: 80%;
+    
    
   }
   & > h2 {

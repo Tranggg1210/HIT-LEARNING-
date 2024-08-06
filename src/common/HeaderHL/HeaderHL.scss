@@ -19,7 +19,7 @@
   @include tablet {
     width: 100%;
     justify-content: center;
-    gap: 90px;
+    
   }
 
   @include small-tablet {
@@ -67,7 +67,7 @@
         }
   
         .input {
-          width: 40rem;
+          width: 36rem;
           height: 2.75rem;
           padding-left: 2.5rem;
           border: 2px solid #f67a06;
@@ -173,6 +173,7 @@
     }
 
     .login {
+      
       @include flex(center, center);
       justify-content: center !important;
       cursor: pointer;
