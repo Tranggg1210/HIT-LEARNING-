@@ -1,12 +1,11 @@
 @import '../../styles/mixins';
 
 .header-container {
-  top: 0;
-  right: 0;
-  left: 120px;
+  padding: 0 20px ;
   height: 72px;
-  @include flex(space-around, center);
-  z-index: 999;
+  @include flex(space-between, center);
+
+  
   // display: flex;
   // align-items: center;
   
@@ -31,7 +30,7 @@
   }
 
   .search-container{
-    width: 80%;
+    width: max-content;
     display: flex;
     justify-content: center;
     .box-search {
@@ -122,7 +121,7 @@
   }
 
   .button-signin {
-    width: 20%;
+    width: max-content;
     display: flex;
     
     .top-signIn {
@@ -268,4 +267,14 @@
 
 
   }
+}
+.btn-dragger{
+  transition: all 0.3s linear;
+  height: 54px;
+  display: block;
+  width: 100%;
+}
+.btn-dragger:hover{
+  color: #fff !important;
+  background-color: #ef7015 !important;
 }

@@ -4,8 +4,6 @@ import Home from './pages/Home/Home'
 import MainLayout from './layouts/Layout/MainLayout'
 import Login from './pages/Login/Login'
 // import CourseLeaderItem from './components/ClassesItem/ClassesItem'
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
-import ResetPassword from './pages/ResetPassword/ResetPassword'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
 import SectionList from './pages/SectionList/SectionList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
@@ -14,11 +12,11 @@ import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
 
 import Profile from './pages/Profile/Profile'
-
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
 import CourseLeaderList from './components/CourseLeaderList/CourseLeaderList'
 import EditProfile from './pages/EditProfile/EditProfile'
+import Auth from './pages/Auth/Auth'
 
 
 function App() {
@@ -61,14 +59,12 @@ function App() {
     //   path: '/courseLeader',
     //   element: <CourseLeaderItem />,
     // },
+    
     {
-      path: '/forgot-password',
-      element: <ForgotPassword />,
+      path: '/forgot-password/*',
+      element: <Auth />,
     },
-    {
-      path: '/reset-password',
-      element: <ResetPassword />,
-    },
+    
     {
       path: '/club-hit',
       element: <LayoutAboutHIT />,

@@ -3,6 +3,7 @@ import { IconMessageCircle } from '@tabler/icons-react'
 import './CourseLeaderItem.scss'
 import { useNavigate } from 'react-router-dom'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
+import { IconClockHour9 } from '@tabler/icons-react';
 const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handleSeeMore }) => {
   const navigate = useNavigate()
   const inputElement = useRef()
@@ -68,9 +69,12 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
             {determineMediaType(item.videoId) === 'empty' && (
               <img src={CourseList1} alt='Khóa học' className='course-img' />
             )}
-            <p className='course-name'>{item.name}</p>
-            <div className='infor'>
-              <p>{isoDayMonthYear(item.createdAt)}</p>
+            <div className="infor-container">
+              <p className='course-name'>{item.name}</p>
+              <div className='infor'>
+                <IconClockHour9 stroke={2} />
+                <p>{isoDayMonthYear(item.createdAt)}</p>
+              </div>
             </div>
             <div className='button-course-leader-item'>
               <button

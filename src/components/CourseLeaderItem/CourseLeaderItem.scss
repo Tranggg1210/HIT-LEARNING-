@@ -1,15 +1,16 @@
 @import '../../styles//mixins';
 .courses {
   position: relative;
-  margin-left: 40px;
-  margin-right: 60px;
+  margin-top: 36px;
   .more {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    // margin-right: 40px;
+    margin-bottom: 36px;
+    h2{
+      font-size: 32px ;
+      
+    }
     .xem_them {
       cursor: pointer;
       color: #f67102;
@@ -19,7 +20,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, auto);
-    gap: 1rem;
+    gap: 1.75rem;
 
     // display: flex;
     // margin-top: 1rem;
@@ -32,37 +33,29 @@
       position: relative;
       min-width: 25%;
       border-radius: 10px;
-      //
-      border: 1px solid black;
+      width: 320px;
+      box-shadow: 0 0 12px  rgba(0 0 0 /10%);
+      border: 1px solid #ccc;
       .course-img {
         width: 100%;
-        border-radius: 10px;
-        // height: 160px;
+        border-radius: 10px 10px 0 0;
         height: 200px;
         object-fit: cover;
       }
 
       .course-name {
-        width: 100%;
-        height: 100px;
         text-align: center;
-        //
-        color: linear-gradient(94deg, #f4b81e 78.55%, #f67102 106.63%);
-        font-size: 20px;
-        font-weight: 400;
+        color: #f37335;
+        font-size: 28px;
+        font-weight: 700;
       }
       .infor {
-        // display: flex;
-        position: absolute;
-        bottom: 15px;
-        // justify-content: space-around;
-        width: 100%;
-        .luot-xem,
-        .icon {
-          color: black;
-        }
-        .icon {
-          cursor: pointer;
+        margin-top: 12px;
+        gap: 4px;
+        @include flex(center,center);
+        p{
+          font-size: 17px;
+          font-weight: 700;
         }
       }
       .button-course-leader-item {

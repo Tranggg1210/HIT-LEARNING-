@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
 import './CourseLeaderClass.scss'
 import { useNavigate } from 'react-router-dom'
+import { IconClockHour9 } from '@tabler/icons-react';
 
 const CourseLeaderClass = ({ courses, onCancel }) => {
   const navigate = useNavigate()
@@ -56,12 +57,12 @@ const CourseLeaderClass = ({ courses, onCancel }) => {
                 <img src={CourseList1} alt='Khóa học' className='course-img' />
               )}
             </div>
-            <p className='course-name'>{item.name}</p>
-            <div className='infor'>
-              <p className='luot-xem'>Lượt xem</p>
-              <p className='icon'>
-                <IconMessageCircle></IconMessageCircle>
-              </p>
+            <div className="infor-container">
+              <p className='course-name'>{item.name}</p>
+              <div className='infor'>
+                <IconClockHour9 stroke={2} />
+                <p>{isoDayMonthYear(item.createdAt)}</p>
+              </div>
             </div>
           </div>
         ))}

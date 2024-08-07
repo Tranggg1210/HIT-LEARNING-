@@ -1,50 +1,9 @@
-// import { useRef } from 'react'
-// import fetchItems from '../../hooks/server'
-// import './ClassesItem.scss'
-
-// const ClassesItem = ({ title, api }) => {
-//   const { data: films } = fetchItems(`https://phimapi.com/v1/api/danh-sach/${api}?limit=12&page=2`)
-//   console.log(films)
-//   const inputElement = useRef()
-//   const handleRight = () => {
-//     inputElement.current?.scrollBy({ left: 300, behavior: 'smooth' })
-//   }
-
-//   const handleLeft = () => {
-//     inputElement.current?.scrollBy({ left: -300, behavior: 'smooth' })
-//   }
-//   return (
-//     <>
-//       <div className='films'>
-//         <div className='title-list'>
-//           <h1 className='title-films'>{title}</h1>
-//           <p className='view-all'>Xem tất cả</p>
-//         </div>
-//         <div ref={inputElement} className='film-list'>
-//           {films &&
-//             films.data &&
-//             films.data.data &&
-//             films.data.data.items.map((item, idx) => (
-//               <div key={idx} className='film-item'>
-//                 <img className='poster' src={`https://img.phimapi.com/${item.poster_url}`} alt='' />
-//                 <p className='film-title'>{item.origin_name}</p>
-//                 <p className='film-year'>{item.year}</p>
-//                 <p className='film-quality'>{item.quality}</p>
-//               </div>
-//             ))}
-//         </div>
-//         <i className='fa-solid fa-chevron-left' onClick={handleLeft}></i>
-//         <i className='fa-solid fa-chevron-right' onClick={handleRight}></i>
-//       </div>
-//     </>
-//   )
-// }
-// export default ClassesItem
 import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
 import './ClassesItem.scss'
 import { useNavigate } from 'react-router-dom'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
+import { IconClockHour9 } from '@tabler/icons-react';
 const ClassesItem = ({ title, courses, handleClickEdit, handleDelete, handleSeeMore }) => {
   const navigate = useNavigate()
   const inputElement = useRef()
@@ -110,9 +69,12 @@ const ClassesItem = ({ title, courses, handleClickEdit, handleDelete, handleSeeM
             {determineMediaType(item.videoId) === 'empty' && (
               <img src={CourseList1} alt='Khóa học' className='course-img' />
             )}
-            <p className='course-name'>{item.name}</p>
-            <div className='infor'>
-              <p>{isoDayMonthYear(item.createdAt)}</p>
+            <div className="infor-container">
+              <p className='course-name'>{item.name}</p>
+              <div className='infor'>
+                <IconClockHour9 stroke={2} />
+                <p>{isoDayMonthYear(item.createdAt)}</p>
+              </div>
             </div>
             {/* <div className='button-course-leader-item'>
               <button

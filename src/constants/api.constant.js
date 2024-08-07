@@ -1,9 +1,11 @@
 export const ApiConstant = {
   auth: {
     login: '/login',
-    forgotPassword: '/',
-    resetPassword:'',
+    sendCode: '/mail/',
+    resetPassword:'/user/password/reset',
     refreshToken: '/refresh/',
+    verify: '/verify/',
+    resendOTP: '/mail/'
   },
   courses: {
     getAll: '/course',
@@ -28,7 +30,7 @@ export const ApiConstant = {
     getItemBySectionId: '/item/section/',
   },
   users:{
-    getUserById:'/user/'
+    getUserById:'/user'
   },
   searchs: {
     getAllSuggest: '/search/suggest/',
