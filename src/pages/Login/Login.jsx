@@ -47,11 +47,16 @@ const Login = () => {
                     authen.saveUser({
                       token: res.data.data.tokenContent,
                       role: roles,
-                      username: res.data.data.userName,
+                      userName: res.data.data.userName,
                       id: res.data.data.userId,
                       refreshToken: res.data.data.refreshToken,
                       username: userCurrent.data.data.username,
                       linkAvatar: userCurrent.data.data.linkAvatar,
+                      className:userCurrent.data.data.className,
+                      linkFb: userCurrent.data.data.linkFb,
+                      email:userCurrent.data.data.email,
+                      name:userCurrent.data.data.name,
+                      description:userCurrent.data.data.description,
                     })
                   }
 

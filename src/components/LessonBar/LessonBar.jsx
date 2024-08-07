@@ -1,18 +1,18 @@
+import './LessonBar.scss'
 import { Box, Typography } from '@mui/material'
 import { IconChevronUp, IconChevronDown } from '@tabler/icons-react'
-import './LessonBar.scss'
 import { useEffect, useState } from 'react'
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 import { NavLink } from 'react-router-dom'
 
-const LessonBar = (param) => {
+const LessonBar = ({ param }) => {
   const [sections, setSections] = useState({})
   const [items, setItems] = useState({})
   const [openSection, setOpenSection] = useState(null)
 
   const showAllSection = async () => {
-    const result = await (await getSectionByCourseId(param?.param.lessonId)).data.data
+    const result = await (await getSectionByCourseId(param)).data.data
 
     const sectionsObject = result.content.reduce((acc, section) => {
       acc[section.id] = section
@@ -32,7 +32,7 @@ const LessonBar = (param) => {
 
   useEffect(() => {
     showAllSection()
-  }, [])
+  }, [param])
 
   const handleToggle = (index, sectionId) => {
     const newOpenSection = openSection === index ? null : index
@@ -45,7 +45,7 @@ const LessonBar = (param) => {
   return (
     <>
       <Box m={2}>
-        <Typography variant='h4' component='h2' style={{}} align='center'>
+        <Typography variant='h4' component='h2' align='center'>
           Nội dung khóa học
         </Typography>
       </Box>

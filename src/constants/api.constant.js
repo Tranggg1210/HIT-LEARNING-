@@ -28,7 +28,8 @@ export const ApiConstant = {
     getItemBySectionId: '/item/section/',
   },
   users:{
-    getUserById:'/user'
+    getUserById:'/user',
+    editUser:'/user/'
   },
   searchs: {
     getAllSuggest: '/search/suggest/',

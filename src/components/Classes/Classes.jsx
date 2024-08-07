@@ -90,7 +90,6 @@ const Classes = () => {
     <>
       {!isSeeMore ? (
         <>
-          
           <ClassesItem
             title='Lớp học Public'
             courses={classPublic}

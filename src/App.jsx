@@ -19,6 +19,7 @@ import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
 import CourseLeaderList from './components/CourseLeaderList/CourseLeaderList'
 import EditProfile from './pages/EditProfile/EditProfile'
+import ChangePassword from './pages/ChangePassword/ChangePassword'
 
 
 function App() {
@@ -68,6 +69,10 @@ function App() {
     {
       path: '/reset-password',
       element: <ResetPassword />,
+    },
+    {
+      path: '/change-password',
+      element: <ChangePassword/>,
     },
     {
       path: '/club-hit',
