@@ -1,0 +1,30 @@
+.admin-users {
+  overflow-x: scroll;
+  padding: 20px 40px 40px;
+
+  .admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+
+    h2 {
+      font-weight: 500;
+      text-decoration: underline;
+    }
+  }
+
+  .MuiDataGrid-root {
+    height: 100%;
+    width: 100%;
+  }
+
+  .MuiDialog-paper {
+    width: 60%;
+    border-radius: 8px;
+  }
+
+  .MuiCircularProgress-root {
+    margin: 20px auto;
+  }
+}

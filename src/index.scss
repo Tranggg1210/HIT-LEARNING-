@@ -19,11 +19,18 @@
     .outlet {
       padding: 0 60px 60px;
       & > div {
-
         width: 100%;
       }
     }
-    
+  }
+  .admin-layout-content {
+    flex-grow: 1 !important;
+    .admin-outlet {
+      padding: 0 60px;
+      .admin-box {
+        // width: 100%;
+      }
+    }
   }
 }
 .mt-72px {

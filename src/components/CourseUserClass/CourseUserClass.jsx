@@ -1,12 +1,16 @@
 import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
-import './CourseLeaderClass.scss'
-import { useNavigate } from 'react-router-dom'
-import { IconClockHour9 } from '@tabler/icons-react';
+import './CourseUserClass.scss'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-const CourseLeaderClass = ({ courses, title, onCancel }) => {
+const CourseUserClass = () => {
   const navigate = useNavigate()
   const inputElement = useRef()
+  const location = useLocation()
+  const { courses, title } = location.state || { courses: [], title: '' }
+  const handleCancel = () => {
+    navigate(-1)
+  }
   const determineMediaType = (url = '') => {
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif']
     const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv']
@@ -24,7 +28,7 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
   return (
     <div className='courses'>
       <div className='back'>
-        <p className='xem_them' onClick={onCancel}>
+        <p className='xem_them' onClick={handleCancel}>
           Quay lại
         </p>
       </div>
@@ -59,12 +63,12 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
                 <img src={CourseList1} alt='Khóa học' className='course-img' />
               )}
             </div>
-            <div className="infor-container">
-              <p className='course-name'>{item.name}</p>
-              <div className='infor'>
-                <IconClockHour9 stroke={2} />
-                <p>{isoDayMonthYear(item.createdAt)}</p>
-              </div>
+            <p className='course-name'>{item.name}</p>
+            <div className='infor'>
+              <p className='luot-xem'>Lượt xem</p>
+              <p className='icon'>
+                <IconMessageCircle></IconMessageCircle>
+              </p>
             </div>
           </div>
         ))}
@@ -73,4 +77,4 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
   )
 }
 
-export default CourseLeaderClass
+export default CourseUserClass
