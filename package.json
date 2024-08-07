@@ -28,6 +28,7 @@
     "react-router-dom": "^6.24.0",
     "redux": "^5.0.1",
     "sass": "^1.77.5",
+    "socket.io-client": "^4.7.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {

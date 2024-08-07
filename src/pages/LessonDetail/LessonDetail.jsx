@@ -13,7 +13,14 @@ const LessonDetail = () => {
   const { lessonId } = useParams()
   const navigate = useNavigate()
   const items = useSelector((state) => state.items.itemsBySectionId)
-  const currentItem = items[lessonId] ? items[lessonId][0] : null
+
+  let currentItem = null;
+  for (const sectionId in items) {
+    const itemArray = items[sectionId];
+    currentItem = itemArray.find(item => item.id === lessonId);
+    if (currentItem) break;
+    
+  }
 
   const [comment, setComment] = useState('')
   const [comments, setComments] = useState([])
@@ -58,21 +65,21 @@ const LessonDetail = () => {
           <div className='player'>
             {currentItem && (
               <>
-                {determineMediaType(currentItem.videoName) === 'video' && (
+                {determineMediaType(currentItem.videoId) === 'video' && (
                   <video controls width='600'>
                     <source
-                      src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoName}`}
+                      src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                       type='video/mp4'
                     />
                   </video>
                 )}
-                {determineMediaType(currentItem.videoName) === 'image' && (
-                  <img
-                    src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoName}`}
+                {determineMediaType(currentItem.videoId) === 'image' && (
+                  <img className='showImage' 
+                    src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />
                 )}
-                {determineMediaType(currentItem.videoName) === 'empty' && (
+                {determineMediaType(currentItem.videoId) === 'empty' && (
                   <img src={CourseList1} alt='Khóa học' />
                 )}
               </>
