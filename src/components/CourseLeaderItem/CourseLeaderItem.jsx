@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { IconMessageCircle } from '@tabler/icons-react'
 import './CourseLeaderItem.scss'
 import { useNavigate } from 'react-router-dom'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
@@ -7,14 +6,6 @@ import { IconClockHour9 } from '@tabler/icons-react';
 const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handleSeeMore }) => {
   const navigate = useNavigate()
   const inputElement = useRef()
-
-  const handleRight = () => {
-    inputElement.current?.scrollBy({ left: 300, behavior: 'smooth' })
-  }
-  console.log(courses)
-  const handleLeft = () => {
-    inputElement.current?.scrollBy({ left: -300, behavior: 'smooth' })
-  }
 
   const isoDayMonthYear = (isoString) => {
     const date = new Date(isoString)
@@ -97,8 +88,6 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
           </div>
         ))}
       </div>
-      {/* <i className='fa-solid fa-chevron-left' onClick={handleLeft}></i>
-      <i className='fa-solid fa-chevron-right' onClick={handleRight}></i> */}
     </div>
   )
 }

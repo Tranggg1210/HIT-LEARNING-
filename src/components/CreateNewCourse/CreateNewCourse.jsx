@@ -21,11 +21,11 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [status, setStatus] = useState('initial')
   const [progress, setProgress] = useState(0)
   const navigate = useNavigate()
-  const id_accsess_token = userAccess.user?.id
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     setUpload(file)
   }
+  
   const id_access_token = userAccess.user?.id ;
   const handleSubmit = async () => {
     if (folderName && describe && upload) {

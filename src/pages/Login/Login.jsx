@@ -52,10 +52,15 @@ const Login = () => {
                       refreshToken: res.data.data.refreshToken,
                       username: userCurrent.data.data.username,
                       linkAvatar: userCurrent.data.data.linkAvatar,
+                      className:userCurrent.data.data.className,
+                      linkFb: userCurrent.data.data.linkFb,
+                      email:userCurrent.data.data.email,
+                      name:userCurrent.data.data.name,
+                      description:userCurrent.data.data.description,
                     })
                   }
 
-                  if (roles.includes('ADMIN')) return navigate('/')
+                  if (roles.includes('ADMIN')) return navigate('/admin')
                   if (roles.includes('USER')) {
                     return navigate('/')
                   }

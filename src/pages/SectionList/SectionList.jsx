@@ -14,10 +14,9 @@ import CreateFolder from '../../components/CreateFolder/CreateFolder'
 import './SectionList.scss'
 import CreateSubFolder from '../../components/CreateNewSection/CreateNewSection'
 import { getCourseById } from '../../apis/courses.api'
-import { getAllSection } from '../../apis/section.api'
+import { deleteSection, getAllSection } from '../../apis/section.api'
 import { deleteItem, getAllItem } from '../../apis/item.api'
 import EditListSection from '../../components/EditListSection/EditListSection'
-
 
 const CourseList = () => {
   const [isCreatingFolder, setIsCreatingFolder] = useState(false)
@@ -64,7 +63,32 @@ const CourseList = () => {
       }
     }
   }
+  const handleDeleteSection = async (id) => {
+    try {
+      await deleteSection(id)
+      setSections(sections.filter((section) => section.id !== id))
+      toast.success('Xóa v\buổi học thành công')
+    } catch (error) {
+      toast.error('Đã xảy ra lỗi khi xóa buổi học')
+    }
+  }
 
+  const confirmDeleteSection = (sectionId) => {
+    confirmAlert({
+      title: 'Xác nhận xóa',
+      message: 'Bạn có chắc chắn muốn xóa buổi học này không?',
+      buttons: [
+        {
+          label: 'Không',
+          onClick: () => {},
+        },
+        {
+          label: 'Có',
+          onClick: () => handleDeleteSection(sectionId),
+        },
+      ],
+    })
+  }
   const handleDeleteItem = async (sectionId, itemId) => {
     try {
       await deleteItem(itemId)
@@ -72,20 +96,20 @@ const CourseList = () => {
         ...prevItems,
         [sectionId]: prevItems[sectionId].filter((item) => item.id !== itemId),
       }))
-      toast.success('Xóa mục thành công')
+      toast.success('Xóa video buổi học thành công')
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi xóa mục')
+      toast.error('Đã xảy ra lỗi khi xóa video buổi học')
     }
   }
 
   const confirmDeleteItem = (sectionId, itemId) => {
     confirmAlert({
       title: 'Xác nhận xóa',
-      message: 'Bạn có chắc chắn muốn xóa mục này không?',
+      message: 'Bạn có chắc chắn muốn xóa video buổi học này không?',
       buttons: [
         {
           label: 'Không',
-          onClick: () => { },
+          onClick: () => {},
         },
         {
           label: 'Có',
@@ -150,7 +174,7 @@ const CourseList = () => {
       {!isCreatingFolder && !isCreatingSubFolder && !isEditingSection && (
         <div className='course-list-containers'>
           <div className='course-header'>
-            <div className="course-img">
+            <div className='course-img'>
               <img
                 src={`${import.meta.env.VITE_API_SERVER}/stream/${course.videoId}`}
                 alt=''
@@ -186,6 +210,13 @@ const CourseList = () => {
                             onClick={(e) => {
                               e.stopPropagation()
                               handleCreateItem(sec.id)
+                            }}
+                          />
+                          <IconTrash
+                            className='delete-icon'
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              confirmDeleteSection(sec.id)
                             }}
                           />
                         </div>
