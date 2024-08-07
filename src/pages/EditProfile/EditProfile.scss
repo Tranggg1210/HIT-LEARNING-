@@ -3,6 +3,10 @@
 .edit-profile-container {
   display: block;
   margin-top: 15px;
+  background-color: #f7b483;
+  min-height: 100vh;
+
+  
   h2 {
     margin-left: 30px;
   }
@@ -15,115 +19,43 @@
       display: flex;
       flex-direction: column;
     }
-    .edit-profile-upload {
-      display: block;
-      background: rgba(247, 247, 247, 0.6);
-      width: 450px;
-      height: 250px;
-      position: relative;
-      border-radius: 10px;
-      margin-top: 40px;
-      @include mobile {
-        width: 90%;
-        margin-left: 30px;
-      }
-      @include small-tablet {
-        width: 70%;
-      }
-      @include tablet {
-        width: 70%;
-        margin-left: 20px;
-      }
-
-      .edit-profile-icon {
-        width: 100%;
-        position: absolute;
+    .edit-profile-infos-container{
+      border: 1px #827f77 solid 0.7 ;
+      box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.2);
+      padding: 50px;
+      background-color: #fff;
+      .edit-profile-infos {
         display: block;
-        text-align: center;
-        & > section {
-          & > ul {
-            list-style-type: none;
+        width: 350px;
+        @include mobile {
+          margin-left: 40px;
+        }
+        @include small-tablet {
+          margin-right: 40px;
+          width: 50%;
+        }
+        @include tablet {
+          width: 50%;
+          margin-right: 80px;
+        }
+        .edit-profile-info-folder,
+        .edit-profile-info-folder1,
+        .edit-profile-info-folder2,
+        .edit-profile-info-folder3 {
+          .edit-profile-textarea {
+            margin-top: 10px;
           }
-          display: block;
-          text-align: left;
         }
-        .edit-profile-name-file {
-          margin-top: 35px;
-          margin-left: 60px;
-        }
-        .edit-profile-box-upload {
-          margin-top: 45px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          .edit-profile-box-icon {
-            display: flex;
-            justify-content: center;
-            width: 70px;
-            height: 70px;
-            background-color: #f0eeee;
-            border-radius: 100%;
-            .edit-profile-icon-upload {
-              cursor: pointer;
-              width: 50px;
-              height: 65px;
-            }
+        .edit-profile-info-describe {
+          .edit-profile-textarea {
+            margin-top: 10px;
           }
         }
       }
-      .edit-profile-input-upload {
-        position: absolute;
-        margin-top: 195px;
-        display: flex;
-        justify-content: center;
-        width: 100%;
 
-        & > input {
-          display: none;
-        }
-        .edit-profile-button-upload {
-          background-color: #ffb626;
-          border: none;
-          border-radius: 6px;
-          color: white;
-          padding: 10px 20px;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          cursor: pointer;
-        }
-      }
     }
-    .edit-profile-infos {
-      display: block;
-      width: 350px;
-      @include mobile {
-        margin-left: 40px;
-      }
-      @include small-tablet {
-        margin-right: 40px;
-        width: 50%;
-      }
-      @include tablet {
-        width: 50%;
-        margin-right: 80px;
-      }
-      .edit-profile-info-folder,
-      .edit-profile-info-folder1,
-      .edit-profile-info-folder2,
-      .edit-profile-info-folder3 {
-        .edit-profile-textarea {
-          margin-top: 10px;
-        }
-      }
-      .edit-profile-info-describe {
-        .edit-profile-textarea {
-          margin-top: 10px;
-        }
-      }
-    }
+    
+    
   }
   .edit-profile-actions {
     display: flex;

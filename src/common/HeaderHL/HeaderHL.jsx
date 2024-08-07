@@ -60,6 +60,7 @@ const HeaderHL = () => {
   const handleClickSignIn = () => {
     navigate('/signIn')
   }
+  
   const handleLogOut = () => {
     currentUser.clearUser()
     navigate('/')
@@ -101,6 +102,7 @@ const HeaderHL = () => {
             <PopupState variant='popover' popupId='demo-popup-popover' className='avatar'>
               {(popupState) => (
                 <div className='box-avatar'>
+                  <h5>{currentUser?.user.name}</h5>
                   <Button
                     variant='contained'
                     {...bindTrigger(popupState)}
@@ -125,28 +127,11 @@ const HeaderHL = () => {
                       vertical: 'top',
                       horizontal: 'center',
                     }}>
-                    <Typography sx={{ width: '200px' }}>
-                      <span
-                        className='btn-dragger'
-                        style={{ padding: '12px ' }}
-                        onClick={() => navigate(`/profile/`)}>
-                        {' '}
-                        👤 Thông tin cá nhân
-                      </span>
-                      <span className='btn-dragger' style={{ padding: '12px ' }}>
-                        🔒 Thay đổi mật khẩu
-                      </span>
-                      <button
-                        style={{
-                          padding: '12px ',
-                          color: 'red',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '6px',
-                        }}
-                        className='btn-dragger'
-                        onClick={handleLogOut}>
-                        <IconLogout /> Đăng xuất
+                    <Typography sx={{   width: '200px' }}>
+                      <span className='btn-dragger' style={{padding:'12px '}} onClick={() => navigate(`/profile/`)}> 👤 Thông tin cá nhân</span>
+                      <span className='btn-dragger' style={{padding:'12px '}} onClick={()=>navigate('/change-password  ')}>🔒 Thay đổi mật khẩu</span>
+                      <button style={{padding:'12px ', color:'red',display:'flex',alignItems:'center',gap:'6px'}} className='btn-dragger' onClick={handleLogOut}>
+                       <IconLogout/> Đăng xuất
                       </button>
                     </Typography>
                   </Popover>

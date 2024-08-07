@@ -12,13 +12,12 @@ import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
-
 import Profile from './pages/Profile/Profile'
-
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
 import CourseLeaderList from './components/CourseLeaderList/CourseLeaderList'
 import EditProfile from './pages/EditProfile/EditProfile'
+import ChangePassword from './pages/ChangePassword/ChangePassword'
 import CourseUserClass from './components/CourseUserClass/CourseUserClass'
 import AdminLayout from './layouts/Layout/AdminLayout'
 import Admin from './pages/Admin/Admin'
@@ -90,6 +89,10 @@ function App() {
     {
       path: '/reset-password',
       element: <ResetPassword />,
+    },
+    {
+      path: '/change-password',
+      element: <ChangePassword/>,
     },
     {
       path: '/club-hit',
