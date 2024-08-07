@@ -7,6 +7,7 @@ const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
   headers: {
     'Content-Type': 'Application/json',
+    'ngrok-skip-browser-warning': '69420',
   },
 })
 
@@ -21,11 +22,11 @@ api.interceptors.response.use(
   async (error) => {
     if (error.code === 401) {
       const navigate = useNavigate()
-      const currentUser = JSON.parse(localStorage.getItem(LocalStorage.auth));
-      if(!currentUser){
-        navigate("/login")
+      const currentUser = JSON.parse(localStorage.getItem(LocalStorage.auth))
+      if (!currentUser) {
+        navigate('/login')
         localStorage.removeItem(LocalStorage.auth)
-      }else{
+      } else {
         try {
           const result = await refreshToken(currentUser.refreshToken)
           currentUser.token = result.data.refreshToken
@@ -34,7 +35,7 @@ api.interceptors.response.use(
           return axios(error.config)
         } catch (err) {
           toast.error('Phiên đăng nhập đã hết hạn')
-          navigate("/login")
+          navigate('/login')
           localStorage.removeItem(LocalStorage.auth)
         }
       }
@@ -47,20 +48,19 @@ const apiDefault = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'Application/json',
+    'ngrok-skip-browser-warning': '69420',
   },
 })
 
-
-export async function loginUser(login){
-  try{
-
+export async function loginUser(login) {
+  try {
     const response = await api.post('/user', login)
-    if(response.status >= 200 && response.status < 300){
+    if (response.status >= 200 && response.status < 300) {
       return response.data
-    }else{
+    } else {
       return null
     }
-  }catch(error){
+  } catch (error) {
     console.error(error)
     return null
   }
@@ -70,6 +70,7 @@ const apiDefaultUpload = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'multipart/form-data',
+    'ngrok-skip-browser-warning': '69420',
   },
 })
 

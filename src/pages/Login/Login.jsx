@@ -49,7 +49,7 @@ const Login = () => {
                     // refreshToken:
                   })
 
-                  if (roles.includes('ADMIN')) return navigate('/')
+                  if (roles.includes('ADMIN')) return navigate('/admin')
                   if (roles.includes('USER')) {
                     return navigate('/')
                   }

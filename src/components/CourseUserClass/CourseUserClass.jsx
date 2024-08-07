@@ -1,11 +1,16 @@
 import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
-import './CourseLeaderClass.scss'
-import { useNavigate } from 'react-router-dom'
+import './CourseUserClass.scss'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-const CourseLeaderClass = ({ courses, title, onCancel }) => {
+const CourseUserClass = () => {
   const navigate = useNavigate()
   const inputElement = useRef()
+  const location = useLocation()
+  const { courses, title } = location.state || { courses: [], title: '' }
+  const handleCancel = () => {
+    navigate(-1)
+  }
   const determineMediaType = (url = '') => {
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif']
     const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv']
@@ -23,7 +28,7 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
   return (
     <div className='courses'>
       <div className='back'>
-        <p className='xem_them' onClick={onCancel}>
+        <p className='xem_them' onClick={handleCancel}>
           Quay lại
         </p>
       </div>
@@ -72,4 +77,4 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
   )
 }
 
-export default CourseLeaderClass
+export default CourseUserClass

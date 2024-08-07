@@ -1,7 +1,7 @@
 import Slider from '../../components/Slider/Slider'
-import Classes from '../../components/Classes/Classes'
+import CouresUserPublic from '../../components/CouresUserPublic/CouresUserPublic'
 import './Home.scss'
-import Classess from '../../components/Classes2/Classess'
+import CouresUserPrivate from '../../components/CouresUserPrivate/CouresUserPrivate'
 import CourseLeader from '../../pages/CourseLeader/CourseLeader'
 import { Outlet } from 'react-router-dom'
 import CourseLeaderList from '../../components/CourseLeaderList/CourseLeaderList'
@@ -12,11 +12,11 @@ const Home = () => {
     <>
       <div className='content'>
         <Slider />
-        {/* {access_token ? <Classess /> : <Classes />} */}
+        {/* {access_token ? <CouresUserPrivate /> : <CouresUserPublic />} */}
         {/* <CourseLeader /> */}
         {/* <CourseLeaderList /> */}
-        {/* <Classess /> */}
-        <Classes />
+        {/* <CouresUserPrivate /> */}
+        <CouresUserPublic />
       </div>
     </>
   )

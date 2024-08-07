@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './HeaderHL.scss'
-import logo from '../../assets/images/logo1.png'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Popover from '@mui/material/Popover'
@@ -9,10 +8,6 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
 import SearchResultList from '../../components/SearchResultList/SearchResultList'
 import { getAllSuggest, getAllSection, getAllItem, getAllCourse } from '../../apis/search.api'
 import useAuth from '../../hooks/useAuth'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
 
 const HeaderHL = () => {
   const navigate = useNavigate()
@@ -66,7 +61,6 @@ const HeaderHL = () => {
   }
   const handleLogOut = () => {
     currentUser.clearUser()
-
     navigate('/')
   }
 
