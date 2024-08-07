@@ -4,12 +4,10 @@
   justify-content: space-around;
   padding: 20px;
 
-  @include mobile{
+  @include mobile {
     display: flex;
     flex-direction: column;
-    
   }
-
 
   .course-header {
     display: flex;
@@ -19,28 +17,26 @@
     text-align: center;
     padding-left: 20px;
 
-    @include mobile{
+    @include mobile {
       margin-bottom: 40px;
     }
-    @include small-tablet{
+    @include small-tablet {
       margin-top: -10px;
     }
-    
-    .course-img{
+
+    .course-img {
       width: 250px;
       height: 180px;
       .course-logo {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        
       }
     }
     & > h2 {
       margin-top: 10px;
     }
-    .edit-course-button
-    {
+    .edit-course-button {
       border-radius: 10px;
       padding: 10px;
       margin-left: 15px;
@@ -51,7 +47,7 @@
       border: none;
       cursor: pointer;
     }
-    .cancel-course-button{
+    .cancel-course-button {
       border-radius: 10px;
       padding: 10px;
       margin-left: 15px;
@@ -71,15 +67,15 @@
     padding: 20px;
     justify-content: space-between;
     border-radius: 10px;
-    
-    @include mobile{
-      width:100%;
+
+    @include mobile {
+      width: 100%;
       height: 300px;
     }
-    @include small-tablet{
+    @include small-tablet {
       width: 60%;
     }
-    @include tablet{
+    @include tablet {
       width: 60%;
     }
     .course-contents {
@@ -88,20 +84,13 @@
       display: block;
       margin-right: 50px;
 
-      
       .sections {
         .section {
           background-color: #f9f9f9;
           border: 1px solid #f9f9f9;
-          // margin-bottom: 20px;
           border-radius: 10px;
           .section-header {
             border-radius: 10px;
-            // background-color: #dad7d7;
-            // display: flex;
-            // justify-content: space-between;
-            // align-items: center;
-            // height: 40px;
             cursor: pointer;
             .section-folder-header {
               padding: 15px;
@@ -117,14 +106,14 @@
                 flex-grow: 1;
               }
             }
-           
 
             .section-actions {
               display: flex;
+              gap: 10px;
               .edit-icon,
-              .add-icon {
+              .add-icon,
+              .delete-icon {
                 cursor: pointer;
-                margin-left: 10px;
               }
             }
           }
@@ -160,7 +149,6 @@
     }
     .buttons {
       width: 140px;
-
 
       .create-section-button {
         border-radius: 10px;

@@ -12,15 +12,16 @@ import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
-
 import Profile from './pages/Profile/Profile'
-
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
 import CourseLeaderList from './components/CourseLeaderList/CourseLeaderList'
 import EditProfile from './pages/EditProfile/EditProfile'
 import ChangePassword from './pages/ChangePassword/ChangePassword'
-
+import CourseUserClass from './components/CourseUserClass/CourseUserClass'
+import AdminLayout from './layouts/Layout/AdminLayout'
+import Admin from './pages/Admin/Admin'
+import AdminCourse from './pages/AdminCourse/AdminCourse'
 
 function App() {
   const router = useRoutes([
@@ -52,7 +53,26 @@ function App() {
           path: '/course',
           element: <CourseLeaderList />,
         },
+        {
+          path: '/list-course',
+          element: <CourseUserClass />,
+        },
       ],
+    },
+    {
+      path: '/admin',
+      element: <AdminCourse />,
+      // element: <AdminLayout />,
+      // children: [
+      //   {
+      //     path: '',
+      //     element: <Admin />,
+      //   },
+      //   {
+      //     path: '/admin-course',
+      //     element: <AdminCourse />,
+      //   },
+      // ],
     },
     {
       path: '/signin',
@@ -100,7 +120,7 @@ function App() {
     },
     {
       path: '/editprofile',
-      element: <EditProfile/>,
+      element: <EditProfile />,
     },
   ])
 

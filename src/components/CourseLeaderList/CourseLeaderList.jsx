@@ -11,7 +11,7 @@ const CourseLeaderList = () => {
   const [classPublic, setClassPublic] = useState([])
   const [isSeeMore, setIsSeeMore] = useState(false)
   const [currentCourses, setCurrentCourses] = useState([])
-
+  const [titles, setTitles] = useState('')
   const loadAllCourse = async () => {
     try {
       const result = await (await getAllCourse()).data.data
@@ -60,8 +60,9 @@ const CourseLeaderList = () => {
     }
   }
 
-  const handleSeeMore = (courses) => {
+  const handleSeeMore = (courses, title) => {
     setCurrentCourses(courses)
+    setTitles(title)
     setIsSeeMore(true)
   }
 
@@ -83,18 +84,18 @@ const CourseLeaderList = () => {
             courses={classPrivate}
             handleClickEdit={handleClickEdit}
             handleDelete={handleDelete}
-            handleSeeMore={handleSeeMore}
+            handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Private')}
           />
           <CourseLeaderItem
             title='Lớp học Public'
             courses={classPublic}
             handleClickEdit={handleClickEdit}
             handleDelete={handleDelete}
-            handleSeeMore={handleSeeMore}
+            handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Public')}
           />
         </>
       ) : (
-        <CourseLeaderClass courses={currentCourses} onCancel={handleCancel} />
+        <CourseLeaderClass courses={currentCourses} onCancel={handleCancel} title={titles} />
       )}
     </>
   )
