@@ -4,17 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import { TextField } from '@mui/material';
 import useAuth from "../../hooks/useAuth";
 import { editUser } from "../../apis/user.api";
+import toast from "react-hot-toast";
 
-const EditProfile = ({ onCancel, onCreate }) => {
+const EditProfile = () => {
   const userAccess = useAuth();
   const [folderName, setFolderName] = useState(userAccess?.user?.name || '');
   const [describe, setDescribe] = useState(userAccess?.user?.username || '');
   const [linkFb, setLinkFb] = useState(userAccess?.user?.linkFb || '');
   const [linkEmail, setLinkEmail] = useState(userAccess?.user?.email || '');
   const [className, setClassName] = useState(userAccess?.user?.className || '');
-  const inputRef = useRef();
   
-  const navigate = useNavigate();
   
   const handleUpdateUser = async () => {
     if (folderName && describe && linkFb && linkEmail && className) {
@@ -24,17 +23,20 @@ const EditProfile = ({ onCancel, onCreate }) => {
         linkFb: linkFb,
         email: linkEmail,
         className: className,
+        password: 'string',
         
       };
       const userId = userAccess?.user?.id;
-      console.log("Updating user with data: ", userData);
       try {
         await editUser(userId, userData);
-        console.log("User updated successfully");
-        onCreate();
-        onCancel();
+        toast.success('Cập nhật thông tin người dùng thành công')
       } catch (error) {
-        console.log('Error updating user:', error);
+        if(error?.code === "ERR_NETWORK"){
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn');
+          return
+        }
+        toast.error('Cập nhật thông tin người dùng thất bại')
+        
       }
     }
   };
@@ -130,11 +132,6 @@ const EditProfile = ({ onCancel, onCreate }) => {
           </div>
         </div>
         <div className='edit-profile-actions'>
-          <div className='edit-profile-cancel'>
-            <button className='edit-profile-cancel-button' onClick={onCancel}>
-              HUỶ BỎ
-            </button>
-          </div>
           <div className='edit-profile-submit'>
             <button className='edit-profile-submit-button' onClick={handleUpdateUser}>
               CẬP NHẬT

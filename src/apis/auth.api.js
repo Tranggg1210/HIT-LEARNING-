@@ -22,11 +22,9 @@ const authApi = () => ({
       newPass,
       confirmPass,
     }),
-  changePassword: async ({ oldPass, newPass, confirmPass }) =>
+  changePassword: async ({userId,oldPassword, newPassword, confirmPassword }) =>
     apiDefault.put(ApiConstant.auth.changePassword, {
-      oldPass,
-      newPass,
-      confirmPass,
+      userId,oldPassword, newPassword, confirmPassword
     }),
   refreshToken: async (refreshToken) =>
     apiDefault.post(`${ApiConstant.auth.refreshToken}${refreshToken}`),

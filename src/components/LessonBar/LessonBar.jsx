@@ -7,19 +7,22 @@ import { getItemBySectionId } from '../../apis/item.api'
 import { NavLink } from 'react-router-dom'
 
 const LessonBar = ({ param }) => {
+  console.log('param lessonbar',param)
   const [sections, setSections] = useState({})
   const [items, setItems] = useState({})
   const [openSection, setOpenSection] = useState(null)
 
   const showAllSection = async () => {
     const result = await (await getSectionByCourseId(param)).data.data
+    console.log('>>>result',result)
 
     const sectionsObject = result.content.reduce((acc, section) => {
       acc[section.id] = section
       return acc
     }, {})
 
-    setSections(sectionsObject)
+    // setSections(sectionsObject)
+    console.log('>>>sections',sections)
   }
 
   const showItemsBySectionId = async (sectionId) => {

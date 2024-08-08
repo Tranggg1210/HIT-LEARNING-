@@ -14,10 +14,15 @@ import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth'
 
 const LessonDetail = () => {
-  const { lessonId } = useParams()
+  
+  const  {lessonId}  = useParams()
   const navigate = useNavigate()
   const items = useSelector((state) => state.items.itemsBySectionId)
+  const sections = useSelector((state) => state.sections.sections)
+  console.log('items',items)
+  console.log('sections.id',sections.id)
   const currentUser = useAuth()
+  console.log('>>>lessonid',lessonId)
  
 
   let currentItem = null
@@ -40,7 +45,8 @@ const LessonDetail = () => {
         userId: currentUser?.user?.id,
         comment: comment,
       }
-      const res = await createComment(newComment)
+      
+      const res = await createComment(newComment.itemId)
       if (res.success) {
         setComment('')
         getComments()
@@ -119,7 +125,7 @@ const LessonDetail = () => {
                   </video>
                 )}
                 {determineMediaType(currentItem.videoId) === 'image' && (
-                  <img className='showImage'
+                  <img width='500' className='showImage'
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />
@@ -234,7 +240,38 @@ const LessonDetail = () => {
           </div>
         </div>
         <div className='lesson-right'>
-          <LessonBar param={lessonId} />
+        <div className='course-content'>
+            <div className='lesson-content'>
+              <h2>Nội dung khóa học</h2>
+              {sections.map((section, index) => (
+                <div key={section.id} className='section'>
+                  <div className='section-header' onClick={() => handleToggle(index, section.id)}>
+                    <div className='title'>
+                      <span>{section.name}</span>
+                      <span className='arrow'>
+                        {openSection === index ? <IconChevronUp /> : <IconChevronDown />}
+                      </span>
+                    </div>
+                  </div>
+                  {openSection === index && (
+                    <div className='section-content'>
+                        {items[section.id] && Array.isArray(items[section.id]) ? (
+                          items[section.id].map((item) => (
+                            <div key={item.id} className='item'>
+                              <p>{item.name}</p>
+                              <p>Description: {item.description}</p>
+                            </div>
+                          ))
+                        ) : (
+                          <p>No items available for this section.</p>
+                        )}
+                      
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -4,9 +4,13 @@ import { Field, Formik, Form } from 'formik'
 import { changePass } from '../../utils/changePass'
 import logo from '../../assets/images/logo.jpg'
 import { changePassword } from '../../apis/auth.api'
+import useAuth from '../../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const ChangePassword = () => {
   const navigate = useNavigate()
+  const currentUser = useAuth();
+  
 
   const goBack = () => {
     navigate(-1)
@@ -14,14 +18,24 @@ const ChangePassword = () => {
   const handleChangePassword =async(values) =>{
     try{
       const response = await changePassword({
-        oldPass:values.oldPass,
-        newPass:values.newPass,
-        confirmPass:values.confirmPass
+        userId:currentUser?.user?.id,
+        oldPassword:values.oldPass,
+        newPassword:values.newPass,
+        confirmPassword:values.confirmPass
       });
-      console.log('thay doi mat khau thanh cong:', response.data);
-      useNavigate('/profile')
+      if(response?.data?.message){
+        toast.error(response?.data?.message)
+        return
+      }
+      toast.success('Thay đổi mật khẩu thành công')
+      navigate('/profile')
     }catch(error){
-      console.log('loi khi thay doi mat khau:' , error);
+      if(error?.code === "ERR_NETWORK"){
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn');
+        return;
+      }
+      toast.error('Thay đổi mật khẩu thất bại, vui lòng thử lại sau');
+      
     }
   }
 
