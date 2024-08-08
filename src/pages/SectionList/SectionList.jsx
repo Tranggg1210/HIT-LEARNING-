@@ -57,6 +57,7 @@ const CourseList = () => {
           ...prevItems,
           [sectionId]: items.data.data.content,
         }))
+        console.log('sectionItems',sectionItems)
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
       }

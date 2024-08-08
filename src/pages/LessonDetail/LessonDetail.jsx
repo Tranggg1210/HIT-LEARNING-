@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux'
 
 const LessonDetail = () => {
   const { lessonId } = useParams()
-  console.log('>>>>>lesson', lessonId)
   const navigate = useNavigate()
   const items = useSelector((state) => state.items.itemsBySectionId)
 
@@ -75,7 +74,7 @@ const LessonDetail = () => {
                   </video>
                 )}
                 {determineMediaType(currentItem.videoId) === 'image' && (
-                  <img width={800}
+                  <img className='showImage' 
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />

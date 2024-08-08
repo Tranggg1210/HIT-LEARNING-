@@ -13,4 +13,5 @@ export const sectionsStore = createSlice({
 })
 export const {setSections} = sectionsStore.actions
 
+
 export default sectionsStore.reducer
