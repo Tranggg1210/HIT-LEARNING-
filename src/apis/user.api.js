@@ -9,8 +9,10 @@ const usersApi = () => ({
     apiDefault.post(ApiConstant.users.createAccount, accountData),
   deleteAccount: async (id) => apiDefault.delete(`${ApiConstant.users.deteleAccount}${id}`),
   updateAccount: async (id, accountData) =>
-    apiDefault.put(`${ApiConstant.users.deteleAccount}${id}`, accountData),
+    apiDefault.put(`${ApiConstant.users.updateAccount}${id}`, accountData),
+    editUser: async(id,userData)=>
+        apiDefault.put(`${ApiConstant.users.editUser}${id}`,userData),
 })
 
-export const { getUserById, getAllAccount, createAccount, deleteAccount, updateAccount } =
+export const { getUserById, getAllAccount, createAccount, deleteAccount, updateAccount, editUser } =
   usersApi()

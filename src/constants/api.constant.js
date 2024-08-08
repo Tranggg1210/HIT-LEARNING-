@@ -32,7 +32,7 @@ export const ApiConstant = {
   users: {
     getUserById: '/user',
     getAllAccount: '/users',
-    createAccount: '/user',
+    createAccount: '/add',
     deteleAccount: '/user/',
     updateAccount: '/user/',
     editUser:'/user/'
