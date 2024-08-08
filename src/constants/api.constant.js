@@ -29,8 +29,14 @@ export const ApiConstant = {
     updateItem: '/item/',
     getItemBySectionId: '/item/section/',
   },
-  users:{
-    getUserById:'/user'
+  users: {
+    getUserById: '/user',
+    getAllAccount: '/users',
+    createAccount: '/add',
+    deteleAccount: '/user/',
+    updateAccount: '/user/',
+    editUser:'/user/'
+
   },
   searchs: {
     getAllSuggest: '/search/suggest/',
@@ -43,5 +49,4 @@ export const ApiConstant = {
     createComment: '/comment/',
     deleteComment: '/comment/',
   },
-
 }

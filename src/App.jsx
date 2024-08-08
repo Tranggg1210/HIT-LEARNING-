@@ -10,13 +10,20 @@ import CreateFolder from './components/CreateFolder/CreateFolder'
 import BasicCourse from './pages/BasicCourse/BasicCourse'
 import CreateNewCourse from './components/CreateNewCourse/CreateNewCourse'
 import LayoutAboutHIT from './layouts/Layout/LayoutAboutHIT'
-
 import Profile from './pages/Profile/Profile'
 import LessonDetail from './pages/LessonDetail/LessonDetail'
 import { Toaster } from 'react-hot-toast'
 import CourseLeaderList from './components/CourseLeaderList/CourseLeaderList'
 import EditProfile from './pages/EditProfile/EditProfile'
+
 import Auth from './pages/Auth/Auth'
+
+import ChangePassword from './pages/ChangePassword/ChangePassword'
+import CourseUserClass from './components/CourseUserClass/CourseUserClass'
+import AdminLayout from './layouts/Layout/AdminLayout'
+import Admin from './pages/Admin/Admin'
+import AdminCourse from './pages/AdminCourse/AdminCourse'
+import AdminAccount from './pages/AdminAccount/AdminAccount'
 
 
 function App() {
@@ -49,6 +56,28 @@ function App() {
           path: '/course',
           element: <CourseLeaderList />,
         },
+        {
+          path: '/list-course',
+          element: <CourseUserClass />,
+        },
+      ],
+    },
+    {
+      path: '/admin',
+      element: <AdminLayout />,
+      children: [
+        {
+          path: '',
+          element: <Admin />,
+        },
+        {
+          path: '/admin/admin-course',
+          element: <AdminCourse />,
+        },
+        {
+          path: '/admin/admin-account',
+          element: <AdminAccount />,
+        },
       ],
     },
     {
@@ -65,6 +94,10 @@ function App() {
       element: <Auth />,
     },
     
+    {
+      path: '/change-password',
+      element: <ChangePassword/>,
+    },
     {
       path: '/club-hit',
       element: <LayoutAboutHIT />,
@@ -91,7 +124,7 @@ function App() {
     },
     {
       path: '/editprofile',
-      element: <EditProfile/>,
+      element: <EditProfile />,
     },
   ])
 
