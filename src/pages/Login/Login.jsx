@@ -42,15 +42,15 @@ const Login = () => {
                 const res = await login(values)
                 if (res.data.data.tokenContent) {
                   const roles = res.data.data.roleName
-                  const userCurrent =  await getUserById(res.data.data.userId);
-                  if(userCurrent){
+                  const userCurrent = await getUserById(res.data.data.userId)
+                  if (userCurrent) {
                     authen.saveUser({
                       token: res.data.data.tokenContent,
                       role: roles,
                       username: res.data.data.userName,
                       id: res.data.data.userId,
                       refreshToken: res.data.data.refreshToken,
-                      username: userCurrent.data.data.username,
+                      userName: userCurrent.data.data.username,
                       linkAvatar: userCurrent.data.data.linkAvatar,
                     })
                   }

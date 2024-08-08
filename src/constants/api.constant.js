@@ -2,7 +2,7 @@ export const ApiConstant = {
   auth: {
     login: '/login',
     forgotPassword: '/',
-    resetPassword:'',
+    resetPassword: '',
     refreshToken: '/refresh/',
   },
   courses: {
@@ -27,8 +27,12 @@ export const ApiConstant = {
     updateItem: '/item/',
     getItemBySectionId: '/item/section/',
   },
-  users:{
-    getUserById:'/user'
+  users: {
+    getUserById: '/user',
+    getAllAccount: '/users',
+    createAccount: '/user',
+    deteleAccount: '/user/',
+    updateAccount: '/user/',
   },
   searchs: {
     getAllSuggest: '/search/suggest/',
@@ -41,5 +45,4 @@ export const ApiConstant = {
     createComment: '/comment/',
     deleteComment: '/comment/',
   },
-
 }
