@@ -11,10 +11,10 @@ import Button from '@mui/material/Button'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 import { useState, useEffect } from 'react'
-import { deleteCourse, getAllCourse } from '../../apis/courses.api'
-import './AdminCourse.scss'
-import AdminCreateCourse from '../../components/AdminCreateCourse/AdminCreateCourse'
+import './AdminAccount.scss'
 import { useNavigate } from 'react-router-dom'
+import { deleteAccount, getAllAccount } from '../../apis/user.api'
+import AdminCreateAccount from '../../components/AdminCreateAccount/AdminCreateAccount'
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -35,25 +35,25 @@ const StyledTableRow = styled(TableRow)({
   },
 })
 
-const AdminCourse = () => {
+const AdminAccount = () => {
   const [rows, setRows] = useState([])
   const [page, setPage] = useState(1)
   const [totalRows, setTotalRows] = useState(0)
   const [open, setOpen] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
-  const [currentCourse, setCurrentCourse] = useState(null)
+  const [currentAccount, setCurrentAccount] = useState(null)
   const navigate = useNavigate()
 
-  const handleOpen = (course = null) => {
-    setIsEditing(!!course)
-    setCurrentCourse(course)
+  const handleOpen = (account = null) => {
+    setIsEditing(!!account)
+    setCurrentAccount(account)
     setOpen(true)
   }
 
   const handleClose = () => {
     setOpen(false)
     setIsEditing(false)
-    setCurrentCourse(null)
+    setCurrentAccount(null)
   }
 
   const size = 3
@@ -68,9 +68,10 @@ const AdminCourse = () => {
 
   const loadData = async () => {
     try {
-      const response = await (await getAllCourse()).data.data
-      setTotalRows(response.content.length)
-      setRows(response.content.slice((page - 1) * size, page * size))
+      const response = await (await getAllAccount()).data.data
+      console.log('account', response)
+      setTotalRows(response.length)
+      setRows(response.slice((page - 1) * size, page * size))
     } catch (error) {
       console.error('Error loadData data: ', error)
     }
@@ -84,14 +85,14 @@ const AdminCourse = () => {
     setPage(value)
   }
 
-  const handleEdit = (course) => {
-    handleOpen(course)
+  const handleEdit = (account) => {
+    handleOpen(account)
   }
 
-  const handleDeleteCourse = async (id) => {
+  const handleDeleteAccount = async (id) => {
     try {
-      await deleteCourse(id)
-      setRows(rows.filter((course) => course.id !== id))
+      await deleteAccount(id)
+      setRows(rows.filter((account) => account.id !== id))
     } catch (error) {
       console.log(error)
     }
@@ -107,7 +108,7 @@ const AdminCourse = () => {
   return (
     <>
       <div className='box-add'>
-        <h1>Quản trị khoá học</h1>
+        <h1>Quản trị tài khoản</h1>
         <Button
           variant='contained'
           onClick={() => handleOpen()}
@@ -115,13 +116,13 @@ const AdminCourse = () => {
             Height: '48px',
             background: 'linear-gradient(94deg, #f4b81e 78.55%, #f67102 106.63%)',
           }}>
-          Thêm khoá học
+          Thêm tài khoản
         </Button>
         {open && (
-          <AdminCreateCourse
+          <AdminCreateAccount
             opens={open}
             handleCloses={handleClose}
-            courseData={currentCourse}
+            accountData={currentAccount}
             isEditing={isEditing}
             onEditSuccess={loadData}
           />
@@ -146,13 +147,13 @@ const AdminCourse = () => {
                   sx={{
                     width: '400px',
                   }}>
-                  Tên khoá học
+                  ID
                 </StyledTableCell>
                 <StyledTableCell align='center' sx={cellStyle}>
-                  Mô tả
+                  Tên người dùng
                 </StyledTableCell>
                 <StyledTableCell align='center' sx={{ width: '300px' }}>
-                  Tên leader
+                  Email
                 </StyledTableCell>
                 <StyledTableCell align='center' sx={{ width: '200px' }}>
                   Ngày tạo
@@ -166,11 +167,11 @@ const AdminCourse = () => {
               {rows.map((row, idx) => (
                 <StyledTableRow key={row.id}>
                   <StyledTableCell align='center'>{idx + 1}</StyledTableCell>
-                  <StyledTableCell align='center'>{row.name}</StyledTableCell>
+                  <StyledTableCell align='center'>{row.id}</StyledTableCell>
                   <StyledTableCell align='center' sx={cellStyle}>
-                    {row.description}
+                    {row.name}
                   </StyledTableCell>
-                  <StyledTableCell align='center'>{row.leaderName}</StyledTableCell>
+                  <StyledTableCell align='center'>{row.email}</StyledTableCell>
                   <StyledTableCell align='center'>{isoDayMonthYear(row.createdAt)}</StyledTableCell>
                   <StyledTableCell
                     align='center'
@@ -193,7 +194,7 @@ const AdminCourse = () => {
                     <Button
                       variant='contained'
                       sx={{ width: '80px', fontSize: '10px', backgroundColor: 'silver' }}
-                      onClick={() => handleDeleteCourse(row.id)}>
+                      onClick={() => handleDeleteAccount(row.id)}>
                       Xoá
                     </Button>
                   </StyledTableCell>
@@ -215,4 +216,4 @@ const AdminCourse = () => {
   )
 }
 
-export default AdminCourse
+export default AdminAccount

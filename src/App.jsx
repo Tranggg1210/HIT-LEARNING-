@@ -23,6 +23,7 @@ import CourseUserClass from './components/CourseUserClass/CourseUserClass'
 import AdminLayout from './layouts/Layout/AdminLayout'
 import Admin from './pages/Admin/Admin'
 import AdminCourse from './pages/AdminCourse/AdminCourse'
+import AdminAccount from './pages/AdminAccount/AdminAccount'
 
 
 function App() {
@@ -63,18 +64,21 @@ function App() {
     },
     {
       path: '/admin',
-      element: <AdminCourse />,
-      // element: <AdminLayout />,
-      // children: [
-      //   {
-      //     path: '',
-      //     element: <Admin />,
-      //   },
-      //   {
-      //     path: '/admin-course',
-      //     element: <AdminCourse />,
-      //   },
-      // ],
+      element: <AdminLayout />,
+      children: [
+        {
+          path: '',
+          element: <Admin />,
+        },
+        {
+          path: '/admin/admin-course',
+          element: <AdminCourse />,
+        },
+        {
+          path: '/admin/admin-account',
+          element: <AdminAccount />,
+        },
+      ],
     },
     {
       path: '/signin',
