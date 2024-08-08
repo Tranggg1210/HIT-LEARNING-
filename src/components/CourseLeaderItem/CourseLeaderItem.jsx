@@ -62,6 +62,7 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
             )}
             <div className='infor-container'>
               <p className='course-name'>{item.name}</p>
+              <p className='course-leader-name'>{item.leaderName}</p>
               <div className='infor'>
                 <IconClockHour9 stroke={2} />
                 <p>{isoDayMonthYear(item.createdAt)}</p>

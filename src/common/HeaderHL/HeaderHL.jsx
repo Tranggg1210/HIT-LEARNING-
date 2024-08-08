@@ -16,7 +16,7 @@ const HeaderHL = () => {
   const currentUser = useAuth()
   const [results, setResults] = useState([])
   const [searchInput, setSearchInput] = useState('')
-  const [apiEndpoint, setApiEndpoint] = useState('suggest')
+  const [apiEndpoint, setApiEndpoint] = useState('course')
 
   const fetchData = async (value) => {
     if (!value.trim()) {
@@ -60,7 +60,19 @@ const HeaderHL = () => {
   const handleClickSignIn = () => {
     navigate('/signIn')
   }
-  
+  const handleSearch = () => {
+    fetchData(searchInput)
+    setSearchInput('')
+    setResults([])
+    navigate('/result-search', { state: { results } })
+  }
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch()
+    }
+  }
+
   const handleLogOut = () => {
     currentUser.clearUser()
     navigate('/')
@@ -75,12 +87,12 @@ const HeaderHL = () => {
             value={apiEndpoint}
             onChange={handleApiEndpointChange}
             className='api-endpoint-select'>
+            <option value='course'>Course</option>
             <option value='suggest' disabled>
               Gợi ý
             </option>
-            <option value='section'>Section</option>
-            <option value='item'>Item</option>
-            <option value='course'>Course</option>
+            {/* <option value='section'>Section</option>
+            <option value='item'>Item</option> */}
           </select>
           <div className='search'>
             <i className='fa-solid fa-magnifying-glass'></i>
@@ -89,10 +101,19 @@ const HeaderHL = () => {
               type='text'
               value={searchInput}
               onChange={(e) => handleChange(e.target.value)}
+              onKeyPress={handleKeyPress}
               placeholder='Nhập tìm kiếm...'
             />
           </div>
-          {Array.isArray(results) && <SearchResultList result={results} />}
+          {searchInput && results.length > 0 && (
+            <SearchResultList
+              result={results}
+              clearSearch={() => {
+                setSearchInput('')
+                setResults([])
+              }}
+            />
+          )}
         </div>
       </div>
 
@@ -127,11 +148,31 @@ const HeaderHL = () => {
                       vertical: 'top',
                       horizontal: 'center',
                     }}>
-                    <Typography sx={{   width: '200px' }}>
-                      <span className='btn-dragger' style={{padding:'12px '}} onClick={() => navigate(`/profile/`)}> 👤 Thông tin cá nhân</span>
-                      <span className='btn-dragger' style={{padding:'12px '}} onClick={()=>navigate('/change-password  ')}>🔒 Thay đổi mật khẩu</span>
-                      <button style={{padding:'12px ', color:'red',display:'flex',alignItems:'center',gap:'6px'}} className='btn-dragger' onClick={handleLogOut}>
-                       <IconLogout/> Đăng xuất
+                    <Typography sx={{ width: '200px' }}>
+                      <span
+                        className='btn-dragger'
+                        style={{ padding: '12px ' }}
+                        onClick={() => navigate(`/profile/`)}>
+                        {' '}
+                        👤 Thông tin cá nhân
+                      </span>
+                      <span
+                        className='btn-dragger'
+                        style={{ padding: '12px ' }}
+                        onClick={() => navigate('/change-password  ')}>
+                        🔒 Thay đổi mật khẩu
+                      </span>
+                      <button
+                        style={{
+                          padding: '12px ',
+                          color: 'red',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                        }}
+                        className='btn-dragger'
+                        onClick={handleLogOut}>
+                        <IconLogout /> Đăng xuất
                       </button>
                     </Typography>
                   </Popover>

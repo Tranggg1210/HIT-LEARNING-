@@ -5,18 +5,16 @@ import CouresUserPrivate from '../../components/CouresUserPrivate/CouresUserPriv
 import CourseLeader from '../../pages/CourseLeader/CourseLeader'
 import { Outlet } from 'react-router-dom'
 import CourseLeaderList from '../../components/CourseLeaderList/CourseLeaderList'
+import useAuth from '../../hooks/useAuth'
 
 const Home = () => {
-  const access_token = localStorage.getItem('token')
+  const currentUser = useAuth()
+  const access_token = currentUser.user?.role
   return (
     <>
       <div className='content'>
         <Slider />
-        {/* {access_token ? <CouresUserPrivate /> : <CouresUserPublic />} */}
-        {/* <CourseLeader /> */}
-        {/* <CourseLeaderList /> */}
-        {/* <CouresUserPrivate /> */}
-        <CouresUserPublic />
+        {access_token?.includes('USER') ? <CouresUserPrivate /> : <CouresUserPublic />}
       </div>
     </>
   )
