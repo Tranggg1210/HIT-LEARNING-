@@ -21,10 +21,12 @@ const BasicCourse = () => {
   const param = useParams()
   const loadDataCourses = async () => {
     try {
+
       const response = await getCourseById(param.id)
       response && response.data && response.data.data
       const result = response.data.data
       setBasicCourses(result)
+
     } catch (error) {
       console.log(error.response?.data?.message)
     }

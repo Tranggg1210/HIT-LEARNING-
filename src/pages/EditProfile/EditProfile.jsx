@@ -1,21 +1,22 @@
-import "./EditProfile.scss";
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { TextField } from '@mui/material';
-import useAuth from "../../hooks/useAuth";
-import { editUser } from "../../apis/user.api";
+import './EditProfile.scss'
+import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { TextField } from '@mui/material'
+import useAuth from '../../hooks/useAuth'
+import { editUser } from '../../apis/user.api'
+import toast from 'react-hot-toast'
 
 const EditProfile = ({ onCancel, onCreate }) => {
-  const userAccess = useAuth();
-  const [folderName, setFolderName] = useState(userAccess?.user?.name || '');
-  const [describe, setDescribe] = useState(userAccess?.user?.username || '');
-  const [linkFb, setLinkFb] = useState(userAccess?.user?.linkFb || '');
-  const [linkEmail, setLinkEmail] = useState(userAccess?.user?.email || '');
-  const [className, setClassName] = useState(userAccess?.user?.className || '');
-  const inputRef = useRef();
-  
-  const navigate = useNavigate();
-  
+  const userAccess = useAuth()
+  const [folderName, setFolderName] = useState(userAccess?.user?.name || '')
+  const [describe, setDescribe] = useState(userAccess?.user?.username || '')
+  const [linkFb, setLinkFb] = useState(userAccess?.user?.linkFb || '')
+  const [linkEmail, setLinkEmail] = useState(userAccess?.user?.email || '')
+  const [className, setClassName] = useState(userAccess?.user?.className || '')
+  const inputRef = useRef()
+
+  const navigate = useNavigate()
+
   const handleUpdateUser = async () => {
     if (folderName && describe && linkFb && linkEmail && className) {
       const userData = {
@@ -24,27 +25,26 @@ const EditProfile = ({ onCancel, onCreate }) => {
         linkFb: linkFb,
         email: linkEmail,
         className: className,
-        
-      };
-      const userId = userAccess?.user?.id;
-      console.log("Updating user with data: ", userData);
+      }
+      const userId = userAccess?.user?.id
+
       try {
-        await editUser(userId, userData);
-        console.log("User updated successfully");
-        onCreate();
-        onCancel();
+        await editUser(userId, userData)
+        toast.success('Sửa dữ liệu người dùng thành công!')
+        onCreate()
+        onCancel()
       } catch (error) {
-        console.log('Error updating user:', error);
+        toast.error('Đã xảy ra lỗi khi sửa dữ liệu người dùng')
       }
     }
-  };
+  }
 
   return (
     <>
       <div className='edit-profile-container'>
         <h2>CHỈNH SỬA THÔNG TIN CÁ NHÂN</h2>
         <div className='edit-profile-header'>
-          <div className="edit-profile-infos-container">
+          <div className='edit-profile-infos-container'>
             <div className='edit-profile-infos'>
               <div className='edit-profile-info-folder'>
                 <TextField
@@ -143,7 +143,7 @@ const EditProfile = ({ onCancel, onCreate }) => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default EditProfile;
+export default EditProfile

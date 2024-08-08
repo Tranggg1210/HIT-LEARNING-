@@ -4,6 +4,7 @@ import { Field, Formik, Form } from 'formik'
 import { changePass } from '../../utils/changePass'
 import logo from '../../assets/images/logo.jpg'
 import { changePassword } from '../../apis/auth.api'
+import toast from 'react-hot-toast'
 
 const ChangePassword = () => {
   const navigate = useNavigate()
@@ -11,17 +12,17 @@ const ChangePassword = () => {
   const goBack = () => {
     navigate(-1)
   }
-  const handleChangePassword =async(values) =>{
-    try{
+  const handleChangePassword = async (values) => {
+    try {
       const response = await changePassword({
-        oldPass:values.oldPass,
-        newPass:values.newPass,
-        confirmPass:values.confirmPass
-      });
-      console.log('thay doi mat khau thanh cong:', response.data);
+        oldPass: values.oldPass,
+        newPass: values.newPass,
+        confirmPass: values.confirmPass,
+      })
+      toast.success('Thay đổi mật khẩu thành công')
       useNavigate('/profile')
-    }catch(error){
-      console.log('loi khi thay doi mat khau:' , error);
+    } catch (error) {
+      toast.error('Đã xảy ra lỗi khi thay đổi mật khẩu')
     }
   }
 
@@ -39,14 +40,14 @@ const ChangePassword = () => {
           </div>
           <Formik
             initialValues={{
-              oldPass:'',
+              oldPass: '',
               newPass: '',
               confirmPass: '',
             }}
             validationSchema={changePass()}
-            onSubmit={(values ,{setSubmitting}) => {
-              handleChangePassword(values);
-              setSubmitting(false);
+            onSubmit={(values, { setSubmitting }) => {
+              handleChangePassword(values)
+              setSubmitting(false)
             }}>
             {({ errors, touched }) => (
               <Form>

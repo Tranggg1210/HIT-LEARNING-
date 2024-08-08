@@ -46,6 +46,12 @@
         font-size: 28px;
         font-weight: 700;
       }
+      .course-leader-name {
+        text-align: center;
+        font-size: 17px;
+        font-weight: 700;
+        height: 50px;
+      }
       .infor {
         margin-top: 12px;
         @include flex(center, center);

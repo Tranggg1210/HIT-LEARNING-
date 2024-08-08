@@ -1,14 +1,14 @@
-import { changePass } from "../utils/changePass";
+import { changePass } from '../utils/changePass'
 
 export const ApiConstant = {
   auth: {
     login: '/login',
     sendCode: '/mail/',
-    resetPassword:'/user/password/reset',
-    changePassword:'user/password/change',
+    resetPassword: '/user/password/reset',
+    changePassword: 'user/password/change',
     refreshToken: '/refresh/',
     verify: '/verify/',
-    resendOTP: '/mail/'
+    resendOTP: '/mail/',
   },
   courses: {
     getAll: '/course',
@@ -38,14 +38,15 @@ export const ApiConstant = {
     createAccount: '/add',
     deteleAccount: '/user/',
     updateAccount: '/user/',
-    editUser:'/user/'
-
+    editUser: '/user/',
   },
   searchs: {
     getAllSuggest: '/search/suggest/',
     getAllSection: '/search/section/',
     getAllItem: '/search/item/',
     getAllCourse: '/search/course/',
+    getAdminCourse: '/search/course/filter-name/',
+    getAdminUser: '/search/user/filter-name/',
   },
   comment: {
     getComment: '/comment/',

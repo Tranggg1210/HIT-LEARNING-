@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { deleteCourse, getAllCourse } from '../../apis/courses.api'
 import CourseLeaderItem from '../CourseLeaderItem/CourseLeaderItem'
 import CourseLeaderClass from '../CourseLeaderClass/CourseLeaderClass'
+import toast from 'react-hot-toast'
 
 const CourseLeaderList = () => {
   const [courses, setCourses] = useState([])
@@ -17,7 +18,7 @@ const CourseLeaderList = () => {
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
     } catch (error) {
-      console.log(error)
+      toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     }
   }
 
@@ -56,7 +57,7 @@ const CourseLeaderList = () => {
       await deleteCourse(id)
       setCourses(courses.filter((course) => course.id !== id))
     } catch (error) {
-      console.log(error)
+      toast.error('Đã xảy ra lỗi khi xoá dữ liệu khóa học')
     }
   }
 
