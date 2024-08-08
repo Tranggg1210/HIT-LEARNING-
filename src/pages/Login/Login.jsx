@@ -47,7 +47,6 @@ const Login = () => {
                     authen.saveUser({
                       token: res.data.data.tokenContent,
                       role: roles,
-                      userName: res.data.data.userName,
                       id: res.data.data.userId,
                       refreshToken: res.data.data.refreshToken,
                       userName: userCurrent.data.data.username,
@@ -94,7 +93,7 @@ const Login = () => {
                   <p className='errorMsg'>{errors.password}</p>
                 ) : null}
                 <div className='forgot-password'>
-                  <Link to='/forgot-password/username'>
+                  <Link to='/forgot-password'>
                     <i>Quên mật khẩu ?</i>
                   </Link>
                 </div>

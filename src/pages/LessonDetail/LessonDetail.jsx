@@ -1,83 +1,102 @@
 import './LessonDetail.scss'
 import '../../styles/index.scss'
-import { Typography, Button, Box, TextField, List, ListItem, ListItemText, Avatar } from '@mui/material'
-import Modal from '@mui/material/Modal'
-import { IconChevronLeft, IconHeart, IconHeartFilled, IconEye, IconDownload, IconBubbleText } from '@tabler/icons-react'
+import { Typography, List, ListItem, ListItemText } from '@mui/material'
+import {
+  IconChevronLeft,
+  IconHeart,
+  IconHeartFilled,
+  IconEye,
+  IconDownload,
+} from '@tabler/icons-react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LessonBar from '../../components/LessonBar/LessonBar'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
-import { useSelector } from 'react-redux'
 import { createComment, getComment } from '../../apis/comment.api'
 import moment from 'moment'
 import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth'
+import { getItemById } from '../../apis/item.api'
 
 const LessonDetail = () => {
-  const { lessonId } = useParams()
+  const { lessonId, courseId } = useParams()
   const navigate = useNavigate()
-  const items = useSelector((state) => state.items.itemsBySectionId)
-  const currentUser = useAuth()
- 
+  // const [downloadUrl, setDownloadUrl] = useState('')
+  const [currentItem, setCurrentItem] = useState({})
 
-  let currentItem = null
-  for (const sectionId in items) {
-    const itemArray = items[sectionId]
-    currentItem = itemArray.find((item) => item.id === lessonId)
-    if (currentItem) break
+  const currentUser = useAuth()
+  console.log('current User', currentUser)
+
+  // const handleURLImage = async (url) => {
+  //   try {
+  //     const response = await fetch(url);
+  //     console.log('url',url)
+  //     const blob = await response.blob();
+  //     const imageUrl = URL.createObjectURL(blob);
+  //     setDownloadUrl(imageUrl);
+  //   } catch (error) {
+  //     console.error('Lỗi khi tải ảnh:', error);
+  //   }
+  // };
+
+  // const handleDownload = async (url, fileName) => {
+  //   try {
+  //     const response = await fetch(url)
+  //     const blob = await response.blob()
+  //     const downloadUrl = URL.createObjectURL(blob)
+
+  //     // Tạo một thẻ a ẩn để kích hoạt tải xuống
+  //     const a = document.createElement('a')
+  //     a.href = downloadUrl
+  //     a.download = fileName // Tên file sẽ tải xuống, có thể là 'file.jpg', 'video.mp4', v.v.
+  //     document.body.appendChild(a)
+  //     a.click()
+  //     document.body.removeChild(a)
+
+  //     // Giải phóng
+  //     URL.revokeObjectURL(downloadUrl)
+  //   } catch (error) {
+  //     console.error('Lỗi khi tải file:', error)
+  //   }
+  // }
+
+  const loadCurrentItem = async () => {
+    try {
+      const items = await getItemById(lessonId)
+      const commentRes = await getComment(lessonId)
+      console.log('commentRes', commentRes)
+
+      setCurrentItem(items.data.data)
+      setComments(commentRes.data.data)
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   const [comment, setComment] = useState('')
   const [comments, setComments] = useState([])
-  const [open, setOpen] = useState(false)
+  const [showAddComment, setShowAddComment] = useState(false)
   const [like, setLike] = useState(false)
 
-  const addComment = async () => {
-    if (!comment.trim()) return
-    try {
-      const newComment = {
-        itemId: lessonId,
-        userId: currentUser?.user?.id,
-        comment: comment,
-      }
-      const res = await createComment(newComment)
-      if (res.success) {
-        setComment('')
-        getComments()
-        toast.success('Comment added successfully')
-      } else {
-        toast.error(res.message)
-      }
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
-
-  const getComments = async () => {
-    try {
-      const res = await getComment(lessonId)
-      if (res.success) {
-        setComments(res.data)
-      } else {
-        toast.error(res.message)
-      }
-    } catch (error) {
-      toast.error(error.message)
-    }
-  }
-
-  useEffect(() => {
-    getComments()
-  }, [])
-
   const handleBack = () => navigate('/')
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
   const handleLike = () => setLike(!like)
 
-  const handleSubmit = () => {
-    addComment()
-    handleClose()
+  const addComment = async () => {
+    try {
+      const res = await createComment(lessonId, {
+        username: currentUser?.user?.userName,
+        comment,
+      })
+      console.log('res', res)
+      if (res.data) {
+        loadCurrentItem()
+        setComment('')
+        setShowAddComment(false)
+        toast.success('Gửi thành công')
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
   }
 
   const determineMediaType = (url = '') => {
@@ -91,11 +110,18 @@ const LessonDetail = () => {
     return 'empty'
   }
 
-  const getDownloadLink = () => {
-    const mediaType = determineMediaType(currentItem?.videoId)
-    const extension = mediaType === 'video' ? '.mp4' : mediaType === 'image' ? '.jpg' : ''
-    return `${import.meta.env.VITE_API_SERVER}/stream/${currentItem?.videoId}${extension}`
-  }
+  // const getDownloadLink = () => {
+  //   const mediaType = determineMediaType(currentItem?.videoId)
+  //   const extension = mediaType === 'video' ? '.mp4' : mediaType === 'image' ? '.jpg' : ''
+  //   return `${import.meta.env.VITE_API_SERVER}/stream/${currentItem?.videoId}${extension}`
+  // }
+  useEffect(() => {
+    loadCurrentItem()
+    // if (currentItem?.videoName) {
+    //   handleDownload(currentItem?.videoName)
+    // }
+  }, [lessonId])
+  console.log('currentItem', currentItem)
 
   return (
     <div className='lesson-detail'>
@@ -119,7 +145,8 @@ const LessonDetail = () => {
                   </video>
                 )}
                 {determineMediaType(currentItem.videoId) === 'image' && (
-                  <img className='showImage'
+                  <img
+                    className='showImage'
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />
@@ -135,7 +162,7 @@ const LessonDetail = () => {
                   <div className='des-left'>
                     <h2>{currentItem?.name}</h2>
                     <span className='sub eye'>
-                      <IconEye /> {currentItem?.views || 0} lượt xem
+                      <IconEye /> {currentItem.view || 0} lượt xem
                     </span>
                     <br />
                     <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
@@ -147,7 +174,8 @@ const LessonDetail = () => {
                       <button className='btn-des' onClick={handleLike}>
                         {like ? <IconHeartFilled /> : <IconHeart />}
                       </button>
-                      <a href={getDownloadLink()} download={currentItem?.name} className='btn-des'>
+
+                      <a href={'hello'} download className='btn-des'>
                         <IconDownload /> Tải xuống
                       </a>
                     </div>
@@ -169,60 +197,55 @@ const LessonDetail = () => {
               </div>
             </div>
           </div>
-          <div className='lesson-comment'>
-            <button onClick={handleOpen}>
-              <IconBubbleText />
-              Bình luận
-            </button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby='modal-title'
-              aria-describedby='modal-description'>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '50%',
-                  left: '50%',
-                  transform: 'translate(-50%, -50%)',
-                  width: 400,
-                  bgcolor: 'background.paper',
-                  boxShadow: 24,
-                  p: 4,
-                }}>
-                <Typography id='modal-title' variant='h6' component='h2'>
-                  Thêm bình luận
-                </Typography>
-                <TextField
-                  id='modal-description'
-                  label='Bình luận'
-                  multiline
-                  rows={4}
-                  variant='outlined'
-                  fullWidth
+          <div>
+            {!showAddComment && (
+              <div className='lesson-comment' onClick={() => setShowAddComment(!showAddComment)}>
+                <div
+                  className='comment'
+                  style={{ border: '1px solid black', padding: '1rem', cursor: 'pointer' }}>
+                  <h3>Binh luan</h3>
+                </div>
+              </div>
+            )}
+            {showAddComment && (
+              <div className='text-comment'>
+                <textarea
                   value={comment}
+                  rows={4}
                   onChange={(e) => setComment(e.target.value)}
-                  sx={{ mt: 2, mb: 2 }}
-                />
-                <Button variant='contained' color='primary' onClick={handleSubmit}>
-                  Gửi
-                </Button>
-              </Box>
-            </Modal>
+                  style={{
+                    width: '100%',
+                    border: '1px solid black',
+                    padding: '1rem',
+                    marginTop: '1rem',
+                  }}></textarea>
+
+                <button onClick={() => setShowAddComment(false)}>Hủy</button>
+                <button onClick={addComment}>Gửi</button>
+              </div>
+            )}
           </div>
           <div className='comment-box'>
             <List sx={{ mt: 2 }}>
               {comments.map((cmt, index) => (
                 <ListItem key={index} alignItems='flex-start'>
-                  <div style={{backgroundColor: 'gray', width:'2rem', height:'2rem', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', marginRight:'1rem'}}>
-                    <img src="https://picsum.photos/200/300/?blur" alt={currentUser?.user?.name} />
-                  </div>
+                  <div
+                    style={{
+                      backgroundColor: 'gray',
+                      width: '2rem',
+                      height: '2rem',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: '1rem',
+                    }}></div>
                   <ListItemText
-                    primary={cmt.userName}
+                    primary={cmt?.user.username}
                     secondary={
                       <>
                         {cmt.comment}
-                        <Typography variant="caption" display="block" gutterBottom>
+                        <Typography variant='caption' display='block' gutterBottom>
                           {moment(cmt.createdAt).format('DD-MM-YYYY HH:mm:ss')}
                         </Typography>
                       </>
@@ -234,7 +257,7 @@ const LessonDetail = () => {
           </div>
         </div>
         <div className='lesson-right'>
-          <LessonBar param={lessonId} />
+          <LessonBar param={courseId} />
         </div>
       </div>
     </div>

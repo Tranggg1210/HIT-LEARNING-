@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { verify, sendCode } from '../../apis/auth.api'
 
-const ForgotPassword = ({ username, handleVerify }) => {
+const ForgotPassword = () => {
   const navigate = useNavigate()
   const [countdown, setCountdown] = useState(60)
   const [isResendDisabled, setIsResendDisabled] = useState(true)
@@ -34,7 +34,7 @@ const ForgotPassword = ({ username, handleVerify }) => {
 
   const handleResendOTP = async () => {
     try {
-      const res = await sendCode({ username })
+      const res = await sendCode(localStorage.getItem("username"))
       if (res.data.data) {
         toast.success('OTP resent successfully')
         setCountdown(60)
@@ -66,12 +66,12 @@ const ForgotPassword = ({ username, handleVerify }) => {
             validationSchema={forgotPassValid}
             onSubmit={async (values) => {
               try {
-                const res = await verify(username, values.otp)
+                const res = await verify(localStorage.getItem("username"), values.otp)
                 if (res.status === 200) {
-                  handleVerify()
+                  navigate('/reset-password')
                 } else {
                   toast.error(res.data.message)
-                  navigate('/forgot-password/username')
+                  navigate('/forgot-password')
                 }
               } catch (err) {
                 toast.error(err.message)

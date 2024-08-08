@@ -17,10 +17,11 @@ const authApi = () => ({
       username,
     }),
 
-  resetPassword: async ({ newPass, confirmPass }) =>
+  resetPassword: async ({userId, newPassword, confirmPassword }) =>
     apiDefault.put(ApiConstant.auth.resetPassword, {
-      newPass,
-      confirmPass,
+      userId,
+      newPassword,
+      confirmPassword,
     }),
   changePassword: async ({ oldPass, newPass, confirmPass }) =>
     apiDefault.put(ApiConstant.auth.changePassword, {

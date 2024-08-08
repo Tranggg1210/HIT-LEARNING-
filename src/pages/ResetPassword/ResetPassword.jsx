@@ -27,39 +27,41 @@ const ResetPassword = () => {
           </div>
           <Formik
             initialValues={{
-              newPass: '',
-              confirmPass: '',
+              userId: localStorage.getItem("username"),
+              newPassword: '',
+              confirmPassword: '',
             }}
-            validationSchema={resetPass()}
+            validationSchema={resetPass}
             onSubmit={async (values) => {
               try{
                 const res = await resetPassword(values)
-                console.log('>>>res reset',res)
                 if(res.success){
-                  toast.success('Tìm được mật khẩu thành công')
+                  localStorage.removeItem("username")
+                  toast.success('Cập nhật mật khẩu thành công. Vui lòng quay lại trang đăng nhập')
                   navigate('/signin')
                 }else{
-                  toast.error('Lỗi')
+                  toast.error(res.data.message)
                 }
               }catch(err){
-                toast.error(err.message)
+                console.log(err)
+                toast.error(err.response.data.message)
 
               }
             }}>
             {({ errors, touched }) => (
               <Form>
                 <div className='input-group'>
-                  <Field type='text' placeholder='Nhập mật khẩu mới' name='newPass' />
+                  <Field type='text' placeholder='Nhập mật khẩu mới' name='newPassword' />
                 </div>
-                {errors.newPass && touched.newPass ? (
-                  <p className='errorMsg'>{errors.newPass}</p>
+                {errors.newPassword && touched.newPassword ? (
+                  <p className='errorMsg'>{errors.newPassword}</p>
                 ) : null}
                 <br />
                 <div className='input-group'>
-                  <Field type='text' placeholder='Nhập lại mật khẩu mới' name='confirmPass' />
+                  <Field type='text' placeholder='Nhập lại mật khẩu mới' name='confirmPassword' />
                 </div>
-                {errors.confirmPass && touched.confirmPass ? (
-                  <p className='errorMsg'>{errors.confirmPass}</p>
+                {errors.confirmPassword && touched.confirmPassword ? (
+                  <p className='errorMsg'>{errors.confirmPassword}</p>
                 ) : null}
                 <br />
 

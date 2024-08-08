@@ -15,7 +15,7 @@ import './SectionList.scss'
 import CreateSubFolder from '../../components/CreateNewSection/CreateNewSection'
 import { getCourseById } from '../../apis/courses.api'
 import { deleteSection, getAllSection } from '../../apis/section.api'
-import { deleteItem, getAllItem } from '../../apis/item.api'
+import { deleteItem, getItemById } from '../../apis/item.api'
 import EditListSection from '../../components/EditListSection/EditListSection'
 
 const CourseList = () => {
@@ -52,7 +52,7 @@ const CourseList = () => {
     setOpenSection(openSection === index ? null : index)
     if (openSection !== index) {
       try {
-        const items = await getAllItem(sectionId)
+        const items = await getItemById(sectionId)
         setSectionItems((prevItems) => ({
           ...prevItems,
           [sectionId]: items.data.data.content,
