@@ -12,3 +12,6 @@ export const resetPass = () =>
       .required('Xác nhận mật khẩu mới là bắt buộc')
       .oneOf([Yup.ref('newPass'), null], 'Mật khẩu không trùng khớp'),
   })
+
+
+  
