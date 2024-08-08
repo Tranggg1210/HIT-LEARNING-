@@ -1,6 +1,24 @@
+.name-course-admin {
+  color: #f67a06;
+  margin-bottom: 20px;
+}
 .box-add {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 20px;
+  .search-admin {
+    position: relative;
+    align-items: center;
+    .input-admin {
+      width: 36rem;
+      height: 45px;
+      padding-left: 2.5rem;
+      border: 1px solid #f67a06;
+      border-radius: 5px;
+      outline: none;
+      transition: width 0.3s ease;
+      transition: all 0.3s linear;
+    }
+  }
 }

@@ -21,9 +21,12 @@ import AdminLayout from './layouts/Layout/AdminLayout'
 import Admin from './pages/Admin/Admin'
 import AdminCourse from './pages/AdminCourse/AdminCourse'
 import AdminAccount from './pages/AdminAccount/AdminAccount'
+
 import InputEmail from './pages/ForgotPassword/InputEmail'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
+
+import ResultSearch from './pages/ResultSearch/ResultSearch'
 
 
 function App() {
@@ -60,6 +63,10 @@ function App() {
           path: '/list-course',
           element: <CourseUserClass />,
         },
+        {
+          path: '/result-search',
+          element: <ResultSearch />,
+        },
       ],
     },
     {
@@ -88,7 +95,7 @@ function App() {
     //   path: '/courseLeader',
     //   element: <CourseLeaderItem />,
     // },
-    
+
     {
       path: '/forgot-password',
       element: <InputEmail />,
@@ -101,10 +108,10 @@ function App() {
       path: '/reset-password',
       element: <ResetPassword/>,
     },
-    
+
     {
       path: '/change-password',
-      element: <ChangePassword/>,
+      element: <ChangePassword />,
     },
     {
       path: '/club-hit',
