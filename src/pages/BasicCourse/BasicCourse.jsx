@@ -29,7 +29,6 @@ const BasicCourse = () => {
       if (response && response.data && response.data.data) {
         setBasicCourse(response.data.data)
       }
-      console.log('basicCourse', basicCourse)
     } catch (error) {
       console.error('Error loading course:', error.response?.data?.message)
     }
@@ -57,7 +56,6 @@ const BasicCourse = () => {
       if (response && response.data && response.data.data) {
         const result = response.data.data.content
         dispatch(setItems({ sectionId, items: result }))
-        console.log('itemsss', items)
         if (result.length > 0) {
           setFirstItemId(result[0].id)
         }
@@ -121,17 +119,16 @@ const BasicCourse = () => {
                   </div>
                   {openSection === index && (
                     <div className='section-content'>
-                        {items[section.id] && Array.isArray(items[section.id]) ? (
-                          items[section.id].map((item) => (
-                            <div key={item.id} className='item'>
-                              <p>{item.name}</p>
-                              <p>Description: {item.description}</p>
-                            </div>
-                          ))
-                        ) : (
-                          <p>No items available for this section.</p>
-                        )}
-                      
+                      {items[section.id] && Array.isArray(items[section.id]) ? (
+                        items[section.id].map((item) => (
+                          <div key={item.id} className='item'>
+                            <p>{item.name}</p>
+                            <p>Description: {item.description}</p>
+                          </div>
+                        ))
+                      ) : (
+                        <p>No items available for this section.</p>
+                      )}
                     </div>
                   )}
                 </div>

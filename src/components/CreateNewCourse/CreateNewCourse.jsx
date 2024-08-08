@@ -9,6 +9,7 @@ import Select from '@mui/material/Select'
 import { useNavigate } from 'react-router-dom'
 import { TextField } from '@mui/material'
 import useAuth from '../../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [folderName, setFolderName] = useState('')
@@ -38,10 +39,8 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
       }
       try {
         await createCourse(courseData)
-        // onCreate(courseData)
-        // onCancel()
       } catch (error) {
-        console.log('Error creating course:', error)
+        toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
       }
     }
     navigate('/')

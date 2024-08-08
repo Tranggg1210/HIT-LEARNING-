@@ -60,7 +60,6 @@ const CourseList = () => {
           ...prevItems,
           [sectionId]: items.data.data.content,
         }))
-        console.log('sectionItems', sectionItems)
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
       }
@@ -197,7 +196,7 @@ const CourseList = () => {
               />
             </div>
             <h2>{course.name}</h2>
-            {/* <p className='course-leader-name'>{course.user.name}</p> */}
+            <p className='course-leader-name'>{course.user?.name}</p>
             <div className='infor'>
               <IconClockHour9 stroke={2} />
               <p>{isoDayMonthYear(course.createdAt)}</p>

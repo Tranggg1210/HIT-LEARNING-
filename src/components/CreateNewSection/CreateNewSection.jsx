@@ -3,6 +3,7 @@ import './CreateNewSection.scss'
 import { IconUpload } from '@tabler/icons-react'
 import { createItem, updateItem } from '../../apis/item.api'
 import { TextField } from '@mui/material'
+import toast from 'react-hot-toast'
 
 const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
   const [itemName, setItemName] = useState(editingItemData ? editingItemData.name : '')
@@ -43,7 +44,7 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
         onCreate()
         onCancel()
       } catch (error) {
-        console.log('Error creating course:', error)
+        toast.error('Đã xảy ra lỗi khi sửa tạo dữ liệu video buổi học')
       }
     }
   }

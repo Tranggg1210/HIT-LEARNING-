@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './SliderItem.scss'
 import { getAllCourse } from '../../apis/courses.api'
+import toast from 'react-hot-toast'
 
 const SliderItem = ({ films }) => {
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ const SliderItem = ({ films }) => {
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
     } catch (error) {
-      console.log(error)
+      toast.error('Đã xảy ra lỗi khi tải dữ liệU khoá học')
     }
   }
 
@@ -74,7 +75,6 @@ const SliderItem = ({ films }) => {
             {determineMediaType(item.videoId) === 'empty' && (
               <img src={CourseList1} alt='Khóa học' className='banner-image' />
             )}
-            
           </div>
         ))}
       </div>
