@@ -1,6 +1,7 @@
 import { api, apiDefault } from '.'
 import { ApiConstant } from '../constants/api.constant'
 
+
 const usersApi = () => ({
   getUserById: async (id) => apiDefault.get(`${ApiConstant.users.getUserById}/${id}`),
   getAllAccount: async () => apiDefault.get(ApiConstant.users.getAllAccount),

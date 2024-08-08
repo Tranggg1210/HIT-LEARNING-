@@ -3,6 +3,8 @@ import { IoIosArrowBack } from 'react-icons/io'
 import { Field, Formik, Form } from 'formik'
 import { resetPass } from '../../utils/resetPass'
 import logo from '../../assets/images/logo.jpg'
+import { resetPassword } from '../../apis/auth.api'
+import toast from 'react-hot-toast'
 
 const ResetPassword = () => {
   const navigate = useNavigate()
@@ -29,8 +31,20 @@ const ResetPassword = () => {
               confirmPass: '',
             }}
             validationSchema={resetPass()}
-            onSubmit={(values) => {
-              console.log(values)
+            onSubmit={async (values) => {
+              try{
+                const res = await resetPassword(values)
+                console.log('>>>res reset',res)
+                if(res.success){
+                  toast.success('Tìm được mật khẩu thành công')
+                  navigate('/signin')
+                }else{
+                  toast.error('Lỗi')
+                }
+              }catch(err){
+                toast.error(err.message)
+
+              }
             }}>
             {({ errors, touched }) => (
               <Form>

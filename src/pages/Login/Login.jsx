@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { loginValidate } from '../../utils/loginValidate'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
-import { Toaster, toast } from 'react-hot-toast'
+import { toast } from 'react-hot-toast'
 import { login } from '../../apis/auth.api'
 import useAuth from '../../hooks/useAuth'
 import { getUserById } from '../../apis/user.api'
@@ -47,11 +47,16 @@ const Login = () => {
                     authen.saveUser({
                       token: res.data.data.tokenContent,
                       role: roles,
-                      username: res.data.data.userName,
+                      userName: res.data.data.userName,
                       id: res.data.data.userId,
                       refreshToken: res.data.data.refreshToken,
                       userName: userCurrent.data.data.username,
                       linkAvatar: userCurrent.data.data.linkAvatar,
+                      className:userCurrent.data.data.className,
+                      linkFb: userCurrent.data.data.linkFb,
+                      email:userCurrent.data.data.email,
+                      name:userCurrent.data.data.name,
+                      description:userCurrent.data.data.description,
                     })
                   }
 
@@ -89,7 +94,7 @@ const Login = () => {
                   <p className='errorMsg'>{errors.password}</p>
                 ) : null}
                 <div className='forgot-password'>
-                  <Link to='/forgot-password'>
+                  <Link to='/forgot-password/username'>
                     <i>Quên mật khẩu ?</i>
                   </Link>
                 </div>
