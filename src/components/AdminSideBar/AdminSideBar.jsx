@@ -9,8 +9,6 @@ import useAuth from '../../hooks/useAuth'
 const AdminSideBar = () => {
   const navigate = useNavigate()
   const currentUser = useAuth()
-
-  const access_token = currentUser.user?.token
   const handleLogOut = () => {
     currentUser.clearUser()
     navigate('/')
@@ -22,29 +20,29 @@ const AdminSideBar = () => {
           <img className='admin-img-logo' src={logo} alt='Logo' />
         </div>
       </NavLink>
-      <List>
+      <List sx={{ padding: '8px 12px' }}>
         <NavLink to='/admin' className={({ isActive }) => (isActive ? 'active' : '')}>
           {({ isActive }) => (
             <ListItem button className={isActive ? 'active' : ''}>
-              <ListItemIcon>
+              <ListItemIcon sx={{ minWidth: '40px' }}>
                 <IconHome size={24} className='icon' />
               </ListItemIcon>
               <ListItemText primary='Trang chủ' />
             </ListItem>
           )}
         </NavLink>
-        <NavLink to='/admin-course' className={({ isActive }) => (isActive ? 'active' : '')}>
+        <NavLink to='/admin/admin-course' className={({ isActive }) => (isActive ? 'active' : '')}>
           <ListItem button className={({ isActive }) => (isActive ? 'active' : '')}>
-            <ListItemIcon>
+            <ListItemIcon sx={{ minWidth: '40px' }}>
               <IconNews size={24} className='icon' />
             </ListItemIcon>
             <ListItemText primary='Quản trị khoá học' />
           </ListItem>
         </NavLink>
-        <NavLink to='/admin-account' className={({ isActive }) => (isActive ? 'active' : '')}>
+        <NavLink to='/admin/admin-account' className={({ isActive }) => (isActive ? 'active' : '')}>
           {({ isActive }) => (
             <ListItem button className={isActive ? 'active' : ''}>
-              <ListItemIcon>
+              <ListItemIcon sx={{ minWidth: '40px' }}>
                 <IconUsers size={24} className='icon' />
               </ListItemIcon>
               <ListItemText primary='Quản trị tài khoản' />
@@ -52,7 +50,7 @@ const AdminSideBar = () => {
           )}
         </NavLink>
         <ListItem button onClick={handleLogOut}>
-          <ListItemIcon>
+          <ListItemIcon sx={{ minWidth: '40px' }}>
             <IconLogout size={24} className='icon' />
           </ListItemIcon>
           <ListItemText primary='Đăng xuất' />

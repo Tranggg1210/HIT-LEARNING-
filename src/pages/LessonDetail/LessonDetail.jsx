@@ -1,25 +1,30 @@
 import './LessonDetail.scss'
 import '../../styles/index.scss'
-import { Typography, Button, Box, TextField, List, ListItem, ListItemText } from '@mui/material'
+import { Typography, Button, Box, TextField, List, ListItem, ListItemText, Avatar } from '@mui/material'
 import Modal from '@mui/material/Modal'
 import { IconChevronLeft, IconHeart, IconHeartFilled, IconEye, IconDownload, IconBubbleText } from '@tabler/icons-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LessonBar from '../../components/LessonBar/LessonBar'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
 import { useSelector } from 'react-redux'
+import { createComment, getComment } from '../../apis/comment.api'
+import moment from 'moment'
+import toast from 'react-hot-toast'
+import useAuth from '../../hooks/useAuth'
 
 const LessonDetail = () => {
   const { lessonId } = useParams()
   const navigate = useNavigate()
   const items = useSelector((state) => state.items.itemsBySectionId)
+  const currentUser = useAuth()
+ 
 
-  let currentItem = null;
+  let currentItem = null
   for (const sectionId in items) {
-    const itemArray = items[sectionId];
-    currentItem = itemArray.find(item => item.id === lessonId);
-    if (currentItem) break;
-    
+    const itemArray = items[sectionId]
+    currentItem = itemArray.find((item) => item.id === lessonId)
+    if (currentItem) break
   }
 
   const [comment, setComment] = useState('')
@@ -27,18 +32,52 @@ const LessonDetail = () => {
   const [open, setOpen] = useState(false)
   const [like, setLike] = useState(false)
 
-  const handleCommentChange = (event) => setComment(event.target.value)
+  const addComment = async () => {
+    if (!comment.trim()) return
+    try {
+      const newComment = {
+        itemId: lessonId,
+        userId: currentUser?.user?.id,
+        comment: comment,
+      }
+      const res = await createComment(newComment)
+      if (res.success) {
+        setComment('')
+        getComments()
+        toast.success('Comment added successfully')
+      } else {
+        toast.error(res.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  const getComments = async () => {
+    try {
+      const res = await getComment(lessonId)
+      if (res.success) {
+        setComments(res.data)
+      } else {
+        toast.error(res.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    getComments()
+  }, [])
+
   const handleBack = () => navigate('/')
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const handleLike = () => setLike(!like)
 
   const handleSubmit = () => {
-    if (comment.trim()) {
-      setComments([...comments, comment])
-      setComment('')
-      handleClose()
-    }
+    addComment()
+    handleClose()
   }
 
   const determineMediaType = (url = '') => {
@@ -50,6 +89,12 @@ const LessonDetail = () => {
     const isVideo = videoExtensions.some((ext) => url.toLowerCase().endsWith(ext))
     if (isVideo) return 'video'
     return 'empty'
+  }
+
+  const getDownloadLink = () => {
+    const mediaType = determineMediaType(currentItem?.videoId)
+    const extension = mediaType === 'video' ? '.mp4' : mediaType === 'image' ? '.jpg' : ''
+    return `${import.meta.env.VITE_API_SERVER}/stream/${currentItem?.videoId}${extension}`
   }
 
   return (
@@ -74,7 +119,7 @@ const LessonDetail = () => {
                   </video>
                 )}
                 {determineMediaType(currentItem.videoId) === 'image' && (
-                  <img className='showImage' 
+                  <img className='showImage'
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />
@@ -102,9 +147,9 @@ const LessonDetail = () => {
                       <button className='btn-des' onClick={handleLike}>
                         {like ? <IconHeartFilled /> : <IconHeart />}
                       </button>
-                      <button className='btn-des'>
+                      <a href={getDownloadLink()} download={currentItem?.name} className='btn-des'>
                         <IconDownload /> Tải xuống
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -156,23 +201,36 @@ const LessonDetail = () => {
                   variant='outlined'
                   fullWidth
                   value={comment}
-                  onChange={handleCommentChange}
+                  onChange={(e) => setComment(e.target.value)}
                   sx={{ mt: 2, mb: 2 }}
                 />
                 <Button variant='contained' color='primary' onClick={handleSubmit}>
                   Gửi
                 </Button>
-                <div className='comment-box'>
-                  <List sx={{ mt: 2 }}>
-                    {comments.map((cmt, index) => (
-                      <ListItem key={index} alignItems='flex-start'>
-                        <ListItemText primary={cmt} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </div>
               </Box>
             </Modal>
+          </div>
+          <div className='comment-box'>
+            <List sx={{ mt: 2 }}>
+              {comments.map((cmt, index) => (
+                <ListItem key={index} alignItems='flex-start'>
+                  <div style={{backgroundColor: 'gray', width:'2rem', height:'2rem', borderRadius:'50%', display:'flex', alignItems:'center', justifyContent:'center', marginRight:'1rem'}}>
+                    <img src="https://picsum.photos/200/300/?blur" alt={currentUser?.user?.name} />
+                  </div>
+                  <ListItemText
+                    primary={cmt.userName}
+                    secondary={
+                      <>
+                        {cmt.comment}
+                        <Typography variant="caption" display="block" gutterBottom>
+                          {moment(cmt.createdAt).format('DD-MM-YYYY HH:mm:ss')}
+                        </Typography>
+                      </>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
           </div>
         </div>
         <div className='lesson-right'>

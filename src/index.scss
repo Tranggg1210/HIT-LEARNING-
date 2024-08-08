@@ -23,13 +23,15 @@
       }
     }
   }
-  .admin-layout-content {
-    flex-grow: 1 !important;
-    .admin-outlet {
-      padding: 0 60px;
-      .admin-box {
-        // width: 100%;
-      }
+}
+.admin-layout-content {
+  flex-grow: 1 !important;
+
+  .admin-outlet {
+    padding: 40px;
+
+    .admin-box {
+      padding-left: 273px;
     }
   }
 }
@@ -37,3 +39,29 @@
   // margin-top: 72px !important;
   padding: 24px 24px 0;
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+
+

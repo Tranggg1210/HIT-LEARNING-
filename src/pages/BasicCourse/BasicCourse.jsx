@@ -121,7 +121,6 @@ const BasicCourse = () => {
                   </div>
                   {openSection === index && (
                     <div className='section-content'>
-                      
                         {items[section.id] && Array.isArray(items[section.id]) ? (
                           items[section.id].map((item) => (
                             <div key={item.id} className='item'>
