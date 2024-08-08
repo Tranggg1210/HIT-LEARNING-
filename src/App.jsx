@@ -24,7 +24,7 @@ import AdminLayout from './layouts/Layout/AdminLayout'
 import Admin from './pages/Admin/Admin'
 import AdminCourse from './pages/AdminCourse/AdminCourse'
 import AdminAccount from './pages/AdminAccount/AdminAccount'
-
+import ResultSearch from './pages/ResultSearch/ResultSearch'
 
 function App() {
   const router = useRoutes([
@@ -60,6 +60,10 @@ function App() {
           path: '/list-course',
           element: <CourseUserClass />,
         },
+        {
+          path: '/result-search',
+          element: <ResultSearch />,
+        },
       ],
     },
     {
@@ -88,15 +92,15 @@ function App() {
     //   path: '/courseLeader',
     //   element: <CourseLeaderItem />,
     // },
-    
+
     {
       path: '/forgot-password/*',
       element: <Auth />,
     },
-    
+
     {
       path: '/change-password',
-      element: <ChangePassword/>,
+      element: <ChangePassword />,
     },
     {
       path: '/club-hit',
