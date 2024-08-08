@@ -8,6 +8,7 @@ import { TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/mater
 import Button from '@mui/material/Button'
 import './AdminCreateAccount.scss'
 import { createAccount, updateAccount } from '../../apis/user.api'
+import toast from 'react-hot-toast'
 
 const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEditSuccess }) => {
   const [userNames, setUserNames] = useState('')
@@ -52,7 +53,6 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
 
     try {
       if (isEditing) {
-        console.log("AccountID", accountData.id)
         await updateAccount(accountData.id, newAccountData)
       } else {
         await createAccount(newAccountData)
@@ -60,7 +60,7 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
       handleCloses()
       if (onEditSuccess) onEditSuccess()
     } catch (error) {
-      console.log('Error:', error)
+      toast.error('Đã xảy ra lỗi khi sửa tạo tài khoản')
     }
   }
 

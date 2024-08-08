@@ -15,6 +15,7 @@ import Button from '@mui/material/Button'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import './AdminCreateCourse.scss'
 import useAuth from '../../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditSuccess }) => {
   const [folderName, setFolderName] = useState('')
@@ -52,8 +53,6 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
 
       try {
         if (isEditing) {
-          console.log('Update', baseCourseData)
-          console.log(courseData.id)
           await editCourse(courseData.id, baseCourseData)
         } else {
           await createCourse(baseCourseData)
@@ -61,7 +60,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
         handleCloses()
         if (onEditSuccess) onEditSuccess()
       } catch (error) {
-        console.log('Error:', error)
+        toast.error('Đã xảy ra lỗi khi sửa tạo dữ liệu khóa học')
       }
       handleCloses()
     }

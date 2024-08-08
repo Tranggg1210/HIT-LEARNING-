@@ -14,6 +14,7 @@ import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import useAuth from '../../hooks/useAuth'
+import toast from 'react-hot-toast'
 
 const EditCourse = ({ opens, handleCloses, courseData }) => {
   const [folderName, setFolderName] = useState('')
@@ -50,13 +51,11 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
       }
 
       try {
-        console.log('Update', baseCourseData)
-        console.log(courseData.id)
         await editCourse(courseData.id, baseCourseData)
         handleCloses()
         // if (onEditSuccess) onEditSuccess()
       } catch (error) {
-        console.log('Error:', error)
+        toast.error('Đã xảy ra lỗi khi sửa dữ liệu khoá học')
       }
       handleCloses()
     }

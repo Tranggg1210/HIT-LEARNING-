@@ -3,6 +3,7 @@ import './CreateFolder.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { createSection } from '../../apis/section.api'
+import toast from 'react-hot-toast'
 
 const CreateFolder = ({ onCreate, onCancel }) => {
   const [locationClass, setLocationClass] = useState('')
@@ -23,7 +24,7 @@ const CreateFolder = ({ onCreate, onCancel }) => {
         onCreate()
         onCancel()
       } catch (error) {
-        console.log('Error creating course:', error)
+        toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
       }
     }
   }
