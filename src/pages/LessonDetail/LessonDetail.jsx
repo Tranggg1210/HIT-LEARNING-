@@ -8,31 +8,60 @@ import { useNavigate, useParams } from 'react-router-dom'
 import LessonBar from '../../components/LessonBar/LessonBar'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
 import { useSelector } from 'react-redux'
+import { createComment } from '../../apis/comment.api'
+import toast from 'react-hot-toast'
 
 const LessonDetail = () => {
   const { lessonId } = useParams()
   const navigate = useNavigate()
   const items = useSelector((state) => state.items.itemsBySectionId)
-  const currentItem = items[lessonId] ? items[lessonId][0] : null
+
+  let currentItem = null;
+  for (const sectionId in items) {
+    const itemArray = items[sectionId];
+    currentItem = itemArray.find(item => item.id === lessonId);
+    if (currentItem) break;
+    
+  }
 
   const [comment, setComment] = useState('')
   const [comments, setComments] = useState([])
   const [open, setOpen] = useState(false)
   const [like, setLike] = useState(false)
 
-  const handleCommentChange = (event) => setComment(event.target.value)
+  const addComment = async() =>{
+    try {
+      const res = await createComment(lessonId)
+      
+    } catch (error) {
+      toast.error(error.message)
+   
+    }
+  }
+
+  const getComments = async () =>{
+    try {
+      const res = await getComments(lessonId)
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+
   const handleBack = () => navigate('/')
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const handleLike = () => setLike(!like)
 
   const handleSubmit = () => {
-    if (comment.trim()) {
-      setComments([...comments, comment])
-      setComment('')
-      handleClose()
-    }
+    // if (comment.trim()) {
+    //   setComments([...comments, comment])
+    //   setComment('')
+    //   handleClose()
+    // }
   }
+
+
 
   const determineMediaType = (url = '') => {
     if (!url) return 'empty'
@@ -58,21 +87,21 @@ const LessonDetail = () => {
           <div className='player'>
             {currentItem && (
               <>
-                {determineMediaType(currentItem.videoName) === 'video' && (
+                {determineMediaType(currentItem.videoId) === 'video' && (
                   <video controls width='600'>
                     <source
-                      src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoName}`}
+                      src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                       type='video/mp4'
                     />
                   </video>
                 )}
-                {determineMediaType(currentItem.videoName) === 'image' && (
-                  <img
-                    src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoName}`}
+                {determineMediaType(currentItem.videoId) === 'image' && (
+                  <img className='showImage' 
+                    src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />
                 )}
-                {determineMediaType(currentItem.videoName) === 'empty' && (
+                {determineMediaType(currentItem.videoId) === 'empty' && (
                   <img src={CourseList1} alt='Khóa học' />
                 )}
               </>
@@ -149,7 +178,7 @@ const LessonDetail = () => {
                   variant='outlined'
                   fullWidth
                   value={comment}
-                  onChange={handleCommentChange}
+                  onChange={(e)=>setComment(e.target.value)}
                   sx={{ mt: 2, mb: 2 }}
                 />
                 <Button variant='contained' color='primary' onClick={handleSubmit}>
