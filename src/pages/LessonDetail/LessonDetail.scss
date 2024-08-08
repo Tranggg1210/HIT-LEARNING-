@@ -1,12 +1,18 @@
 @import '../../styles/index.scss';
 
 .lesson{
-    &-detail{
+  overflow: hidden;
+  
+  &-detail{
+      overflow: hidden;
+      
 
     }
 
     &-box{
         display: flex;
+        position: relative;
+        overflow: hidden;
 
         @include mobile{
             display: block;
@@ -21,10 +27,12 @@
 
     &-left{
         // position: absolute;
+        scrollbar-width: none;
         padding: 20px;
         width: 70%;
         min-height: 90vh;
         border-right: 1px solid black;
+        overflow-y: scroll;
 
         @include mobile{
             border: none;
@@ -156,6 +164,10 @@
     }
     &-right{
         padding: 30px;
+        position: fixed;
+        overflow-y: auto;
+        top: 0;
+        right: 0;
     }
 
     &-footer{
@@ -251,5 +263,145 @@
     margin-top: 10px;
     max-height: 300px;
     overflow-y: auto;
+}
+
+.lesson-right{
+    .course-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 1200px;
+        
+  
+        @include tablet {
+          flex-direction: column;
+          
+        }
+  
+        @include small-tablet {
+          flex-direction: column;
+         
+        }
+  
+        @include mobile {
+          flex-direction: column;
+          
+        }
+  
+        .lesson-content {
+        //   width: 748px;
+          background-color: white;
+          border-radius: 8px;
+          padding: 0 10px;
+          max-height: 90vh;
+          overflow-y: auto;
+  
+          @include tablet {
+            width: 100%;
+          }
+  
+          @include small-tablet {
+            width: 100%;
+          }
+  
+          @include mobile {
+            width: 100%;
+          }
+  
+          &::-webkit-scrollbar {
+            display: none;
+          }
+  
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+  
+          h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            font-weight: bold;
+  
+            @include tablet {
+              font-size: 1.6rem;
+            }
+  
+            @include small-tablet {
+              font-size: 1.4rem;
+            }
+  
+            @include mobile {
+              font-size: 1.2rem;
+            }
+          }
+  
+          .section {
+            margin-bottom: 10px;
+  
+            &-header {
+              padding: 15px;
+              background-color: rgba(217, 217, 217, 0.5);
+              border-radius: 10px;
+              cursor: pointer;
+  
+              .title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-weight: bold;
+  
+                .arrow {
+                  font-size: 12px;
+                }
+              }
+            }
+  
+            &-content {
+              padding: 10px;
+              background-color: #fff;
+              border-top: none;
+              border-radius: 0 0 4px 4px;
+  
+              .item {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px;
+                border-radius: 5px;
+                cursor: pointer;
+  
+                &:not(:last-child) {
+                  border-bottom: 1px solid #eee;
+                }
+  
+                .duration {
+                  color: #999;
+                }
+  
+                &:hover {
+                  background-color: rgba(255, 166, 0, 0.229);
+                  color: $primary-color;
+  
+                  .duration {
+                    color: $primary-color;
+                  }
+                }
+  
+                @include tablet {
+                  flex-direction: column;
+                  align-items: flex-start;
+                }
+  
+                @include small-tablet {
+                  flex-direction: column;
+                  align-items: flex-start;
+                }
+  
+                @include mobile {
+                  flex-direction: column;
+                  align-items: flex-start;
+                }
+              }
+            }
+          }
+        }
+      }
 }
 

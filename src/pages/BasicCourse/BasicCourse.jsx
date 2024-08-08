@@ -2,90 +2,74 @@ import { Button } from '@mui/material'
 import { IconChevronUp, IconChevronDown } from '@tabler/icons-react'
 import './BasicCourse.scss'
 import { useEffect, useState } from 'react'
-import CourseList1 from '../../assets/images/course-list-basic-1.png'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getCourseById } from '../../apis/courses.api'
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { setSections } from '../../store/sections.store'
-import { setItems } from '../../store/items.store'
+import toast from 'react-hot-toast'
+import CourseList1 from '../../assets/images/course-list-basic-1.png'
 
 const BasicCourse = () => {
-  const [basicCourse, setBasicCourse] = useState([])
+  const [basicCourses, setBasicCourses] = useState([])
   const [openSection, setOpenSection] = useState(null)
+  const [sections, setSections] = useState([])
+  const [items, setItems] = useState([])
   const [firstItemId, setFirstItemId] = useState(null)
 
   const navigate = useNavigate()
-  const { id } = useParams()
-  const dispatch = useDispatch()
-  const sections = useSelector((state) => state.sections.sections)
-  const items = useSelector((state) => state.items.itemsBySectionId)
 
+  const param = useParams()
   const loadDataCourses = async () => {
     try {
-      const response = await getCourseById(id)
-      if (response && response.data && response.data.data) {
-        setBasicCourse(response.data.data)
-      }
+      const response = await getCourseById(param.id)
+      response && response.data && response.data.data
+      const result = response.data.data
+      setBasicCourses(result)
     } catch (error) {
-      console.error('Error loading course:', error.response?.data?.message)
+      console.log(error.response?.data?.message)
     }
   }
-
   const loadDataSections = async () => {
     try {
-      const response = await getSectionByCourseId(id)
-      if (response && response.data && response.data.data) {
-        dispatch(setSections(response.data.data.content))
-        const firstSection = response.data.data.content[0]
-        if (firstSection) {
-          loadDataItem(firstSection.id)
-        }
-      }
-    } catch (error) {
-      console.error('Error loading sections:', error.response?.data?.message)
-    }
-  }
-
-  const loadDataItem = async (sectionId) => {
-    try {
-      const response = await getItemBySectionId(sectionId)
-      console.log('response', response)
+      const response = await getSectionByCourseId(param.id)
       if (response && response.data && response.data.data) {
         const result = response.data.data.content
-        dispatch(setItems({ sectionId, items: result }))
-        if (result.length > 0) {
-          setFirstItemId(result[0].id)
+        const res = await getItemBySectionId(result[0].id)
+        setSections(result)
+        if (res.data.data.content.length > 0) {
+          setFirstItemId(res.data.data.content[0].id)
         }
-        console.log('firstItem', firstItemId)
       }
     } catch (error) {
-      console.error('Error loading items:', error.response?.data?.message)
+      console.log(error.response?.data?.message)
     }
   }
 
-  useEffect(() => {
-    if (id) {
-      loadDataCourses()
-      loadDataSections()
-    }
-  }, [id])
+  const loadDataItem = async (id) => {
+    try {
+      const response = await getItemBySectionId(id)
 
-  const handleToggle = (index, sectionId) => {
+      const result = response.data.data.content
+
+      setItems(result)
+    } catch (error) {
+      console.log(error.response?.data?.message)
+    }
+  }
+
+  const handleToggle = (index, id) => {
     setOpenSection(openSection === index ? null : index)
-    if (!items[sectionId]) {
-      loadDataItem(sectionId)
-    }
+    loadDataItem(id)
   }
-
   const handleCourse = () => {
     if (firstItemId) {
-      navigate(`/lesson/${firstItemId}`)
+      navigate(`/lesson/${param.id}/detail-lesson/${firstItemId}`)
+    } else {
+      toast.error(
+        'Khóa học này sẽ sớm được hoàn thành. Vui lòng quay lại sau một khoảng thời gian nữa',
+      )
     }
   }
-
   const determineMediaType = (url = '') => {
     const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif']
     const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv']
@@ -95,76 +79,87 @@ const BasicCourse = () => {
     if (isVideo) return 'video'
     return 'empty'
   }
+  useEffect(() => {
+    if (param.id) {
+      loadDataCourses()
+      loadDataSections()
+    }
+  }, [param.id])
 
   return (
-    <div className='course-page-container'>
+    <>
       <div className='course-page'>
         <div className='course-basic-left'>
           <div className='course-header'>
-            <h1>{basicCourse.name}</h1>
-            <p className='describe'>{basicCourse.description}</p>
+            <h1>{basicCourses?.name}</h1>
+            <p className='describe'>{basicCourses?.description}</p>
           </div>
+
           <div className='course-content'>
             <div className='lesson-content'>
               <h2>Nội dung khóa học</h2>
-              {sections.map((section, index) => (
-                <div key={section.id} className='section'>
-                  <div className='section-header' onClick={() => handleToggle(index, section.id)}>
-                    <div className='title'>
-                      <span>{section.name}</span>
-                      <span className='arrow'>
-                        {openSection === index ? <IconChevronUp /> : <IconChevronDown />}
-                      </span>
+              <br />
+              {Array.isArray(sections) && sections.length > 0 ? (
+                
+                sections.map((section, index) => (
+                  <div key={section.id} className='section'>
+                    <div className='section-header' onClick={() => handleToggle(index, section.id)}>
+                      <div className='title'>
+                        <span>{section.name}</span>
+                        <span className='arrow'>
+                          {openSection === index ? <IconChevronUp /> : <IconChevronDown />}
+                        </span>
+                      </div>
                     </div>
+                    {openSection === index && (
+                      <div className='section-content'>
+                        {items.length > 0 ? (
+                          items.map((item) => (
+                            <div key={item.id} className='item'>
+                              <span>{item.name}</span>
+                            </div>
+                          ))
+                        ) : (
+                          <div className='no-lesson'>Không có bài học</div>
+                        )}
+                      </div>
+                    )}
                   </div>
-                  {openSection === index && (
-                    <div className='section-content'>
-                      {items[section.id] && Array.isArray(items[section.id]) ? (
-                        items[section.id].map((item) => (
-                          <div key={item.id} className='item'>
-                            <p>{item.name}</p>
-                            <p>Description: {item.description}</p>
-                          </div>
-                        ))
-                      ) : (
-                        <p>No items available for this section.</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-              ))}
+                ))
+              ): (
+                <h3 style={{color:'gray'}}>Đang cập nhật khóa học....Hãy chờ đón trong tương lai gần nhé</h3>
+              )
+                }
             </div>
           </div>
         </div>
-        <div className='course-basic-right'>
-          <div className='course-bsic-right-container'>
-            <div className='course-video'>
-              {determineMediaType(basicCourse.videoId) === 'video' && (
-                <video controls width='600'>
-                  <source
-                    src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourse.videoId}`}
-                    type='video/mp4'
-                  />
-                </video>
-              )}
-              {determineMediaType(basicCourse.videoId) === 'image' && (
-                <img
-                  src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourse.videoId}`}
-                  alt='Khóa học'
-                />
-              )}
-              {determineMediaType(basicCourse.videoId) === 'empty' && (
-                <img src={CourseList1} alt='Khóa học' />
-              )}
 
-              <Button variant='contained' color='primary' onClick={handleCourse}>
-                Xem tài liệu
-              </Button>
-            </div>
+        <div className='course-basic-right'>
+          <div className='course-video'>
+            {determineMediaType(basicCourses.videoId) === 'video' && (
+              <video controls width='600'>
+                <source
+                  src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`}
+                  type='video/mp4'
+                />
+              </video>
+            )}
+            {determineMediaType(basicCourses.videoId) === 'image' && (
+              <img
+                src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`}
+                alt='Khóa học'
+              />
+            )}
+            {determineMediaType(basicCourses.videoId) === 'empty' && (
+              <img src={CourseList1} alt='Khóa học' />
+            )}
+            <Button variant='contained' color='primary' onClick={handleCourse}>
+              Xem tài liệu
+            </Button>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

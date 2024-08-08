@@ -26,7 +26,7 @@ export const ApiConstant = {
     getSectionByCourseId: '/section/course/',
   },
   items: {
-    getAll: '/item/section/',
+    getAll: '/item/',
     createItem: '/item',
     deleteItem: '/item/',
     updateItem: '/item/',
