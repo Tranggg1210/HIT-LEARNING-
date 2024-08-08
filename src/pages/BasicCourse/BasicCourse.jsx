@@ -16,8 +16,6 @@ const BasicCourse = () => {
   const [basicCourse, setBasicCourse] = useState([])
   const [openSection, setOpenSection] = useState(null)
   const [firstItemId, setFirstItemId] = useState(null)
-  console.log('>>>>>firstItem', firstItemId)
-
 
   const navigate = useNavigate()
   const { id } = useParams()
@@ -85,7 +83,6 @@ const BasicCourse = () => {
   }
 
   const handleCourse = () => {
-    console.log('firstItem',firstItemId)
     if (firstItemId) {
       navigate(`/lesson/${firstItemId}`)
     }

@@ -1,50 +1,51 @@
-import { useNavigate } from 'react-router-dom';
-import './ForgotPassword.scss';
-import { IoIosArrowBack } from 'react-icons/io';
-import { Field, Formik, Form } from 'formik';
-import { forgotPassValid } from '../../utils/forgotPassValid';
-import logo from '../../assets/images/logo.jpg';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import './ForgotPassword.scss'
+import { IoIosArrowBack } from 'react-icons/io'
+import { Field, Formik, Form } from 'formik'
+import { forgotPassValid } from '../../utils/forgotPassValid'
+import logo from '../../assets/images/logo.jpg'
+import { useState, useEffect } from 'react'
+import toast from 'react-hot-toast'
+import { verify, sendCode } from '../../apis/auth.api'
 
-const ForgotPassword = () => {
-  const navigate = useNavigate();
-  const [otpSent, setOtpSent] = useState(false);
-  const [timer, setTimer] = useState(0);
-  const [emailConfirmed, setEmailConfirmed] = useState('');
+const ForgotPassword = ({ username, handleVerify }) => {
+  const navigate = useNavigate()
+  const [countdown, setCountdown] = useState(60)
+  const [isResendDisabled, setIsResendDisabled] = useState(true)
 
-  const startTimer = () => {
-    setTimer(30);
-    const countdown = setInterval(() => {
-      setTimer((prevTimer) => {
-        if (prevTimer <= 1) {
-          clearInterval(countdown);
-          return 0;
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prevCountdown) => {
+        if (prevCountdown <= 1) {
+          clearInterval(timer)
+          setIsResendDisabled(false)
+          return 0
         }
-        return prevTimer - 1;
-      });
-    }, 1000);
-  };
+        return prevCountdown - 1
+      })
+    }, 1000)
 
-  const sendOtp = (email, errors) => {
-    if (!email || errors.email) {
-      alert('Nhập email hợp lệ');
-      return;
-    }
-    setEmailConfirmed(email); 
-    setOtpSent(true);
-    startTimer();
-  };
-
-  const verifyOtp = (inputOtp) => {
-    if (inputOtp === '123456') { 
-      return true;
-    }
-    return false;
-  };
+    return () => clearInterval(timer)
+  }, [])
 
   const goBack = () => {
-    navigate('/signin');
-  };
+    navigate('/signin')
+  }
+
+  const handleResendOTP = async () => {
+    try {
+      const res = await sendCode({ username })
+      if (res.data.data) {
+        toast.success('OTP resent successfully')
+        setCountdown(60)
+        setIsResendDisabled(true)
+      } else {
+        toast.error('Failed to resend OTP')
+      }
+    } catch (err) {
+      toast.error(err.message)
+    }
+  }
 
   return (
     <>
@@ -60,57 +61,38 @@ const ForgotPassword = () => {
           </div>
           <Formik
             initialValues={{
-              email: '',
               otp: '',
             }}
-            validationSchema={forgotPassValid()}
-            onSubmit={(values) => {
-              if (verifyOtp(values.otp)) {
-                navigate('/reset-password', { state: { email: emailConfirmed } }); 
-              } else {
-                alert('OTP không chính xác');
+            validationSchema={forgotPassValid}
+            onSubmit={async (values) => {
+              try {
+                const res = await verify(username, values.otp)
+                if (res.status === 200) {
+                  handleVerify()
+                } else {
+                  toast.error(res.data.message)
+                  navigate('/forgot-password/username')
+                }
+              } catch (err) {
+                toast.error(err.message)
               }
             }}>
-            {({ errors, touched, values }) => (
+            {({ errors, touched }) => (
               <Form>
-                <div className='input-group'>
-                  <Field
-                    type='text'
-                    placeholder='Nhập gmail của bạn'
-                    name='email'
-                    autoComplete='off'
-                    disabled={otpSent}
-                  />
-                </div>
-                {errors.email && touched.email ? <p className='errorMsg'>{errors.email}</p> : null}
-
-                <br />
                 <div className='input-group get-otp'>
-                  <Field
-                    id='otp'
-                    type='text'
-                    placeholder='Nhập mã OTP'
-                    name='otp'
-                    disabled={!otpSent}
-                  />
-                  {!otpSent ? (
-                    <button
-                      type='button'
-                      className='button-otp'
-                      onClick={() => sendOtp(values.email, errors)}>
-                      Lấy mã OTP
-                    </button>
+                  <Field id='otp' type='text' placeholder='Nhập mã OTP' name='otp' />
+                </div>
+                {errors.otp && touched.otp ? <p className='errorMsg'>{errors.otp}</p> : null}
+                {/* <br /> */}
+                <div className='resend-otp'>
+                  {isResendDisabled ? (
+                    <p>Gửi lại ({countdown}s)</p>
                   ) : (
-                    <button
-                      type='button'
-                      className='button-otp'
-                      disabled={timer > 0}
-                      onClick={() => sendOtp(values.email, errors)}>
-                      {timer > 0 ? `Resend(${timer}s)` : 'Gửi lại mã'}
+                    <button type='button' onClick={handleResendOTP}>
+                      Gửi lại mã
                     </button>
                   )}
                 </div>
-                {errors.otp && touched.otp ? <p className='errorMsg'>{errors.otp}</p> : null}
                 <br />
                 <button type='submit' className='button'>
                   XÁC THỰC
@@ -121,7 +103,7 @@ const ForgotPassword = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default ForgotPassword;
+export default ForgotPassword
