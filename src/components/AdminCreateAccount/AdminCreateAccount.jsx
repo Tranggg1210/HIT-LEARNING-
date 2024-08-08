@@ -38,7 +38,7 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
   }, [isEditing, accountData])
 
   const handleSubmit = async () => {
-    const accountData = {
+    const newAccountData = {
       username: userNames,
       password: passwords,
       name: names,
@@ -52,9 +52,10 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
 
     try {
       if (isEditing) {
-        await updateAccount(accountData.id, accountData)
+        console.log("AccountID", accountData.id)
+        await updateAccount(accountData.id, newAccountData)
       } else {
-        await createAccount(accountData)
+        await createAccount(newAccountData)
       }
       handleCloses()
       if (onEditSuccess) onEditSuccess()

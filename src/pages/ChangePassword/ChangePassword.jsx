@@ -1,14 +1,28 @@
 import { useNavigate } from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Field, Formik, Form } from 'formik'
-import { resetPass } from '../../utils/resetPass'
+import { changePass } from '../../utils/changePass'
 import logo from '../../assets/images/logo.jpg'
+import { changePassword } from '../../apis/auth.api'
 
 const ChangePassword = () => {
   const navigate = useNavigate()
 
   const goBack = () => {
     navigate(-1)
+  }
+  const handleChangePassword =async(values) =>{
+    try{
+      const response = await changePassword({
+        oldPass:values.oldPass,
+        newPass:values.newPass,
+        confirmPass:values.confirmPass
+      });
+      console.log('thay doi mat khau thanh cong:', response.data);
+      useNavigate('/profile')
+    }catch(error){
+      console.log('loi khi thay doi mat khau:' , error);
+    }
   }
 
   return (
@@ -25,20 +39,22 @@ const ChangePassword = () => {
           </div>
           <Formik
             initialValues={{
+              oldPass:'',
               newPass: '',
               confirmPass: '',
             }}
-            validationSchema={resetPass()}
-            onSubmit={(values) => {
-              console.log(values)
+            validationSchema={changePass()}
+            onSubmit={(values ,{setSubmitting}) => {
+              handleChangePassword(values);
+              setSubmitting(false);
             }}>
             {({ errors, touched }) => (
               <Form>
                 <div className='input-group'>
-                  <Field type='text' placeholder='Nhập mật khẩu cũ' name='newPass' />
+                  <Field type='text' placeholder='Nhập mật khẩu cũ' name='oldPass' />
                 </div>
-                {errors.newPass && touched.newPass ? (
-                  <p className='errorMsg'>{errors.newPass}</p>
+                {errors.oldPass && touched.oldPass ? (
+                  <p className='errorMsg'>{errors.oldPass}</p>
                 ) : null}
                 <br />
                 <div className='input-group'>

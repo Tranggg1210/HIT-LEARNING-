@@ -104,7 +104,7 @@ const AdminAccount = () => {
     textOverflow: 'ellipsis',
     maxWidth: '100px',
   }
-
+console.log("currentaccount",currentAccount)
   return (
     <>
       <div className='box-add'>

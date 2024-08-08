@@ -22,15 +22,21 @@ const authApi = () => ({
       newPass,
       confirmPass,
     }),
+  changePassword: async ({ oldPass, newPass, confirmPass }) =>
+    apiDefault.put(ApiConstant.auth.changePassword, {
+      oldPass,
+      newPass,
+      confirmPass,
+    }),
   refreshToken: async (refreshToken) =>
-  apiDefault.post(`${ApiConstant.auth.refreshToken}${refreshToken}`),
+    apiDefault.post(`${ApiConstant.auth.refreshToken}${refreshToken}`),
 
-  sendCode: async ({username}) =>
+  sendCode: async ({ username }) =>
     apiDefault.post(`${ApiConstant.auth.sendCode}${username}`),
 
-  verify: async (username,code) =>
+  verify: async (username, code) =>
     apiDefault.post(`${ApiConstant.auth.verify}${username}/${code}`),
 
 })
 
-export const { login, forgotPassword, resetPassword, refreshToken, sendCode, verify, resendOTP } = authApi()
+export const { login, forgotPassword, resetPassword, refreshToken, sendCode, verify, resendOTP, changePassword } = authApi()
