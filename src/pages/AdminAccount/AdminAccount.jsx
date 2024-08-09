@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom'
 import { deleteAccount, getAllAccount } from '../../apis/user.api'
 import AdminCreateAccount from '../../components/AdminCreateAccount/AdminCreateAccount'
 
+
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#000',
@@ -126,6 +127,7 @@ console.log("currentaccount",currentAccount)
             isEditing={isEditing}
             onEditSuccess={loadData}
           />
+         
         )}
       </div>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
