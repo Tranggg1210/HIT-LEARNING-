@@ -6,6 +6,7 @@ import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 import { NavLink } from 'react-router-dom'
 
+
 const LessonBar = ({ param }) => {
   const [sections, setSections] = useState({})
   const [items, setItems] = useState({})
@@ -30,7 +31,6 @@ const LessonBar = ({ param }) => {
       [sectionId]: res.data.data.content,
     }))
   }
-
   useEffect(() => {
     showAllSection()
   }, [param])
