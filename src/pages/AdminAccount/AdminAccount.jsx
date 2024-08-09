@@ -15,6 +15,10 @@ import './AdminAccount.scss'
 import { useNavigate } from 'react-router-dom'
 import { deleteAccount, getAllAccount } from '../../apis/user.api'
 import AdminCreateAccount from '../../components/AdminCreateAccount/AdminCreateAccount'
+import { getAdminUser } from '../../apis/search.api'
+import { IconButton } from '@mui/material'
+import { IconCircleX } from '@tabler/icons-react'
+import toast from 'react-hot-toast'
 
 
 const StyledTableCell = styled(TableCell)({
@@ -43,6 +47,8 @@ const AdminAccount = () => {
   const [open, setOpen] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [currentAccount, setCurrentAccount] = useState(null)
+  const [searchInputAA, setSearchInputAA] = useState('')
+  const [searchClick, setSearchClick] = useState(false)
   const navigate = useNavigate()
 
   const handleOpen = (account = null) => {
@@ -67,20 +73,37 @@ const AdminAccount = () => {
     return `${day}/${month}/${year}`
   }
 
-  const loadData = async () => {
+  const loadData = async (term = '') => {
     try {
-      const response = await (await getAllAccount()).data.data
-      console.log('account', response)
+      let response
+      if (term) {
+        response = await (await getAdminUser(term)).data.data
+      } else {
+        response = await (await getAllAccount()).data.data
+      }
       setTotalRows(response.length)
-      setRows(response.slice((page - 1) * size, page * size))
+      if (term) {
+        setRows(response.content.slice((page - 1) * size, page * size))
+      } else {
+        setRows(response.slice((page - 1) * size, page * size))
+      }
     } catch (error) {
-      console.error('Error loadData data: ', error)
+      toast.error('Đã xảy ra lỗi khi tải dữ liệU người dùng')
     }
   }
+  // useEffect(() => {
+  //   loadData(searchInputAA)
+  // }, [page, searchInputAA])
+  useEffect(() => {
+    loadData(searchInputAA)
+  }, [])
 
   useEffect(() => {
-    loadData()
-  }, [page])
+    if (searchClick) {
+      loadData(searchInputAA)
+      setSearchClick(false)
+    }
+  }, [page, searchClick])
 
   const handleChangePage = (event, value) => {
     setPage(value)
@@ -95,21 +118,81 @@ const AdminAccount = () => {
       await deleteAccount(id)
       setRows(rows.filter((account) => account.id !== id))
     } catch (error) {
-      console.log(error)
+      toast.error('Đã xảy ra lỗi khi xoá dữ liệu người dùng')
     }
   }
+  // const handleSearch = () => {
+  //   loadData(searchInputAA)
+  // }
 
+  // const handleClearSearch = () => {
+  //   setSearchInputAA('')
+  //   loadData()
+  // }
+  const handleSearch = () => {
+    setSearchClick(true)
+  }
+
+  const handleClearSearch = () => {
+    setSearchInputAA('')
+    setSearchClick(true)
+  }
   const cellStyle = {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     maxWidth: '100px',
   }
-console.log("currentaccount",currentAccount)
+
   return (
     <>
+      <h1 className='name-course-admin'>Quản trị tài khoản</h1>
       <div className='box-add'>
-        <h1>Quản trị tài khoản</h1>
+        <div className='search-admin'>
+          <div style={{ position: 'relative', width: '100%' }}>
+            <input
+              className='input-admin'
+              type='text'
+              value={searchInputAA}
+              onChange={(e) => setSearchInputAA(e.target.value)}
+              placeholder='Nhập tìm kiếm bằng tên khoá học ...'
+              style={{ paddingRight: '40px' }}
+            />
+            <Button
+              variant='contained'
+              sx={{
+                position: 'absolute',
+                right: 10,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                height: '35px',
+                minWidth: '100px',
+                borderRadius: '5px',
+                background: 'linear-gradient(94deg, #f4b81e 78.55%, #f67102 106.63%)',
+                fontSize: '14px',
+                color: '#fff',
+                cursor: 'pointer',
+              }}
+              onClick={handleSearch}>
+              Tìm kiếm
+            </Button>
+            <IconButton
+              sx={{
+                position: 'absolute',
+                right: 120,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                height: '35px',
+                width: '35px',
+                borderRadius: '5px',
+                color: '#f4b81e',
+                cursor: 'pointer',
+              }}
+              onClick={handleClearSearch}>
+              <IconCircleX />
+            </IconButton>
+          </div>
+        </div>
         <Button
           variant='contained'
           onClick={() => handleOpen()}

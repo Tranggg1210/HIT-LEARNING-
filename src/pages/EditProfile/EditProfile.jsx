@@ -30,6 +30,25 @@ const EditProfile = (opens,userData,onClose) => {
       
     }
   }, [userData]);
+import './EditProfile.scss'
+import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { TextField } from '@mui/material'
+import useAuth from '../../hooks/useAuth'
+import { editUser } from '../../apis/user.api'
+import toast from 'react-hot-toast'
+
+const EditProfile = ({ onCancel, onCreate }) => {
+  const userAccess = useAuth()
+  const [folderName, setFolderName] = useState(userAccess?.user?.name || '')
+  const [describe, setDescribe] = useState(userAccess?.user?.username || '')
+  const [linkFb, setLinkFb] = useState(userAccess?.user?.linkFb || '')
+  const [linkEmail, setLinkEmail] = useState(userAccess?.user?.email || '')
+  const [className, setClassName] = useState(userAccess?.user?.className || '')
+  const inputRef = useRef()
+
+  const navigate = useNavigate()
+
 
   const handleUpdateUser = async () => {
     if (folderName && describe && linkFb && linkEmail && className) {
@@ -53,10 +72,9 @@ const EditProfile = (opens,userData,onClose) => {
           return
         }
         toast.error('Cập nhật thông tin người dùng thất bại')
-        
       }
     }
-  };
+  }
 
   const style = {
     position: 'absolute',
@@ -185,4 +203,5 @@ const EditProfile = (opens,userData,onClose) => {
   );
 };
 
-export default EditProfile;
+
+export default EditProfile 

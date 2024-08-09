@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {
   IconChevronDown,
   IconChevronRight,
+  IconClockHour9,
   IconPencil,
   IconPlus,
   IconTrash,
@@ -15,8 +16,9 @@ import './SectionList.scss'
 import CreateSubFolder from '../../components/CreateNewSection/CreateNewSection'
 import { getCourseById } from '../../apis/courses.api'
 import { deleteSection, getAllSection } from '../../apis/section.api'
-import { deleteItem, getAllItem } from '../../apis/item.api'
+import { deleteItem, getItemById } from '../../apis/item.api'
 import EditListSection from '../../components/EditListSection/EditListSection'
+import EditCourse from '../../components/EditCourse/EditCourse'
 
 const CourseList = () => {
   const [isCreatingFolder, setIsCreatingFolder] = useState(false)
@@ -29,6 +31,7 @@ const CourseList = () => {
   const [selectedItemId, setSelectedItemId] = useState('')
   const [openSection, setOpenSection] = useState(null)
   const [editingItemData, setEditingItemData] = useState(null)
+  const [open, setOpen] = useState(false)
   const navigate = useNavigate()
 
   const { id } = useParams()
@@ -52,12 +55,11 @@ const CourseList = () => {
     setOpenSection(openSection === index ? null : index)
     if (openSection !== index) {
       try {
-        const items = await getAllItem(sectionId)
+        const items = await getItemById(sectionId)
         setSectionItems((prevItems) => ({
           ...prevItems,
           [sectionId]: items.data.data.content,
         }))
-        console.log('sectionItems',sectionItems)
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
       }
@@ -148,7 +150,19 @@ const CourseList = () => {
   const handleSectionCreated = () => {
     loadSectionCourse()
   }
-
+  const isoDayMonthYear = (isoString) => {
+    const date = new Date(isoString)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
+    return `${day}/${month}/${year}`
+  }
+  const handleOpen = () => {
+    setOpen(true)
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
   return (
     <>
       {isCreatingFolder && (
@@ -182,8 +196,15 @@ const CourseList = () => {
               />
             </div>
             <h2>{course.name}</h2>
-            <p>Tổng số video hiện có: 12</p>
-            <button className='edit-course-button'>SỬA KHOÁ HỌC</button>
+            <p className='course-leader-name'>{course.user?.name}</p>
+            <div className='infor'>
+              <IconClockHour9 stroke={2} />
+              <p>{isoDayMonthYear(course.createdAt)}</p>
+            </div>
+            <button className='edit-course-button' onClick={() => handleOpen()}>
+              SỬA KHOÁ HỌC
+            </button>
+            {open && <EditCourse opens={open} handleCloses={handleClose} courseData={course} />}
             <button className='cancel-course-button' onClick={() => navigate('/')}>
               HUỶ BỎ
             </button>

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import './CouresUserPublic.scss'
 import { useNavigate } from 'react-router-dom'
-import { deleteCourse, getAllCourse } from '../../apis/courses.api'
+import { getAllCourse } from '../../apis/courses.api'
 import ClassesItem from '../ClassesItem/ClassesItem'
+import toast from 'react-hot-toast'
 
 const CouresUserPublic = () => {
   const [courses, setCourses] = useState([])
@@ -13,7 +14,7 @@ const CouresUserPublic = () => {
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
     } catch (error) {
-      console.log(error)
+      toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     }
   }
 

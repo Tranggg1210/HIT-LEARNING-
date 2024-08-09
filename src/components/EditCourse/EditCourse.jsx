@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
-import { createCourse, editCourse } from '../../apis/courses.api'
+import { editCourse } from '../../apis/courses.api'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -13,11 +13,10 @@ import { TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import Button from '@mui/material/Button'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
-import './AdminCreateCourse.scss'
 import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
 
-const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditSuccess }) => {
+const EditCourse = ({ opens, handleCloses, courseData }) => {
   const [folderName, setFolderName] = useState('')
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState(null)
@@ -26,12 +25,12 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isEditing && courseData) {
+    if (courseData) {
       setFolderName(courseData.name || '')
       setDescribe(courseData.description || '')
       setClassType(courseData.isPrivate ? 'Private' : 'Public')
     }
-  }, [isEditing, courseData])
+  }, [courseData])
 
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -42,7 +41,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
   const id_access_token = userAccess.user?.id
 
   const handleSubmit = async () => {
-    if (folderName && describe && (upload || isEditing)) {
+    if (folderName && describe && upload) {
       const baseCourseData = {
         userId: id_access_token,
         name: folderName,
@@ -52,15 +51,11 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
       }
 
       try {
-        if (isEditing) {
-          await editCourse(courseData.id, baseCourseData)
-        } else {
-          await createCourse(baseCourseData)
-        }
+        await editCourse(courseData.id, baseCourseData)
         handleCloses()
-        if (onEditSuccess) onEditSuccess()
+        // if (onEditSuccess) onEditSuccess()
       } catch (error) {
-        toast.error('Đã xảy ra lỗi khi sửa tạo dữ liệu khóa học')
+        toast.error('Đã xảy ra lỗi khi sửa dữ liệu khoá học')
       }
       handleCloses()
     }
@@ -108,7 +103,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
           variant='h6'
           component='h2'
           sx={{ marginBottom: '5px', lineHeight: '3rem' }}>
-          {isEditing ? 'Chỉnh sửa khoá học' : 'Tạo khoá học'}
+          Chỉnh sửa khoá học
         </Typography>
 
         <Button component='label' variant='contained' startIcon={<CloudUploadIcon />}>
@@ -169,7 +164,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
             variant='contained'
             sx={{ width: '145px', height: '45px' }}
             onClick={handleSubmit}>
-            {isEditing ? 'Sửa khoá học' : 'Tạo khoá học'}
+            Sửa khoá học
           </Button>
         </div>
       </Box>
@@ -177,4 +172,4 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
   )
 }
 
-export default AdminCreateCourse
+export default EditCourse

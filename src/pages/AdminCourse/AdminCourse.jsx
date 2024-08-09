@@ -12,9 +12,13 @@ import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 import { useState, useEffect } from 'react'
 import { deleteCourse, getAllCourse } from '../../apis/courses.api'
+import { getAdminCourse } from '../../apis/search.api'
 import './AdminCourse.scss'
 import AdminCreateCourse from '../../components/AdminCreateCourse/AdminCreateCourse'
 import { useNavigate } from 'react-router-dom'
+import { IconButton } from '@mui/material'
+import { IconCircleX } from '@tabler/icons-react'
+import toast from 'react-hot-toast'
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -42,6 +46,8 @@ const AdminCourse = () => {
   const [open, setOpen] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [currentCourse, setCurrentCourse] = useState(null)
+  const [searchInputCA, setSearchInputCA] = useState('')
+  const [searchClick, setSearchClick] = useState(false)
   const navigate = useNavigate()
 
   const handleOpen = (course = null) => {
@@ -66,19 +72,31 @@ const AdminCourse = () => {
     return `${day}/${month}/${year}`
   }
 
-  const loadData = async () => {
+  const loadData = async (term = '') => {
     try {
-      const response = await (await getAllCourse()).data.data
+      let response
+      if (term) {
+        response = await (await getAdminCourse(term)).data.data
+      } else {
+        response = await (await getAllCourse()).data.data
+      }
       setTotalRows(response.content.length)
       setRows(response.content.slice((page - 1) * size, page * size))
     } catch (error) {
-      console.error('Error loadData data: ', error)
+      console.error('Error:  ', error)
     }
   }
 
   useEffect(() => {
-    loadData()
-  }, [page])
+    loadData(searchInputCA)
+  }, [])
+
+  useEffect(() => {
+    if (searchClick) {
+      loadData(searchInputCA)
+      setSearchClick(false)
+    }
+  }, [page, searchClick])
 
   const handleChangePage = (event, value) => {
     setPage(value)
@@ -93,8 +111,17 @@ const AdminCourse = () => {
       await deleteCourse(id)
       setRows(rows.filter((course) => course.id !== id))
     } catch (error) {
-      console.log(error)
+      toast.error('Đã xảy ra lỗi khi xoá dữ liệu khoá học')
     }
+  }
+
+  const handleSearch = () => {
+    setSearchClick(true)
+  }
+
+  const handleClearSearch = () => {
+    setSearchInputCA('')
+    setSearchClick(true)
   }
 
   const cellStyle = {
@@ -106,8 +133,53 @@ const AdminCourse = () => {
 
   return (
     <>
+      <h1 className='name-course-admin'>Quản trị khoá học</h1>
       <div className='box-add'>
-        <h1>Quản trị khoá học</h1>
+        <div className='search-admin'>
+          <div style={{ position: 'relative', width: '100%' }}>
+            <input
+              className='input-admin'
+              type='text'
+              value={searchInputCA}
+              onChange={(e) => setSearchInputCA(e.target.value)}
+              placeholder='Nhập tìm kiếm bằng tên khoá học ...'
+              style={{ paddingRight: '40px' }}
+            />
+            <Button
+              variant='contained'
+              sx={{
+                position: 'absolute',
+                right: 10,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                height: '35px',
+                minWidth: '100px',
+                borderRadius: '5px',
+                background: 'linear-gradient(94deg, #f4b81e 78.55%, #f67102 106.63%)',
+                fontSize: '14px',
+                color: '#fff',
+                cursor: 'pointer',
+              }}
+              onClick={handleSearch}>
+              Tìm kiếm
+            </Button>
+            <IconButton
+              sx={{
+                position: 'absolute',
+                right: 120,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                height: '35px',
+                width: '35px',
+                borderRadius: '5px',
+                color: '#f4b81e',
+                cursor: 'pointer',
+              }}
+              onClick={handleClearSearch}>
+              <IconCircleX />
+            </IconButton>
+          </div>
+        </div>
         <Button
           variant='contained'
           onClick={() => handleOpen()}
@@ -123,7 +195,7 @@ const AdminCourse = () => {
             handleCloses={handleClose}
             courseData={currentCourse}
             isEditing={isEditing}
-            onEditSuccess={loadData}
+            onEditSuccess={() => loadData(searchInputCA)} // Reload data after editing
           />
         )}
       </div>
