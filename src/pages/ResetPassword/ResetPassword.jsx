@@ -35,7 +35,8 @@ const ResetPassword = () => {
             onSubmit={async (values) => {
               try{
                 const res = await resetPassword(values)
-                if(res.success){
+                console.log('res reset', res)
+                if(res.data.code === 1000){
                   localStorage.removeItem("username")
                   toast.success('Cập nhật mật khẩu thành công. Vui lòng quay lại trang đăng nhập')
                   navigate('/signin')

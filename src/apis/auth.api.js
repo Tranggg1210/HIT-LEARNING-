@@ -12,10 +12,9 @@ const authApi = () => ({
   //   apiDefault.post(ApiConstant.auth.forgotPassword, {
   //     email,
   //   }),
-  resendOTP: async ({ username }) =>
-    apiDefault.post(ApiConstant.auth.resendOTP, {
-      username,
-    }),
+  resendOTP: async ( username ) =>
+  apiDefault.post(`${ApiConstant.auth.sendCode}${username}`),
+
 
   resetPassword: async ({userId, newPassword, confirmPassword }) =>
     apiDefault.put(ApiConstant.auth.resetPassword, {
@@ -36,7 +35,7 @@ const authApi = () => ({
   refreshToken: async (refreshToken) =>
     apiDefault.post(`${ApiConstant.auth.refreshToken}${refreshToken}`),
 
-  sendCode: async ({ username }) =>
+  sendCode: async ( {username }) =>
     apiDefault.post(`${ApiConstant.auth.sendCode}${username}`),
 
   verify: async (username, code) =>
