@@ -84,13 +84,15 @@ const HeaderHL = () => {
 
   return (
     <div className='header-container'>
-      <div>
+
+      <div  style={{width:'180px'}}>
         {access_token && location.pathname === '/course' && (
           <Button className='create-course-button' onClick={handleCreateCourse}>
             <IconCirclePlus size={50} color='#f4b81e' />
           </Button>
         )}
       </div>
+
       <div className='search-container'>
         <div className='box-search'>
           <select
@@ -139,7 +141,6 @@ const HeaderHL = () => {
                       borderRadius: '50px',
                       height: '50px',
                       minWidth: '50px',
-                      marginRight: '25px',
                       padding: '0',
                     }}
                     className='avatar'>
@@ -156,7 +157,7 @@ const HeaderHL = () => {
                       vertical: 'top',
                       horizontal: 'center',
                     }}>
-                    <Typography sx={{ width: '200px' }}>
+                    <Typography sx={{ width: '200px'  }}>
                       <span
                         className='btn-dragger'
                         style={{ padding: '12px ' }}

@@ -1,8 +1,7 @@
 @import '../../styles//mixins';
 .courses {
   position: relative;
-  margin-left: 40px;
-  margin-right: 60px;
+ 
   .back {
     display: flex;
     justify-content: space-between;
@@ -22,7 +21,7 @@
 
     .course-item {
       position: relative;
-      min-width: 25%;
+      width: 100%;
       border-radius: 10px;
       .course-img {
         width: 100%;
@@ -38,10 +37,9 @@
       }
       .infor {
         display: flex;
-        position: absolute;
         bottom: 15px;
         justify-content: center;
-        width: 85%;
+        width: 100%;
         .luot-xem,
         .icon {
           color: black;

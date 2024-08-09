@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import './ClassesItem.scss'
 import { useNavigate } from 'react-router-dom'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
-
 import { IconClockHour9 } from '@tabler/icons-react'
 const ClassesItem = ({ title, courses, handleSeeMore }) => {
   const navigate = useNavigate()
@@ -44,7 +43,7 @@ const ClassesItem = ({ title, courses, handleSeeMore }) => {
             className='course-item'
             onClick={() => navigate(`/detail-course/${item.id}`)}>
             {determineMediaType(item.videoId) === 'video' && (
-              <video controls width='600' className='course-img'>
+              <video controls width='500' className='course-img'>
                 <source
                   src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
                   type='video/mp4'
@@ -63,7 +62,7 @@ const ClassesItem = ({ title, courses, handleSeeMore }) => {
             )}
             <div className='infor-container'>
               <div className='box-course-name'>
-                <p className='course-name'>{item.name}</p>
+                <p className='course-name' title={item.name} >{item.name}</p>
               </div>
 
               <p className='course-leader-name'>{item.leaderName}</p>

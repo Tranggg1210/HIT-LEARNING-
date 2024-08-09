@@ -46,9 +46,9 @@ const LessonBar = ({ param }) => {
   return (
     <>
       <Box m={2}>
-        <Typography variant='h4' component='h2' align='center'>
+        <h2 className="lesson-title">
           Nội dung khóa học
-        </Typography>
+        </h2>
       </Box>
       <div className='lesson-content'>
         <br />
@@ -68,7 +68,7 @@ const LessonBar = ({ param }) => {
                   items[sectionId].map((item) => (
                     <div key={item.id} className='lesson'>
                       <NavLink to={`/lesson/${cleanParam}/detail-lesson/${item.id}`}>
-                        {item.name} - {item.id}
+                        {item.name}
                       </NavLink>
                     </div>
                   ))

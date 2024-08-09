@@ -136,9 +136,9 @@ const LessonDetail = () => {
               QUAY LẠI
             </Typography>
           </div>
-          <div className='player'>
+          <div className='player' >
             {currentItem && (
-              <>
+              <div className='player-banner'>
                 {determineMediaType(currentItem.videoId) === 'video' && (
                   <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
                     <video controls width='fit-content'>
@@ -159,7 +159,7 @@ const LessonDetail = () => {
                 {determineMediaType(currentItem.videoId) === 'empty' && (
                   <img src={CourseList1} alt='Khóa học' />
                 )}
-              </>
+              </div>
             )}
             <div className='player-des'>
               <div className='des-container'>

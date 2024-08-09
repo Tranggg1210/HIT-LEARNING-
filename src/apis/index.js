@@ -8,8 +8,8 @@ const api = axios.create({
   headers: {
     'Content-Type': 'Application/json',
 
-    // 'ngrok-skip-browser-warning': '69420'
-    'ngrok-skip-browser-warning': '241804'
+    'ngrok-skip-browser-warning': '69420'
+    // 'ngrok-skip-browser-warning': '241804'
 
   },
 })
@@ -52,8 +52,9 @@ const apiDefault = axios.create({
   headers: {
     'Content-Type': 'Application/json',
 
-    'ngrok-skip-browser-warning': '241804'
-    // 'ngrok-skip-browser-warning': '69420'
+    // 'ngrok-skip-browser-warning': '241804'
+    'ngrok-skip-browser-warning': '69420'
+
 
   },
 })
@@ -77,8 +78,8 @@ const apiDefaultUpload = axios.create({
   headers: {
     'Content-Type': 'multipart/form-data',
 
-    // 'ngrok-skip-browser-warning': '69420'
-    'ngrok-skip-browser-warning': '241804'
+    'ngrok-skip-browser-warning': '69420'
+    // 'ngrok-skip-browser-warning': '241804'
 
   },
 })

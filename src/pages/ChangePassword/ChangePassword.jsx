@@ -35,8 +35,6 @@ const ChangePassword = () => {
         return;
       }
       toast.error('Thay đổi mật khẩu thất bại, vui lòng thử lại sau');
-      
-
     }
   }
 
