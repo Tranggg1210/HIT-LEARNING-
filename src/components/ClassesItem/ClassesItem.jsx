@@ -64,9 +64,10 @@ const ClassesItem = ({ title, courses, handleSeeMore }) => {
               )}
               <div className='infor-container'>
                 <div className='box-course-name'>
-                  <p className='course-name'>{item.name}</p>
+                  <p className='course-name' title={item.name}>
+                    {item.name}
+                  </p>
                 </div>
-
                 <p className='course-leader-name'>{item.leaderName}</p>
                 <div className='infor'>
                   <IconClockHour9 stroke={2} />

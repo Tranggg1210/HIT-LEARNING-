@@ -60,7 +60,6 @@ const CouresUserPrivate = () => {
         courses={classPrivate}
         handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Private')}
       />
-
       <ClassesItem
         title='Lớp học Public'
         courses={classPublic}

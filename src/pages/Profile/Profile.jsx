@@ -1,5 +1,5 @@
 import "./Profile.scss";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BackgroundProfile from "../../assets/images/F8.png";
 import ChuNhiem1 from '../../assets/images/chu_nhiem.jpg';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,20 +7,38 @@ import { IconChevronLeft, IconSchool, IconBrandFacebook, IconMail, IconId, IconU
 import { Typography } from '@mui/material';
 import useAuth from "../../hooks/useAuth";
 import EditProfile from "../EditProfile/EditProfile";
+import { getUserById } from "../../apis/user.api";
 
 const Profile = () => {
+    const [userDatas,setUserDatas] =useState(null)
     const navigate = useNavigate();
     const currentUser = useAuth();
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+    const id= currentUser?.user?.id
+    const getDataUserById = async()=>{
+        try{
+            const reslut = await (await  getUserById(id)).data.data;
+            setUserDatas(reslut)
+        }catch(error){
+            console.error('Failed to fetch user data:', error);
+        }
+    }
     const handleOpenEditModal = () => {
         setIsEditModalOpen(true);
     };
+
 
     const handleCloseEditModal = () => {
         setIsEditModalOpen(false);
     };
     console.log(handleCloseEditModal)
-    
+
+    useEffect(()=>{
+        getDataUserById();
+
+    },[])
+
 
 
     return (
@@ -46,7 +64,7 @@ const Profile = () => {
                 </div>
             </div>
             <div className="profile-name">
-                <h1>{currentUser?.user?.name || "Chưa có dữ liệu"}</h1>
+                <h1>{userDatas?.name || "Chưa có dữ liệu"}</h1>
             </div>
             <div className="content-profile">
                 <div className="intro">
@@ -54,25 +72,25 @@ const Profile = () => {
                     <div className="infor-profile">
                         <p>
                             <IconBrandFacebook stroke={2} className="icon" />
-                            <a href={currentUser?.user?.linkFb}>{currentUser?.user?.linkFb || "Chưa có dữ liệu"}</a>
+                            <a href={userDatas?.linkFb}>{userDatas?.linkFb|| "Chưa có dữ liệu"}</a>
                         </p>
                         <p>
                             <IconMail stroke={2} />
-                            <span>{currentUser?.user?.email || "Chưa có dữ liệu"}</span>
+                            <span>{userDatas?.email || "Chưa có dữ liệu"}</span>
                         </p>
                         <p>
                             <IconSchool stroke={2} />
-                            <span>{currentUser?.user?.className || "Chưa có dữ liệu"}</span>
+                            <span>{userDatas?.className || "Chưa có dữ liệu"}</span>
                         </p>
                     </div>
-                    <h3 className="mysefl">Mô tả bản thân </h3>
-                    <p>{currentUser?.user?.description}</p>
+                    <h3 cassName="mysefl">Mô tả bản thân </h3>
+                    <p>{userDatas?.description}</p>
                 </div>
             </div>
             {isEditModalOpen && (
                 <EditProfile
-                    opens={isEditModalOpen}
-                    userData={currentUser?.user}
+                    open={isEditModalOpen}
+                    userData={userDatas}
                     onClose={handleCloseEditModal}
                 />
             )}

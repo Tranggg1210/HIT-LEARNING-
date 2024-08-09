@@ -87,151 +87,150 @@ const LessonDetail = () => {
   console.log('currentItem', currentItem)
 
   return (
-    <>
-      {loading && <Loading />}
-      <div className='lesson-detail'>
-        <div className='lesson-box'>
-          <div className='lesson-left'>
-            <div className='goback' onClick={handleBack}>
-              <IconChevronLeft stroke={2} width={40} height={64} />
-              <Typography variant='h6' component='h6'>
-                QUAY LẠI
-              </Typography>
-            </div>
-            <div className='player'>
-              {currentItem && (
-                <>
-                  {determineMediaType(currentItem.videoId) === 'video' && (
-                    <video controls width='600'>
+    <div className='lesson-detail'>
+      <div className='lesson-box'>
+        <div className='lesson-left'>
+          <div className='goback' onClick={handleBack}>
+            <IconChevronLeft stroke={2} width={40} height={64} />
+            <Typography variant='h6' component='h6'>
+              QUAY LẠI
+            </Typography>
+          </div>
+          <div className='player'>
+            {currentItem && (
+              <div className='player-banner'>
+                {determineMediaType(currentItem.videoId) === 'video' && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <video controls width='fit-content'>
                       <source
                         src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
-                        type='video/mp4'
+                        alt='Khóa học'
                       />
                     </video>
-                  )}
-                  {determineMediaType(currentItem.videoId) === 'image' && (
-                    <img
-                      width='500'
-                      height='600'
-                      className='showImage'
-                      src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
-                      alt='Khóa học'
-                    />
-                  )}
-                  {determineMediaType(currentItem.videoId) === 'empty' && (
-                    <img src={CourseList1} alt='Khóa học' />
-                  )}
-                </>
-              )}
-              <div className='player-des'>
-                <div className='des-container'>
-                  <div className='des-box'>
-                    <div className='des-left'>
-                      <h2>{currentItem?.name}</h2>
-                      <span className='sub eye'>
-                        <IconEye /> {currentItem.view || 0} lượt xem
-                      </span>
-                      <br />
-                      <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
-                        Người đăng: {currentItem?.author || 'Không xác định'}
-                      </span>
-                    </div>
-                    <div className='des-right'>
-                      <div className='button-des'>
-                        <button className='btn-des' onClick={handleLike}>
-                          {like ? <IconHeartFilled /> : <IconHeart />}
-                        </button>
+                  </div>
+                )}
+                {determineMediaType(currentItem.videoId) === 'image' && (
+                  <img
+                    width='500'
+                    height='600'
+                    className='showImage'
+                    src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
+                    alt='Khóa học'
+                  />
+                )}
+                {determineMediaType(currentItem.videoId) === 'empty' && (
+                  <img src={CourseList1} alt='Khóa học' />
+                )}
+              </div>
+            )}
+            <div className='player-des'>
+              <div className='des-container'>
+                <div className='des-box'>
+                  <div className='des-left'>
+                    <h2>{currentItem?.name}</h2>
+                    <span className='sub eye'>
+                      <IconEye /> {currentItem.view || 0} lượt xem
+                    </span>
+                    <br />
+                    <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
+                      Người đăng: {currentItem?.author || 'Không xác định'}
+                    </span>
+                  </div>
+                  <div className='des-right'>
+                    <div className='button-des'>
+                      <button className='btn-des' onClick={handleLike}>
+                        {like ? <IconHeartFilled /> : <IconHeart />}
+                      </button>
 
-                        <a href={'hello'} download className='btn-des'>
-                          <IconDownload /> Tải xuống
-                        </a>
-                      </div>
+                      <a href={'hello'} download className='btn-des'>
+                        <IconDownload /> Tải xuống
+                      </a>
                     </div>
                   </div>
-                  <div className='list-box'>
-                    <ul>
-                      <li>
-                        Fanpage: <span className='link'>https://web.facebook.com/HITClub.HaUI</span>
-                      </li>
-                      <li>
-                        Website: <span className='link'>https://web.facebook.com/HITClub.HaUI</span>
-                      </li>
-                      <li>
-                        Group: <span className='link'>https://web.facebook.com/HITClub.HaUI</span>
-                      </li>
-                    </ul>
-                  </div>
+                </div>
+                <div className='list-box'>
+                  <ul>
+                    <li>
+                      Fanpage: <span className='link'>https://web.facebook.com/HITClub.HaUI</span>
+                    </li>
+                    <li>
+                      Website: <span className='link'>https://web.facebook.com/HITClub.HaUI</span>
+                    </li>
+                    <li>
+                      Group: <span className='link'>https://web.facebook.com/HITClub.HaUI</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-            <div>
-              {!showAddComment && (
-                <div className='lesson-comment' onClick={() => setShowAddComment(!showAddComment)}>
-                  <div
-                    className='comment'
-                    style={{ border: '1px solid black', padding: '1rem', cursor: 'pointer' }}>
-                    <h3>Binh luan</h3>
-                  </div>
-                </div>
-              )}
-              {showAddComment && (
-                <div className='text-comment'>
-                  <textarea
-                    value={comment}
-                    rows={4}
-                    onChange={(e) => setComment(e.target.value)}
-                    style={{
-                      width: '100%',
-                      border: '1px solid black',
-                      padding: '1rem',
-                      marginTop: '1rem',
-                    }}></textarea>
-                  <div className='button-dis'>
-                    <button className='' onClick={() => setShowAddComment(false)}>
-                      Hủy
-                    </button>
-                    <button onClick={addComment}>Gửi</button>
-                  </div>
-                </div>
-              )}
-            </div>
-            <div className='comment-box'>
-              <List sx={{ mt: 2 }}>
-                {comments.map((cmt, index) => (
-                  <ListItem key={index} alignItems='flex-start'>
-                    <div
-                      style={{
-                        backgroundColor: 'gray',
-                        width: '2rem',
-                        height: '2rem',
-                        borderRadius: '50%',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        marginRight: '1rem',
-                      }}></div>
-                    <ListItemText
-                      primary={cmt?.user.username}
-                      secondary={
-                        <>
-                          {cmt.comment}
-                          <Typography variant='caption' display='block' gutterBottom>
-                            {moment(cmt.createdAt).format('DD-MM-YYYY HH:mm:ss')}
-                          </Typography>
-                        </>
-                      }
-                    />
-                  </ListItem>
-                ))}
-              </List>
-            </div>
           </div>
-          <div className='lesson-right'>
-            <LessonBar param={courseId} />
+          <div>
+            {!showAddComment && (
+              <div className='lesson-comment' onClick={() => setShowAddComment(!showAddComment)}>
+                <div
+                  className='comment'
+                  style={{ border: '1px solid black', padding: '1rem', cursor: 'pointer' }}>
+                  <h3>Binh luan</h3>
+                </div>
+              </div>
+            )}
+            {showAddComment && (
+              <div className='text-comment'>
+                <textarea
+                  value={comment}
+                  rows={4}
+                  onChange={(e) => setComment(e.target.value)}
+                  style={{
+                    width: '100%',
+                    border: '1px solid black',
+                    padding: '1rem',
+                    marginTop: '1rem',
+                  }}></textarea>
+                <div className='button-dis'>
+                  <button className='' onClick={() => setShowAddComment(false)}>
+                    Hủy
+                  </button>
+                  <button onClick={addComment}>Gửi</button>
+                </div>
+              </div>
+            )}
+          </div>
+          <div className='comment-box'>
+            <List sx={{ mt: 2 }}>
+              {comments.map((cmt, index) => (
+                <ListItem key={index} alignItems='flex-start'>
+                  <div
+                    style={{
+                      backgroundColor: 'gray',
+                      width: '2rem',
+                      height: '2rem',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: '1rem',
+                    }}></div>
+                  <ListItemText
+                    primary={cmt?.user.username}
+                    secondary={
+                      <>
+                        {cmt.comment}
+                        <Typography variant='caption' display='block' gutterBottom>
+                          {moment(cmt.createdAt).format('DD-MM-YYYY HH:mm:ss')}
+                        </Typography>
+                      </>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
           </div>
         </div>
+        <div className='lesson-right'>
+          <LessonBar param={courseId} />
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

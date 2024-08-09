@@ -9,9 +9,9 @@ const MainLayout = () => {
         <SideBar />
       </div>
       <div className='layout-content'>
-        <HeaderHL />
         <div className='outlet'>
           <div>
+            <HeaderHL />
             <Outlet />
           </div>
         </div>

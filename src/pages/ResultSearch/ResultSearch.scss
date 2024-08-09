@@ -1,20 +1,59 @@
 @import '../../styles/mixins';
 
-.result-search-container {
-  width: 100%;
+.courses {
+  position: relative;
+  margin-top: 36px;
 
-  .result-list-search {
+  .more {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h2 {
+      font-size: 32px;
+
+      @include small-tablet {
+        font-size: 28px;
+      }
+
+      @include mobile {
+        font-size: 24px;
+      }
+    }
+
+    .xem_them {
+      cursor: pointer;
+      color: #f67102;
+    }
+  }
+
+  .course-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(1, auto);
     gap: 1.75rem;
 
-    .course-item-result {
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include small-tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.75rem;
+    }
+
+    .course-item {
       position: relative;
-      min-width: 25%;
+      width: 100%;
+      margin-top: 30px;
+      margin-bottom: 10px;
       border-radius: 10px;
-      width: 320px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 12px rgba(0 0 0 / 10%);
       border: 1px solid #ccc;
 
       .course-img {
@@ -22,6 +61,10 @@
         border-radius: 10px 10px 0 0;
         height: 200px;
         object-fit: cover;
+
+        @include mobile {
+          height: 150px;
+        }
       }
 
       .course-name {
@@ -29,13 +72,24 @@
         color: #f37335;
         font-size: 28px;
         font-weight: 700;
+
+        @include small-tablet {
+          font-size: 24px;
+        }
+
+        @include mobile {
+          font-size: 22px;
+        }
       }
 
-      .course-class-type,
       .course-leader-name {
         text-align: center;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 700;
+
+        @include mobile {
+          font-size: 15px;
+        }
       }
 
       .infor {
@@ -45,6 +99,47 @@
         p {
           font-size: 17px;
           font-weight: 700;
+
+          @include mobile {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .button-course-leader-item {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        transition: 0.6s;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+
+        .edit,
+        .delete {
+          background: rgba(208, 201, 201, 0.4);
+          width: 130px;
+          height: 60px;
+          color: white;
+          border: none;
+          padding: 10px;
+          margin: 5px;
+          cursor: pointer;
+          border-radius: 50px;
+          transition: background-color 0.3s ease;
+          font-size: 1rem;
+
+          @include mobile {
+            width: 100px;
+            height: 50px;
+            font-size: 0.9rem;
+          }
         }
       }
     }
@@ -71,5 +166,13 @@
         font-size: 24px;
       }
     }
+  }
+}
+
+.infor-container {
+  padding: 24px;
+
+  @include mobile {
+    padding: 16px;
   }
 }
