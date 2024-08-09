@@ -6,25 +6,22 @@ import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 import { NavLink } from 'react-router-dom'
 
+
 const LessonBar = ({ param }) => {
-  console.log('param lessonbar',param)
   const [sections, setSections] = useState({})
   const [items, setItems] = useState({})
   const [openSection, setOpenSection] = useState(null)
   const cleanParam = encodeURIComponent(param).replace('%7C', '');
 
-
   const showAllSection = async () => {
     const result = await (await getSectionByCourseId(param)).data.data
-    console.log('>>>result',result)
 
     const sectionsObject = result.content.reduce((acc, section) => {
       acc[section.id] = section
       return acc
     }, {})
 
-    // setSections(sectionsObject)
-    console.log('>>>sections',sections)
+    setSections(sectionsObject)
   }
 
   const showItemsBySectionId = async (sectionId) => {
@@ -34,7 +31,6 @@ const LessonBar = ({ param }) => {
       [sectionId]: res.data.data.content,
     }))
   }
-
   useEffect(() => {
     showAllSection()
   }, [param])
@@ -71,7 +67,6 @@ const LessonBar = ({ param }) => {
                 {Array.isArray(items[sectionId]) ? (
                   items[sectionId].map((item) => (
                     <div key={item.id} className='lesson'>
-                      
                       <NavLink to={`/lesson/${cleanParam}/detail-lesson/${item.id}`}>
                         {item.name} - {item.id}
                       </NavLink>

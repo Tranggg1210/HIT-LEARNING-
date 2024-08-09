@@ -26,7 +26,6 @@ const LessonDetail = () => {
   const [currentItem, setCurrentItem] = useState({})
 
   const currentUser = useAuth()
-  console.log('current User', currentUser)
 
 
   // const handleURLImage = async (url) => {
