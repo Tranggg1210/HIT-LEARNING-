@@ -72,7 +72,7 @@ const AdminCourse = () => {
     return `${day}/${month}/${year}`
   }
 
-  const loadData = async (term = '') => {
+  const loadData = async (term = '', page = 1) => {
     try {
       let response
       if (term) {
@@ -83,20 +83,13 @@ const AdminCourse = () => {
       setTotalRows(response.content.length)
       setRows(response.content.slice((page - 1) * size, page * size))
     } catch (error) {
-      console.error('Error:  ', error)
+      toast.error('Đã xảy ra lỗi khi tải dữ liệu tài khoản')
     }
   }
 
   useEffect(() => {
-    loadData(searchInputCA)
-  }, [])
-
-  useEffect(() => {
-    if (searchClick) {
-      loadData(searchInputCA)
-      setSearchClick(false)
-    }
-  }, [page, searchClick])
+    loadData(searchInputCA, page)
+  }, [page])
 
   const handleChangePage = (event, value) => {
     setPage(value)
@@ -116,12 +109,15 @@ const AdminCourse = () => {
   }
 
   const handleSearch = () => {
+    setPage(1)
     setSearchClick(true)
+    loadData(searchInputCA, 1)
   }
 
   const handleClearSearch = () => {
     setSearchInputCA('')
-    setSearchClick(true)
+    setPage(1)
+    loadData('', 1)
   }
 
   const cellStyle = {
@@ -195,7 +191,7 @@ const AdminCourse = () => {
             handleCloses={handleClose}
             courseData={currentCourse}
             isEditing={isEditing}
-            onEditSuccess={() => loadData(searchInputCA)} // Reload data after editing
+            onEditSuccess={() => loadData(searchInputCA)}
           />
         )}
       </div>
@@ -238,7 +234,17 @@ const AdminCourse = () => {
               {rows.map((row, idx) => (
                 <StyledTableRow key={row.id}>
                   <StyledTableCell align='center'>{idx + 1}</StyledTableCell>
-                  <StyledTableCell align='center'>{row.name}</StyledTableCell>
+                  <StyledTableCell
+                    align='center'
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        color: 'blue',
+                      },
+                    }}
+                    onClick={() => navigate(`/detail-course/${row.id}`)}>
+                    {row.name}
+                  </StyledTableCell>
                   <StyledTableCell align='center' sx={cellStyle}>
                     {row.description}
                   </StyledTableCell>

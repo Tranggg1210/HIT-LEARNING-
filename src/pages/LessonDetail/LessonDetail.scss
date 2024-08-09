@@ -1,255 +1,230 @@
 @import '../../styles/index.scss';
 
-.lesson{
-    &-detail{
+.lesson {
+  &-detail {
+  }
 
+  &-box {
+    display: flex;
+
+    @include mobile {
+      display: block;
+    }
+    @include small-tablet {
+      display: block;
+    }
+    @include tablet {
+      display: block;
+    }
+  }
+
+  &-left {
+    padding: 20px;
+    width: 70%;
+    min-height: 90vh;
+    border-right: 1px solid black;
+
+    @include mobile {
+      border: none;
+      width: 100%;
+      padding: 0;
+    }
+    @include small-tablet {
+      border: none;
+      width: 100%;
+      padding: 0;
+    }
+    @include tablet {
+      border: none;
+      width: 100%;
+      padding: 0;
+      min-height: 50vh;
     }
 
-    &-box{
-        display: flex;
+    .goback {
+      display: flex;
+      align-items: center;
+      color: gray;
+      width: fit-content;
+      cursor: pointer;
 
-        @include mobile{
-            display: block;
-        }
-        @include small-tablet{
-            display: block;
-        }
-        @include tablet{
-            display: block;
-        }
+      &:hover {
+        color: $primary-color;
+      }
     }
 
-    &-left{
-        // position: absolute;
-        padding: 20px;
-        width: 70%;
-        min-height: 90vh;
-        border-right: 1px solid black;
+    .player {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+      @include mobile {
+        width: 95%;
+        margin-left: 5px;
+      }
+      @include small-tablet {
+        width: 90%;
+        margin-left: 30px;
+      }
+      @include tablet {
+        width: 90%;
+        margin-left: 30px;
+      }
 
-        @include mobile{
-            border: none;
-            width: 100%;
-            padding: 0;
+      .iframe {
+        border-radius: 5px;
+        margin-bottom: 10px;
+        @include mobile {
+          width: 100%;
         }
-        @include small-tablet{
-            border: none;
-            width: 100%;
-            padding: 0;
+        @include small-tablet {
+          width: 100%;
         }
-        @include tablet{
-            border: none;
-            width: 100%;
-            padding: 0;
-            min-height: 50vh;
+        @include tablet {
+          width: 100%;
+          margin-left: 7px;
         }
-        
+      }
 
-        
-
-        .goback{
-            display: flex;
-            align-items: center;
-            color: gray;
-            width: fit-content;
-            cursor: pointer;
-            
-            &:hover{
-                color: $primary-color;
-
-            }
-        }
-
-        .player{
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 20px;
-            @include mobile{ 
-                width: 95%;
-                margin-left: 5px;
-            }
-            @include small-tablet{ 
-                width: 90%;
-                margin-left: 30px;
-                
-            }
-            @include tablet{ 
-                width: 90%;
-                margin-left: 30px;
-                
-            }
-
-            .iframe{
-                border-radius: 5px;
-                margin-bottom: 10px;
-                @include mobile{
-                    width: 100%;
+      &-des {
+        margin-top: 20px;
+        .des-container {
+          .des-box {
+            .des-right {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              @include mobile {
+                width: 80%;
+              }
+              .button-des {
+                gap: 30px;
+                .btn-des {
+                  width: 90px;
+                  padding: 5px;
+                  white-space: nowrap;
                 }
-                @include small-tablet{
-                    width: 100%;
-                }
-                @include tablet{
-                    width: 100%;
-                    margin-left: 7px;
-                }
+              }
             }
-
-            &-des{
-                margin-top: 20px;
-                .des-container{
-                    .des-box{
-                        .des-right{
-                            display: flex;
-                            flex-direction: column;
-                            align-items: flex-start;
-                            @include mobile{
-                               width: 80%;
-                                
-                            }
-                            .button-des{
-                                gap: 30px;
-                                .btn-des{
-                                    width: 90px;
-                                    padding: 5px;
-                                    white-space: nowrap;
-
-                                }
-                            }
-                        }
-                        .des-left{
-                            span{
-                                white-space: nowrap;
-                            }
-                        }
-                    }
-                }
-
-                
+            .des-left {
+              span {
+                white-space: nowrap;
+              }
             }
+          }
         }
-
+      }
     }
-    &-comment{
-        position: relative;
-        left:85%;
-        width: fit-content;
-        @include mobile{
-            left: 68%;
-            margin-top: 20px;
-        }
-        @include small-tablet{
-            left: 78%;
-           
-        }
-        @include tablet{
-            left: 78%;
-        }
-
-        & button{
-            padding: 5px 10px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: red;
-            gap: 10px;
-            border-radius: 20px;
-        }
+  }
+  &-comment {
+    position: relative;
+    left: 85%;
+    width: fit-content;
+    @include mobile {
+      left: 68%;
+      margin-top: 20px;
     }
-    &-right{
-        padding: 30px;
+    @include small-tablet {
+      left: 78%;
+    }
+    @include tablet {
+      left: 78%;
     }
 
-    &-footer{
-        background-color: rgba(128, 128, 128, 0.055);
-        height: 10vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .button-footer{
-            display: flex;
-            justify-content: center;
-
-        }
+    & button {
+      padding: 5px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: red;
+      gap: 10px;
+      border-radius: 20px;
     }
-}
+  }
+  &-right {
+    padding: 30px;
+  }
 
-.prev,
-.next{
+  &-footer {
+    background-color: rgba(128, 128, 128, 0.055);
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 174px ;
-    // padding: 5px;
-    border-radius: 10px;
-    // border: 1px solid $primary-color;
-    color: gray;
-    outline:none;
-    border:none;
-    background: transparent;
+
+    .button-footer {
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
-.btn{
-    border: 1px solid $primary-color;
-    color: $primary-color;
-    margin-left: 10px;
-
+.prev,
+.next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 174px;
+  border-radius: 10px;
+  color: gray;
+  outline: none;
+  border: none;
+  background: transparent;
 }
 
-.des{
-    &-box{
-
-        display: flex;
-        justify-content: space-between;
-    }
-    &-container{
-
-    }
-    &-left{
-
-    }
-    &-right{
-        // border: 1px solid black;
-        width: 30%;
-        & .button-des{
-            display: flex;
-            justify-content:space-between ;
-
-            & .btn-des{
-                border: none;
-                width: 45%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap:5px;
-                border-radius: 10px;
-                // border: none;
-                outline: none;
-            }
-        }
-    }
+.btn {
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  margin-left: 10px;
 }
 
-.sub{
-    color: rgba(128, 128, 128, 0.725);
-    
-}
-.eye{
+.des {
+  &-box {
     display: flex;
-    align-items: center;
-    gap:5px
-}
-.list-box{
-    margin-left: 20px;
-    margin-top: 20px;
-}
-.link{
-    color: $primary-color;
-    cursor: pointer;
+    justify-content: space-between;
+  }
+  &-container {
+  }
+  &-left {
+  }
+  &-right {
+    width: 30%;
+    & .button-des {
+      display: flex;
+      justify-content: space-between;
+
+      & .btn-des {
+        border: none;
+        width: 45%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        border-radius: 10px;
+        outline: none;
+      }
+    }
+  }
 }
 
-.comment-box{
-    margin-top: 10px;
-    max-height: 300px;
-    overflow-y: auto;
+.sub {
+  color: rgba(128, 128, 128, 0.725);
+}
+.eye {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.list-box {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+.link {
+  color: $primary-color;
+  cursor: pointer;
 }
 
+.comment-box {
+  margin-top: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}

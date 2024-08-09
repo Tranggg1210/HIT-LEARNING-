@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { IconMessageCircle } from '@tabler/icons-react'
 import './CourseLeaderClass.scss'
 import { useNavigate } from 'react-router-dom'
-import { IconClockHour9 } from '@tabler/icons-react';
+import { IconClockHour9 } from '@tabler/icons-react'
 
 const CourseLeaderClass = ({ courses, title, onCancel }) => {
   const navigate = useNavigate()
@@ -20,6 +20,13 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
       return 'video'
     }
     return 'empty'
+  }
+  const isoDayMonthYear = (isoString) => {
+    const date = new Date(isoString)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
+    return `${day}/${month}/${year}`
   }
   return (
     <div className='courses'>
@@ -59,8 +66,11 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
                 <img src={CourseList1} alt='Khóa học' className='course-img' />
               )}
             </div>
-            <div className="infor-container">
-              <p className='course-name'>{item.name}</p>
+            <div className='infor-container'>
+              <div className='box-course-name'>
+                <p className='course-name'>{item.name}</p>
+              </div>
+              <p className='course-leader-name'>{item.leaderName}</p>
               <div className='infor'>
                 <IconClockHour9 stroke={2} />
                 <p>{isoDayMonthYear(item.createdAt)}</p>

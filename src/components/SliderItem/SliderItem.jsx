@@ -51,12 +51,6 @@ const SliderItem = ({ films }) => {
       <div className='banner-slider' style={{ transform: `translateX(${-index * 100}%)` }}>
         {courses.map((item, idx) => (
           <div key={item.id} className='banner-item'>
-            {/* <img
-              className='banner-image'
-              src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
-              // alt={film.origin_name}
-              loading='lazy'
-            /> */}
             {determineMediaType(item.videoId) === 'video' && (
               <video controls width='600' className='banner-image'>
                 <source

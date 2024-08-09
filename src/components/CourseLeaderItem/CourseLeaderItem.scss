@@ -38,13 +38,16 @@
         height: 200px;
         object-fit: cover;
       }
-
-      .course-name {
-        text-align: center;
-        color: #f37335;
-        font-size: 28px;
-        font-weight: 700;
+      .box-course-name {
+        height: 100px;
+        .course-name {
+          text-align: center;
+          color: #f37335;
+          font-size: 28px;
+          font-weight: 700;
+        }
       }
+
       .infor {
         margin-top: 12px;
         gap: 4px;

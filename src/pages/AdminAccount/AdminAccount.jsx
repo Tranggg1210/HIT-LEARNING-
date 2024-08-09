@@ -72,7 +72,7 @@ const AdminAccount = () => {
     return `${day}/${month}/${year}`
   }
 
-  const loadData = async (term = '') => {
+  const loadData = async (term = '', page = 1) => {
     try {
       let response
       if (term) {
@@ -80,29 +80,29 @@ const AdminAccount = () => {
       } else {
         response = await (await getAllAccount()).data.data
       }
-      setTotalRows(response.length)
-      if (term) {
-        setRows(response.content.slice((page - 1) * size, page * size))
-      } else {
-        setRows(response.slice((page - 1) * size, page * size))
-      }
+
+      const totalLength = term ? response.content.length : response.length
+      setTotalRows(totalLength)
+
+      const paginatedRows = term
+        ? response.content.slice((page - 1) * size, page * size)
+        : response.slice((page - 1) * size, page * size)
+      setRows(paginatedRows)
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi tải dữ liệU người dùng')
+      toast.error('Đã xảy ra lỗi khi tải dữ liệu người dùng')
     }
   }
-  // useEffect(() => {
-  //   loadData(searchInputAA)
-  // }, [page, searchInputAA])
+
   useEffect(() => {
-    loadData(searchInputAA)
-  }, [])
+    loadData(searchInputAA, page)
+  }, [page, searchClick])
 
   useEffect(() => {
     if (searchClick) {
       loadData(searchInputAA)
       setSearchClick(false)
     }
-  }, [page, searchClick])
+  }, [searchClick])
 
   const handleChangePage = (event, value) => {
     setPage(value)
@@ -120,22 +120,18 @@ const AdminAccount = () => {
       toast.error('Đã xảy ra lỗi khi xoá dữ liệu người dùng')
     }
   }
-  // const handleSearch = () => {
-  //   loadData(searchInputAA)
-  // }
 
-  // const handleClearSearch = () => {
-  //   setSearchInputAA('')
-  //   loadData()
-  // }
   const handleSearch = () => {
+    setPage(1)
     setSearchClick(true)
   }
 
   const handleClearSearch = () => {
     setSearchInputAA('')
+    setPage(1)
     setSearchClick(true)
   }
+
   const cellStyle = {
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -154,7 +150,7 @@ const AdminAccount = () => {
               type='text'
               value={searchInputAA}
               onChange={(e) => setSearchInputAA(e.target.value)}
-              placeholder='Nhập tìm kiếm bằng tên khoá học ...'
+              placeholder='Nhập tìm kiếm bằng tên người dùng ...'
               style={{ paddingRight: '40px' }}
             />
             <Button
