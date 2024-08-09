@@ -36,6 +36,7 @@ const ChangePassword = () => {
       }
       toast.error('Thay đổi mật khẩu thất bại, vui lòng thử lại sau');
       
+
     }
   }
 
@@ -53,7 +54,7 @@ const ChangePassword = () => {
           </div>
           <Formik
             initialValues={{
-              oldPass:'',
+              oldPass: '',
               newPass: '',
               confirmPass: '',
             }}

@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo.jpg'
 import {sendCode} from '../../apis/auth.api'
 import toast from 'react-hot-toast'
 import { inputUser } from '../../utils/inputUser'
-const InputEmail = ({ handleUser }) => {
+const InputEmail = () => {
   const navigate = useNavigate()
 
   const goBack = () => {
@@ -28,14 +28,13 @@ const InputEmail = ({ handleUser }) => {
             initialValues={{
               username: '',
             }}
-            validationSchema={inputUser()}
+            validationSchema={inputUser}
             onSubmit={async (values) => {
                 try {
                   const code = await sendCode(values)
-                  console.log('>>>code',code)
                   if(code.data.data){
-                      handleUser(values.username)
-                      navigate(`/forgot-password/verify-otp`)
+                    localStorage.setItem('username',values.username)
+                    navigate('/verify-otp')
                   }else{
                       toast.error('Tài khoản không tồn tại')
                   }

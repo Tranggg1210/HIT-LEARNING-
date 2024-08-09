@@ -1,3 +1,4 @@
+
 import "./EditProfile.scss";
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -31,6 +32,7 @@ const EditProfile = (opens,userData,onClose) => {
     }
   }, [userData]);
 
+
   const handleUpdateUser = async () => {
     if (folderName && describe && linkFb && linkEmail && className) {
       const newUserData = {
@@ -39,6 +41,7 @@ const EditProfile = (opens,userData,onClose) => {
         linkFb: linkFb,
         email: linkEmail,
         className: className,
+
         password: 'string',
         
       };
@@ -53,10 +56,9 @@ const EditProfile = (opens,userData,onClose) => {
           return
         }
         toast.error('Cập nhật thông tin người dùng thất bại')
-        
       }
     }
-  };
+  }
 
   const style = {
     position: 'absolute',
@@ -185,4 +187,5 @@ const EditProfile = (opens,userData,onClose) => {
   );
 };
 
-export default EditProfile;
+
+export default EditProfile

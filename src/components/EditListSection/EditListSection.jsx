@@ -3,6 +3,7 @@ import './EditListSection.scss'
 import { useNavigate, useParams } from 'react-router-dom'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { updateSection } from '../../apis/section.api'
+import toast from 'react-hot-toast'
 
 const EditListSection = ({ onCreate, onCancel }) => {
   const [locationClass, setLocationClass] = useState('')
@@ -23,7 +24,7 @@ const EditListSection = ({ onCreate, onCancel }) => {
         onCreate()
         onCancel()
       } catch (error) {
-        console.log('Error creating course:', error)
+        toast.error('Đã xảy ra lỗi khi sửa dữ liệu buổi học')
       }
     }
   }
