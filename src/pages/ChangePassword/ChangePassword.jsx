@@ -15,8 +15,8 @@ const ChangePassword = () => {
   const goBack = () => {
     navigate(-1)
   }
-  const handleChangePassword = async (values) => {
-    try {
+  const handleChangePassword =async(values) =>{
+    try{
       const response = await changePassword({
         userId:currentUser?.user?.id,
         oldPassword:values.oldPass,
@@ -35,7 +35,6 @@ const ChangePassword = () => {
         return;
       }
       toast.error('Thay đổi mật khẩu thất bại, vui lòng thử lại sau');
-      
     }
   }
 
@@ -58,9 +57,9 @@ const ChangePassword = () => {
               confirmPass: '',
             }}
             validationSchema={changePass()}
-            onSubmit={(values, { setSubmitting }) => {
-              handleChangePassword(values)
-              setSubmitting(false)
+            onSubmit={(values ,{setSubmitting}) => {
+              handleChangePassword(values);
+              setSubmitting(false);
             }}>
             {({ errors, touched }) => (
               <Form>

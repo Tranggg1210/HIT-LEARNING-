@@ -1,3 +1,4 @@
+
 import "./EditProfile.scss";
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -30,24 +31,6 @@ const EditProfile = (opens,userData,onClose) => {
       
     }
   }, [userData]);
-import './EditProfile.scss'
-import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { TextField } from '@mui/material'
-import useAuth from '../../hooks/useAuth'
-import { editUser } from '../../apis/user.api'
-import toast from 'react-hot-toast'
-
-const EditProfile = ({ onCancel, onCreate }) => {
-  const userAccess = useAuth()
-  const [folderName, setFolderName] = useState(userAccess?.user?.name || '')
-  const [describe, setDescribe] = useState(userAccess?.user?.username || '')
-  const [linkFb, setLinkFb] = useState(userAccess?.user?.linkFb || '')
-  const [linkEmail, setLinkEmail] = useState(userAccess?.user?.email || '')
-  const [className, setClassName] = useState(userAccess?.user?.className || '')
-  const inputRef = useRef()
-
-  const navigate = useNavigate()
 
 
   const handleUpdateUser = async () => {
@@ -58,6 +41,7 @@ const EditProfile = ({ onCancel, onCreate }) => {
         linkFb: linkFb,
         email: linkEmail,
         className: className,
+
         password: 'string',
         
       };
@@ -204,4 +188,4 @@ const EditProfile = ({ onCancel, onCreate }) => {
 };
 
 
-export default EditProfile 
+export default EditProfile

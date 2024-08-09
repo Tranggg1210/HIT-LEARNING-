@@ -23,6 +23,12 @@ const authApi = () => ({
       newPassword,
       confirmPassword,
     }),
+  changePassword: async ({ oldPass, newPass, confirmPass }) =>
+    apiDefault.put(ApiConstant.auth.changePassword, {
+      oldPass,
+      newPass,
+      confirmPass,
+    }),
   changePassword: async ({userId,oldPassword, newPassword, confirmPassword }) =>
     apiDefault.put(ApiConstant.auth.changePassword, {
       userId,oldPassword, newPassword, confirmPassword
