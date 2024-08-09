@@ -4,17 +4,24 @@ import { IoIosArrowBack } from 'react-icons/io'
 import { Field, Formik, Form } from 'formik'
 import { forgotPassValid } from '../../utils/forgotPassValid'
 import logo from '../../assets/images/logo.jpg'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import toast from 'react-hot-toast'
-import { verify, sendCode } from '../../apis/auth.api'
+import { verify, sendCode, resendOTP } from '../../apis/auth.api'
 
 const ForgotPassword = () => {
   const navigate = useNavigate()
   const [countdown, setCountdown] = useState(60)
   const [isResendDisabled, setIsResendDisabled] = useState(true)
 
+  const startCountdown = useCallback(()=>{
+    setCountdown(60)
+    setIsResendDisabled(true)
+  })
+
   useEffect(() => {
-    const timer = setInterval(() => {
+    let timer
+    if (countdown > 0 && isResendDisabled) {
+      timer = setInterval(() => {
       setCountdown((prevCountdown) => {
         if (prevCountdown <= 1) {
           clearInterval(timer)
@@ -24,9 +31,10 @@ const ForgotPassword = () => {
         return prevCountdown - 1
       })
     }, 1000)
+    } 
 
     return () => clearInterval(timer)
-  }, [])
+  }, [countdown,isResendDisabled])
 
   const goBack = () => {
     navigate('/signin')
@@ -34,15 +42,15 @@ const ForgotPassword = () => {
 
   const handleResendOTP = async () => {
     try {
-      const res = await sendCode(localStorage.getItem("username"))
-      if (res.data.data) {
+      const res = await resendOTP(localStorage.getItem("username"))
+      if (res.data.code === 1000) {
         toast.success('OTP resent successfully')
-        setCountdown(60)
-        setIsResendDisabled(true)
+        startCountdown()
+
+        
       } else {
         toast.error('Failed to resend OTP')
-      }
-    } catch (err) {
+      }    } catch (err) {
       toast.error(err.message)
     }
   }
@@ -67,7 +75,8 @@ const ForgotPassword = () => {
             onSubmit={async (values) => {
               try {
                 const res = await verify(localStorage.getItem("username"), values.otp)
-                if (res.status === 200) {
+                console.log('res', res)
+                if (res.data.code === 1000 ) {
                   navigate('/reset-password')
                 } else {
                   toast.error(res.data.message)
@@ -83,14 +92,14 @@ const ForgotPassword = () => {
                   <Field id='otp' type='text' placeholder='Nhập mã OTP' name='otp' />
                 </div>
                 {errors.otp && touched.otp ? <p className='errorMsg'>{errors.otp}</p> : null}
-                {/* <br /> */}
+                <br />
                 <div className='resend-otp'>
                   {isResendDisabled ? (
                     <p>Gửi lại ({countdown}s)</p>
                   ) : (
-                    <button type='button' onClick={handleResendOTP}>
-                      Gửi lại mã
-                    </button>
+                    <span style={{textDecoration:'underline', color:'orange ', cursor:'pointer'}} onClick={handleResendOTP}>
+                      Gửi lại mã ({countdown})
+                    </span>
                   )}
                 </div>
                 <br />

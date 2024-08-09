@@ -53,7 +53,6 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
       try {
         await editCourse(courseData.id, baseCourseData)
         handleCloses()
-        // if (onEditSuccess) onEditSuccess()
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi sửa dữ liệu khoá học')
       }

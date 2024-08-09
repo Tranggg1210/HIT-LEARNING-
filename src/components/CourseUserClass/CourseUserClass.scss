@@ -9,7 +9,6 @@
     align-items: center;
     margin-bottom: 10px;
     margin-top: 10px;
-    // margin-right: 40px;
     .xem_them {
       cursor: pointer;
       color: #f67102;
@@ -21,13 +20,6 @@
     grid-template-rows: repeat(1, auto);
     gap: 1rem;
 
-    // display: flex;
-    // margin-top: 1rem;
-    // gap: 1rem;
-    // padding-bottom: 10px;
-    // overflow-x: scroll;
-    // overflow-y: hidden;
-    // scroll-snap-type: x mandatory;
     .course-item {
       position: relative;
       min-width: 25%;
@@ -35,7 +27,6 @@
       .course-img {
         width: 100%;
         border-radius: 10px;
-        // height: 160px;
         height: 200px;
         object-fit: cover;
       }

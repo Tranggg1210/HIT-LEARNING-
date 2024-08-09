@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './HeaderHL.scss'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
@@ -8,11 +8,11 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state'
 import SearchResultList from '../../components/SearchResultList/SearchResultList'
 import { getAllSuggest, getAllSection, getAllItem, getAllCourse } from '../../apis/search.api'
 import useAuth from '../../hooks/useAuth'
-import { IconLogout } from '@tabler/icons-react'
+import { IconLogout, IconCirclePlus } from '@tabler/icons-react'
 import Avatar from '../../assets/images/user.png'
-
 const HeaderHL = () => {
   const navigate = useNavigate()
+  const location = useLocation()
   const currentUser = useAuth()
   const [results, setResults] = useState([])
   const [searchInput, setSearchInput] = useState('')
@@ -78,9 +78,21 @@ const HeaderHL = () => {
     navigate('/')
   }
 
+  const handleCreateCourse = () => {
+    navigate('/createNewCourse')
+  }
+
   return (
     <div className='header-container'>
-      <div style={{width:'180px'}}></div>
+
+      <div  style={{width:'180px'}}>
+        {access_token && location.pathname === '/course' && (
+          <Button className='create-course-button' onClick={handleCreateCourse}>
+            <IconCirclePlus size={50} color='#f4b81e' />
+          </Button>
+        )}
+      </div>
+
       <div className='search-container'>
         <div className='box-search'>
           <select
@@ -150,7 +162,6 @@ const HeaderHL = () => {
                         className='btn-dragger'
                         style={{ padding: '12px ' }}
                         onClick={() => navigate(`/profile/`)}>
-                        {' '}
                         👤 Thông tin cá nhân
                       </span>
                       <span

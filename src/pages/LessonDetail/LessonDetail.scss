@@ -1,407 +1,385 @@
 @import '../../styles/index.scss';
 
-.lesson{
-  overflow: hidden;
+
+.lesson {
   
-  &-detail{
-      overflow: hidden;
-      
 
+  &-box {
+    display: flex;
+
+    @include mobile {
+      display: block;
     }
 
-    &-box{
-        display: flex;
-        position: relative;
-        overflow: hidden;
-
-        @include mobile{
-            display: block;
-        }
-        @include small-tablet{
-            display: block;
-        }
-        @include tablet{
-            display: block;
-        }
+    @include small-tablet {
+      display: block;
     }
 
-    &-left{
-        // position: absolute;
-        scrollbar-width: none;
-        padding: 20px;
-        width: 70%;
-        min-height: 90vh;
-        border-right: 1px solid black;
-        overflow-y: scroll;
-
-        @include mobile{
-            border: none;
-            width: 100%;
-            padding: 0;
-        }
-        @include small-tablet{
-            border: none;
-            width: 100%;
-            padding: 0;
-        }
-        @include tablet{
-            border: none;
-            width: 100%;
-            padding: 0;
-            min-height: 50vh;
-        }
-        
-
-        
-
-        .goback{
-            display: flex;
-            align-items: center;
-            color: gray;
-            width: fit-content;
-            cursor: pointer;
-            
-            &:hover{
-                color: $primary-color;
-
-            }
-        }
-
-        .player{
-            width: 100%;
-            border-radius: 10px;
-            margin-top: 20px;
-            @include mobile{ 
-                width: 95%;
-                margin-left: 5px;
-            }
-            @include small-tablet{ 
-                width: 90%;
-                margin-left: 30px;
-                
-            }
-            @include tablet{ 
-                width: 90%;
-                margin-left: 30px;
-                
-            }
-
-            .iframe{
-                border-radius: 5px;
-                margin-bottom: 10px;
-                @include mobile{
-                    width: 100%;
-                }
-                @include small-tablet{
-                    width: 100%;
-                }
-                @include tablet{
-                    width: 100%;
-                    margin-left: 7px;
-                }
-            }
-
-            &-des{
-                margin-top: 20px;
-                .des-container{
-                    .des-box{
-                        .des-right{
-                            display: flex;
-                            flex-direction: column;
-                            align-items: flex-start;
-                            @include mobile{
-                               width: 80%;
-                                
-                            }
-                            .button-des{
-                                gap: 30px;
-                                .btn-des{
-                                    width: 90px;
-                                    padding: 5px;
-                                    white-space: nowrap;
-
-                                }
-                            }
-                        }
-                        .des-left{
-                            span{
-                                white-space: nowrap;
-                            }
-                        }
-                    }
-                }
-
-                
-            }
-        }
-
+    @include tablet {
+      display: block;
     }
-    &-comment{
-        position: relative;
-        left:85%;
-        width: fit-content;
-        @include mobile{
-            left: 68%;
-            margin-top: 20px;
-        }
-        @include small-tablet{
-            left: 78%;
-           
-        }
-        @include tablet{
-            left: 78%;
-        }
+  }
 
-        & button{
-            padding: 5px 10px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: red;
-            gap: 10px;
-            border-radius: 20px;
-        }
+  &-left {
+    .goback{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      cursor: pointer;
+      &:hover{
+        color:$primary-color;
+      }
     }
-    &-right{
-        padding: 30px;
-        position: fixed;
-        overflow-y: auto;
-        top: 0;
-        right: 0;
+    padding: 20px;
+    width: 70%;
+    min-height: 90vh;
+    border-right: 1px solid black;
+
+    @include mobile {
+      border: none;
+      width: 100%;
+      padding: 0;
     }
 
-    &-footer{
-        background-color: rgba(128, 128, 128, 0.055);
-        height: 10vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .button-footer{
-            display: flex;
-            justify-content: center;
-
-        }
+    @include small-tablet {
+      border: none;
+      width: 100%;
+      padding: 0;
     }
-}
 
-.prev,
-.next{
+    @include tablet {
+      border: none;
+      width: 100%;
+      padding: 0;
+      min-height: 50vh;
+    }
+  }
+  &-box {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+
+
+    
+  }
+
+  &-left {
+    // position: absolute;
+    scrollbar-width: none;
+    padding: 20px;
+    width: 70%;
+    min-height: 90vh;
+    border-right: 1px solid black;
+    overflow-y: scroll;
+
+    @include mobile {
+      border: none;
+      width: 100%;
+      padding: 0;
+    }
+
+    @include small-tablet {
+      border: none;
+      width: 100%;
+      padding: 0;
+    }
+
+    @include small-tablet {
+      width: 100%;
+    }
+
+    @include tablet {
+      width: 100%;
+      margin-left: 7px;
+    }
+  }
+  &-right {
+    padding: 30px;
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    right: 0;
+
+  }
+
+  
+    
+
+    
+  
+
+  &-comment {
+    position: relative;
+    left: 85%;
+    width: fit-content;
+
+    @include mobile {
+      left: 68%;
+      margin-top: 20px;
+    }
+
+    
+
+    @include tablet {
+      left: 78%;
+    }
+
+    & button {
+      padding: 5px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: red;
+      gap: 10px;
+      border-radius: 20px;
+    }
+  }
+
+  &-right {
+    padding: 30px;
+  }
+
+  &-footer {
+    background-color: rgba(128, 128, 128, 0.055);
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 174px ;
-    // padding: 5px;
-    border-radius: 10px;
-    // border: 1px solid $primary-color;
-    color: gray;
-    outline:none;
-    border:none;
-    background: transparent;
+
+    .button-footer {
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
-.btn{
-    border: 1px solid $primary-color;
-    color: $primary-color;
-    margin-left: 10px;
-
+.prev,
+.next {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 174px;
+  border-radius: 10px;
+  color: gray;
+  outline: none;
+  border: none;
+  background: transparent;
 }
 
-.des{
-    &-box{
-
-        display: flex;
-        justify-content: space-between;
-    }
-    &-container{
-
-    }
-    &-left{
-
-    }
-    &-right{
-        // border: 1px solid black;
-        width: 30%;
-        & .button-des{
-            display: flex;
-            justify-content:space-between ;
-
-            & .btn-des{
-                border: none;
-                width: 45%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap:5px;
-                border-radius: 10px;
-                // border: none;
-                outline: none;
-            }
-        }
-    }
+.btn {
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  margin-left: 10px;
 }
-
-.sub{
-    color: rgba(128, 128, 128, 0.725);
-    
+.player{
+  &-des{
+    margin-top: 24px;
+  }
 }
-.eye{
+.des {
+  &-box {
     display: flex;
-    align-items: center;
-    gap:5px
-}
-.list-box{
-    margin-left: 20px;
-    margin-top: 20px;
-}
-.link{
-    color: $primary-color;
-    cursor: pointer;
-}
+    justify-content: space-between;
+  }
 
-.comment-box{
-    margin-top: 10px;
-    max-height: 300px;
-    overflow-y: auto;
-}
+  &-container {}
 
-.lesson-right{
-    .course-content {
+  &-left {}
+
+  &-right {
+    width: 30%;
+
+    & .button-des {
+      display: flex;
+      justify-content: space-between;
+
+      & .btn-des {
+        border: none;
+        width: 45%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        border-radius: 10px;
+        outline: none;
+      }
+    }
+  }
+}
+
+.sub {
+  color: rgba(128, 128, 128, 0.725);
+}
+
+.eye {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.list-box {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.link {
+  color: $primary-color;
+  cursor: pointer;
+}
+
+.comment-box {
+  margin-top: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+
+.lesson-right {
+  .course-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+
+
+    @include tablet {
+      flex-direction: column;
+
+    }
+
+    @include small-tablet {
+      flex-direction: column;
+
+    }
+
+    @include mobile {
+      flex-direction: column;
+
+    }
+
+    .lesson-content {
+      //   width: 748px;
+      background-color: white;
+      border-radius: 8px;
+      padding: 0 10px;
+      max-height: 90vh;
+      overflow-y: auto;
+
+      @include tablet {
         width: 100%;
-        max-width: 1200px;
-        
-  
+      }
+
+      @include small-tablet {
+        width: 100%;
+      }
+
+      @include mobile {
+        width: 100%;
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      h2 {
+        margin-top: 0;
+        font-size: 1.8rem;
+        font-weight: bold;
+
         @include tablet {
-          flex-direction: column;
-          
+          font-size: 1.6rem;
         }
-  
+
         @include small-tablet {
-          flex-direction: column;
-         
+          font-size: 1.4rem;
         }
-  
+
         @include mobile {
-          flex-direction: column;
-          
+          font-size: 1.2rem;
         }
-  
-        .lesson-content {
-        //   width: 748px;
-          background-color: white;
-          border-radius: 8px;
-          padding: 0 10px;
-          max-height: 90vh;
-          overflow-y: auto;
-  
-          @include tablet {
-            width: 100%;
-          }
-  
-          @include small-tablet {
-            width: 100%;
-          }
-  
-          @include mobile {
-            width: 100%;
-          }
-  
-          &::-webkit-scrollbar {
-            display: none;
-          }
-  
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-  
-          h2 {
-            margin-top: 0;
-            font-size: 1.8rem;
+      }
+
+      .section {
+        margin-bottom: 10px;
+
+        &-header {
+          padding: 15px;
+          background-color: rgba(217, 217, 217, 0.5);
+          border-radius: 10px;
+          cursor: pointer;
+
+          .title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-weight: bold;
-  
-            @include tablet {
-              font-size: 1.6rem;
-            }
-  
-            @include small-tablet {
-              font-size: 1.4rem;
-            }
-  
-            @include mobile {
-              font-size: 1.2rem;
+
+            .arrow {
+              font-size: 12px;
             }
           }
-  
-          .section {
-            margin-bottom: 10px;
-  
-            &-header {
-              padding: 15px;
-              background-color: rgba(217, 217, 217, 0.5);
-              border-radius: 10px;
-              cursor: pointer;
-  
-              .title {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                font-weight: bold;
-  
-                .arrow {
-                  font-size: 12px;
-                }
+        }
+
+        &-content {
+          padding: 10px;
+          background-color: #fff;
+          border-top: none;
+          border-radius: 0 0 4px 4px;
+
+          .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:not(:last-child) {
+              border-bottom: 1px solid #eee;
+            }
+
+            .duration {
+              color: #999;
+            }
+
+            &:hover {
+              background-color: rgba(255, 166, 0, 0.229);
+              color: $primary-color;
+
+              .duration {
+                color: $primary-color;
               }
             }
-  
-            &-content {
-              padding: 10px;
-              background-color: #fff;
-              border-top: none;
-              border-radius: 0 0 4px 4px;
-  
-              .item {
-                display: flex;
-                justify-content: space-between;
-                padding: 10px;
-                border-radius: 5px;
-                cursor: pointer;
-  
-                &:not(:last-child) {
-                  border-bottom: 1px solid #eee;
-                }
-  
-                .duration {
-                  color: #999;
-                }
-  
-                &:hover {
-                  background-color: rgba(255, 166, 0, 0.229);
-                  color: $primary-color;
-  
-                  .duration {
-                    color: $primary-color;
-                  }
-                }
-  
-                @include tablet {
-                  flex-direction: column;
-                  align-items: flex-start;
-                }
-  
-                @include small-tablet {
-                  flex-direction: column;
-                  align-items: flex-start;
-                }
-  
-                @include mobile {
-                  flex-direction: column;
-                  align-items: flex-start;
-                }
-              }
+
+            @include tablet {
+              flex-direction: column;
+              align-items: flex-start;
+            }
+
+            @include small-tablet {
+              flex-direction: column;
+              align-items: flex-start;
+            }
+
+            @include mobile {
+              flex-direction: column;
+              align-items: flex-start;
             }
           }
         }
       }
+    }
+  }
 }
 
+.button-dis {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+
+}

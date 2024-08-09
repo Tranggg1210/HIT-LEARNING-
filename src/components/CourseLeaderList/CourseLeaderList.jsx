@@ -76,9 +76,9 @@ const CourseLeaderList = () => {
       {!isSeeMore ? (
         <>
           <div className='more-course'>
-            <button className='button-course' onClick={handleClickNewFolder}>
+            {/* <button className='button-course' onClick={handleClickNewFolder}>
               Tạo khoá học
-            </button>
+            </button> */}
           </div>
           <CourseLeaderItem
             title='Lớp học Private'

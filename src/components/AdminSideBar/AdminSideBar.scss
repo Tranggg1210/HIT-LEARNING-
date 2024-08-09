@@ -10,7 +10,6 @@
   width: 273px;
   .admin-sidebar-logo {
     @include flex(center, center);
-    //   color: $primary-color;
     margin-right: 6px;
     border-bottom: 1px solid #ccc;
     padding: 12px 0 !important;
