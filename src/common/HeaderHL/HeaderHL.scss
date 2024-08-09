@@ -13,6 +13,7 @@
   @include tablet {
     width: 100%;
     justify-content: center;
+    gap: 100px;
   }
 
   @include small-tablet {
@@ -27,6 +28,10 @@
     width: 40%;
     display: flex;
     justify-content: center;
+
+    @include mobile{
+      width: 100%;
+    }
     .box-search {
       display: flex;
       .search {
@@ -115,6 +120,7 @@
 
       @include mobile {
         width: 92px;
+        margin-top: 5px;
       }
 
       @include tablet {
@@ -130,11 +136,21 @@
         gap: 10px;
         h5 {
           padding-top: 12px;
+          @include mobile{
+            display: none;
+          }
+          @include small-tablet{
+            display: none;
+          }
+          @include tablet{
+            display: none;
+          }
         }
 
         @include mobile {
           height: 50px;
           width: 50px;
+          position: absolute;
         }
 
         .MuiButtonBase-root {

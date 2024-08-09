@@ -157,7 +157,7 @@ const HeaderHL = () => {
                       vertical: 'top',
                       horizontal: 'center',
                     }}>
-                    <Typography sx={{ width: '200px' }}>
+                    <Typography sx={{ width: '200px'  }}>
                       <span
                         className='btn-dragger'
                         style={{ padding: '12px ' }}

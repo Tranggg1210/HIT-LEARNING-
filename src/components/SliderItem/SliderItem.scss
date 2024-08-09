@@ -9,6 +9,9 @@
   @include small-tablet {
     width: 100%;
   }
+  @include mobile{
+    width: 100%;
+  }
   .banner-slider {
     display: flex;
     transition: transform 0.5s ease; // chuyển động mượt ease hiệu ứng chuyển tiếp bắt đầu chậm, sau đó nhanh dần, rồi chậm lại trước khi kết thúc.

@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { TextField} from '@mui/material';
+import { TextField } from '@mui/material';
 import Button from '@mui/material/Button';
 import useAuth from "../../hooks/useAuth";
 import { editUser, getUserById } from "../../apis/user.api";
 import toast from "react-hot-toast";
 
-const EditProfile = ({open,userData,onClose}) => {
+const EditProfile = ({ open, userData, onClose }) => {
   const userAccess = useAuth();
   const [folderName, setFolderName] = useState(userData?.name || '');
   const [describe, setDescribe] = useState(userData?.description || '');
@@ -23,18 +23,18 @@ const EditProfile = ({open,userData,onClose}) => {
 
   console.log(open)
   const userId = userAccess.user?.id;
-  const getUserDataId= async () =>{
-    try{
+  const getUserDataId = async () => {
+    try {
       const reponse = await (await getUserById(userId)).data.data;
       setUser(reponse);
-    }catch(error){
+    } catch (error) {
       console.error('Failed to fetch user data:', error);
     }
   }
-  
-  
+
+
   const handleUpdateUser = async () => {
-    if (folderName && linkFb && linkEmail && className && describe ) {
+    if (folderName && linkFb && linkEmail && className && describe) {
       const newUserData = {
         name: folderName,
         username: user.username,
@@ -43,17 +43,17 @@ const EditProfile = ({open,userData,onClose}) => {
         className: className,
         password: user.password,
         linkAvatar: user.linkAvatar,
-        description:describe,
-        
+        description: describe,
+
       };
-      
-      console.log('userassa',user.username)
+
+      console.log('userassa', user.username)
       try {
         await editUser(userId, newUserData);
         toast.success('Cập nhật thông tin người dùng thành công');
-        
+
       } catch (error) {
-        if(error?.code === "ERR_NETWORK"){
+        if (error?.code === "ERR_NETWORK") {
           toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn');
           return
         }
@@ -62,12 +62,12 @@ const EditProfile = ({open,userData,onClose}) => {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getUserDataId()
-    
-  },[])
-  
-  
+
+  }, [])
+
+
 
   const style = {
     position: 'absolute',
@@ -101,7 +101,7 @@ const EditProfile = ({open,userData,onClose}) => {
           id='modal-modal-title'
           variant='h6'
           component='h2'
-          sx={{ marginBottom: '5px', lineHeight: '3rem' }}>
+          sx={{ marginBottom: '20px', lineHeight: '5rem', fontSize: '25px', color: '#f37335' }}>
           Chỉnh sửa thông tin
         </Typography>
         <Box sx={formGrid}>
@@ -180,13 +180,17 @@ const EditProfile = ({open,userData,onClose}) => {
         <div className='btn-admin-click-account'>
           <Button
             variant='contained'
-            sx={{ width: '145px', height: '45px' }}
+            sx={{
+              width: '145px', height: '45px', background: 'gray', '&:hover': {
+                background: 'gray',
+              },
+            }}
             onClick={onClose}>
             HUỶ BỎ
           </Button>
           <Button
             variant='contained'
-            sx={{ width: '145px', height: '45px' }}
+            sx={{ width: '145px', height: '45px', background: 'linear-gradient(90deg, #ff7e5f, #feb47b)' }}
             onClick={handleUpdateUser}>
             Cập Nhật
           </Button>
