@@ -4,6 +4,7 @@ import { IconUpload } from '@tabler/icons-react'
 import { createItem, updateItem } from '../../apis/item.api'
 import { TextField } from '@mui/material'
 import toast from 'react-hot-toast'
+import Loading from '../../components/Loading/Loading'
 
 const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
   const [itemName, setItemName] = useState(editingItemData ? editingItemData.name : '')
@@ -11,6 +12,7 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
     editingItemData ? editingItemData.description : '',
   )
   const [uploadItem, setUploadItem] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const inputRef = useRef()
 
@@ -35,7 +37,9 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
         sectionId: itemId,
         file: uploadItem,
       }
+
       try {
+        setLoading(true)
         if (editingItemData) {
           await updateItem(itemId, itemData)
         } else {
@@ -45,12 +49,15 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
         onCancel()
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi sửa tạo dữ liệu video buổi học')
+      } finally {
+        setLoading(false)
       }
     }
   }
 
   return (
     <>
+      {loading && <Loading />}
       <div className='create-new-section'>
         <h2>{editingItemData ? 'SỬA VIDEO BUỔI HỌC' : 'TẠO VIDEO BUỔI HỌC'}</h2>
         <div className='new-section-header'>

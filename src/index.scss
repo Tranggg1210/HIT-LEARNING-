@@ -22,6 +22,7 @@
       padding: 0 60px 60px;
       & > div {
         width: 100%;
+        min-height: calc(100vh - 88px);
       }
     }
   }

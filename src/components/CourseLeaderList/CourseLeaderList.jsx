@@ -5,6 +5,8 @@ import { deleteCourse, getAllCourse } from '../../apis/courses.api'
 import CourseLeaderItem from '../CourseLeaderItem/CourseLeaderItem'
 import CourseLeaderClass from '../CourseLeaderClass/CourseLeaderClass'
 import toast from 'react-hot-toast'
+import Loading from '../Loading/Loading'
+import math from '../../assets/images/maths.png'
 
 const CourseLeaderList = () => {
   const [courses, setCourses] = useState([])
@@ -13,12 +15,17 @@ const CourseLeaderList = () => {
   const [isSeeMore, setIsSeeMore] = useState(false)
   const [currentCourses, setCurrentCourses] = useState([])
   const [titles, setTitles] = useState('')
+  const [loading, setLoading] = useState(false)
+
   const loadAllCourse = async () => {
     try {
+      setLoading(true)
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -54,10 +61,13 @@ const CourseLeaderList = () => {
 
   const handleDelete = async (id) => {
     try {
+      setLoading(true)
       await deleteCourse(id)
       setCourses(courses.filter((course) => course.id !== id))
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xoá dữ liệu khóa học')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -73,26 +83,36 @@ const CourseLeaderList = () => {
 
   return (
     <>
-      {!isSeeMore ? (
-        <>
-          
-          <CourseLeaderItem
-            title='Lớp học Private'
-            courses={classPrivate}
-            handleClickEdit={handleClickEdit}
-            handleDelete={handleDelete}
-            handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Private')}
-          />
-          <CourseLeaderItem
-            title='Lớp học Public'
-            courses={classPublic}
-            handleClickEdit={handleClickEdit}
-            handleDelete={handleDelete}
-            handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Public')}
-          />
-        </>
+      {loading && <Loading />}
+      {courses?.length > 0 ? (
+        !isSeeMore ? (
+          <>
+            <div className='more-course'></div>
+            <CourseLeaderItem
+              title='Lớp học Private'
+              courses={classPrivate}
+              handleClickEdit={handleClickEdit}
+              handleDelete={handleDelete}
+              handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Private')}
+            />
+            <CourseLeaderItem
+              title='Lớp học Public'
+              courses={classPublic}
+              handleClickEdit={handleClickEdit}
+              handleDelete={handleDelete}
+              handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Public')}
+            />
+          </>
+        ) : (
+          <CourseLeaderClass courses={currentCourses} onCancel={handleCancel} title={titles} />
+        )
       ) : (
-        <CourseLeaderClass courses={currentCourses} onCancel={handleCancel} title={titles} />
+        <div className='box-not-courses'>
+          <div className='not-courses'>
+            <img src={math} alt='' />
+          </div>
+          <p>Hiện tại chưa có khoá học nào!!</p>
+        </div>
       )}
     </>
   )

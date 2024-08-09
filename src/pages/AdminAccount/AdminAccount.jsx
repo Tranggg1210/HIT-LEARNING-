@@ -19,7 +19,7 @@ import { getAdminUser } from '../../apis/search.api'
 import { IconButton } from '@mui/material'
 import { IconCircleX } from '@tabler/icons-react'
 import toast from 'react-hot-toast'
-
+import Loading from '../../components/Loading/Loading'
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -49,6 +49,7 @@ const AdminAccount = () => {
   const [currentAccount, setCurrentAccount] = useState(null)
   const [searchInputAA, setSearchInputAA] = useState('')
   const [searchClick, setSearchClick] = useState(false)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const handleOpen = (account = null) => {
@@ -77,8 +78,10 @@ const AdminAccount = () => {
     try {
       let response
       if (term) {
+        setLoading(true)
         response = await (await getAdminUser(term)).data.data
       } else {
+        setLoading(true)
         response = await (await getAllAccount()).data.data
       }
 
@@ -91,6 +94,8 @@ const AdminAccount = () => {
       setRows(paginatedRows)
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu người dùng')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -115,10 +120,13 @@ const AdminAccount = () => {
 
   const handleDeleteAccount = async (id) => {
     try {
+      setLoading(true)
       await deleteAccount(id)
       setRows(rows.filter((account) => account.id !== id))
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xoá dữ liệu người dùng')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -142,6 +150,7 @@ const AdminAccount = () => {
 
   return (
     <>
+      {loading && <Loading />}
       <h1 className='name-course-admin'>Quản trị tài khoản</h1>
       <div className='box-add'>
         <div className='search-admin'>
@@ -206,7 +215,6 @@ const AdminAccount = () => {
             isEditing={isEditing}
             onEditSuccess={loadData}
           />
-         
         )}
       </div>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>

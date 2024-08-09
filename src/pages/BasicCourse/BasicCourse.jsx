@@ -8,6 +8,7 @@ import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 import toast from 'react-hot-toast'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
+import Loading from '../../components/Loading/Loading'
 
 const BasicCourse = () => {
   const [basicCourses, setBasicCourses] = useState([])
@@ -15,22 +16,27 @@ const BasicCourse = () => {
   const [sections, setSections] = useState([])
   const [items, setItems] = useState([])
   const [firstItemId, setFirstItemId] = useState(null)
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
   const param = useParams()
   const loadDataCourses = async () => {
     try {
+      setLoading(true)
       const response = await getCourseById(param.id)
       response && response.data && response.data.data
       const result = response.data.data
       setBasicCourses(result)
     } catch (error) {
       console.log(error.response?.data?.message)
+    } finally {
+      setLoading(false)
     }
   }
   const loadDataSections = async () => {
     try {
+      setLoading(true)
       const response = await getSectionByCourseId(param.id)
       if (response && response.data && response.data.data) {
         const result = response.data.data.content
@@ -42,18 +48,21 @@ const BasicCourse = () => {
       }
     } catch (error) {
       console.log(error.response?.data?.message)
+    } finally {
+      setLoading(false)
     }
   }
 
   const loadDataItem = async (id) => {
     try {
+      setLoading(true)
       const response = await getItemBySectionId(id)
-
       const result = response.data.data.content
-
       setItems(result)
     } catch (error) {
       console.log(error.response?.data?.message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -88,6 +97,7 @@ const BasicCourse = () => {
 
   return (
     <>
+      {loading && <Loading />}
       <div className='course-page'>
         <div className='course-basic-left'>
           <div className='course-header'>

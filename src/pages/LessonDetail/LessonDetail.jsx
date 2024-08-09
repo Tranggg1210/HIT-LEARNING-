@@ -17,54 +17,18 @@ import moment from 'moment'
 import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth'
 import { getAllItem } from '../../apis/item.api'
+import Loading from '../../components/Loading/Loading'
 
 const LessonDetail = () => {
-
   const { lessonId, courseId } = useParams()
   const navigate = useNavigate()
-  // const [downloadUrl, setDownloadUrl] = useState('')
   const [currentItem, setCurrentItem] = useState({})
-
   const currentUser = useAuth()
-
-
-  // const handleURLImage = async (url) => {
-  //   try {
-  //     const response = await fetch(url);
-  //     console.log('url',url)
-  //     const blob = await response.blob();
-  //     const imageUrl = URL.createObjectURL(blob);
-  //     setDownloadUrl(imageUrl);
-  //   } catch (error) {
-  //     console.error('Lỗi khi tải ảnh:', error);
-  //   }
-  // };
-
-  // const handleDownload = async (url, fileName) => {
-  //   try {
-  //     const response = await fetch(url)
-  //     const blob = await response.blob()
-  //     const downloadUrl = URL.createObjectURL(blob)
-
-
-  //     // Tạo một thẻ a ẩn để kích hoạt tải xuống
-  //     const a = document.createElement('a')
-  //     a.href = downloadUrl
-  //     a.download = fileName // Tên file sẽ tải xuống, có thể là 'file.jpg', 'video.mp4', v.v.
-  //     document.body.appendChild(a)
-  //     a.click()
-  //     document.body.removeChild(a)
-
-  //     // Giải phóng
-  //     URL.revokeObjectURL(downloadUrl)
-  //   } catch (error) {
-  //     console.error('Lỗi khi tải file:', error)
-  //   }
-  // } 
-
+  const [loading, setLoading] = useState(false)
 
   const loadCurrentItem = async () => {
     try {
+      setLoading(true)
       const items = await getAllItem(lessonId)
       const commentRes = await getComment(lessonId)
       console.log('commentRes', commentRes)
@@ -73,6 +37,8 @@ const LessonDetail = () => {
       setComments(commentRes.data.data)
     } catch (error) {
       toast.error(error.message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -86,11 +52,11 @@ const LessonDetail = () => {
 
   const addComment = async () => {
     try {
+      setLoading(true)
       const res = await createComment(lessonId, {
         username: currentUser?.user?.userName,
         comment,
       })
-      console.log('res', res)
       if (res.data) {
         loadCurrentItem()
         setComment('')
@@ -99,6 +65,8 @@ const LessonDetail = () => {
       }
     } catch (error) {
       toast.error(error.message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -113,16 +81,8 @@ const LessonDetail = () => {
     return 'empty'
   }
 
-  // const getDownloadLink = () => {
-  //   const mediaType = determineMediaType(currentItem?.videoId)
-  //   const extension = mediaType === 'video' ? '.mp4' : mediaType === 'image' ? '.jpg' : ''
-  //   return `${import.meta.env.VITE_API_SERVER}/stream/${currentItem?.videoId}${extension}`
-  // }
   useEffect(() => {
     loadCurrentItem()
-    // if (currentItem?.videoName) {
-    //   handleDownload(currentItem?.videoName)
-    // }
   }, [lessonId])
   console.log('currentItem', currentItem)
 
@@ -136,22 +96,24 @@ const LessonDetail = () => {
               QUAY LẠI
             </Typography>
           </div>
-          <div className='player' >
+          <div className='player'>
             {currentItem && (
               <div className='player-banner'>
                 {determineMediaType(currentItem.videoId) === 'video' && (
-                  <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <video controls width='fit-content'>
-                    <source
-                      src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
-                      type='video/mp4'
-                    />
-                  </video>
+                      <source
+                        src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
+                        alt='Khóa học'
+                      />
+                    </video>
                   </div>
-                  
                 )}
                 {determineMediaType(currentItem.videoId) === 'image' && (
-                  <img width='500' height='600' className='showImage'
+                  <img
+                    width='500'
+                    height='600'
+                    className='showImage'
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />
@@ -224,8 +186,10 @@ const LessonDetail = () => {
                     padding: '1rem',
                     marginTop: '1rem',
                   }}></textarea>
-                <div className="button-dis">
-                  <button className='' onClick={() => setShowAddComment(false)}>Hủy</button>
+                <div className='button-dis'>
+                  <button className='' onClick={() => setShowAddComment(false)}>
+                    Hủy
+                  </button>
                   <button onClick={addComment}>Gửi</button>
                 </div>
               </div>

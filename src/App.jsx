@@ -1,4 +1,4 @@
-import { useRoutes } from 'react-router-dom'
+import { useLocation, useNavigate, useRoutes } from 'react-router-dom'
 import './App.scss'
 import Home from './pages/Home/Home'
 import MainLayout from './layouts/Layout/MainLayout'
@@ -20,15 +20,29 @@ import AdminLayout from './layouts/Layout/AdminLayout'
 import Admin from './pages/Admin/Admin'
 import AdminCourse from './pages/AdminCourse/AdminCourse'
 import AdminAccount from './pages/AdminAccount/AdminAccount'
-
 import InputEmail from './pages/ForgotPassword/InputEmail'
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
 import ResetPassword from './pages/ResetPassword/ResetPassword'
-
 import ResultSearch from './pages/ResultSearch/ResultSearch'
-
+import useAuth from './hooks/useAuth'
+import { useEffect } from 'react'
 
 function App() {
+  const currentUser = useAuth()
+  const location = useLocation()
+  const role = currentUser.user?.role
+  const path = location.pathname
+  const navigate = useNavigate()
+  console.log(role)
+  useEffect(() => {
+    if (!role || role.includes('USER') || role.includes('LEADER')) {
+      {
+        if (path.startsWith('/admin')) {
+          navigate('/')
+        }
+      }
+    }
+  }, [role, path])
   const router = useRoutes([
     {
       path: '/',
@@ -96,11 +110,11 @@ function App() {
     },
     {
       path: '/verify-otp',
-      element:<ForgotPassword/>
+      element: <ForgotPassword />,
     },
     {
       path: '/reset-password',
-      element: <ResetPassword/>,
+      element: <ResetPassword />,
     },
 
     {
@@ -142,7 +156,7 @@ function App() {
       <div>
         <Toaster />
       </div>
-      {router} 
+      {router}
     </>
   )
 }

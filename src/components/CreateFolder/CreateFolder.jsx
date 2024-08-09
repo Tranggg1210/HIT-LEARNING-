@@ -4,11 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import { createSection } from '../../apis/section.api'
 import toast from 'react-hot-toast'
+import Loading from '../../components/Loading/Loading'
 
 const CreateFolder = ({ onCreate, onCancel }) => {
   const [locationClass, setLocationClass] = useState('')
   const [sectionName, setSectionName] = useState('')
   const [describeSection, setDescribeSection] = useState('')
+  const [loading, setLoading] = useState(false)
+
   const navigate = useNavigate()
   let { id } = useParams()
   const handleCreateSection = async () => {
@@ -19,12 +22,16 @@ const CreateFolder = ({ onCreate, onCancel }) => {
         description: describeSection,
         courseId: id,
       }
+      
       try {
+        setLoading(true)
         await createSection(sectionData)
         onCreate()
         onCancel()
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
+      } finally {
+        setLoading(false)
       }
     }
   }
@@ -33,6 +40,7 @@ const CreateFolder = ({ onCreate, onCancel }) => {
   }
   return (
     <>
+      {loading && <Loading />}
       <div className='flex-center'>
         <div className='create-folder-container'>
           <h2>TẠO BUỔI HỌC</h2>

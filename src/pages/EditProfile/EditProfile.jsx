@@ -1,37 +1,35 @@
-
-import "./EditProfile.scss";
-import { useEffect, useId, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import { TextField } from '@mui/material';
-import Button from '@mui/material/Button';
-import useAuth from "../../hooks/useAuth";
-import { editUser, getUserById } from "../../apis/user.api";
-import toast from "react-hot-toast";
+import './EditProfile.scss'
+import { useEffect, useId, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Modal from '@mui/material/Modal'
+import { TextField } from '@mui/material'
+import Button from '@mui/material/Button'
+import useAuth from '../../hooks/useAuth'
+import { editUser, getUserById } from '../../apis/user.api'
+import toast from 'react-hot-toast'
 
 const EditProfile = ({ open, userData, onClose }) => {
-  const userAccess = useAuth();
-  const [folderName, setFolderName] = useState(userData?.name || '');
-  const [describe, setDescribe] = useState(userData?.description || '');
-  const [linkFb, setLinkFb] = useState(userData?.linkFb || '');
-  const [linkEmail, setLinkEmail] = useState(userData?.email || '');
-  const [className, setClassName] = useState(userData?.className || '');
-  const [linkAvatar, setLinkAvatar] = useState(userData?.linkAvatar || '');
-  const [user, setUser] = useState(null);
+  const userAccess = useAuth()
+  const [folderName, setFolderName] = useState(userData?.name || '')
+  const [describe, setDescribe] = useState(userData?.description || '')
+  const [linkFb, setLinkFb] = useState(userData?.linkFb || '')
+  const [linkEmail, setLinkEmail] = useState(userData?.email || '')
+  const [className, setClassName] = useState(userData?.className || '')
+  const [linkAvatar, setLinkAvatar] = useState(userData?.linkAvatar || '')
+  const [user, setUser] = useState(null)
 
   console.log(open)
-  const userId = userAccess.user?.id;
+  const userId = userAccess.user?.id
   const getUserDataId = async () => {
     try {
-      const reponse = await (await getUserById(userId)).data.data;
-      setUser(reponse);
+      const reponse = await (await getUserById(userId)).data.data
+      setUser(reponse)
     } catch (error) {
-      console.error('Failed to fetch user data:', error);
+      console.error('Failed to fetch user data:', error)
     }
   }
-
 
   const handleUpdateUser = async () => {
     if (folderName && linkFb && linkEmail && className && describe) {
@@ -44,30 +42,27 @@ const EditProfile = ({ open, userData, onClose }) => {
         password: user.password,
         linkAvatar: user.linkAvatar,
         description: describe,
-
-      };
+      }
 
       console.log('userassa', user.username)
       try {
-        await editUser(userId, newUserData);
-        toast.success('Cập nhật thông tin người dùng thành công');
-
+        await editUser(userId, newUserData)
+        toast.success('Cập nhật thông tin người dùng thành công')
       } catch (error) {
-        if (error?.code === "ERR_NETWORK") {
-          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn');
+        if (error?.code === 'ERR_NETWORK') {
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
           return
         }
         toast.error('Cập nhật thông tin người dùng thất bại')
+      } finally {
+        setLoading(false)
       }
     }
   }
 
   useEffect(() => {
     getUserDataId()
-
   }, [])
-
-
 
   const style = {
     position: 'absolute',
@@ -80,15 +75,14 @@ const EditProfile = ({ open, userData, onClose }) => {
     boxShadow: 24,
     p: 4,
     height: 630,
-  };
+  }
 
   const formGrid = {
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
     gap: '24px',
     marginBottom: '24px',
-  };
-
+  }
 
   return (
     <Modal
@@ -181,7 +175,10 @@ const EditProfile = ({ open, userData, onClose }) => {
           <Button
             variant='contained'
             sx={{
-              width: '145px', height: '45px', background: 'gray', '&:hover': {
+              width: '145px',
+              height: '45px',
+              background: 'gray',
+              '&:hover': {
                 background: 'gray',
               },
             }}
@@ -190,15 +187,18 @@ const EditProfile = ({ open, userData, onClose }) => {
           </Button>
           <Button
             variant='contained'
-            sx={{ width: '145px', height: '45px', background: 'linear-gradient(90deg, #ff7e5f, #feb47b)' }}
+            sx={{
+              width: '145px',
+              height: '45px',
+              background: 'linear-gradient(90deg, #ff7e5f, #feb47b)',
+            }}
             onClick={handleUpdateUser}>
             Cập Nhật
           </Button>
         </div>
       </Box>
     </Modal>
-  );
-};
-
+  )
+}
 
 export default EditProfile

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import './ResultSearch.scss'
 import { IconClockHour9 } from '@tabler/icons-react'
 import useAuth from '../../hooks/useAuth'
-
+import math from '../../assets/images/maths.png'
 const ResultSearch = () => {
   const location = useLocation()
   const navigate = useNavigate()
@@ -83,7 +83,12 @@ const ResultSearch = () => {
             </div>
           ))
         ) : (
-          <p>Không tìm thấy khoá học nào!!</p>
+          <div className='box-not-course'>
+            <div className='not-course'>
+              <img src={math} alt='' />
+            </div>
+            <p>Không tìm thấy khoá học nào!!</p>
+          </div>
         )}
       </div>
     </div>
