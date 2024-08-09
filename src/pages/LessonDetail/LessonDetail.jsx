@@ -16,7 +16,7 @@ import { createComment, getComment } from '../../apis/comment.api'
 import moment from 'moment'
 import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth'
-import { getItemById } from '../../apis/item.api'
+import { getAllItem } from '../../apis/item.api'
 
 const LessonDetail = () => {
 
@@ -61,12 +61,12 @@ const LessonDetail = () => {
   //   } catch (error) {
   //     console.error('Lỗi khi tải file:', error)
   //   }
-  // }
+  // } 
 
 
   const loadCurrentItem = async () => {
     try {
-      const items = await getItemById(lessonId)
+      const items = await getAllItem(lessonId)
       const commentRes = await getComment(lessonId)
       console.log('commentRes', commentRes)
 
@@ -222,9 +222,10 @@ const LessonDetail = () => {
                     padding: '1rem',
                     marginTop: '1rem',
                   }}></textarea>
-
-                <button onClick={() => setShowAddComment(false)}>Hủy</button>
-                <button onClick={addComment}>Gửi</button>
+                <div className="button-dis">
+                  <button className='' onClick={() => setShowAddComment(false)}>Hủy</button>
+                  <button onClick={addComment}>Gửi</button>
+                </div>
               </div>
             )}
           </div>

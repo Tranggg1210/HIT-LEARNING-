@@ -83,14 +83,14 @@ const ForgotPassword = () => {
                   <Field id='otp' type='text' placeholder='Nhập mã OTP' name='otp' />
                 </div>
                 {errors.otp && touched.otp ? <p className='errorMsg'>{errors.otp}</p> : null}
-                {/* <br /> */}
+                <br />
                 <div className='resend-otp'>
                   {isResendDisabled ? (
                     <p>Gửi lại ({countdown}s)</p>
                   ) : (
-                    <button type='button' onClick={handleResendOTP}>
-                      Gửi lại mã
-                    </button>
+                    <span style={{textDecoration:'underline', color:'orange ', cursor:'pointer'}} onClick={handleResendOTP}>
+                      Gửi lại mã ({countdown})
+                    </span>
                   )}
                 </div>
                 <br />
