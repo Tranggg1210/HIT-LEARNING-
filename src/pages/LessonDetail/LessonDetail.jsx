@@ -19,6 +19,7 @@ import useAuth from '../../hooks/useAuth'
 import { getItemById } from '../../apis/item.api'
 
 const LessonDetail = () => {
+
   const { lessonId, courseId } = useParams()
   const navigate = useNavigate()
   // const [downloadUrl, setDownloadUrl] = useState('')
@@ -26,6 +27,7 @@ const LessonDetail = () => {
 
   const currentUser = useAuth()
   console.log('current User', currentUser)
+
 
   // const handleURLImage = async (url) => {
   //   try {
@@ -45,6 +47,7 @@ const LessonDetail = () => {
   //     const blob = await response.blob()
   //     const downloadUrl = URL.createObjectURL(blob)
 
+
   //     // Tạo một thẻ a ẩn để kích hoạt tải xuống
   //     const a = document.createElement('a')
   //     a.href = downloadUrl
@@ -59,6 +62,7 @@ const LessonDetail = () => {
   //     console.error('Lỗi khi tải file:', error)
   //   }
   // }
+
 
   const loadCurrentItem = async () => {
     try {
@@ -145,8 +149,7 @@ const LessonDetail = () => {
                   </video>
                 )}
                 {determineMediaType(currentItem.videoId) === 'image' && (
-                  <img
-                    className='showImage'
+                  <img width='500' height='600' className='showImage'
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                     alt='Khóa học'
                   />

@@ -1,14 +1,26 @@
 import "./Profile.scss";
+import React, { useState } from 'react';
 import BackgroundProfile from "../../assets/images/F8.png";
 import ChuNhiem1 from '../../assets/images/chu_nhiem.jpg';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IconChevronLeft, IconSchool, IconBrandFacebook, IconMail, IconId, IconUserCircle } from '@tabler/icons-react';
 import { Typography } from '@mui/material';
 import useAuth from "../../hooks/useAuth";
+import EditProfile from "../EditProfile/EditProfile";
 
 const Profile = () => {
     const navigate = useNavigate();
     const currentUser = useAuth();
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const handleOpenEditModal = () => {
+        setIsEditModalOpen(true);
+    };
+
+    const handleCloseEditModal = () => {
+        setIsEditModalOpen(false);
+    };
+    console.log(handleCloseEditModal)
+    
 
 
     return (
@@ -21,7 +33,7 @@ const Profile = () => {
                 <div className="background-profile">
                     <img src={BackgroundProfile} alt="Background" />
                 </div>
-                <button className="edit-button" onClick={() => navigate('/editprofile')}>
+                <button className="edit-button" onClick={handleOpenEditModal}>
                     <IconUserCircle stroke={2} />
                     Chỉnh sửa thông tin
                 </button>
@@ -57,6 +69,13 @@ const Profile = () => {
                     <p>{currentUser?.user?.description}</p>
                 </div>
             </div>
+            {isEditModalOpen && (
+                <EditProfile
+                    opens={isEditModalOpen}
+                    userData={currentUser?.user}
+                    onClose={handleCloseEditModal}
+                />
+            )}
         </div>
     );
 };
