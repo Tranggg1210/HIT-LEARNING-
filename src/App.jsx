@@ -3,7 +3,6 @@ import './App.scss'
 import Home from './pages/Home/Home'
 import MainLayout from './layouts/Layout/MainLayout'
 import Login from './pages/Login/Login'
-// import CourseLeaderItem from './components/ClassesItem/ClassesItem'
 import AboutHIT from './pages/AboutHIT/AboutHIT'
 import SectionList from './pages/SectionList/SectionList'
 import CreateFolder from './components/CreateFolder/CreateFolder'
@@ -91,11 +90,6 @@ function App() {
       path: '/signin',
       element: <Login />,
     },
-    // {
-    //   path: '/courseLeader',
-    //   element: <CourseLeaderItem />,
-    // },
-
     {
       path: '/forgot-password',
       element: <InputEmail />,

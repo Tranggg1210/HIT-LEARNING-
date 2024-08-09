@@ -62,7 +62,10 @@ const ClassesItem = ({ title, courses, handleSeeMore }) => {
               <img src={CourseList1} alt='Khóa học' className='course-img' />
             )}
             <div className='infor-container'>
-              <p className='course-name'>{item.name}</p>
+              <div className='box-course-name'>
+                <p className='course-name'>{item.name}</p>
+              </div>
+
               <p className='course-leader-name'>{item.leaderName}</p>
               <div className='infor'>
                 <IconClockHour9 stroke={2} />
