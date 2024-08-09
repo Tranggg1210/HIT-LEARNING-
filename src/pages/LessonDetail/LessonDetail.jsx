@@ -140,12 +140,15 @@ const LessonDetail = () => {
             {currentItem && (
               <>
                 {determineMediaType(currentItem.videoId) === 'video' && (
-                  <video controls width='600'>
+                  <div style={{display:"flex",alignItems:"center", justifyContent:"center"}}>
+                    <video controls width='fit-content'>
                     <source
                       src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                       type='video/mp4'
                     />
                   </video>
+                  </div>
+                  
                 )}
                 {determineMediaType(currentItem.videoId) === 'image' && (
                   <img width='500' height='600' className='showImage'
