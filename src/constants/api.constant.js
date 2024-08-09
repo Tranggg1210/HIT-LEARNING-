@@ -1,4 +1,3 @@
-import { changePass } from '../utils/changePass'
 
 export const ApiConstant = {
   auth: {
@@ -6,6 +5,7 @@ export const ApiConstant = {
     sendCode: '/mail/',
     resetPassword: '/user/password/reset',
     changePassword: 'user/password/change',
+
     refreshToken: '/refresh/',
     verify: '/verify/',
     resendOTP: '/mail/',
@@ -26,7 +26,8 @@ export const ApiConstant = {
     getSectionByCourseId: '/section/course/',
   },
   items: {
-    getAll: '/item/section/',
+    getAllBySection:'/item/section/',
+    getAll: '/item/',
     createItem: '/item',
     deleteItem: '/item/',
     updateItem: '/item/',

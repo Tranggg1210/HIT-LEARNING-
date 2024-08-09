@@ -20,6 +20,7 @@ import { IconButton } from '@mui/material'
 import { IconCircleX } from '@tabler/icons-react'
 import toast from 'react-hot-toast'
 
+
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#000',
@@ -205,6 +206,7 @@ const AdminAccount = () => {
             isEditing={isEditing}
             onEditSuccess={loadData}
           />
+         
         )}
       </div>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
