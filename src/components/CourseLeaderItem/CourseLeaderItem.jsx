@@ -3,6 +3,8 @@ import './CourseLeaderItem.scss'
 import { useNavigate } from 'react-router-dom'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
 import { IconClockHour9 } from '@tabler/icons-react'
+import math from '../../assets/images/maths.png'
+
 const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handleSeeMore }) => {
   const navigate = useNavigate()
   const inputElement = useRef()

@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import './CourseUserClass.scss'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { IconClockHour9 } from '@tabler/icons-react'
+import math from '../../assets/images/maths.png'
+
 const CourseUserClass = () => {
   const navigate = useNavigate()
   const inputElement = useRef()
@@ -44,43 +46,52 @@ const CourseUserClass = () => {
         </h1>
       </div>
       <div ref={inputElement} className='course-list'>
-        {courses.map((item, idx) => (
-          <div
-            key={idx}
-            className='course-item'
-            onClick={() => navigate(`/detail-course/${item.id}`)}>
-            <div>
-              {determineMediaType(item.videoId) === 'video' && (
-                <video controls width='600' className='course-img'>
-                  <source
+        {courses.length ? (
+          courses.map((item, idx) => (
+            <div
+              key={idx}
+              className='course-item'
+              onClick={() => navigate(`/detail-course/${item.id}`)}>
+              <div>
+                {determineMediaType(item.videoId) === 'video' && (
+                  <video controls width='600' className='course-img'>
+                    <source
+                      src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
+                      type='video/mp4'
+                    />
+                  </video>
+                )}
+                {determineMediaType(item.videoId) === 'image' && (
+                  <img
+                    className='course-img'
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
-                    type='video/mp4'
+                    alt='Khóa học'
                   />
-                </video>
-              )}
-              {determineMediaType(item.videoId) === 'image' && (
-                <img
-                  className='course-img'
-                  src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
-                  alt='Khóa học'
-                />
-              )}
-              {determineMediaType(item.videoId) === 'empty' && (
-                <img src={CourseList1} alt='Khóa học' className='course-img' />
-              )}
-            </div>
-            <div className='infor-container'>
-              <div className='box-course-name'>
-                <p className='course-name'>{item.name}</p>
+                )}
+                {determineMediaType(item.videoId) === 'empty' && (
+                  <img src={CourseList1} alt='Khóa học' className='course-img' />
+                )}
               </div>
-              <p className='course-leader-name'>{item.leaderName}</p>
-              <div className='infor'>
-                <IconClockHour9 stroke={2} />
-                <p>{isoDayMonthYear(item.createdAt)}</p>
+              <div className='infor-container'>
+                <div className='box-course-name'>
+                  <p className='course-name'>{item.name}</p>
+                </div>
+                <p className='course-leader-name'>{item.leaderName}</p>
+                <div className='infor'>
+                  <IconClockHour9 stroke={2} />
+                  <p>{isoDayMonthYear(item.createdAt)}</p>
+                </div>
               </div>
             </div>
+          ))
+        ) : (
+          <div className='box-not-courses'>
+            <div className='not-courses'>
+              <img src={math} alt='' />
+            </div>
+            <p>Hiện tại chưa có khoá học nào!!</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   )

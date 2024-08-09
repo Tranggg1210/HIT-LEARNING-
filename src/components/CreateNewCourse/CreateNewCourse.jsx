@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { TextField } from '@mui/material'
 import useAuth from '../../hooks/useAuth'
 import toast from 'react-hot-toast'
+import Loading from '../../components/Loading/Loading'
 
 const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [folderName, setFolderName] = useState('')
@@ -18,8 +19,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
   const [classType, setClassType] = useState('Public')
   const inputRef = useRef()
   const userAccess = useAuth()
-  const [status, setStatus] = useState('initial')
-  const [progress, setProgress] = useState(0)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const handleFileChange = (e) => {
     const file = e.target.files[0]
@@ -37,10 +37,14 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
         file: upload,
         isPrivate: classType === 'Private',
       }
+
       try {
+        setLoading(true)
         await createCourse(courseData)
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
+      } finally {
+        setLoading(false)
       }
     }
     navigate('/')
@@ -52,6 +56,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
 
   return (
     <>
+      {loading && <Loading />}
       <div className='create-new-course'>
         <h2>TẠO KHOÁ HỌC MỚI</h2>
         <div className='new-courser-header'>
@@ -138,7 +143,6 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
             <button className='new-post-button' onClick={handleSubmit}>
               ĐĂNG BÀI
             </button>
-            {/* <Result status={status} /> */}
           </div>
         </div>
       </div>

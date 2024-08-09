@@ -22,17 +22,15 @@ const AdminSideBar = () => {
       </NavLink>
       <List sx={{ padding: '8px 12px' }}>
         <NavLink to='/admin' className={({ isActive }) => (isActive ? 'active' : '')}>
-          {({ isActive }) => (
-            <ListItem button className={isActive ? 'active' : ''}>
-              <ListItemIcon sx={{ minWidth: '40px' }}>
-                <IconHome size={24} className='icon' />
-              </ListItemIcon>
-              <ListItemText primary='Trang chủ' />
-            </ListItem>
-          )}
+          <ListItem button>
+            <ListItemIcon sx={{ minWidth: '40px' }}>
+              <IconHome size={24} className='icon' />
+            </ListItemIcon>
+            <ListItemText primary='Trang chủ' />
+          </ListItem>
         </NavLink>
         <NavLink to='/admin/admin-course' className={({ isActive }) => (isActive ? 'active' : '')}>
-          <ListItem button className={({ isActive }) => (isActive ? 'active' : '')}>
+          <ListItem button>
             <ListItemIcon sx={{ minWidth: '40px' }}>
               <IconNews size={24} className='icon' />
             </ListItemIcon>
@@ -40,14 +38,12 @@ const AdminSideBar = () => {
           </ListItem>
         </NavLink>
         <NavLink to='/admin/admin-account' className={({ isActive }) => (isActive ? 'active' : '')}>
-          {({ isActive }) => (
-            <ListItem button className={isActive ? 'active' : ''}>
-              <ListItemIcon sx={{ minWidth: '40px' }}>
-                <IconUsers size={24} className='icon' />
-              </ListItemIcon>
-              <ListItemText primary='Quản trị tài khoản' />
-            </ListItem>
-          )}
+          <ListItem button>
+            <ListItemIcon sx={{ minWidth: '40px' }}>
+              <IconUsers size={24} className='icon' />
+            </ListItemIcon>
+            <ListItemText primary='Quản trị tài khoản' />
+          </ListItem>
         </NavLink>
         <ListItem button onClick={handleLogOut}>
           <ListItemIcon sx={{ minWidth: '40px' }}>

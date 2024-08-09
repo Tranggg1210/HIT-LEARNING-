@@ -95,3 +95,26 @@
 .infor-container {
   padding: 24px;
 }
+.box-not-courses {
+  grid-column: span 4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50vh;
+  .not-courses {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+
+    & > img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+  & > p {
+    font-weight: 700;
+    font-size: 24px;
+  }
+}

@@ -4,17 +4,21 @@ import { useNavigate } from 'react-router-dom'
 import { getAllCourse } from '../../apis/courses.api'
 import ClassesItem from '../ClassesItem/ClassesItem'
 import toast from 'react-hot-toast'
+import Loading from '../Loading/Loading'
 const CouresUserPrivate = () => {
   const [courses, setCourses] = useState([])
   const [classPrivate, setClassPrivate] = useState([])
   const [classPublic, setClassPublic] = useState([])
-
+  const [loading, setLoading] = useState(false)
   const loadAllCourse = async () => {
     try {
+      setLoading(true)
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -46,21 +50,22 @@ const CouresUserPrivate = () => {
 
   return (
     <>
-      <>
-        <div className='more-course'>
-          <h1>Danh sách các khoá học</h1>
-        </div>
-        <ClassesItem
-          title='Lớp học Private'
-          courses={classPrivate}
-          handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Private')}
-        />
-        <ClassesItem
-          title='Lớp học Public'
-          courses={classPublic}
-          handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Public')}
-        />
-      </>
+      {loading && <Loading />}
+      <div className='more-course'>
+        <h1>Danh sách các khoá học</h1>
+      </div>
+      {}
+      <ClassesItem
+        title='Lớp học Private'
+        courses={classPrivate}
+        handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Private')}
+      />
+
+      <ClassesItem
+        title='Lớp học Public'
+        courses={classPublic}
+        handleSeeMore={(courses) => handleSeeMore(courses, 'Lớp học Public')}
+      />
     </>
   )
 }

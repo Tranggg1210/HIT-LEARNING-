@@ -1,24 +1,25 @@
-@import '../../styles//mixins';
+@import '../../styles/mixins';
+
 .result-search-container {
   width: 100%;
+
   .result-list-search {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, auto);
-
     gap: 1.75rem;
+
     .course-item-result {
       position: relative;
       min-width: 25%;
       border-radius: 10px;
-
       width: 320px;
-      box-shadow: 0 0 12px rgba(0 0 0 /10%);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
       border: 1px solid #ccc;
+
       .course-img {
         width: 100%;
         border-radius: 10px 10px 0 0;
-
         height: 200px;
         object-fit: cover;
       }
@@ -29,19 +30,45 @@
         font-size: 28px;
         font-weight: 700;
       }
+
       .course-class-type,
       .course-leader-name {
         text-align: center;
         font-size: 17px;
         font-weight: 700;
       }
+
       .infor {
         margin-top: 12px;
         @include flex(center, center);
+
         p {
           font-size: 17px;
           font-weight: 700;
         }
+      }
+    }
+    .box-not-course {
+      grid-column: span 4;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 50vh;
+      .not-course {
+        margin-top: 20px;
+        width: 200px;
+        height: 200px;
+
+        & > img {
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+      & > p {
+        font-weight: 700;
+        font-size: 24px;
       }
     }
   }

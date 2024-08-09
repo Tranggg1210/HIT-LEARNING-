@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom'
 import { IconButton } from '@mui/material'
 import { IconCircleX } from '@tabler/icons-react'
 import toast from 'react-hot-toast'
+import Loading from '../../components/Loading/Loading'
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -48,6 +49,8 @@ const AdminCourse = () => {
   const [currentCourse, setCurrentCourse] = useState(null)
   const [searchInputCA, setSearchInputCA] = useState('')
   const [searchClick, setSearchClick] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const navigate = useNavigate()
 
   const handleOpen = (course = null) => {
@@ -76,14 +79,18 @@ const AdminCourse = () => {
     try {
       let response
       if (term) {
+        setLoading(true)
         response = await (await getAdminCourse(term)).data.data
       } else {
+        setLoading(true)
         response = await (await getAllCourse()).data.data
       }
       setTotalRows(response.content.length)
       setRows(response.content.slice((page - 1) * size, page * size))
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu tài khoản')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -101,10 +108,13 @@ const AdminCourse = () => {
 
   const handleDeleteCourse = async (id) => {
     try {
+      setLoading(true)
       await deleteCourse(id)
       setRows(rows.filter((course) => course.id !== id))
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xoá dữ liệu khoá học')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -129,6 +139,7 @@ const AdminCourse = () => {
 
   return (
     <>
+      {loading && <Loading />}
       <h1 className='name-course-admin'>Quản trị khoá học</h1>
       <div className='box-add'>
         <div className='search-admin'>

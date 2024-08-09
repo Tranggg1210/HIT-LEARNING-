@@ -19,6 +19,9 @@ import { deleteSection, getAllSection } from '../../apis/section.api'
 import { deleteItem, getItemById } from '../../apis/item.api'
 import EditListSection from '../../components/EditListSection/EditListSection'
 import EditCourse from '../../components/EditCourse/EditCourse'
+import Loading from '../../components/Loading/Loading'
+import math from '../../assets/images/maths.png'
+import CourseList1 from '../../assets/images/course-list-basic-1.png'
 
 const CourseList = () => {
   const [isCreatingFolder, setIsCreatingFolder] = useState(false)
@@ -32,18 +35,23 @@ const CourseList = () => {
   const [openSection, setOpenSection] = useState(null)
   const [editingItemData, setEditingItemData] = useState(null)
   const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const navigate = useNavigate()
 
   const { id } = useParams()
 
   const loadSectionCourse = async () => {
     try {
+      setLoading(true)
       const result = await getCourseById(id)
       setCourse(result.data.data)
       const resultSection = await getAllSection(id)
       setSections(resultSection.data.data.content)
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -55,6 +63,7 @@ const CourseList = () => {
     setOpenSection(openSection === index ? null : index)
     if (openSection !== index) {
       try {
+        setLoading(true)
         const items = await getItemById(sectionId)
         setSectionItems((prevItems) => ({
           ...prevItems,
@@ -62,16 +71,21 @@ const CourseList = () => {
         }))
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
+      } finally {
+        setLoading(false)
       }
     }
   }
   const handleDeleteSection = async (id) => {
     try {
+      setLoading(true)
       await deleteSection(id)
       setSections(sections.filter((section) => section.id !== id))
-      toast.success('Xóa v\buổi học thành công')
+      toast.success('Xóa buổi học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xóa buổi học')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -93,6 +107,7 @@ const CourseList = () => {
   }
   const handleDeleteItem = async (sectionId, itemId) => {
     try {
+      setLoading(true)
       await deleteItem(itemId)
       setSectionItems((prevItems) => ({
         ...prevItems,
@@ -101,6 +116,8 @@ const CourseList = () => {
       toast.success('Xóa video buổi học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xóa video buổi học')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -163,8 +180,23 @@ const CourseList = () => {
   const handleClose = () => {
     setOpen(false)
   }
+  const determineMediaType = (url = '') => {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif']
+    const videoExtensions = ['.mp4', '.avi', '.mov', '.mkv']
+    const isImage = imageExtensions.some((ext) => url.endsWith(ext))
+    if (isImage) {
+      return 'image'
+    }
+
+    const isVideo = videoExtensions.some((ext) => url.endsWith(ext))
+    if (isVideo) {
+      return 'video'
+    }
+    return 'empty'
+  }
   return (
     <>
+      {loading && <Loading />}
       {isCreatingFolder && (
         <CreateFolder onCancel={() => setIsCreatingFolder(false)} onCreate={handleSectionCreated} />
       )}
@@ -189,11 +221,24 @@ const CourseList = () => {
         <div className='course-list-containers'>
           <div className='course-header'>
             <div className='course-img'>
-              <img
-                src={`${import.meta.env.VITE_API_SERVER}/stream/${course.videoId}`}
-                alt=''
-                className='course-logo'
-              />
+              {determineMediaType(course.videoId) === 'video' && (
+                <video controls width='600' className='course-img'>
+                  <source
+                    src={`${import.meta.env.VITE_API_SERVER}/stream/${course.videoId}`}
+                    type='video/mp4'
+                  />
+                </video>
+              )}
+              {determineMediaType(course.videoId) === 'image' && (
+                <img
+                  className='course-img'
+                  src={`${import.meta.env.VITE_API_SERVER}/stream/${course.videoId}`}
+                  alt='Khóa học'
+                />
+              )}
+              {determineMediaType(course.videoId) === 'empty' && (
+                <img src={CourseList1} alt='Khóa học' className='course-img' />
+              )}
             </div>
             <h2>{course.name}</h2>
             <p className='course-leader-name'>{course.user?.name}</p>
