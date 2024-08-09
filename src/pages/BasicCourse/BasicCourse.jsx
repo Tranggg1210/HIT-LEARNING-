@@ -21,12 +21,10 @@ const BasicCourse = () => {
   const param = useParams()
   const loadDataCourses = async () => {
     try {
-
       const response = await getCourseById(param.id)
       response && response.data && response.data.data
       const result = response.data.data
       setBasicCourses(result)
-
     } catch (error) {
       console.log(error.response?.data?.message)
     }
@@ -102,7 +100,6 @@ const BasicCourse = () => {
               <h2>Nội dung khóa học</h2>
               <br />
               {Array.isArray(sections) && sections.length > 0 ? (
-                
                 sections.map((section, index) => (
                   <div key={section.id} className='section'>
                     <div className='section-header' onClick={() => handleToggle(index, section.id)}>
@@ -128,10 +125,11 @@ const BasicCourse = () => {
                     )}
                   </div>
                 ))
-              ): (
-                <h3 style={{color:'gray'}}>Đang cập nhật khóa học....Hãy chờ đón trong tương lai gần nhé</h3>
-              )
-                }
+              ) : (
+                <h3 style={{ color: 'gray' }}>
+                  Đang cập nhật khóa học....Hãy chờ đón trong tương lai gần nhé
+                </h3>
+              )}
             </div>
           </div>
         </div>
