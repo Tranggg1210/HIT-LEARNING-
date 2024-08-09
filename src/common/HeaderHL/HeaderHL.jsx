@@ -80,7 +80,7 @@ const HeaderHL = () => {
 
   return (
     <div className='header-container'>
-      <div></div>
+      <div style={{width:'180px'}}></div>
       <div className='search-container'>
         <div className='box-search'>
           <select
@@ -91,8 +91,6 @@ const HeaderHL = () => {
             <option value='suggest' disabled>
               Gợi ý
             </option>
-            {/* <option value='section'>Section</option>
-            <option value='item'>Item</option> */}
           </select>
           <div className='search'>
             <i className='fa-solid fa-magnifying-glass'></i>
@@ -131,7 +129,6 @@ const HeaderHL = () => {
                       borderRadius: '50px',
                       height: '50px',
                       minWidth: '50px',
-                      marginRight: '25px',
                       padding: '0',
                     }}
                     className='avatar'>

@@ -15,7 +15,9 @@
     }
   }
   .layout-content {
+    
     flex-grow: 1 !important;
+    width: calc(100vw - 120px  - 120px);
     .outlet {
       padding: 0 60px 60px;
       & > div {

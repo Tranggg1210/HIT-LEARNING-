@@ -1,6 +1,6 @@
 
 import "./EditProfile.scss";
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -8,48 +8,50 @@ import Modal from '@mui/material/Modal';
 import { TextField} from '@mui/material';
 import Button from '@mui/material/Button';
 import useAuth from "../../hooks/useAuth";
-import { editUser } from "../../apis/user.api";
+import { editUser, getUserById } from "../../apis/user.api";
 import toast from "react-hot-toast";
 
-const EditProfile = (opens,userData,onClose) => {
+const EditProfile = ({open,userData,onClose}) => {
   const userAccess = useAuth();
-  const [folderName, setFolderName] = useState(userAccess?.user?.name || '');
-  const [describe, setDescribe] = useState(userAccess?.user?.username || '');
-  const [linkFb, setLinkFb] = useState(userAccess?.user?.linkFb || '');
-  const [linkEmail, setLinkEmail] = useState(userAccess?.user?.email || '');
-  const [className, setClassName] = useState(userAccess?.user?.className || '');
-  
+  const [folderName, setFolderName] = useState(userData?.name || '');
+  const [describe, setDescribe] = useState(userData?.description || '');
+  const [linkFb, setLinkFb] = useState(userData?.linkFb || '');
+  const [linkEmail, setLinkEmail] = useState(userData?.email || '');
+  const [className, setClassName] = useState(userData?.className || '');
+  const [linkAvatar, setLinkAvatar] = useState(userData?.linkAvatar || '');
+  const [user, setUser] = useState(null);
 
-  
-  useEffect(() => {
-    if (userData) {
-      setFolderName(userData.name || '');
-      setLinkEmail(userData.email || '');
-      setLinkFb(userData.linkFb || '');
-      setDescribe(userData.description || '');
-      setClassName(userData.className || '');
-      
+  console.log(open)
+  const userId = userAccess.user?.id;
+  const getUserDataId= async () =>{
+    try{
+      const reponse = await (await getUserById(userId)).data.data;
+      setUser(reponse);
+    }catch(error){
+      console.error('Failed to fetch user data:', error);
     }
-  }, [userData]);
-
-
+  }
+  
+  
   const handleUpdateUser = async () => {
-    if (folderName && describe && linkFb && linkEmail && className) {
+    if (folderName && linkFb && linkEmail && className && describe ) {
       const newUserData = {
         name: folderName,
-        username: describe,
+        username: user.username,
         linkFb: linkFb,
         email: linkEmail,
         className: className,
-
-        password: 'string',
+        password: user.password,
+        linkAvatar: user.linkAvatar,
+        description:describe,
         
       };
-      const userId = userAccess?.user?.id;
+      
+      console.log('userassa',user.username)
       try {
         await editUser(userId, newUserData);
-        toast.success('Cập nhật thông tin người dùng thành công')
-        onClose();
+        toast.success('Cập nhật thông tin người dùng thành công');
+        
       } catch (error) {
         if(error?.code === "ERR_NETWORK"){
           toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn');
@@ -59,6 +61,13 @@ const EditProfile = (opens,userData,onClose) => {
       }
     }
   }
+
+  useEffect(()=>{
+    getUserDataId()
+    
+  },[])
+  
+  
 
   const style = {
     position: 'absolute',
@@ -83,7 +92,7 @@ const EditProfile = (opens,userData,onClose) => {
 
   return (
     <Modal
-      open={opens}
+      open={open}
       onClose={onClose}
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'>
