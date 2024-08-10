@@ -22,6 +22,7 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
   const [linkAvatars, setLinkAvatars] = useState('')
   const [availables, setAvailables] = useState(true)
   const [loading, setLoading] = useState(false)
+  
 
   const inputRef = useRef()
   const navigate = useNavigate()
@@ -60,6 +61,11 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
       } else {
         setLoading(true)
         await createAccount(newAccountData)
+      }
+      if (isEditing) {
+        toast.success('Sửa tài khoản thành công')
+      } else {
+        toast.success('Tạo tài khoản thành công')
       }
       handleCloses()
       if (onEditSuccess) onEditSuccess()

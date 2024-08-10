@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { refreshToken } from './auth.api'
 import toast from 'react-hot-toast'
 const api = axios.create({
-  baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
+  baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'Application/json',
-    'ngrok-skip-browser-warning': '69420',
-    // 'ngrok-skip-browser-warning': '241804'
+    // 'ngrok-skip-browser-warning': '69420',
+    'ngrok-skip-browser-warning': '241804',
   },
 })
 
@@ -49,7 +49,7 @@ const apiDefault = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'Application/json',
-    'ngrok-skip-browser-warning': '241804'
+    'ngrok-skip-browser-warning': '241804',
     // 'ngrok-skip-browser-warning': '69420',
   },
 })
@@ -73,9 +73,40 @@ const apiDefaultUpload = axios.create({
   headers: {
     'Content-Type': 'multipart/form-data',
     // 'ngrok-skip-browser-warning': '69420',
-    'ngrok-skip-browser-warning': '241804'
-
+    'ngrok-skip-browser-warning': '241804',
   },
 })
 
+apiDefaultUpload.interceptors.request.use((config) => {
+  const accessToken = JSON.parse(localStorage.getItem(LocalStorage.auth))?.token
+  config.headers.Authorization = `Bearer ${accessToken}`
+  return config
+}, Promise.reject)
+
+apiDefaultUpload.interceptors.response.use(
+  (value) => value.data,
+  async (error) => {
+    if (error.code === 401) {
+      const navigate = useNavigate()
+      const currentUser = JSON.parse(localStorage.getItem(LocalStorage.auth))
+      if (!currentUser) {
+        navigate('/login')
+        localStorage.removeItem(LocalStorage.auth)
+      } else {
+        try {
+          const result = await refreshToken(currentUser.refreshToken)
+          currentUser.token = result.data.refreshToken
+          localStorage.setItem(LocalStorage.auth, JSON.stringify(currentUser))
+          error.config.header.Authorization = `Bearer ${currentUser.token}`
+          return axios(error.config)
+        } catch (err) {
+          toast.error('Phiên đăng nhập đã hết hạn')
+          navigate('/login')
+          localStorage.removeItem(LocalStorage.auth)
+        }
+      }
+    }
+    return Promise.reject(error)
+  },
+)
 export { apiDefault, api, apiDefaultUpload }

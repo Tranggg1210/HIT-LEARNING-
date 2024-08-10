@@ -9,32 +9,31 @@ import toast from 'react-hot-toast'
 
 const ChangePassword = () => {
   const navigate = useNavigate()
-  const currentUser = useAuth();
-  
+  const currentUser = useAuth()
 
   const goBack = () => {
     navigate(-1)
   }
-  const handleChangePassword =async(values) =>{
-    try{
+  const handleChangePassword = async (values) => {
+    try {
       const response = await changePassword({
-        userId:currentUser?.user?.id,
-        oldPassword:values.oldPass,
-        newPassword:values.newPass,
-        confirmPassword:values.confirmPass
-      });
-      if(response?.data?.message){
+        userId: currentUser?.user?.id,
+        oldPassword: values.oldPass,
+        newPassword: values.newPass,
+        confirmPassword: values.confirmPass,
+      })
+      if (response?.data?.message) {
         toast.error(response?.data?.message)
         return
       }
       toast.success('Thay đổi mật khẩu thành công')
       navigate('/profile')
-    }catch(error){
-      if(error?.code === "ERR_NETWORK"){
-        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn');
-        return;
+    } catch (error) {
+      if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+        return
       }
-      toast.error('Thay đổi mật khẩu thất bại, vui lòng thử lại sau');
+      toast.error('Thay đổi mật khẩu thất bại, vui lòng thử lại sau')
     }
   }
 
@@ -57,9 +56,9 @@ const ChangePassword = () => {
               confirmPass: '',
             }}
             validationSchema={changePass()}
-            onSubmit={(values ,{setSubmitting}) => {
-              handleChangePassword(values);
-              setSubmitting(false);
+            onSubmit={(values, { setSubmitting }) => {
+              handleChangePassword(values)
+              setSubmitting(false)
             }}>
             {({ errors, touched }) => (
               <Form>

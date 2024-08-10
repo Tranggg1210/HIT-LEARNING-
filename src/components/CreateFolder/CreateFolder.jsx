@@ -12,9 +12,40 @@ const CreateFolder = ({ onCreate, onCancel }) => {
   const [describeSection, setDescribeSection] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const [locationClassError, setLocationClassError] = useState(false)
+  const [sectionNameError, setSectionNameError] = useState(false)
+  const [describeSectionError, setSescribeSectionError] = useState(false)
+
   const navigate = useNavigate()
   let { id } = useParams()
   const handleCreateSection = async () => {
+    let check = false
+
+    if (!locationClass.trim()) {
+      setLocationClassError(true)
+      check = true
+    } else {
+      setLocationClassError(false)
+    }
+
+    if (!sectionName.trim()) {
+      setSectionNameError(true)
+      check = true
+    } else {
+      setSectionNameError(false)
+    }
+
+    if (!describeSection) {
+      setSescribeSectionError(true)
+      check = true
+    } else {
+      setSescribeSectionError(false)
+    }
+
+    if (check) {
+      toast.error('Vui lòng điền đầy đủ thông tin bắt buộc.')
+      return
+    }
     if (sectionName && describeSection && location) {
       const sectionData = {
         location: locationClass,
@@ -22,11 +53,12 @@ const CreateFolder = ({ onCreate, onCancel }) => {
         description: describeSection,
         courseId: id,
       }
-      
+
       try {
         setLoading(true)
         await createSection(sectionData)
         onCreate()
+        toast.success('Tạo khoá học thành công')
         onCancel()
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
@@ -45,7 +77,11 @@ const CreateFolder = ({ onCreate, onCancel }) => {
         <div className='create-folder-container'>
           <h2>TẠO BUỔI HỌC</h2>
           <div className='new-button-location-type'>
-            <FormControl sx={{ m: 1, width: '100%', margin: '8px 0px' }} size='small'>
+            <FormControl
+              sx={{ m: 1, width: '100%', margin: '8px 0px' }}
+              size='small'
+              error={locationClassError}
+              helperText={locationClassError ? 'Vị trí buổi học không được để trống' : ''}>
               <InputLabel className='location-type-select-label'>Loại Thứ tự</InputLabel>
               <Select
                 labelId='location-type-select-label'
@@ -67,6 +103,8 @@ const CreateFolder = ({ onCreate, onCancel }) => {
           <div className='new-infors'>
             <div className='new-infor-folder'>
               <TextField
+                error={sectionNameError}
+                helperText={sectionNameError ? 'Tên buổi học không được để trống' : ''}
                 sx={{ width: '100%' }}
                 id='outlined-password-input'
                 label='Tên buổi học'
@@ -83,7 +121,9 @@ const CreateFolder = ({ onCreate, onCancel }) => {
             </div>
             <div className='new-infor-describe'>
               <TextField
-                sx={{ width: '100%', height: '125px' }}
+                error={describeSectionError}
+                helperText={describeSectionError ? 'Mô tả buổi học không được để trống' : ''}
+                sx={{ width: '100%' }}
                 id='outlined-password-input'
                 label='Mô tả buổi học'
                 type='text'
@@ -92,8 +132,9 @@ const CreateFolder = ({ onCreate, onCancel }) => {
                 onChange={(e) => setDescribeSection(e.target.value)}
                 rows={4}
                 className='new-textarea'
+                multiline
                 InputProps={{
-                  style: { height: '125px' },
+                  style: { height: '125px', alignItems: 'flex-start' },
                 }}
               />
             </div>
