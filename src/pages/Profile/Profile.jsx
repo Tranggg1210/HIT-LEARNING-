@@ -95,7 +95,7 @@ const Profile = () => {
             </p>
           </div>
           <h3 className='mysefl'>Mô tả bản thân </h3>
-          <p>{userDatas?.description}</p>
+          <p>{userDatas?.description || 'Chưa có dữ liệu'} </p>
         </div>
       </div>
       {isEditModalOpen && (

@@ -176,6 +176,7 @@
     object-fit: cover;
     object-position: center;
   }
+
   .showVideo {
     width: 100%;
     height: auto;
@@ -418,5 +419,32 @@
 
   .delete-comment {
     display: none;
+  }
+}
+
+.text-comment {
+  margin-top: 28px;
+
+  .button-dis {
+    padding: 12px 0;
+    width: 100%;
+    border-bottom: 1px solid #222;
+    justify-content: space-between;
+    input {
+      outline: none;
+      border: none;
+      font-size: 16px;
+      width: 84%;
+      margin-bottom: -8px;
+      background-color: transparent;
+    }
+    button {
+      margin: 0;
+      background-color: darkorange !important;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
   }
 }

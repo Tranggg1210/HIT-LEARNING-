@@ -113,7 +113,7 @@ const CourseList = () => {
       buttons: [
         {
           label: 'Không',
-          onClick: () => {},
+          onClick: () => { },
         },
         {
           label: 'Có',
@@ -150,7 +150,7 @@ const CourseList = () => {
       buttons: [
         {
           label: 'Không',
-          onClick: () => {},
+          onClick: () => { },
         },
         {
           label: 'Có',
@@ -262,19 +262,23 @@ const CourseList = () => {
                 <img src={CourseList1} alt='Khóa học' className='course-img' />
               )}
             </div>
-            <h2>{course.name}</h2>
+            <h2 style={{color:'#f37335'}}>{course.name}</h2>
             <p className='course-leader-name'>{course.user?.name}</p>
             <div className='infor'>
               <IconClockHour9 stroke={2} />
               <p>{isoDayMonthYear(course.createdAt)}</p>
             </div>
-            <button className='edit-course-button' onClick={() => handleOpen()}>
-              SỬA KHOÁ HỌC
-            </button>
-            {open && <EditCourse opens={open} handleCloses={handleClose} courseData={course} />}
-            <button className='cancel-course-button' onClick={() => navigate('/')}>
-              HUỶ BỎ
-            </button>
+
+            <div className="btn-container">
+              <button className='edit-course-button' onClick={() => handleOpen()}>
+                SỬA KHOÁ HỌC
+              </button>
+              {open && <EditCourse opens={open} handleCloses={handleClose} courseData={course} />}
+              <button className='cancel-course-button' onClick={() => navigate('/')}>
+                HUỶ BỎ
+              </button>
+            </div>
+
           </div>
           <div className='row2'>
             <div className='course-contents'>

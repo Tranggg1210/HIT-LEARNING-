@@ -5,7 +5,7 @@
   box-shadow: 0 0 12px rgba(0 0 0 /10%);
   border-radius: 10px;
   width: 50%;
-  height: 415px;
+  height: max-content;
   display: block;
   margin-top: 40px;
   & > h2 {
@@ -28,11 +28,13 @@
     gap: 10px;
     .cancel-button,
     .create-button {
-      padding: 10px 20px;
+      padding: 16px 20px;
+      font-weight: 600;
       cursor: pointer;
       border: none;
       border-radius: 10px;
       width: 50%;
+      transition: all 0.3s linear;
     }
     .create-button {
       background-color: #f4b81e;

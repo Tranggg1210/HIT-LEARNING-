@@ -33,7 +33,7 @@ const CourseLeaderClass = ({ courses, title, onCancel }) => {
     <div className='courses'>
       <div className='back'>
         <p className='xem_them' onClick={onCancel}>
-          Quay lại
+          &lt; Quay lại
         </p>
       </div>
       <div>

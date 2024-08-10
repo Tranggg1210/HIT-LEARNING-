@@ -65,10 +65,10 @@ const ResultSearch = () => {
               )}
               <div className='infor-container'>
                 <p className='course-name'>{item.name}</p>
+                <p className='course-leader-name'>{item.leaderName}</p>
                 <p className='course-class-type'>
                   {item.isPrivate ? 'Tag: Private' : 'Tag: Public'}
                 </p>
-                <p className='course-leader-name'>{item.leaderName}</p>
                 <div className='infor'>
                   <IconClockHour9 stroke={2} />
                   <p>{isoDayMonthYear(item.createdAt)}</p>

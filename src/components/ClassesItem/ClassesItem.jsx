@@ -45,7 +45,7 @@ const ClassesItem = ({ title, courses, handleSeeMore }) => {
               className='course-item'
               onClick={() => navigate(`/detail-course/${item.id}`)}>
               {determineMediaType(item.videoId) === 'video' && (
-                <video controls width='600' className='course-img'>
+                <video controls width='600' className='course-img'  disabled muted>
                   <source
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
                     type='video/mp4'
