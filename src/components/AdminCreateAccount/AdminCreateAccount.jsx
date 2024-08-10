@@ -252,7 +252,7 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
             </Button>
             <Button
               variant='contained'
-              sx={{ width: '145px', height: '45px' }}
+              sx={{ width: '145px', height: '45px', whiteSpace: 'nowrap' }}
               onClick={handleSubmit}>
               {isEditing ? 'Sửa tài khoản' : 'Tạo tài khoản'}
             </Button>

@@ -135,7 +135,6 @@ body {
     gap: 64px;
     margin-bottom: 50px;
     .new-pots1 {
-      // width: 50%;
       display: block;
       .new-post-button {
         background: linear-gradient(to right, #f67102, #f4a91e);
@@ -147,11 +146,9 @@ body {
         cursor: pointer;
         font-weight: 600;
         white-space: nowrap;
-        // width: 100%;
       }
     }
     .new-pots2 {
-      // width: 50%;
       .new-post-button-cancel {
         background-color: #7d7c7a;
         border: none;
@@ -162,7 +159,6 @@ body {
         text-decoration: none;
         display: inline-block;
         font-size: 20px;
-        // width: 100%;
         cursor: pointer;
         white-space: nowrap;
       }

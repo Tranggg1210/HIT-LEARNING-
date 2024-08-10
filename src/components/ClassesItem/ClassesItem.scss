@@ -21,8 +21,8 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(1, auto);
     gap: 1.75rem;
-    
-    @include mobile{
+
+    @include mobile {
       grid-template-columns: repeat(1, 1fr);
     }
 
@@ -32,6 +32,7 @@
       border-radius: 10px;
       width: 320px;
       box-shadow: 0 0 12px rgba(0 0 0 /10%);
+      cursor: pointer;
       border: 1px solid #ccc;
       .course-img {
         width: 100%;
@@ -46,21 +47,18 @@
         color: #f37335;
         font-size: 28px;
         font-weight: 700;
-        white-space: nowrap;        /* Không cho phép xuống dòng */
-        overflow: hidden;           /* Ẩn phần văn bản tràn ra ngoài */
-        text-overflow: ellipsis;    /* Thêm dấu ba chấm khi văn bản bị cắt ngắn */
-        max-width: 250px;           /* Đặt chiều rộng tối đa cho phần tử */
-      
+        white-space: nowrap; /* Không cho phép xuống dòng */
+        overflow: hidden; /* Ẩn phần văn bản tràn ra ngoài */
+        text-overflow: ellipsis; /* Thêm dấu ba chấm khi văn bản bị cắt ngắn */
+        max-width: 250px; /* Đặt chiều rộng tối đa cho phần tử */
       }
       .course-leader-name {
         text-align: center;
         font-size: 16px;
         font-weight: 700;
         text-transform: initial !important;
-        
       }
       .infor {
-        
         margin-top: 12px;
         @include flex(center, center);
         p {

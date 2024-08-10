@@ -19,7 +19,7 @@ import { getAllItem } from '../../apis/item.api'
 import Loading from '../../components/Loading/Loading'
 import { IconTrash } from '@tabler/icons-react'
 import { current } from '@reduxjs/toolkit'
-
+import { saveAs } from 'file-saver'
 const LessonDetail = () => {
   const { lessonId, courseId } = useParams()
   const navigate = useNavigate()
@@ -60,6 +60,21 @@ const LessonDetail = () => {
 
   const handleBack = () => navigate('/')
   const handleLike = () => setLike(!like)
+
+  const handleDownload = async () => {
+    try {
+      const url = `${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`
+      const result = await fetch(url)
+      const blob = await result.blob()
+
+      const media = determineMediaType(currentItem.videoId)
+      const fileName = media === 'image' ? 'image.png' : 'video.mp4'
+
+      saveAs(blob, fileName)
+    } catch (error) {
+      toast.error('Có lỗi xảy ra trong quá trình tải xuống')
+    }
+  }
 
   const addComment = async () => {
     if (comment.trim() === '') {
@@ -208,7 +223,7 @@ const LessonDetail = () => {
                           {like ? <IconHeartFilled /> : <IconHeart />}
                         </button>
 
-                        <a href={'hello'} download className='btn-des'>
+                        <a href='#' onClick={handleDownload} className='btn-des'>
                           <IconDownload /> Tải xuống
                         </a>
                       </div>

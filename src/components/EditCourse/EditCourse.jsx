@@ -22,6 +22,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState(null)
   const [classType, setClassType] = useState('Public')
+  const [uploadName, setUploadName] = useState('')
   const inputRef = useRef()
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -31,6 +32,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
   const [uploadError, setUploadError] = useState(false)
   useEffect(() => {
     if (courseData) {
+      setUploadName(courseData.videoName || '')
       setFolderName(courseData.name || '')
       setDescribe(courseData.description || '')
       setClassType(courseData.isPrivate ? 'Private' : 'Public')
@@ -62,13 +64,6 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
       setDescribeError(false)
     }
 
-    if (!upload) {
-      setUploadError(true)
-      check = true
-    } else {
-      setUploadError(false)
-    }
-
     if (check) {
       if (error.mesaage) {
         toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
@@ -79,7 +74,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
       }
       return
     }
-    if (folderName && describe && upload) {
+    if (folderName && describe) {
       const baseCourseData = {
         userId: id_access_token,
         name: folderName,
@@ -103,8 +98,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
       } finally {
         setLoading(false)
       }
-      // handleCloses()
-      navigate('/')
+      navigate('/course')
     }
   }
 
@@ -159,7 +153,11 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
             Upload file
             <VisuallyHiddenInput type='file' ref={inputRef} onChange={handleFileChange} />
           </Button>
-          {upload ? <p>Tên tệp: {upload?.name}</p> : <p>Chưa chọn tệp</p>}
+          {upload || uploadName ? (
+            <p>Tên tệp: {upload?.name || uploadName}</p>
+          ) : (
+            <p>Chưa chọn tệp</p>
+          )}
           {uploadError && <p className='error-text'>Vui lòng chọn một ảnh hoặc video</p>}
           <TextField
             error={folderNameError}
