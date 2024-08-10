@@ -1,4 +1,3 @@
-import { getCourseById } from '../apis/courses.api'
 
 export const ApiConstant = {
   auth: {
