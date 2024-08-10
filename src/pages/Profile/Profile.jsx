@@ -1,7 +1,6 @@
 import './Profile.scss'
 import React, { useEffect, useState } from 'react'
 import BackgroundProfile from '../../assets/images/F8.png'
-import ChuNhiem1 from '../../assets/images/chu_nhiem.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
   IconChevronLeft,
@@ -70,7 +69,7 @@ const Profile = () => {
         <div className='profile'>
           <div className='profile-pic'>
             <div className='profile-img'>
-              <img src={currentUser?.user?.linkAvatar || ChuNhiem1} alt='Profile' />
+              <img src={"https://picsum.photos/200/300"} alt='Profile' />
             </div>
           </div>
         </div>
@@ -95,7 +94,7 @@ const Profile = () => {
               <span>{userDatas?.className || 'Chưa có dữ liệu'}</span>
             </p>
           </div>
-          <h3 cassName='mysefl'>Mô tả bản thân </h3>
+          <h3 className='mysefl'>Mô tả bản thân </h3>
           <p>{userDatas?.description}</p>
         </div>
       </div>

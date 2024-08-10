@@ -18,6 +18,7 @@ import useAuth from '../../hooks/useAuth'
 import { getAllItem } from '../../apis/item.api'
 import Loading from '../../components/Loading/Loading'
 import { IconTrash } from '@tabler/icons-react'
+import { current } from '@reduxjs/toolkit'
 
 const LessonDetail = () => {
   const { lessonId, courseId } = useParams()
@@ -130,6 +131,9 @@ const LessonDetail = () => {
   useEffect(() => {
     loadCurrentItem()
   }, [lessonId])
+
+ 
+
 
 
   return (
