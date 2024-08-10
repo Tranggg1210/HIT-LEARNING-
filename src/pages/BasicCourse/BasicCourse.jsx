@@ -148,7 +148,7 @@ const BasicCourse = () => {
                           items.map((item) => (
                             <div key={item.id} className='item'>
                               <NavLink to={`/lesson/${param.id}/detail-lesson/${item.id}`}>
-                                {item.name}
+                                {item.name} 
                               </NavLink>
                             </div>
                           ))

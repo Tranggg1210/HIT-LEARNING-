@@ -168,7 +168,7 @@ const HeaderHL = () => {
                         padding: '0',
                       }}
                       className='avatar'>
-                      <img src={currentUser?.user?.linkAvatar || Avatar} alt='' />
+                      <img src={"https://picsum.photos/200/300" || Avatar} alt='' />
                     </Button>
                     <Popover
                       sx={{ width: '300px', marginLeft: '-47px' }}
