@@ -6,7 +6,7 @@ import { forgotPassValid } from '../../utils/forgotPassValid'
 import logo from '../../assets/images/logo.jpg'
 import { useState, useEffect, useCallback } from 'react'
 import toast from 'react-hot-toast'
-import { verify, sendCode, resendOTP } from '../../apis/auth.api'
+import { verify, resendOTP } from '../../apis/auth.api'
 
 const ForgotPassword = () => {
   const navigate = useNavigate()
@@ -94,10 +94,8 @@ const ForgotPassword = () => {
                   {isResendDisabled ? (
                     <p>Gửi lại ({countdown}s)</p>
                   ) : (
-                    <span
-                      style={{ textDecoration: 'underline', color: 'orange ', cursor: 'pointer' }}
-                      onClick={handleResendOTP}>
-                      Gửi lại mã ({countdown})
+                    <span style={{textDecoration:'underline', color:'orange ', cursor:'pointer'}} onClick={handleResendOTP}>
+                      Gửi lại mã
                     </span>
                   )}
                 </div>

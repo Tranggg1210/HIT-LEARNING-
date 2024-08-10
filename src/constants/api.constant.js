@@ -1,4 +1,3 @@
-import { getCourseById } from '../apis/courses.api'
 
 export const ApiConstant = {
   auth: {
@@ -6,7 +5,6 @@ export const ApiConstant = {
     sendCode: '/auth/mail/',
     resetPassword: '/user/password/reset',
     changePassword: 'user/password/change',
-
     refreshToken: '/auth/refresh/',
     verify: '/auth/verify/',
     resendOTP: '/auth/mail/',

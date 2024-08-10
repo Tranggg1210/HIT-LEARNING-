@@ -1,6 +1,6 @@
 import './LessonDetail.scss'
 import '../../styles/index.scss'
-import { Typography, List, ListItem, ListItemText } from '@mui/material'
+import { Typography, List, ListItem, ListItemText, IconButton } from '@mui/material'
 import {
   IconChevronLeft,
   IconHeart,
@@ -12,12 +12,12 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import LessonBar from '../../components/LessonBar/LessonBar'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
-import { createComment, getComment } from '../../apis/comment.api'
-import moment from 'moment'
+import { createComment, getComment, deleteComment } from '../../apis/comment.api'
 import toast from 'react-hot-toast'
 import useAuth from '../../hooks/useAuth'
 import { getAllItem } from '../../apis/item.api'
 import Loading from '../../components/Loading/Loading'
+import { IconTrash } from '@tabler/icons-react'
 
 const LessonDetail = () => {
   const { lessonId, courseId } = useParams()
@@ -33,7 +33,12 @@ const LessonDetail = () => {
       const commentRes = await getComment(lessonId)
 
       setCurrentItem(items.data.data)
-      setComments(commentRes.data.data)
+
+      const sortedComments = commentRes.data.data.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt)
+      })
+
+      setComments(sortedComments)
     } catch (error) {
       toast.error(error.message)
     } finally {
@@ -50,6 +55,11 @@ const LessonDetail = () => {
   const handleLike = () => setLike(!like)
 
   const addComment = async () => {
+    if (comment.trim() === '') {
+      toast.error('Vui lòng nhập bình luận trước khi gửi')
+      return
+    }
+
     try {
       setLoading(true)
       const res = await createComment(lessonId, {
@@ -57,7 +67,18 @@ const LessonDetail = () => {
         comment,
       })
       if (res.data) {
-        loadCurrentItem()
+        const newComment = {
+          comment: comment,
+          createdAt: new Date().toISOString(),
+        }
+
+        setComments((prevComments) => {
+          const updatedComments = [newComment, ...prevComments]
+          return updatedComments.sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt)
+          })
+        })
+
         setComment('')
         setShowAddComment(false)
         toast.success('Gửi thành công')
@@ -67,6 +88,32 @@ const LessonDetail = () => {
     } finally {
       setLoading(false)
     }
+  }
+
+  const deleteCom = async (commentId) => {
+    try {
+      setLoading(true)
+      await deleteComment(commentId)
+      setComments(comments.filter((comment) => comment.id !== commentId))
+      toast.success('Xóa bình luận thành công')
+    } catch (error) {
+      toast.error(error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const formatDate = (dateString) => {
+    if (!dateString) return ''
+    const date = new Date(dateString)
+    return date.toLocaleString('vi-VN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    })
   }
 
   const determineMediaType = (url = '') => {
@@ -83,6 +130,7 @@ const LessonDetail = () => {
   useEffect(() => {
     loadCurrentItem()
   }, [lessonId])
+
 
   return (
     <>
@@ -133,7 +181,8 @@ const LessonDetail = () => {
                       </span>
                       <br />
                       <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
-                        Người đăng: {currentItem?.author || 'Không xác định'}
+                        Người đăng: {currentItem?.section?.course?.user?.name || 'Không xác định'}
+
                       </span>
                     </div>
                     <div className='des-right'>
@@ -187,10 +236,13 @@ const LessonDetail = () => {
                       marginTop: '1rem',
                     }}></textarea>
                   <div className='button-dis'>
-                    <button className='' onClick={() => setShowAddComment(false)}>
+                    <button id='cancel' onClick={() => setShowAddComment(false)}>
                       Hủy
                     </button>
-                    <button onClick={addComment}>Gửi</button>
+                    <button id='send' onClick={addComment}>
+                      Gửi
+                    </button>
+
                   </div>
                 </div>
               )}
@@ -198,7 +250,16 @@ const LessonDetail = () => {
             <div className='comment-box'>
               <List sx={{ mt: 2 }}>
                 {comments.map((cmt, index) => (
-                  <ListItem key={index} alignItems='flex-start'>
+                  <ListItem
+                    key={index}
+                    alignItems='flex-start'
+                    className='comment-item'
+                    sx={{
+                      '&:hover .delete-comment': {
+                        display: 'block',
+                      },
+                    }}>
+
                     <div
                       style={{
                         backgroundColor: 'gray',
@@ -211,23 +272,36 @@ const LessonDetail = () => {
                         marginRight: '1rem',
                       }}></div>
                     <ListItemText
-                      primary={cmt?.user.username}
+                      primary={currentItem?.section?.course?.user?.name}
+
                       secondary={
                         <>
                           {cmt.comment}
                           <Typography variant='caption' display='block' gutterBottom>
-                            {moment(cmt.createdAt).format('DD-MM-YYYY HH:mm:ss')}
+                            {formatDate(cmt?.createdAt)}
                           </Typography>
                         </>
                       }
                     />
+                    <IconButton
+                      className='delete-comment'
+                      onClick={() => deleteCom(cmt?.id)}
+                      sx={{
+                        display: 'none',
+                        position: 'absolute',
+                        right: '8px',
+                        top: '8px',
+                      }}>
+                      <IconTrash size={18} />
+                    </IconButton>
+
                   </ListItem>
                 ))}
               </List>
             </div>
           </div>
           <div className='lesson-right'>
-            <LessonBar param={courseId} />
+            <LessonBar param={courseId} highLightItem={lessonId} />
           </div>
         </div>
       </div>

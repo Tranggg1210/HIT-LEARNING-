@@ -2,7 +2,7 @@ import { Button } from '@mui/material'
 import { IconChevronUp, IconChevronDown } from '@tabler/icons-react'
 import './BasicCourse.scss'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { getCourseById } from '../../apis/courses.api'
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
@@ -78,9 +78,9 @@ const BasicCourse = () => {
     if (firstItemId) {
       navigate(`/lesson/${param.id}/detail-lesson/${firstItemId}`)
     } else {
-      toast.error(
-        'Khóa học này sẽ sớm được hoàn thành. Vui lòng quay lại sau một khoảng thời gian nữa',
-      )
+      toast('Khóa học này sẽ sớm được hoàn thành. Vui lòng quay lại sau một khoảng thời gian nữa', {
+        icon: '🔥',
+      })
     }
   }
   const determineMediaType = (url = '') => {
@@ -129,7 +129,9 @@ const BasicCourse = () => {
                         {items.length > 0 ? (
                           items.map((item) => (
                             <div key={item.id} className='item'>
-                              <span>{item.name}</span>
+                              <NavLink to={`/lesson/${param.id}/detail-lesson/${item.id}`}>
+                                {item.name}
+                              </NavLink>
                             </div>
                           ))
                         ) : (

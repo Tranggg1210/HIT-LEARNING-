@@ -152,7 +152,14 @@ function App() {
   return (
     <>
       <div>
-        <Toaster />
+      <Toaster 
+        position="top-center" 
+        reverseOrder={false} 
+        toastOptions={{
+          duration: 980, 
+        }}
+        limit={2} 
+      />
       </div>
       {router}
     </>

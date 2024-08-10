@@ -67,7 +67,7 @@ const Login = () => {
                   toast.error('Lỗi token')
                 }
               } catch (error) {
-                toast.error('Đăng nhập thất bại')
+                toast.error(error.message)
                 console.error('API error:', error.response || error.message)
               }
             }}>
