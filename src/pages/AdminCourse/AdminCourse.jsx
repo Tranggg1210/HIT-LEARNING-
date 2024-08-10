@@ -88,7 +88,13 @@ const AdminCourse = () => {
       setTotalRows(response.content.length)
       setRows(response.content.slice((page - 1) * size, page * size))
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi tải dữ liệu tài khoản')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -112,7 +118,13 @@ const AdminCourse = () => {
       await deleteCourse(id)
       setRows(rows.filter((course) => course.id !== id))
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi xoá dữ liệu khoá học')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }

@@ -40,7 +40,13 @@ const LessonDetail = () => {
 
       setComments(sortedComments)
     } catch (error) {
-      toast.error(error.message)
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -84,7 +90,13 @@ const LessonDetail = () => {
         toast.success('Gửi thành công')
       }
     } catch (error) {
-      toast.error(error.message)
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -97,7 +109,13 @@ const LessonDetail = () => {
       setComments(comments.filter((comment) => comment.id !== commentId))
       toast.success('Xóa bình luận thành công')
     } catch (error) {
-      toast.error(error.message)
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -130,7 +148,6 @@ const LessonDetail = () => {
   useEffect(() => {
     loadCurrentItem()
   }, [lessonId])
-
 
   return (
     <>
@@ -182,7 +199,6 @@ const LessonDetail = () => {
                       <br />
                       <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
                         Người đăng: {currentItem?.section?.course?.user?.name || 'Không xác định'}
-
                       </span>
                     </div>
                     <div className='des-right'>
@@ -242,7 +258,6 @@ const LessonDetail = () => {
                     <button id='send' onClick={addComment}>
                       Gửi
                     </button>
-
                   </div>
                 </div>
               )}
@@ -259,7 +274,6 @@ const LessonDetail = () => {
                         display: 'block',
                       },
                     }}>
-
                     <div
                       style={{
                         backgroundColor: 'gray',
@@ -273,7 +287,6 @@ const LessonDetail = () => {
                       }}></div>
                     <ListItemText
                       primary={currentItem?.section?.course?.user?.name}
-
                       secondary={
                         <>
                           {cmt.comment}
@@ -294,7 +307,6 @@ const LessonDetail = () => {
                       }}>
                       <IconTrash size={18} />
                     </IconButton>
-
                   </ListItem>
                 ))}
               </List>

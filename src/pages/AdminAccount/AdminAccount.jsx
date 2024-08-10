@@ -93,7 +93,13 @@ const AdminAccount = () => {
         : response.slice((page - 1) * size, page * size)
       setRows(paginatedRows)
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi tải dữ liệu người dùng')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -124,7 +130,13 @@ const AdminAccount = () => {
       await deleteAccount(id)
       setRows(rows.filter((account) => account.id !== id))
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi xoá dữ liệu người dùng')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }

@@ -59,6 +59,10 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
       toast.error('Vui lòng điền đầy đủ thông tin bắt buộc.')
       return
     }
+    if (uploadItem.size > 1050000000) {
+      toast.error('Video không được vượt quá 1GB')
+      return
+    }
     if (itemName && describeItem && (uploadItem || editingItemData)) {
       const itemData = {
         name: itemName,
@@ -75,7 +79,13 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
         onCreate()
         onCancel()
       } catch (error) {
-        toast.error('Đã xảy ra lỗi khi sửa tạo dữ liệu video buổi học')
+        if (error.mesaage) {
+          toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+        } else if (error?.code === 'ERR_NETWORK') {
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+        } else {
+          toast.error(error.message)
+        }
       }
     }
   }
@@ -97,9 +107,9 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
                       onClick={() => inputRef.current.click()}
                     />
                   </div>
-                  <p>Kéo ảnh, video demo để tải lên</p>
+                  <p>Video không được vượt quá 1GB</p>
                   {uploadItemError && (
-                    <p className='error-text'>Vui lòng chọn một ảnh hoặc video</p>
+                    <p className='error-text'>Vui lòng chọn video/ảnh dưới 1GB</p>
                   )}
                 </div>
               )}

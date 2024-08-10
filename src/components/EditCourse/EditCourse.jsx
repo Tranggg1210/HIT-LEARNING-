@@ -70,7 +70,13 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
     }
 
     if (check) {
-      toast.error('Vui lòng điền đầy đủ thông tin bắt buộc.')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
       return
     }
     if (folderName && describe && upload) {
@@ -87,7 +93,13 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
         await editCourse(courseData.id, baseCourseData)
         handleCloses()
       } catch (error) {
-        toast.error('Đã xảy ra lỗi khi sửa dữ liệu khoá học')
+        if (error.mesaage) {
+          toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+        } else if (error?.code === 'ERR_NETWORK') {
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+        } else {
+          toast.error(error.message)
+        }
       } finally {
         setLoading(false)
       }

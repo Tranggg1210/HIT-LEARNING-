@@ -49,7 +49,13 @@ const CourseList = () => {
       const resultSection = await getAllSection(id)
       setSections(resultSection.data.data.content)
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -70,7 +76,13 @@ const CourseList = () => {
           [sectionId]: items.data.data.content,
         }))
       } catch (error) {
-        toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
+        if (error.mesaage) {
+          toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+        } else if (error?.code === 'ERR_NETWORK') {
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+        } else {
+          toast.error(error.message)
+        }
       } finally {
         setLoading(false)
       }
@@ -82,7 +94,13 @@ const CourseList = () => {
       await deleteSection(id)
       setSections(sections.filter((section) => section.id !== id))
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi xóa buổi học')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -113,7 +131,13 @@ const CourseList = () => {
         [sectionId]: prevItems[sectionId].filter((item) => item.id !== itemId),
       }))
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi xóa video buổi học')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }

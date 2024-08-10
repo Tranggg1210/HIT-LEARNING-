@@ -42,8 +42,14 @@ const ResetPassword = () => {
                 } else {
                   toast.error(res.data.message)
                 }
-              } catch (err) {
-                toast.error(err.response.data.message)
+              } catch (error) {
+                if (error.mesaage) {
+                  toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+                } else if (error?.code === 'ERR_NETWORK') {
+                  toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+                } else {
+                  toast.error(error.message)
+                }
               }
             }}>
             {({ errors, touched }) => (

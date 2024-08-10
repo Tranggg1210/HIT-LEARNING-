@@ -64,7 +64,13 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
       handleCloses()
       if (onEditSuccess) onEditSuccess()
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi sửa tạo tài khoản')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }

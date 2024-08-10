@@ -28,7 +28,13 @@ const EditListSection = ({ onCreate, onCancel }) => {
         onCreate()
         onCancel()
       } catch (error) {
-        toast.error('Đã xảy ra lỗi khi sửa dữ liệu buổi học')
+        if (error.mesaage) {
+          toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+        } else if (error?.code === 'ERR_NETWORK') {
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+        } else {
+          toast.error(error.message)
+        }
       } finally {
         setLoading(false)
       }
