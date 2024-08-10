@@ -98,7 +98,7 @@ const ForgotPassword = () => {
                     <p>Gửi lại ({countdown}s)</p>
                   ) : (
                     <span style={{textDecoration:'underline', color:'orange ', cursor:'pointer'}} onClick={handleResendOTP}>
-                      Gửi lại mã ({countdown})
+                      Gửi lại mã
                     </span>
                   )}
                 </div>

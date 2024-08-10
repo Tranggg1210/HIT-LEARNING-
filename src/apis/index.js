@@ -46,7 +46,7 @@ api.interceptors.response.use(
 )
 
 const apiDefault = axios.create({
-  baseURL: `${import.meta.env.VITE_API_SERVER}/auth`,
+  baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'Application/json',
     'ngrok-skip-browser-warning': '241804'

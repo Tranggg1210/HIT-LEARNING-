@@ -158,9 +158,9 @@ function App() {
         position="top-center" 
         reverseOrder={false} 
         toastOptions={{
-          duration: 980, // thời gian hiển thị mỗi toast
+          duration: 980, 
         }}
-        limit={2} // Giới hạn số lượng toast hiển thị đồng thời
+        limit={2} 
       />
       </div>
       {router}
