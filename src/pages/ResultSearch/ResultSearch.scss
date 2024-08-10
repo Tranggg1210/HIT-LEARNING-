@@ -137,14 +137,12 @@
 .infor-container {
   padding: 24px;
 
-  .course-class-type{
+  .course-class-type {
     text-align: center;
     font-size: 14px;
     font-weight: 600;
     color: #f37335;
-    
   }
-  
 
   @include mobile {
     padding: 16px;

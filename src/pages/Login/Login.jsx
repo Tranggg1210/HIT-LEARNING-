@@ -99,7 +99,7 @@ const Login = () => {
                   <p className='errorMsg'>{errors.password}</p>
                 ) : null}
                 <div className='forgot-password'>
-                  <Link to='/forgot-password' s>
+                  <Link to='/forgot-password'>
                     <i>Quên mật khẩu ?</i>
                   </Link>
                 </div>

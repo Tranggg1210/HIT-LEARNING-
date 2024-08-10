@@ -1,9 +1,6 @@
 @import '../../styles/index.scss';
 
-
 .lesson {
-
-
   &-box {
     display: flex;
 
@@ -61,13 +58,9 @@
     display: flex;
     position: relative;
     overflow: hidden;
-
-
-
   }
 
   &-left {
-    // position: absolute;
     scrollbar-width: none;
     padding: 20px;
     width: 70%;
@@ -103,7 +96,6 @@
     overflow-y: auto;
     top: 0;
     right: 0;
-
   }
 
   &-comment {
@@ -115,8 +107,6 @@
       left: 68%;
       margin-top: 20px;
     }
-
-
 
     @include tablet {
       left: 78%;
@@ -172,7 +162,6 @@
 
 .player {
   .player-banner {
-
     overflow: hidden;
     border-radius: 36px;
   }
@@ -194,8 +183,6 @@
     object-fit: cover;
     object-position: center;
   }
-
-
 }
 
 .des {
@@ -204,9 +191,11 @@
     justify-content: space-between;
   }
 
-  &-container {}
+  &-container {
+  }
 
-  &-left {}
+  &-left {
+  }
 
   &-right {
     width: 30%;
@@ -257,7 +246,6 @@
   overflow-y: auto;
 }
 
-
 .lesson-right {
   .course-content {
     display: flex;
@@ -265,24 +253,19 @@
     width: 100%;
     max-width: 1200px;
 
-
     @include tablet {
       flex-direction: column;
-
     }
 
     @include small-tablet {
       flex-direction: column;
-
     }
 
     @include mobile {
       flex-direction: column;
-
     }
 
     .lesson-content {
-      //   width: 748px;
       background-color: white;
       border-radius: 8px;
       padding: 0 10px;
@@ -415,40 +398,28 @@
       background-color: white;
       outline: none;
       border: 1px solid $primary-color;
-
     }
 
     &#send {
       background-color: greenyellow;
       transition-duration: 0.4s;
-
       &:hover {
         background-color: green;
       }
-
     }
-
-
-
   }
-
-
 }
-
 
 .comment-item {
   position: relative;
 
   &:hover {
     background-color: #f5f5f5;
-    
   }
 
   .delete-comment {
     display: none;
-
   }
-  
 }
 
 .text-comment {
@@ -466,9 +437,8 @@
       width: 84%;
       margin-bottom: -8px;
       background-color: transparent;
-
     }
-    button{
+    button {
       margin: 0;
       background-color: darkorange !important;
       color: white;

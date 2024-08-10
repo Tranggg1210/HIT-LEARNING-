@@ -1,4 +1,3 @@
-
 export const ApiConstant = {
   auth: {
     login: '/auth/login',
@@ -8,6 +7,7 @@ export const ApiConstant = {
     refreshToken: '/auth/refresh/',
     verify: '/auth/verify/',
     resendOTP: '/auth/mail/',
+    logout: '/auth/logout/',
   },
   courses: {
     getAll: '/course',

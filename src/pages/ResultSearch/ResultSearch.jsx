@@ -10,12 +10,6 @@ const ResultSearch = () => {
   const { results } = location.state || []
   const currentUser = useAuth()
 
-  // useEffect(() => {
-  //   if (!results.length) {
-  //     navigate('/')
-  //   }
-  // }, [results, navigate])
-
   const isoDayMonthYear = (isoString) => {
     const date = new Date(isoString)
     const day = date.getUTCDate()

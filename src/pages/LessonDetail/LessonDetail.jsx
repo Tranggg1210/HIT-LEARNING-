@@ -19,7 +19,8 @@ import { getAllItem } from '../../apis/item.api'
 import Loading from '../../components/Loading/Loading'
 import { IconTrash } from '@tabler/icons-react'
 import { current } from '@reduxjs/toolkit'
-import Avatar from  '../../assets/images/user.png'
+import { saveAs } from 'file-saver'
+import Avatar from '../../assets/images/user.png'
 
 const LessonDetail = () => {
   const { lessonId, courseId } = useParams()
@@ -61,8 +62,23 @@ const LessonDetail = () => {
   const handleBack = () => navigate('/')
   const handleLike = () => setLike(!like)
 
+  const handleDownload = async () => {
+    try {
+      const url = `${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`
+      const result = await fetch(url)
+      const blob = await result.blob()
+
+      const media = determineMediaType(currentItem.videoId)
+      const fileName = media === 'image' ? 'image.png' : 'video.mp4'
+
+      saveAs(blob, fileName)
+    } catch (error) {
+      toast.error('Có lỗi xảy ra trong quá trình tải xuống')
+    }
+  }
+
   const addComment = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (comment.trim() === '') {
       toast.error('Vui lòng nhập bình luận trước khi gửi')
       return
@@ -201,7 +217,7 @@ const LessonDetail = () => {
                 <div className='des-container'>
                   <div className='des-box'>
                     <div className='des-left'>
-                      <h2 style={{ color: "#f37335" }}>{currentItem?.name}</h2>
+                      <h2 style={{ color: '#f37335' }}>{currentItem?.name}</h2>
                       <span className='sub eye'>
                         <IconEye /> {currentItem.view || 0} lượt xem
                       </span>
@@ -216,14 +232,14 @@ const LessonDetail = () => {
                       <br />
                       <br />
                       <p>{currentItem.description}</p>
-
                     </div>
                     <div className='des-right'>
                       <div className='button-des'>
                         <button className='btn-des' onClick={handleLike}>
                           {like ? <IconHeartFilled /> : <IconHeart />}
                         </button>
-                        <a href={'hello'} download className='btn-des'>
+
+                        <a href='#' onClick={handleDownload} className='btn-des'>
                           <IconDownload /> Tải xuống
                         </a>
                       </div>
@@ -251,7 +267,6 @@ const LessonDetail = () => {
                 <form className='button-dis' onSubmit={addComment}>
                   <div
                     style={{
-                       
                       width: '2rem',
                       height: '2rem',
                       borderRadius: '50%',
@@ -259,12 +274,14 @@ const LessonDetail = () => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       marginRight: '1rem',
-                    }}> <img src={Avatar} alt="" style={{width:'100%', }} /></div>
+                    }}>
+                    {' '}
+                    <img src={Avatar} alt='' style={{ width: '100%' }} />
+                  </div>
                   <input
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    placeholder='Nhập bình luận của bạn'
-                  ></input>
+                    placeholder='Nhập bình luận của bạn'></input>
                   <button id='send' onClick={addComment}>
                     Gửi
                   </button>
@@ -285,7 +302,7 @@ const LessonDetail = () => {
                     }}>
                     <div
                       style={{
-                        overflow:'hidden',
+                        overflow: 'hidden',
                         width: '2rem',
                         height: '2rem',
                         borderRadius: '50%',
@@ -293,10 +310,14 @@ const LessonDetail = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginRight: '1rem',
-                        marginTop:'8px',
+                        marginTop: '8px',
                       }}>
-                        <img src="https://picsum.photos/200/300" alt="" style={{width:'100%',objectPosition:'center'}} />
-                      </div>
+                      <img
+                        src='https://picsum.photos/200/300'
+                        alt=''
+                        style={{ width: '100%', objectPosition: 'center' }}
+                      />
+                    </div>
                     <ListItemText
                       primary={currentItem?.section?.course?.user?.name}
                       secondary={

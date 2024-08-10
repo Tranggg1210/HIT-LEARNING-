@@ -10,8 +10,10 @@ import { getAllSuggest, getAllSection, getAllItem, getAllCourse } from '../../ap
 import useAuth from '../../hooks/useAuth'
 import { IconLogout, IconCirclePlus } from '@tabler/icons-react'
 import Avatar from '../../assets/images/user.png'
-import Loading from '../../components/Loading/Loading'
 import { getUserById } from '../../apis/user.api'
+import toast from 'react-hot-toast'
+import { logout } from '../../apis/auth.api'
+import { current } from '@reduxjs/toolkit'
 
 const HeaderHL = () => {
   const navigate = useNavigate()
@@ -21,7 +23,6 @@ const HeaderHL = () => {
   const [results, setResults] = useState([])
   const [searchInput, setSearchInput] = useState('')
   const [apiEndpoint, setApiEndpoint] = useState('course')
-  const [loading, setLoading] = useState(false)
 
   const fetchData = async (value) => {
     if (!value.trim()) {
@@ -32,19 +33,15 @@ const HeaderHL = () => {
     try {
       switch (apiEndpoint) {
         case 'suggest':
-          setLoading(true)
           result = await getAllSuggest(value)
           break
         case 'section':
-          setLoading(true)
           result = await getAllSection(value)
           break
         case 'item':
-          setLoading(true)
           result = await getAllItem(value)
           break
         case 'course':
-          setLoading(true)
           result = await getAllCourse(value)
           break
         default:
@@ -53,21 +50,18 @@ const HeaderHL = () => {
       setResults(result.data.data)
     } catch (error) {
       console.error(error)
-    } finally {
-      setLoading(false)
     }
   }
   const getNameUserById = async () => {
     try {
-      const reslut = await (await getUserById(currentUser?.user?.id)).data.data;
+      const reslut = await (await getUserById(currentUser?.user?.id)).data.data
       setUser(reslut)
     } catch (error) {
-      console.error('Failed to fetch user data:', error);
+      console.error('Failed to fetch user data:', error)
     }
   }
   useEffect(() => {
-    getNameUserById();
-
+    getNameUserById()
   }, [])
 
   const handleChange = (value) => {
@@ -96,9 +90,14 @@ const HeaderHL = () => {
     }
   }
 
-  const handleLogOut = () => {
-    currentUser.clearUser()
-    navigate('/')
+  const handleLogOut = async () => {
+    try {
+      await logout(currentUser?.user?.token)
+      currentUser.clearUser()
+      navigate('/')
+    } catch (error) {
+      toast.error(error.message || 'Đã xảy ra lỗi khi đăng xuất!')
+    }
   }
 
   const handleCreateCourse = () => {
@@ -107,8 +106,7 @@ const HeaderHL = () => {
 
   return (
     <>
-      {loading && <Loading />}
-      <div className='header-container header-hiden' >
+      <div className='header-container header-hiden'>
         <div>
           {access_token && location.pathname === '/course' && (
             <Button className='create-course-button' onClick={handleCreateCourse}>
@@ -118,7 +116,6 @@ const HeaderHL = () => {
         </div>
         <div className='search-container'>
           <div className='box-search'>
-            
             <div className='search'>
               <i className='fa-solid fa-magnifying-glass'></i>
               <input
@@ -160,7 +157,7 @@ const HeaderHL = () => {
                         padding: '0',
                       }}
                       className='avatar'>
-                      <img src={"https://picsum.photos/200/300" || Avatar} alt='' />
+                      <img src={'https://picsum.photos/200/300' || Avatar} alt='' />
                     </Button>
                     <Popover
                       sx={{ width: '300px', marginLeft: '-47px' }}

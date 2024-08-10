@@ -20,6 +20,7 @@ import { IconButton } from '@mui/material'
 import { IconCircleX } from '@tabler/icons-react'
 import toast from 'react-hot-toast'
 import Loading from '../../components/Loading/Loading'
+import { confirmAlert } from 'react-confirm-alert'
 
 const StyledTableCell = styled(TableCell)({
   [`&.${tableCellClasses.head}`]: {
@@ -130,6 +131,22 @@ const AdminCourse = () => {
     }
   }
 
+  const confirmDeleteCourse = (courseId) => {
+    confirmAlert({
+      title: 'Xác nhận xóa',
+      message: 'Bạn có chắc chắn muốn xóa khoá học này không?',
+      buttons: [
+        {
+          label: 'Không',
+          onClick: () => {},
+        },
+        {
+          label: 'Có',
+          onClick: () => handleDeleteCourse(courseId),
+        },
+      ],
+    })
+  }
   const handleSearch = () => {
     setPage(1)
     setSearchClick(true)
@@ -294,7 +311,7 @@ const AdminCourse = () => {
                     <Button
                       variant='contained'
                       sx={{ width: '80px', fontSize: '10px', backgroundColor: 'silver' }}
-                      onClick={() => handleDeleteCourse(row.id)}>
+                      onClick={() => confirmDeleteCourse(row.id)}>
                       Xoá
                     </Button>
                   </StyledTableCell>

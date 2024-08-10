@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import logo from '../../assets/images/logo3.png'
 import './SideBar.scss'
 import useAuth from '../../hooks/useAuth'
-
+import { IconShieldLockFilled } from '@tabler/icons-react'
 const SideBar = () => {
   const navigate = useNavigate()
   const currentUser = useAuth()
@@ -34,6 +34,12 @@ const SideBar = () => {
             <i className='fa-solid fa-users'></i>
             <p>CLB HIT</p>
           </NavLink>
+          {accsess_token?.includes('ADMIN') && (
+            <NavLink to='/admin' className={getClassName}>
+              <IconShieldLockFilled />
+              <p>Admin</p>
+            </NavLink>
+          )}
         </div>
       </div>
     </>

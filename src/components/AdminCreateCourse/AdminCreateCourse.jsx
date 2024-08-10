@@ -22,6 +22,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
   const [folderName, setFolderName] = useState('')
   const [describe, setDescribe] = useState('')
   const [upload, setUpload] = useState(null)
+  const [uploadName, setUploadName] = useState('')
   const [classType, setClassType] = useState('Public')
   const [loading, setLoading] = useState(false)
   const inputRef = useRef()
@@ -29,6 +30,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
 
   useEffect(() => {
     if (isEditing && courseData) {
+      setUploadName(courseData.videoName || '')
       setFolderName(courseData.name || '')
       setDescribe(courseData.description || '')
       setClassType(courseData.isPrivate ? 'Private' : 'Public')
@@ -48,12 +50,12 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
       toast.error('Video không được vượt quá 50MB')
       return
     }
-    if (folderName && describe && (upload || isEditing)) {
+    if (folderName && describe && (upload || (isEditing && uploadName))) {
       const baseCourseData = {
         userId: id_access_token,
         name: folderName,
         description: describe,
-        file: upload,
+        file: isEditing ? upload || uploadName : upload,
         isPrivate: classType === 'Private',
       }
 
@@ -133,7 +135,13 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
             Upload file
             <VisuallyHiddenInput type='file' ref={inputRef} onChange={handleFileChange} />
           </Button>
-          {upload ? <p>Tên tệp: {upload?.name}</p> : <p>Chưa chọn tệp</p>}
+          {upload ? (
+            <p>Tên tệp: {upload.name}</p>
+          ) : isEditing && uploadName ? (
+            <p>Tên tệp: {uploadName}</p>
+          ) : (
+            <p>Chưa chọn tệp</p>
+          )}
           <TextField
             sx={{ width: '100%', marginBottom: '24px', marginTop: '24px' }}
             id='outlined-folder-input'
@@ -186,7 +194,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
             </Button>
             <Button
               variant='contained'
-              sx={{ width: '145px', height: '45px' }}
+              sx={{ width: '145px', height: '45px', whiteSpace: 'nowrap' }}
               onClick={handleSubmit}>
               {isEditing ? 'Sửa khoá học' : 'Tạo khoá học'}
             </Button>

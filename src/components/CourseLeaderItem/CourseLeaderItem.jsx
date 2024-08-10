@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import CourseList1 from '../../assets/images/course-list-basic-1.png'
 import { IconClockHour9 } from '@tabler/icons-react'
 import math from '../../assets/images/maths.png'
+import { confirmAlert } from 'react-confirm-alert'
 
 const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handleSeeMore }) => {
   const navigate = useNavigate()
@@ -30,6 +31,23 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
     }
     return 'empty'
   }
+
+  const confirmDeleteCourse = (courseId) => {
+    confirmAlert({
+      title: 'Xác nhận xóa',
+      message: 'Bạn có chắc chắn muốn xóa khoá học này không?',
+      buttons: [
+        {
+          label: 'Không',
+          onClick: () => {},
+        },
+        {
+          label: 'Có',
+          onClick: () => handleDelete(courseId),
+        },
+      ],
+    })
+  }
   return (
     <div className='courses'>
       <div className='more'>
@@ -39,72 +57,68 @@ const CourseLeaderItem = ({ title, courses, handleClickEdit, handleDelete, handl
         </p>
       </div>
       <div ref={inputElement} className='course-list'>
-        {
-          courses?.length > 0 ? (
-            courses?.slice(0, 4).map((item, idx) => (
-              <div
-                key={idx}
-                className='course-item'
-                onClick={() => navigate(`/detail-course/${item.id}`)}>
-                {determineMediaType(item.videoId) === 'video' && (
-                  <video controls width='600' className='course-img'>
-                    <source
-                      src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
-                      type='video/mp4'
-                    />
-                  </video>
-                )}
-                {determineMediaType(item.videoId) === 'image' && (
-                  <img
-                    className='course-img'
+        {courses?.length > 0 ? (
+          courses?.slice(0, 4).map((item, idx) => (
+            <div
+              key={idx}
+              className='course-item'
+              onClick={() => navigate(`/detail-course/${item.id}`)}>
+              {determineMediaType(item.videoId) === 'video' && (
+                <video controls width='600' className='course-img'>
+                  <source
                     src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
-                    alt='Khóa học'
+                    type='video/mp4'
                   />
-                )}
-                {determineMediaType(item.videoId) === 'empty' && (
-                  <img src={CourseList1} alt='Khóa học' className='course-img' />
-                )}
-                <div className='infor-container'>
-                  <div className='box-course-name'>
-                    <p className='course-name'>{item.name}</p>
-                  </div>
-                  <p className='course-leader-name'>{item.leaderName}</p>
-                  <div className='infor'>
-                    <IconClockHour9 stroke={2} />
-                    <p>{isoDayMonthYear(item.createdAt)}</p>
-                  </div>
+                </video>
+              )}
+              {determineMediaType(item.videoId) === 'image' && (
+                <img
+                  className='course-img'
+                  src={`${import.meta.env.VITE_API_SERVER}/stream/${item.videoId}`}
+                  alt='Khóa học'
+                />
+              )}
+              {determineMediaType(item.videoId) === 'empty' && (
+                <img src={CourseList1} alt='Khóa học' className='course-img' />
+              )}
+              <div className='infor-container'>
+                <div className='box-course-name'>
+                  <p className='course-name'>{item.name}</p>
                 </div>
-                <div className='button-course-leader-item'>
-                  <button
-                    className='edit'
-                    onClick={(e) => {
-                      handleClickEdit(item.id)
-                      e.stopPropagation()
-                    }}>
-                    Chỉnh sửa
-                  </button>
-                  <button
-                    className='delete'
-                    onClick={(e) => {
-                      handleDelete(item.id)
-                      e.stopPropagation()
-                    }}>
-                    Xoá
-                  </button>
+                <p className='course-leader-name'>{item.leaderName}</p>
+                <div className='infor'>
+                  <IconClockHour9 stroke={2} />
+                  <p>{isoDayMonthYear(item.createdAt)}</p>
                 </div>
               </div>
-            ))
-          ) : (
-            <div className='box-not-courses'>
-              <div className='not-courses'>
-                <img src={math} alt='' />
+              <div className='button-course-leader-item'>
+                <button
+                  className='edit'
+                  onClick={(e) => {
+                    handleClickEdit(item.id)
+                    e.stopPropagation()
+                  }}>
+                  Chỉnh sửa
+                </button>
+                <button
+                  className='delete'
+                  onClick={(e) => {
+                    confirmDeleteCourse(item.id)
+                    e.stopPropagation()
+                  }}>
+                  Xoá
+                </button>
               </div>
-              <p>Hiện tại chưa có khoá học nào!!</p>
             </div>
-
-          )
-        }
-
+          ))
+        ) : (
+          <div className='box-not-courses'>
+            <div className='not-courses'>
+              <img src={math} alt='' />
+            </div>
+            <p>Hiện tại chưa có khoá học nào!!</p>
+          </div>
+        )}
       </div>
     </div>
   )
