@@ -132,26 +132,26 @@ body {
     margin-top: 50px;
     width: 100%;
     justify-content: center;
-    gap: 300px;
+    gap: 24px;
     margin-bottom: 50px;
     .new-pots1 {
+      width: 50%;
       display: block;
       .new-post-button {
-        background-color: #ffb626;
+        background: linear-gradient(to right, #f67102, #f4a91e);
+        color: #fff;
+        padding: 15px;
         border: none;
-        border-radius: 10px;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 20px;
-        width: 170px;
+        border-radius: 15px;
+        font-size: 16px;
         cursor: pointer;
-        margin-bottom: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+        width: 100%;
       }
     }
     .new-pots2 {
+      width: 50%;
       .new-post-button-cancel {
         background-color: #7d7c7a;
         border: none;
@@ -162,9 +162,18 @@ body {
         text-decoration: none;
         display: inline-block;
         font-size: 20px;
-        width: 140px;
+        width: 100%;
         cursor: pointer;
+        white-space: nowrap;
       }
+    }
+  }
+}
+.form-group {
+  width: 40%;
+  .input-group-field {
+    > input {
+      width: 100%;
     }
   }
 }

@@ -21,6 +21,11 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
   const userAccess = useAuth()
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  const [folderNameError, setFolderNameError] = useState(false)
+  const [describeError, setDescribeError] = useState(false)
+  const [uploadError, setUploadError] = useState(false)
+
   const handleFileChange = (e) => {
     const file = e.target.files[0]
     setUpload(file)
@@ -29,6 +34,34 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
   const id_access_token = userAccess.user?.id
 
   const handleSubmit = async () => {
+    let check = false
+
+    if (!folderName.trim()) {
+      setFolderNameError(true)
+      check = true
+    } else {
+      setFolderNameError(false)
+    }
+
+    if (!describe.trim()) {
+      setDescribeError(true)
+      check = true
+    } else {
+      setDescribeError(false)
+    }
+
+    if (!upload) {
+      setUploadError(true)
+      check = true
+    } else {
+      setUploadError(false)
+    }
+
+    if (check) {
+      toast.error('Vui lòng điền đầy đủ thông tin bắt buộc.')
+      return
+    }
+
     if (folderName && describe && upload) {
       const courseData = {
         userId: id_access_token,
@@ -41,13 +74,14 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
       try {
         setLoading(true)
         await createCourse(courseData)
+        toast.success('Tạo khoá học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
       } finally {
         setLoading(false)
       }
+      navigate('/')
     }
-    navigate('/')
   }
 
   const handleClassTypeChange = (event) => {
@@ -73,6 +107,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
                     />
                   </div>
                   <p style={{ marginTop: '12px' }}>Ảnh và video tải lên không quá 250MB </p>
+                  {uploadError && <p className='error-text'>Vui lòng chọn một ảnh hoặc video</p>}
                 </div>
               )}
             </div>
@@ -86,6 +121,8 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
           <div className='new-infors'>
             <div className='new-infor-folder'>
               <TextField
+                error={folderNameError}
+                helperText={folderNameError ? 'Tên khoá học không được để trống' : ''}
                 sx={{ width: '100%', marginBottom: '24px' }}
                 id='outlined-folder-input'
                 label='Tên khoá học'
@@ -96,13 +133,16 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
                 onChange={(e) => setFolderName(e.target.value)}
                 rows={1}
                 className='new-textarea'
+                multiline
                 InputProps={{
-                  style: { height: '50px' },
+                  style: { height: '50px', alignItems: 'flex-start' },
                 }}
               />
             </div>
             <div className='new-infor-describe'>
               <TextField
+                error={describeError}
+                helperText={describeError ? 'Mô tả khoá học không được để trống' : ''}
                 sx={{ width: '100%', height: '125px', marginBottom: '24px' }}
                 id='outlined-describe-input'
                 label='Mô tả khoá học'
@@ -112,8 +152,9 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
                 onChange={(e) => setDescribe(e.target.value)}
                 rows={4}
                 className='new-textarea'
+                multiline
                 InputProps={{
-                  style: { height: '125px' },
+                  style: { height: '125px', alignItems: 'flex-start' },
                 }}
               />
             </div>

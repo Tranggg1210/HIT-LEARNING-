@@ -28,8 +28,9 @@ const BasicCourse = () => {
       response && response.data && response.data.data
       const result = response.data.data
       setBasicCourses(result)
+      toast.success('Lấy dữ liệu khoá học thành công')
     } catch (error) {
-      console.log(error.response?.data?.message)
+      toast.error(error.response?.data?.message)
     } finally {
       setLoading(false)
     }
@@ -47,7 +48,7 @@ const BasicCourse = () => {
         }
       }
     } catch (error) {
-      console.log(error.response?.data?.message)
+      toast.error(error.response?.data?.message)
     } finally {
       setLoading(false)
     }
@@ -59,8 +60,9 @@ const BasicCourse = () => {
       const response = await getItemBySectionId(id)
       const result = response.data.data.content
       setItems(result)
+      toast.success('Lấy dữ liệu viedo buổi học theo buổi học thành công')
     } catch (error) {
-      console.log(error.response?.data?.message)
+      toast.error(error.response?.data?.message)
     } finally {
       setLoading(false)
     }
@@ -71,8 +73,8 @@ const BasicCourse = () => {
     loadDataItem(id)
   }
   const handleCourse = () => {
-    if (firstItemId) {
-      navigate(`/lesson/${param.id}/detail-lesson/${firstItemId}`)
+    if (firstemId) {
+      navigate(`/lesItson/${param.id}/detail-lesson/${firstItemId}`)
     } else {
       toast.error(
         'Khóa học này sẽ sớm được hoàn thành. Vui lòng quay lại sau một khoảng thời gian nữa',
