@@ -25,11 +25,12 @@ const BasicCourse = () => {
     try {
       setLoading(true)
       const response = await getCourseById(param.id)
-      response && response.data && response.data.data
+      console.log('',)
       const result = response.data.data
       setBasicCourses(result)
       toast.success('Lấy dữ liệu khoá học thành công')
     } catch (error) {
+      console.log(error)
       toast.error(error.response?.data?.message)
     } finally {
       setLoading(false)
@@ -41,13 +42,17 @@ const BasicCourse = () => {
       const response = await getSectionByCourseId(param.id)
       if (response && response.data && response.data.data) {
         const result = response.data.data.content
-        const res = await getItemBySectionId(result[0].id)
-        setSections(result)
-        if (res.data.data.content.length > 0) {
-          setFirstItemId(res.data.data.content[0].id)
+        if(result && result.length > 0){
+
+          const res = await getItemBySectionId(result[0].id)
+          setSections(result)
+          if (res.data.data.content.length > 0) {
+            setFirstItemId(res.data.data.content[0].id)
+          }
         }
       }
     } catch (error) {
+      console.log(error)
       toast.error(error.response?.data?.message)
     } finally {
       setLoading(false)
@@ -58,10 +63,13 @@ const BasicCourse = () => {
     try {
       setLoading(true)
       const response = await getItemBySectionId(id)
+
       const result = response.data.data.content
       setItems(result)
       toast.success('Lấy dữ liệu viedo buổi học theo buổi học thành công')
     } catch (error) {
+      console.log(error)
+
       toast.error(error.response?.data?.message)
     } finally {
       setLoading(false)
@@ -73,8 +81,8 @@ const BasicCourse = () => {
     loadDataItem(id)
   }
   const handleCourse = () => {
-    if (firstemId) {
-      navigate(`/lesItson/${param.id}/detail-lesson/${firstItemId}`)
+    if (firstItemId) {
+      navigate(`/lesson/${param.id}/detail-lesson/${firstItemId}`)
     } else {
       toast.error(
         'Khóa học này sẽ sớm được hoàn thành. Vui lòng quay lại sau một khoảng thời gian nữa',
@@ -149,7 +157,7 @@ const BasicCourse = () => {
         <div className='course-basic-right'>
           <div className='course-video'>
             {determineMediaType(basicCourses.videoId) === 'video' && (
-              <video controls width='600'>
+              <video controls width='1000' >
                 <source
                   src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`}
                   type='video/mp4'

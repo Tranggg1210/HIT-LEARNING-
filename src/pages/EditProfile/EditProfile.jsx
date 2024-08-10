@@ -47,6 +47,7 @@ const EditProfile = ({ open, userData, onClose }) => {
         await editUser(userId, newUserData)
         toast.success('Cập nhật thông tin người dùng thành công')
         onClose();
+        
       } catch (error) {
         if (error?.code === 'ERR_NETWORK') {
           toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
@@ -73,7 +74,7 @@ const EditProfile = ({ open, userData, onClose }) => {
     borderRadius: '20px',
     boxShadow: 24,
     p: 4,
-    height: 630,
+    
   }
 
   const formGrid = {
