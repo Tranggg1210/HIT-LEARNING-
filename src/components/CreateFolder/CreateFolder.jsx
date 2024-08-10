@@ -89,14 +89,15 @@ const CreateFolder = ({ onCreate, onCancel }) => {
           <h2>TẠO BUỔI HỌC</h2>
           <div className='new-button-location-type'>
             <FormControl
-              sx={{ m: 1, width: '100%', margin: '8px 0px' }}
+              sx={{ m: 1, width: '100%', margin: '24px 0px' ,height:'max-content' }}
               size='small'
               error={locationClassError}
               helperText={locationClassError ? 'Vị trí buổi học không được để trống' : ''}>
-              <InputLabel className='location-type-select-label'>Loại Thứ tự</InputLabel>
+              <InputLabel className='location-type-select-label'>Loại thứ tự</InputLabel>
               <Select
                 labelId='location-type-select-label'
                 className='location-type-select'
+                sx={{marginBottom:'16px'}}
                 value={locationClass}
                 label='Số thứ tự'
                 onChange={handleLocationChange}>
@@ -116,7 +117,7 @@ const CreateFolder = ({ onCreate, onCancel }) => {
               <TextField
                 error={sectionNameError}
                 helperText={sectionNameError ? 'Tên buổi học không được để trống' : ''}
-                sx={{ width: '100%' }}
+                sx={{ width: '100%' ,marginBottom:'16px' }}
                 id='outlined-password-input'
                 label='Tên buổi học'
                 type='text'

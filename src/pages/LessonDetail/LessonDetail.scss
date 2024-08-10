@@ -106,12 +106,6 @@
 
   }
 
-
-
-
-
-
-
   &-comment {
     position: relative;
     left: 85%;
@@ -178,7 +172,7 @@
 
 .player {
   .player-banner {
-    
+
     overflow: hidden;
     border-radius: 36px;
   }
@@ -193,7 +187,8 @@
     object-fit: cover;
     object-position: center;
   }
-  .showVideo{
+
+  .showVideo {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -409,24 +404,25 @@
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
-  
-  button{
+
+  button {
     padding: 15px;
     width: 10%;
     border: none;
     cursor: pointer;
 
-    &#cancel{
-      background-color:white;
+    &#cancel {
+      background-color: white;
       outline: none;
-      border:1px solid $primary-color;
+      border: 1px solid $primary-color;
 
     }
 
-    &#send{
-      background-color:greenyellow;
+    &#send {
+      background-color: greenyellow;
       transition-duration: 0.4s;
-      &:hover{
+
+      &:hover {
         background-color: green;
       }
 
@@ -442,12 +438,43 @@
 
 .comment-item {
   position: relative;
-  
+
   &:hover {
     background-color: #f5f5f5;
+    
   }
 
   .delete-comment {
     display: none;
+
+  }
+  
+}
+
+.text-comment {
+  margin-top: 28px;
+
+  .button-dis {
+    padding: 12px 0;
+    width: 100%;
+    border-bottom: 1px solid #222;
+    justify-content: space-between;
+    input {
+      outline: none;
+      border: none;
+      font-size: 16px;
+      width: 84%;
+      margin-bottom: -8px;
+      background-color: transparent;
+
+    }
+    button{
+      margin: 0;
+      background-color: darkorange !important;
+      color: white;
+      font-size: 16px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
   }
 }

@@ -37,7 +37,7 @@ const CourseUserClass = () => {
     <div className='courses'>
       <div className='back'>
         <p className='xem_them' onClick={handleCancel}>
-          Quay lại
+          &lt; Quay lại
         </p>
       </div>
       <div>

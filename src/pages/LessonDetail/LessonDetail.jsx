@@ -19,6 +19,7 @@ import { getAllItem } from '../../apis/item.api'
 import Loading from '../../components/Loading/Loading'
 import { IconTrash } from '@tabler/icons-react'
 import { current } from '@reduxjs/toolkit'
+import Avatar from  '../../assets/images/user.png'
 
 const LessonDetail = () => {
   const { lessonId, courseId } = useParams()
@@ -55,13 +56,13 @@ const LessonDetail = () => {
 
   const [comment, setComment] = useState('')
   const [comments, setComments] = useState([])
-  const [showAddComment, setShowAddComment] = useState(false)
   const [like, setLike] = useState(false)
 
   const handleBack = () => navigate('/')
   const handleLike = () => setLike(!like)
 
-  const addComment = async () => {
+  const addComment = async (e) => {
+    e.preventDefault();
     if (comment.trim() === '') {
       toast.error('Vui lòng nhập bình luận trước khi gửi')
       return
@@ -87,7 +88,6 @@ const LessonDetail = () => {
         })
 
         setComment('')
-        setShowAddComment(false)
         toast.success('Gửi thành công')
       }
     } catch (error) {
@@ -150,6 +150,14 @@ const LessonDetail = () => {
     loadCurrentItem()
   }, [lessonId])
 
+  const isoDayMonthYear = (isoString) => {
+    const date = new Date(isoString)
+    const day = date.getUTCDate()
+    const month = date.getUTCMonth() + 1
+    const year = date.getUTCFullYear()
+    return `${day}/${month}/${year}`
+  }
+
   return (
     <>
       {loading && <Loading />}
@@ -157,9 +165,9 @@ const LessonDetail = () => {
         <div className='lesson-box'>
           <div className='lesson-left'>
             <div className='goback' onClick={handleBack}>
-              <IconChevronLeft stroke={2} width={40} height={64} />
-              <Typography variant='h6' component='h6'>
-                QUAY LẠI
+              <IconChevronLeft stroke={2} width={20} height={48} />
+              <Typography variant='h6' component='h6' sx={{ fontSize: '16px' }}>
+                Quay lại
               </Typography>
             </div>
             <div className='player'>
@@ -193,7 +201,7 @@ const LessonDetail = () => {
                 <div className='des-container'>
                   <div className='des-box'>
                     <div className='des-left'>
-                      <h2>{currentItem?.name}</h2>
+                      <h2 style={{ color: "#f37335" }}>{currentItem?.name}</h2>
                       <span className='sub eye'>
                         <IconEye /> {currentItem.view || 0} lượt xem
                       </span>
@@ -201,13 +209,20 @@ const LessonDetail = () => {
                       <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
                         Người đăng: {currentItem?.section?.course?.user?.name || 'Không xác định'}
                       </span>
+                      <br />
+                      <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
+                        Ngày đăng: {isoDayMonthYear(currentItem.createdAt)}
+                      </span>
+                      <br />
+                      <br />
+                      <p>{currentItem.description}</p>
+
                     </div>
                     <div className='des-right'>
                       <div className='button-des'>
                         <button className='btn-des' onClick={handleLike}>
                           {like ? <IconHeartFilled /> : <IconHeart />}
                         </button>
-
                         <a href={'hello'} download className='btn-des'>
                           <IconDownload /> Tải xuống
                         </a>
@@ -231,37 +246,30 @@ const LessonDetail = () => {
               </div>
             </div>
             <div>
-              {!showAddComment && (
-                <div className='lesson-comment' onClick={() => setShowAddComment(!showAddComment)}>
+              <div className='text-comment'>
+                <h3>Bình luận</h3>
+                <form className='button-dis' onSubmit={addComment}>
                   <div
-                    className='comment'
-                    style={{ border: '1px solid black', padding: '1rem', cursor: 'pointer' }}>
-                    <h3>Binh luan</h3>
-                  </div>
-                </div>
-              )}
-              {showAddComment && (
-                <div className='text-comment'>
-                  <textarea
-                    value={comment}
-                    rows={4}
-                    onChange={(e) => setComment(e.target.value)}
                     style={{
-                      width: '100%',
-                      border: '1px solid black',
-                      padding: '1rem',
-                      marginTop: '1rem',
-                    }}></textarea>
-                  <div className='button-dis'>
-                    <button id='cancel' onClick={() => setShowAddComment(false)}>
-                      Hủy
-                    </button>
-                    <button id='send' onClick={addComment}>
-                      Gửi
-                    </button>
-                  </div>
-                </div>
-              )}
+                       
+                      width: '2rem',
+                      height: '2rem',
+                      borderRadius: '50%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginRight: '1rem',
+                    }}> <img src={Avatar} alt="" style={{width:'100%', }} /></div>
+                  <input
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    placeholder='Nhập bình luận của bạn'
+                  ></input>
+                  <button id='send' onClick={addComment}>
+                    Gửi
+                  </button>
+                </form>
+              </div>
             </div>
             <div className='comment-box'>
               <List sx={{ mt: 2 }}>
@@ -277,7 +285,7 @@ const LessonDetail = () => {
                     }}>
                     <div
                       style={{
-                        backgroundColor: 'gray',
+                        overflow:'hidden',
                         width: '2rem',
                         height: '2rem',
                         borderRadius: '50%',
@@ -285,7 +293,10 @@ const LessonDetail = () => {
                         alignItems: 'center',
                         justifyContent: 'center',
                         marginRight: '1rem',
-                      }}></div>
+                        marginTop:'8px',
+                      }}>
+                        <img src="https://picsum.photos/200/300" alt="" style={{width:'100%',objectPosition:'center'}} />
+                      </div>
                     <ListItemText
                       primary={currentItem?.section?.course?.user?.name}
                       secondary={
