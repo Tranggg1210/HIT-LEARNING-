@@ -10,7 +10,7 @@
   width: 100%;
   
   @include tablet {  
-    width: 100%;
+    flex-direction: column;
   }
 
   @include small-tablet {
@@ -30,19 +30,23 @@
 
     @include tablet {
       flex: 100%;
+      min-width: 300px;
+      width: 100%;
       margin-left: 0;
-      padding: 0 20px;
+      padding-right: 20px;
       
     }
 
     @include small-tablet {
       flex: 100%;
+      width: 100%;
       margin-left: 0;
       padding: 0 20px;
     }
 
     @include mobile {
       flex: 100%;
+      width: 100%;
       margin-left: 0;
       padding: 0 10px;
     }
@@ -274,6 +278,7 @@
         height: 280px;
         
       }
+     
       img {
         border-radius: 8px;
         margin-bottom: 20px;
@@ -284,6 +289,7 @@
 
         @include tablet {
           max-width: 80%;
+          
         }
 
         @include small-tablet {

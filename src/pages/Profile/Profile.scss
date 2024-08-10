@@ -1,5 +1,10 @@
 @import '../../styles/index.scss';
 
+.profile-container{
+    @include tablet{
+        margin-left: 120px;
+    }
+}
 .back-button {
     position: absolute;
     top: 10px;
@@ -220,7 +225,8 @@
             width: 80%;
         }
         @include tablet {
-            width: 80%;
+            width: 70%;
+            
         }
 
         h3 {

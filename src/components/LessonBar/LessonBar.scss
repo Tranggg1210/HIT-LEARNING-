@@ -8,6 +8,18 @@
   max-height: 100vh;
   overflow-y: auto;
 
+  @include mobile{
+    width: 100% !important;
+  }
+  @include small-tablet{
+    width: 100% !important;
+  }
+  @include tablet{
+    width: 100% !important;
+  }
+  
+  
+
   .section {
     margin-bottom: 10px;
 

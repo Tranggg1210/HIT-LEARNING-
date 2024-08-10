@@ -62,21 +62,21 @@ const ChangePassword = () => {
             {({ errors, touched }) => (
               <Form>
                 <div className='input-group'>
-                  <Field type='text' placeholder='Nhập mật khẩu cũ' name='oldPass' />
+                  <Field type='password' placeholder='Nhập mật khẩu cũ' name='oldPass' />
                 </div>
                 {errors.oldPass && touched.oldPass ? (
                   <p className='errorMsg'>{errors.oldPass}</p>
                 ) : null}
                 <br />
                 <div className='input-group'>
-                  <Field type='text' placeholder='Nhập mật khẩu mới' name='newPass' />
+                  <Field type='password' placeholder='Nhập mật khẩu mới' name='newPass' />
                 </div>
                 {errors.newPass && touched.newPass ? (
                   <p className='errorMsg'>{errors.newPass}</p>
                 ) : null}
                 <br />
                 <div className='input-group'>
-                  <Field type='text' placeholder='Nhập lại mật khẩu mới' name='confirmPass' />
+                  <Field type='password' placeholder='Nhập lại mật khẩu mới' name='confirmPass' />
                 </div>
                 {errors.confirmPass && touched.confirmPass ? (
                   <p className='errorMsg'>{errors.confirmPass}</p>

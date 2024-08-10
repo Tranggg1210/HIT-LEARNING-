@@ -9,6 +9,14 @@
     display: flex;
     flex-direction: column;
   }
+  @include small-tablet {
+    display: flex;
+    flex-direction: column;
+  }
+  @include tablet {
+    display: flex;
+    flex-direction: column;
+  }
 
   .course-header {
     display: flex;
@@ -21,9 +29,15 @@
 
     @include mobile {
       margin-bottom: 40px;
+      width: 100% !important;
     }
     @include small-tablet {
       margin-top: -10px;
+      width: 100% !important;
+    }
+    @include tablet {
+      margin-top: -10px;
+      width: 100% !important;
     }
 
     .course-img {
@@ -95,10 +109,10 @@
       height: 300px;
     }
     @include small-tablet {
-      width: 60%;
+      width: 100% !important;
     }
     @include tablet {
-      width: 60%;
+      width: 100% !important;
     }
     .course-contents {
       width: 100%;

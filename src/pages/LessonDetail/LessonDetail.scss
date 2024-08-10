@@ -3,17 +3,28 @@
 .lesson {
   &-box {
     display: flex;
+    
 
     @include mobile {
       display: block;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 20px;
+      
     }
 
     @include small-tablet {
       display: block;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 20px;
     }
 
     @include tablet {
       display: block;
+      flex-direction: column;
+      gap: 20px;
+      padding: 0 20px;
     }
   }
 
@@ -96,6 +107,19 @@
     overflow-y: auto;
     top: 0;
     right: 0;
+
+    @include mobile{
+      position: static;
+      width: 100%;
+    }
+    @include small-tablet{
+      position: static;
+      width: 100%;
+    }
+    @include tablet{
+      position: static;
+      width: 100%;
+    }
   }
 
   &-comment {
@@ -255,6 +279,7 @@
 
     @include tablet {
       flex-direction: column;
+
     }
 
     @include small-tablet {
@@ -273,15 +298,15 @@
       overflow-y: auto;
 
       @include tablet {
-        width: 100%;
+        width: 100% !important;
       }
 
       @include small-tablet {
-        width: 100%;
+        width: 100% !important;
       }
 
       @include mobile {
-        width: 100%;
+        width: 100% !important;
       }
 
       &::-webkit-scrollbar {
@@ -437,6 +462,8 @@
       width: 84%;
       margin-bottom: -8px;
       background-color: transparent;
+
+      
     }
     button {
       margin: 0;
@@ -445,6 +472,10 @@
       font-size: 16px;
       border-radius: 6px;
       font-weight: 600;
+
+      @include mobile{
+        width: 30%;
+      }
     }
   }
 }

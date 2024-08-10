@@ -13,13 +13,13 @@
 
   @include mobile {
     width: 80% !important;
-    height: 400px !important;
+    
   }
   @include small-tablet {
-    width: 80%;
+    width: 80% !important;
   }
   @include tablet {
-    width: 80%;
+    width: 80% !important;
   }
   & > h2 {
     text-align: center;
