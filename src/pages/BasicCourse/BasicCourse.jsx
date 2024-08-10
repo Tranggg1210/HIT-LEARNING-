@@ -70,6 +70,7 @@ const BasicCourse = () => {
     setOpenSection(openSection === index ? null : index)
     loadDataItem(id)
   }
+  console.log('sections', sections)
   const handleCourse = () => {
     if (firstItemId) {
       navigate(`/lesson/${param.id}/detail-lesson/${firstItemId}`)
