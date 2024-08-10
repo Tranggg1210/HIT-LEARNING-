@@ -1,3 +1,5 @@
+import { getCourseById } from '../apis/courses.api'
+
 export const ApiConstant = {
   auth: {
     login: '/auth/login',
@@ -16,6 +18,7 @@ export const ApiConstant = {
     editCourse: '/course/',
     getCourseById: '/course/',
     getId: '/course',
+    getCourseByUserId: '/course/user/',
   },
   sections: {
     getAll: '/section/course/',

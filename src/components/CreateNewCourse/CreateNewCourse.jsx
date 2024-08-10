@@ -74,7 +74,6 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
       try {
         setLoading(true)
         await createCourse(courseData)
-        toast.success('Tạo khoá học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
       } finally {

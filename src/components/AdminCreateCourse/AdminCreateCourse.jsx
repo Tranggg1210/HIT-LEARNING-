@@ -61,11 +61,6 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
           setLoading(true)
           await createCourse(baseCourseData)
         }
-        if (isEditing) {
-          toast.success('Sửa khoá học thành công')
-        } else {
-          toast.success('Tạo khoá học thành công')
-        }
         handleCloses()
         if (onEditSuccess) onEditSuccess()
       } catch (error) {
@@ -91,7 +86,7 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
     borderRadius: '20px',
     boxShadow: 24,
     p: 4,
-    height: 550,
+    height: 640,
   }
 
   const VisuallyHiddenInput = styled('input')({

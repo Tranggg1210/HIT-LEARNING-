@@ -25,13 +25,11 @@ const BasicCourse = () => {
     try {
       setLoading(true)
       const response = await getCourseById(param.id)
-      console.log('',)
+      console.log('')
       const result = response.data.data
       setBasicCourses(result)
-      toast.success('Lấy dữ liệu khoá học thành công')
     } catch (error) {
-      console.log(error)
-      toast.error(error.response?.data?.message)
+      toast.error(error.message)
     } finally {
       setLoading(false)
     }
@@ -42,8 +40,7 @@ const BasicCourse = () => {
       const response = await getSectionByCourseId(param.id)
       if (response && response.data && response.data.data) {
         const result = response.data.data.content
-        if(result && result.length > 0){
-
+        if (result && result.length > 0) {
           const res = await getItemBySectionId(result[0].id)
           setSections(result)
           if (res.data.data.content.length > 0) {
@@ -52,8 +49,7 @@ const BasicCourse = () => {
         }
       }
     } catch (error) {
-      console.log(error)
-      toast.error(error.response?.data?.message)
+      toast.error(error.message)
     } finally {
       setLoading(false)
     }
@@ -66,11 +62,8 @@ const BasicCourse = () => {
 
       const result = response.data.data.content
       setItems(result)
-      toast.success('Lấy dữ liệu viedo buổi học theo buổi học thành công')
     } catch (error) {
-      console.log(error)
-
-      toast.error(error.response?.data?.message)
+      toast.error(error.message)
     } finally {
       setLoading(false)
     }
@@ -158,7 +151,7 @@ const BasicCourse = () => {
         <div className='course-basic-right'>
           <div className='course-video'>
             {determineMediaType(basicCourses.videoId) === 'video' && (
-              <video controls width='1000' >
+              <video controls width='1000'>
                 <source
                   src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`}
                   type='video/mp4'

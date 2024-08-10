@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import './CourseLeaderList.scss'
 import { useNavigate } from 'react-router-dom'
-import { deleteCourse, getAllCourse } from '../../apis/courses.api'
+import { deleteCourse, getAllCourse, getCourseByUserId } from '../../apis/courses.api'
 import CourseLeaderItem from '../CourseLeaderItem/CourseLeaderItem'
 import CourseLeaderClass from '../CourseLeaderClass/CourseLeaderClass'
 import toast from 'react-hot-toast'
 import Loading from '../Loading/Loading'
 import math from '../../assets/images/maths.png'
+import useAuth from '../../hooks/useAuth'
 
 const CourseLeaderList = () => {
   const [courses, setCourses] = useState([])
@@ -16,13 +17,15 @@ const CourseLeaderList = () => {
   const [currentCourses, setCurrentCourses] = useState([])
   const [titles, setTitles] = useState('')
   const [loading, setLoading] = useState(false)
+  const current = useAuth()
+  const id_access_token = current?.user.id
 
   const loadAllCourse = async () => {
     try {
       setLoading(true)
-      const result = await (await getAllCourse()).data.data
-      setCourses(result.content)
-      toast.success('Lấy dữ liệu khoá học thành công')
+      const result = await (await getCourseByUserId(id_access_token)).data
+      console.log('123456', result)
+      setCourses(result)
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     } finally {
@@ -65,7 +68,6 @@ const CourseLeaderList = () => {
       setLoading(true)
       await deleteCourse(id)
       setCourses(courses.filter((course) => course.id !== id))
-      toast.success('Xoá khoá học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xoá dữ liệu khóa học')
     } finally {

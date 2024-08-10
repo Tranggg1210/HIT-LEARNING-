@@ -46,10 +46,8 @@ const CourseList = () => {
       setLoading(true)
       const result = await getCourseById(id)
       setCourse(result.data.data)
-      toast.success('Lấy dữ liệu khoá học thành công')
       const resultSection = await getAllSection(id)
       setSections(resultSection.data.data.content)
-      toast.success('Lấy dữ liệu buổi học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     } finally {
@@ -71,7 +69,6 @@ const CourseList = () => {
           ...prevItems,
           [sectionId]: items.data.data.content,
         }))
-        toast.success('Lấy dữ liệu video buổi học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
       } finally {
@@ -84,7 +81,6 @@ const CourseList = () => {
       setLoading(true)
       await deleteSection(id)
       setSections(sections.filter((section) => section.id !== id))
-      toast.success('Xóa buổi học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xóa buổi học')
     } finally {
@@ -116,7 +112,6 @@ const CourseList = () => {
         ...prevItems,
         [sectionId]: prevItems[sectionId].filter((item) => item.id !== itemId),
       }))
-      toast.success('Xóa video buổi học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xóa video buổi học')
     } finally {

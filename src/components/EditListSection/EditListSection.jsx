@@ -27,7 +27,6 @@ const EditListSection = ({ onCreate, onCancel }) => {
         await updateSection(id, sectionData)
         onCreate()
         onCancel()
-        toast.success('Sửa buổi học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi sửa dữ liệu buổi học')
       } finally {

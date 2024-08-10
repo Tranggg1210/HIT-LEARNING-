@@ -87,11 +87,6 @@ const AdminCourse = () => {
       }
       setTotalRows(response.content.length)
       setRows(response.content.slice((page - 1) * size, page * size))
-      if (term) {
-        toast.success('Tìm kiếm khoá học thành công')
-      } else {
-        toast.success('Lấy dữ liệu khoá học thành công')
-      }
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu tài khoản')
     } finally {
