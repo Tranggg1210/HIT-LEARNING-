@@ -63,7 +63,6 @@ const Home = () => {
         <div className='content'>
           <Slider />
           <div className='more-course'>
-            <h1>Danh sách các khoá học</h1>
           </div>
           {access_token?.includes('USER') && (
             <ClassesItem

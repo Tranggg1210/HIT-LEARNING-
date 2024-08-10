@@ -58,7 +58,6 @@ const CouresUserPrivate = () => {
     <>
       {loading && <Loading />}
       <div className='more-course'>
-        <h1>Danh sách các khoá học</h1>
       </div>
       {}
       <ClassesItem
