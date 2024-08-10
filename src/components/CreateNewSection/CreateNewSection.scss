@@ -1,3 +1,4 @@
+@import '../../styles/index.scss';
 .progress-bar {
   position: fixed;
   top: 0;
@@ -19,6 +20,15 @@ body {
   background-color: #fff;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
+
+  @include mobile{
+    padding: 24px;
+  }
+  @include small-tablet{
+    padding: 24px;
+  }
+ 
+
   h2 {
     text-align: center;
     margin-top: 12px;
@@ -30,6 +40,18 @@ body {
     margin-top: 30px;
     gap: 24px;
     justify-content: center;
+    @include mobile{
+      flex-direction: column;
+      gap: 24px;
+    }
+    @include small-tablet{
+      flex-direction: column;
+      gap: 24px;
+    }
+    @include tablet{
+      flex-direction: column;
+      gap: 24px;
+    }
     .new-upload-file {
       display: block;
       background: rgba(247, 247, 247, 0.6);
@@ -37,6 +59,16 @@ body {
       height: 250px;
       position: relative;
       border-radius: 10px;
+      @include mobile{
+        width: 100%;
+      }
+      @include small-tablet{
+        width: 100%;
+      }
+      @include tablet{
+        width: 100%;
+      }
+
       .new-icon-upload {
         width: 100%;
         display: block;
@@ -99,6 +131,16 @@ body {
     .new-infors {
       display: block;
       width: 40%;
+      @include mobile{
+        width: 100%;
+      }
+      @include small-tablet{
+        width: 100%;
+      }
+      @include tablet{
+        width: 100%;
+      }
+
       .new-infor-describe {
         .new-textarea {
           margin-top: 10px;

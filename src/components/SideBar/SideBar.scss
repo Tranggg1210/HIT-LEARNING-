@@ -46,16 +46,15 @@
       width: 82px;
       display: none;
     }
-    @include tablet {
-      width: 60px;
-      margin-right: 50px;
-    }
+    
     @include small-tablet {
       width: 85px;
       display: none;
     }
     .box-logo {
       margin-bottom: 20px;
+      margin: 0 auto;
+      
       .img-logo {
         height: 3rem;
         cursor: pointer;
