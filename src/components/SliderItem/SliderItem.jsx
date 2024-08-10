@@ -78,9 +78,15 @@ const SliderItem = ({ films }) => {
           </div>
         ))}
       </div>
+      <div className="btn-arrow-container">
+        <div className="btn-arrow" onClick={handleLeft}>
+          <i className='fa-solid fa-arrow-left' ></i>
+        </div>
+        <div className="btn-arrow" onClick={handleRight}>
+          <i className='fa-solid fa-arrow-right' ></i>
+        </div>
+      </div>
 
-      <i className='fa-solid fa-arrow-left' onClick={handleLeft}></i>
-      <i className='fa-solid fa-arrow-right' onClick={handleRight}></i>
     </div>
   )
 }

@@ -92,7 +92,7 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
 
   return (
     <>
-      <div className='create-new-section'>
+      <div className='create-new-section header-hiden' >
         <h2>{editingItemData ? 'SỬA VIDEO BUỔI HỌC' : 'TẠO VIDEO BUỔI HỌC'}</h2>
         <div className='new-section-header'>
           <div className='new-upload-file'>
@@ -126,7 +126,7 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
               <TextField
                 error={itemNameError}
                 helperText={itemNameError ? 'Tên video buổi học không được để trống' : ''}
-                sx={{ width: '100%' }}
+                sx={{ width: '100%' ,marginBottom:'16px' }}
                 id='outlined-folder-input'
                 label='Tên video buổi học'
                 type='text'
@@ -144,17 +144,17 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
               <TextField
                 error={describeItemError}
                 helperText={describeItemError ? 'Mô tả video buổi học không được để trống' : ''}
-                sx={{ width: '100%', height: '125px' }}
+                sx={{ width: '100%', height: '175px' }}
                 id='outlined-describe-input'
                 label='Mô tả video buổi học'
                 type='text'
                 autoComplete='off'
                 value={describeItem}
                 onChange={(e) => setDescribeItem(e.target.value)}
-                rows={4}
+                rows={8}
                 className='new-textarea'
                 InputProps={{
-                  style: { height: '125px' },
+                  style: { height: '200px' ,alignItems:'start' },
                 }}
               />
             </div>
@@ -163,7 +163,7 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
         <div className='new-pots'>
           <div className='new-pots2'>
             <button className='new-post-button-cancel' onClick={onCancel}>
-              HUỶ BỎ
+              <p>HUỶ BỎ</p>
             </button>
           </div>
           <div className='new-pots1'>

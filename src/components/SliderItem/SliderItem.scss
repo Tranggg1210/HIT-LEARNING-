@@ -73,22 +73,41 @@
       }
     }
   }
+.btn-arrow{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dc5f00;
+  transition: all 0.3s linear;
+  @include small-tablet{
+    
+  }
 
-  .fa-solid {
+  cursor: pointer;
+  i{
+    font-size: 28px;
+    color: white;
+
+  }
+}
+.btn-arrow:hover{
+  background-color: darkgreen;
+}
+  .btn-arrow-container{
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
     position: absolute;
     top: 50%;
+    left: 0;
+    right: 0;
     transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 32px;
-    color: black;
+    
     z-index: 10;
 
-    &.fa-arrow-left {
-      left: 20px;
-    }
-
-    &.fa-arrow-right {
-      right: 20px;
-    }
   }
 }

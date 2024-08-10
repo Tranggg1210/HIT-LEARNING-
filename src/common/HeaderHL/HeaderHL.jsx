@@ -108,7 +108,7 @@ const HeaderHL = () => {
   return (
     <>
       {loading && <Loading />}
-      <div className='header-container'>
+      <div className='header-container header-hiden' >
         <div>
           {access_token && location.pathname === '/course' && (
             <Button className='create-course-button' onClick={handleCreateCourse}>
@@ -118,15 +118,7 @@ const HeaderHL = () => {
         </div>
         <div className='search-container'>
           <div className='box-search'>
-            <select
-              value={apiEndpoint}
-              onChange={handleApiEndpointChange}
-              className='api-endpoint-select'>
-              <option value='course'>Course</option>
-              <option value='suggest' disabled>
-                Gợi ý
-              </option>
-            </select>
+            
             <div className='search'>
               <i className='fa-solid fa-magnifying-glass'></i>
               <input

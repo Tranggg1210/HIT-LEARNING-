@@ -12,8 +12,16 @@
     }
 
     .xem_them {
+      padding: 8px 24px;
       cursor: pointer;
+      font-size: 16px;
       color: #f67102;
+      transition: all 0.3 linear;
+      border-radius: 90px;
+    }
+    .xem_them:hover{
+       background-color:#f67102 ;
+       color: white;
     }
   }
   .course-list {
@@ -33,6 +41,10 @@
       width: 320px;
       box-shadow: 0 0 12px rgba(0 0 0 /10%);
       border: 1px solid #ccc;
+      transition: all 0.3s linear;
+      &:hover{
+        scale: 1.05;
+      }
       .course-img {
         width: 100%;
         border-radius: 10px 10px 0 0;
@@ -93,8 +105,17 @@
           margin: 5px;
           cursor: pointer;
           border-radius: 50px;
-          transition: background-color 0.3s ease;
+          transition: all 0.3s ease;
           font-size: 1rem;
+          
+          
+        }
+        .delete:hover{
+          background-color: rgb(227, 1, 1);
+        }
+        .edit:hover{
+          background-color: rgb(218, 186, 11);
+      
         }
       }
     }
