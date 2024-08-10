@@ -27,26 +27,23 @@ const ResetPassword = () => {
           </div>
           <Formik
             initialValues={{
-              userId: localStorage.getItem("username"),
+              userId: localStorage.getItem('username'),
               newPassword: '',
               confirmPassword: '',
             }}
             validationSchema={resetPass}
             onSubmit={async (values) => {
-              try{
+              try {
                 const res = await resetPassword(values)
-                console.log('res reset', res)
-                if(res.data.code === 1000){
-                  localStorage.removeItem("username")
+                if (res.data.code === 1000) {
+                  localStorage.removeItem('username')
                   toast.success('Cập nhật mật khẩu thành công. Vui lòng quay lại trang đăng nhập')
                   navigate('/signin')
-                }else{
+                } else {
                   toast.error(res.data.message)
                 }
-              }catch(err){
-                console.log(err)
+              } catch (err) {
                 toast.error(err.response.data.message)
-
               }
             }}>
             {({ errors, touched }) => (

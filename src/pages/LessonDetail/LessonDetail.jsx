@@ -130,9 +130,7 @@ const LessonDetail = () => {
   useEffect(() => {
     loadCurrentItem()
   }, [lessonId])
-  console.log('currentItem', currentItem)
-  console.log('>>>comments', comments)
-  console.log('currentUser', currentUser)
+
 
   return (
     <>
@@ -152,7 +150,7 @@ const LessonDetail = () => {
                   {determineMediaType(currentItem.videoId) === 'video' && (
                     <div
                       style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <video controls width='fit-content'>
+                      <video controls width='fit-content' className='showVideo'>
                         <source
                           src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                           alt='Khóa học'
@@ -163,7 +161,6 @@ const LessonDetail = () => {
                   {determineMediaType(currentItem.videoId) === 'image' && (
                     <img
                       width='500'
-                      height='600'
                       className='showImage'
                       src={`${import.meta.env.VITE_API_SERVER}/stream/${currentItem.videoId}`}
                       alt='Khóa học'
@@ -185,6 +182,7 @@ const LessonDetail = () => {
                       <br />
                       <span style={{ color: 'rgba(0, 0, 0, 0.544)' }}>
                         Người đăng: {currentItem?.section?.course?.user?.name || 'Không xác định'}
+
                       </span>
                     </div>
                     <div className='des-right'>
@@ -244,6 +242,7 @@ const LessonDetail = () => {
                     <button id='send' onClick={addComment}>
                       Gửi
                     </button>
+
                   </div>
                 </div>
               )}
@@ -260,6 +259,7 @@ const LessonDetail = () => {
                         display: 'block',
                       },
                     }}>
+
                     <div
                       style={{
                         backgroundColor: 'gray',
@@ -273,6 +273,7 @@ const LessonDetail = () => {
                       }}></div>
                     <ListItemText
                       primary={currentItem?.section?.course?.user?.name}
+
                       secondary={
                         <>
                           {cmt.comment}
@@ -282,7 +283,6 @@ const LessonDetail = () => {
                         </>
                       }
                     />
-
                     <IconButton
                       className='delete-comment'
                       onClick={() => deleteCom(cmt?.id)}
@@ -294,6 +294,7 @@ const LessonDetail = () => {
                       }}>
                       <IconTrash size={18} />
                     </IconButton>
+
                   </ListItem>
                 ))}
               </List>

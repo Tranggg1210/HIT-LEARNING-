@@ -178,7 +178,7 @@
 
 .player {
   .player-banner {
-    height: 400px;
+    
     overflow: hidden;
     border-radius: 36px;
   }
@@ -193,6 +193,14 @@
     object-fit: cover;
     object-position: center;
   }
+  .showVideo{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+
+
 }
 
 .des {

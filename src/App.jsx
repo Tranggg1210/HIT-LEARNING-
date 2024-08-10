@@ -30,19 +30,17 @@ import { useEffect } from 'react'
 function App() {
   const currentUser = useAuth()
   const location = useLocation()
-  const role = currentUser.user?.role
+  const role = currentUser.user?.role || []
   const path = location.pathname
   const navigate = useNavigate()
-  console.log(role)
+  const isAdmin = role.includes('ADMIN')
+
   useEffect(() => {
-    if (!role || role.includes('USER') || role.includes('LEADER')) {
-      {
-        if (path.startsWith('/admin')) {
-          navigate('/')
-        }
-      }
+    if (!isAdmin && path.startsWith('/admin')) {
+      navigate('/')
     }
-  }, [role, path])
+  }, [role, path, navigate, isAdmin])
+
   const router = useRoutes([
     {
       path: '/',
@@ -84,7 +82,7 @@ function App() {
     },
     {
       path: '/admin',
-      element: <AdminLayout />,
+      element: isAdmin ? <AdminLayout /> : <MainLayout />,
       children: [
         {
           path: '',

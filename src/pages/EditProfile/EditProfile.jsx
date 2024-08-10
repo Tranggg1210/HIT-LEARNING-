@@ -20,7 +20,6 @@ const EditProfile = ({ open, userData, onClose }) => {
   const [linkAvatar, setLinkAvatar] = useState(userData?.linkAvatar || '')
   const [user, setUser] = useState(null)
 
-  console.log(open)
   const userId = userAccess.user?.id
   const getUserDataId = async () => {
     try {
@@ -44,10 +43,11 @@ const EditProfile = ({ open, userData, onClose }) => {
         description: describe,
       }
 
-      console.log('userassa', user.username)
       try {
         await editUser(userId, newUserData)
         toast.success('Cập nhật thông tin người dùng thành công')
+        onClose();
+        
       } catch (error) {
         if (error?.code === 'ERR_NETWORK') {
           toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
@@ -74,7 +74,7 @@ const EditProfile = ({ open, userData, onClose }) => {
     borderRadius: '20px',
     boxShadow: 24,
     p: 4,
-    height: 630,
+    
   }
 
   const formGrid = {
@@ -152,8 +152,9 @@ const EditProfile = ({ open, userData, onClose }) => {
             onChange={(e) => setDescribe(e.target.value)}
             rows={4}
             className='new-textarea'
+            multiline
             InputProps={{
-              style: { height: '50px' },
+              style: { height: '50px', alignItems: 'flex-start' },
             }}
           />
           <TextField

@@ -1,11 +1,10 @@
-
 export const ApiConstant = {
   auth: {
     login: '/auth/login',
     sendCode: '/auth/mail/',
     resetPassword: '/user/password/reset',
     changePassword: 'user/password/change',
-    refreshToken: '/refresh/',
+    refreshToken: '/auth/refresh/',
     verify: '/auth/verify/',
     resendOTP: '/auth/mail/',
   },
@@ -25,7 +24,7 @@ export const ApiConstant = {
     getSectionByCourseId: '/section/course/',
   },
   items: {
-    getAllBySection:'/item/section/',
+    getAllBySection: '/item/section/',
     getAll: '/item/',
     createItem: '/item',
     deleteItem: '/item/',

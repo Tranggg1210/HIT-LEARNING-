@@ -56,6 +56,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
         setLoading(true)
         await editCourse(courseData.id, baseCourseData)
         handleCloses()
+        toast.success('Sửa khoá học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi sửa dữ liệu khoá học')
       } finally {
@@ -80,7 +81,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
     borderRadius: '20px',
     boxShadow: 24,
     p: 4,
-    height: 550,
+    height: 610,
   }
 
   const VisuallyHiddenInput = styled('input')({
@@ -134,7 +135,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
             }}
           />
           <TextField
-            sx={{ width: '100%', height: '50px', marginBottom: '24px' }}
+            sx={{ width: '100%', height: '50px', marginBottom: '95px' }}
             id='outlined-describe-input'
             label='Mô tả khoá học'
             type=''
@@ -143,8 +144,9 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
             onChange={(e) => setDescribe(e.target.value)}
             rows={4}
             className='new-textarea'
+            multiline
             InputProps={{
-              style: { height: '125px' },
+              style: { height: '125px', alignItems: 'flex-start' },
             }}
           />
           <FormControl sx={{ width: '100%', marginBottom: '24px' }} size='medium'>

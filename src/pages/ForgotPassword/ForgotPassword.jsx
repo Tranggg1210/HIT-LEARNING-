@@ -6,14 +6,14 @@ import { forgotPassValid } from '../../utils/forgotPassValid'
 import logo from '../../assets/images/logo.jpg'
 import { useState, useEffect, useCallback } from 'react'
 import toast from 'react-hot-toast'
-import { verify, sendCode, resendOTP } from '../../apis/auth.api'
+import { verify, resendOTP } from '../../apis/auth.api'
 
 const ForgotPassword = () => {
   const navigate = useNavigate()
   const [countdown, setCountdown] = useState(60)
   const [isResendDisabled, setIsResendDisabled] = useState(true)
 
-  const startCountdown = useCallback(()=>{
+  const startCountdown = useCallback(() => {
     setCountdown(60)
     setIsResendDisabled(true)
   })
@@ -22,19 +22,19 @@ const ForgotPassword = () => {
     let timer
     if (countdown > 0 && isResendDisabled) {
       timer = setInterval(() => {
-      setCountdown((prevCountdown) => {
-        if (prevCountdown <= 1) {
-          clearInterval(timer)
-          setIsResendDisabled(false)
-          return 0
-        }
-        return prevCountdown - 1
-      })
-    }, 1000)
-    } 
+        setCountdown((prevCountdown) => {
+          if (prevCountdown <= 1) {
+            clearInterval(timer)
+            setIsResendDisabled(false)
+            return 0
+          }
+          return prevCountdown - 1
+        })
+      }, 1000)
+    }
 
     return () => clearInterval(timer)
-  }, [countdown,isResendDisabled])
+  }, [countdown, isResendDisabled])
 
   const goBack = () => {
     navigate('/signin')
@@ -42,15 +42,14 @@ const ForgotPassword = () => {
 
   const handleResendOTP = async () => {
     try {
-      const res = await resendOTP(localStorage.getItem("username"))
+      const res = await resendOTP(localStorage.getItem('username'))
       if (res.data.code === 1000) {
         toast.success('OTP resent successfully')
         startCountdown()
-
-        
       } else {
         toast.error('Failed to resend OTP')
-      }    } catch (err) {
+      }
+    } catch (err) {
       toast.error(err.message)
     }
   }
@@ -74,9 +73,8 @@ const ForgotPassword = () => {
             validationSchema={forgotPassValid}
             onSubmit={async (values) => {
               try {
-                const res = await verify(localStorage.getItem("username"), values.otp)
-                console.log('res', res)
-                if (res.data.code === 1000 ) {
+                const res = await verify(localStorage.getItem('username'), values.otp)
+                if (res.data.code === 1000) {
                   navigate('/reset-password')
                 } else {
                   toast.error(res.data.message)

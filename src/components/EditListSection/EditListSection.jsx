@@ -27,6 +27,7 @@ const EditListSection = ({ onCreate, onCancel }) => {
         await updateSection(id, sectionData)
         onCreate()
         onCancel()
+        toast.success('Sửa buổi học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi sửa dữ liệu buổi học')
       } finally {
@@ -78,7 +79,7 @@ const EditListSection = ({ onCreate, onCancel }) => {
             </div>
             <div className='new-infor-describe'>
               <TextField
-                sx={{ width: '100%', height: '125px' }}
+                sx={{ width: '100%' }}
                 id='outlined-password-input'
                 label='Mô tả buổi học'
                 type='text'
@@ -87,8 +88,9 @@ const EditListSection = ({ onCreate, onCancel }) => {
                 onChange={(e) => setDescribeSection(e.target.value)}
                 rows={4}
                 className='new-textarea'
+                multiline
                 InputProps={{
-                  style: { height: '125px' },
+                  style: { height: '125px', alignItems: 'flex-start' },
                 }}
               />
             </div>

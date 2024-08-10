@@ -51,11 +51,11 @@ const Login = () => {
                       refreshToken: res.data.data.refreshToken,
                       userName: userCurrent.data.data.username,
                       linkAvatar: userCurrent.data.data.linkAvatar,
-                      className:userCurrent.data.data.className,
+                      className: userCurrent.data.data.className,
                       linkFb: userCurrent.data.data.linkFb,
-                      email:userCurrent.data.data.email,
-                      name:userCurrent.data.data.name,
-                      description:userCurrent.data.data.description,
+                      email: userCurrent.data.data.email,
+                      name: userCurrent.data.data.name,
+                      description: userCurrent.data.data.description,
                     })
                   }
 
@@ -93,7 +93,7 @@ const Login = () => {
                   <p className='errorMsg'>{errors.password}</p>
                 ) : null}
                 <div className='forgot-password'>
-                  <Link to='/forgot-password'>
+                  <Link to='/forgot-password' s>
                     <i>Quên mật khẩu ?</i>
                   </Link>
                 </div>

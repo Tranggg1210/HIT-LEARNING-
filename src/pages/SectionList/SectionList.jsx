@@ -46,8 +46,10 @@ const CourseList = () => {
       setLoading(true)
       const result = await getCourseById(id)
       setCourse(result.data.data)
+      toast.success('Lấy dữ liệu khoá học thành công')
       const resultSection = await getAllSection(id)
       setSections(resultSection.data.data.content)
+      toast.success('Lấy dữ liệu buổi học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     } finally {
@@ -69,6 +71,7 @@ const CourseList = () => {
           ...prevItems,
           [sectionId]: items.data.data.content,
         }))
+        toast.success('Lấy dữ liệu video buổi học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tải dữ liệu mục')
       } finally {
@@ -257,58 +260,64 @@ const CourseList = () => {
           <div className='row2'>
             <div className='course-contents'>
               <div className='sections'>
-                {sections.map((sec, idx) => (
-                  <div key={sec.id} className='section'>
-                    <div className='section-header' onClick={() => handleToggle(idx, sec?.id)}>
-                      <div className='section-folder-header'>
-                        {openSection === idx ? <IconChevronDown /> : <IconChevronRight />}
-                        <h3>{sec.name}</h3>
-                        <div className='section-actions'>
-                          <IconPencil
-                            className='edit-icon'
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              handleEditSection()
-                            }}
-                          />
-                          <IconPlus
-                            className='add-icon'
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              handleCreateItem(sec.id)
-                            }}
-                          />
-                          <IconTrash
-                            className='delete-icon'
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              confirmDeleteSection(sec.id)
-                            }}
-                          />
+                {sections.length > 0 ? (
+                  sections.map((sec, idx) => (
+                    <div key={sec.id} className='section'>
+                      <div className='section-header' onClick={() => handleToggle(idx, sec?.id)}>
+                        <div className='section-folder-header'>
+                          {openSection === idx ? <IconChevronDown /> : <IconChevronRight />}
+                          <h3>{sec.name}</h3>
+                          <div className='section-actions'>
+                            <IconPencil
+                              className='edit-icon'
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleEditSection()
+                              }}
+                            />
+                            <IconPlus
+                              className='add-icon'
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                handleCreateItem(sec.id)
+                              }}
+                            />
+                            <IconTrash
+                              className='delete-icon'
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                confirmDeleteSection(sec.id)
+                              }}
+                            />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    {openSection === idx && sectionItems[sec.id] && (
-                      <div className='section-items'>
-                        {sectionItems[sec.id].map((item) => (
-                          <div key={item.id} className='section-item'>
-                            <p>{item.name}</p>
-                            <div className='item-actions'>
-                              <IconPencil
-                                onClick={() => handleEditItem(item.id, item)}
-                                className='edit-icon'
-                              />
-                              <IconTrash
-                                onClick={() => confirmDeleteItem(sec.id, item.id)}
-                                className='delete-icon'
-                              />
+                      {openSection === idx && sectionItems[sec.id] && (
+                        <div className='section-items'>
+                          {sectionItems[sec.id].map((item) => (
+                            <div key={item.id} className='section-item'>
+                              <p>{item.name}</p>
+                              <div className='item-actions'>
+                                <IconPencil
+                                  onClick={() => handleEditItem(item.id, item)}
+                                  className='edit-icon'
+                                />
+                                <IconTrash
+                                  onClick={() => confirmDeleteItem(sec.id, item.id)}
+                                  className='delete-icon'
+                                />
+                              </div>
                             </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))
+                ) : (
+                  <div className='box-not-courses'>
+                    <p>Các buổi học sẽ được cập nhật sớm nhất !!!</p>
                   </div>
-                ))}
+                )}
               </div>
             </div>
             <div className='buttons'>

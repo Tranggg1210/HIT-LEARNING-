@@ -92,6 +92,11 @@ const AdminAccount = () => {
         ? response.content.slice((page - 1) * size, page * size)
         : response.slice((page - 1) * size, page * size)
       setRows(paginatedRows)
+      if (term) {
+        toast.success('Tìm kiếm người dùng thành công')
+      } else {
+        toast.success('Lấy dữ liệu người dùng thành công')
+      }
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu người dùng')
     } finally {
