@@ -1,4 +1,4 @@
-import { apiDefault } from '.'
+import { apiDefault, api } from '.'
 import { ApiConstant } from '../constants/api.constant'
 
 const authApi = () => ({
@@ -19,7 +19,7 @@ const authApi = () => ({
       confirmPassword,
     }),
   changePassword: async ({userId,oldPassword, newPassword, confirmPassword }) =>
-    apiDefault.put(ApiConstant.auth.changePassword, {
+    api.put(ApiConstant.auth.changePassword, {
       userId,oldPassword, newPassword, confirmPassword
     }),
   refreshToken: async (refreshToken) =>

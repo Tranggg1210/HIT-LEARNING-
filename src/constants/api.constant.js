@@ -4,7 +4,7 @@ export const ApiConstant = {
     login: '/auth/login',
     sendCode: '/auth/mail/',
     resetPassword: '/user/password/reset',
-    changePassword: 'user/password/change',
+    changePassword: '/user/password/change',
     refreshToken: '/auth/refresh/',
     verify: '/auth/verify/',
     resendOTP: '/auth/mail/',
