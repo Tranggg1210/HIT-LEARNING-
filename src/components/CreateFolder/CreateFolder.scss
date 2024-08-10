@@ -6,23 +6,20 @@
   border: 2px solid #e0f2f3;
   box-shadow: 0 0 12px rgba(0 0 0 /10%);
   border-radius: 10px;
-  width: 50% ;
+  width: 50%;
   height: 450px !important;
   display: block;
   margin-top: 40px;
 
-  @include mobile{
+  @include mobile {
     width: 80% !important;
     height: 400px !important;
   }
-  @include small-tablet{
+  @include small-tablet {
     width: 80%;
-   
   }
-  @include tablet{
+  @include tablet {
     width: 80%;
-    
-   
   }
   & > h2 {
     text-align: center;
@@ -50,20 +47,19 @@
       border-radius: 10px;
       width: 50%;
 
-      @include mobile{
+      @include mobile {
         margin-top: -30px;
         font-size: 10px;
       }
-      @include small-tablet{
-
+      @include small-tablet {
       }
     }
     .create-button {
       background-color: #f4b81e;
       color: white;
     }
-    .create-button:hover{
-      background-color: #f4b81e ;
+    .create-button:hover {
+      background-color: #f4b81e;
       opacity: 0.8;
     }
     .cancel-button {
@@ -71,7 +67,7 @@
       color: #333;
       opacity: 1;
     }
-    .cancel-button:hover{
+    .cancel-button:hover {
       background-color: #bebaba;
       opacity: 0.9;
     }

@@ -22,6 +22,7 @@ const CourseLeaderList = () => {
       setLoading(true)
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
+      toast.success('Lấy dữ liệu khoá học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     } finally {
@@ -64,6 +65,7 @@ const CourseLeaderList = () => {
       setLoading(true)
       await deleteCourse(id)
       setCourses(courses.filter((course) => course.id !== id))
+      toast.success('Xoá khoá học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi xoá dữ liệu khóa học')
     } finally {

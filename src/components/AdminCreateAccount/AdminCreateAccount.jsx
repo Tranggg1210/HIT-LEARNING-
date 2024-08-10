@@ -61,6 +61,11 @@ const AdminCreateAccount = ({ opens, handleCloses, accountData, isEditing, onEdi
         setLoading(true)
         await createAccount(newAccountData)
       }
+      if (isEditing) {
+        toast.success('Sửa tài khoản thành công')
+      } else {
+        toast.success('Tạo tài khoản thành công')
+      }
       handleCloses()
       if (onEditSuccess) onEditSuccess()
     } catch (error) {
