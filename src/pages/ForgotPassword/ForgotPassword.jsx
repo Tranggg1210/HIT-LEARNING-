@@ -48,8 +48,14 @@ const ForgotPassword = () => {
       } else {
         toast.error('Failed to resend OTP')
       }
-    } catch (err) {
-      toast.error(err.message)
+    } catch (error) {
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     }
   }
 
@@ -94,7 +100,9 @@ const ForgotPassword = () => {
                   {isResendDisabled ? (
                     <p>Gửi lại ({countdown}s)</p>
                   ) : (
-                    <span style={{textDecoration:'underline', color:'orange ', cursor:'pointer'}} onClick={handleResendOTP}>
+                    <span
+                      style={{ textDecoration: 'underline', color: 'orange ', cursor: 'pointer' }}
+                      onClick={handleResendOTP}>
                       Gửi lại mã
                     </span>
                   )}

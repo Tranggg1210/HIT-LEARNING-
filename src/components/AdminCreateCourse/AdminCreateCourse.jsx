@@ -44,6 +44,10 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
   const id_access_token = userAccess.user?.id
 
   const handleSubmit = async () => {
+    if (upload.size > 52428800) {
+      toast.error('Video không được vượt quá 50MB')
+      return
+    }
     if (folderName && describe && (upload || isEditing)) {
       const baseCourseData = {
         userId: id_access_token,
@@ -64,7 +68,13 @@ const AdminCreateCourse = ({ opens, handleCloses, courseData, isEditing, onEditS
         handleCloses()
         if (onEditSuccess) onEditSuccess()
       } catch (error) {
-        toast.error('Đã xảy ra lỗi khi sửa tạo dữ liệu khóa học')
+        if (error.mesaage) {
+          toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+        } else if (error?.code === 'ERR_NETWORK') {
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+        } else {
+          toast.error(error.message)
+        }
       } finally {
         setLoading(false)
       }

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { IoIosArrowBack } from 'react-icons/io'
 import { Field, Formik, Form } from 'formik'
 import logo from '../../assets/images/logo.jpg'
-import {sendCode} from '../../apis/auth.api'
+import { sendCode } from '../../apis/auth.api'
 import toast from 'react-hot-toast'
 import { inputUser } from '../../utils/inputUser'
 const InputEmail = () => {
@@ -30,17 +30,23 @@ const InputEmail = () => {
             }}
             validationSchema={inputUser}
             onSubmit={async (values) => {
-                try {
-                  const code = await sendCode(values)
-                  if(code.data.data){
-                    localStorage.setItem('username',values.username)
-                    navigate('/verify-otp')
-                  }else{
-                      toast.error('Tài khoản không tồn tại')
-                  }
-                } catch (err) {
-                  toast.error(err.message)
+              try {
+                const code = await sendCode(values)
+                if (code.data.data) {
+                  localStorage.setItem('username', values.username)
+                  navigate('/verify-otp')
+                } else {
+                  toast.error('Tài khoản không tồn tại')
                 }
+              } catch (error) {
+                if (error.mesaage) {
+                  toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+                } else if (error?.code === 'ERR_NETWORK') {
+                  toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+                } else {
+                  toast.error(error.message)
+                }
+              }
             }}>
             {({ errors, touched }) => (
               <Form>

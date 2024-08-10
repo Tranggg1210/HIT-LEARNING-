@@ -30,7 +30,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
     const file = e.target.files[0]
     setUpload(file)
   }
-
+  console.log('video', upload)
   const id_access_token = userAccess.user?.id
 
   const handleSubmit = async () => {
@@ -58,10 +58,19 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
     }
 
     if (check) {
-      toast.error('Vui lòng điền đầy đủ thông tin bắt buộc.')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
       return
     }
-
+    if (upload.size > 52428800) {
+      toast.error('Video không được vượt quá 50MB')
+      return
+    }
     if (folderName && describe && upload) {
       const courseData = {
         userId: id_access_token,
@@ -75,7 +84,13 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
         setLoading(true)
         await createCourse(courseData)
       } catch (error) {
-        toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
+        if (error.mesaage) {
+          toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+        } else if (error?.code === 'ERR_NETWORK') {
+          toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+        } else {
+          toast.error(error.message)
+        }
       } finally {
         setLoading(false)
       }
@@ -105,7 +120,7 @@ const CreateNewCourse = ({ onCreate, onCancel }) => {
                       onClick={() => inputRef.current.click()}
                     />
                   </div>
-                  <p style={{ marginTop: '12px' }}>Ảnh và video tải lên không quá 250MB </p>
+                  <p style={{ marginTop: '12px' }}>Ảnh và video tải lên không quá 50MB </p>
                   {uploadError && <p className='error-text'>Vui lòng chọn một ảnh hoặc video</p>}
                 </div>
               )}

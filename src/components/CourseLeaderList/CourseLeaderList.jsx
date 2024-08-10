@@ -27,7 +27,13 @@ const CourseLeaderList = () => {
       console.log('123456', result)
       setCourses(result)
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
@@ -69,7 +75,13 @@ const CourseLeaderList = () => {
       await deleteCourse(id)
       setCourses(courses.filter((course) => course.id !== id))
     } catch (error) {
-      toast.error('Đã xảy ra lỗi khi xoá dữ liệu khóa học')
+      if (error.mesaage) {
+        toast.error('Có lỗi xảy ra! Vui lòng thử lại sau')
+      } else if (error?.code === 'ERR_NETWORK') {
+        toast.error('Mất kết nối, kiểm tra kết nối mạng của bạn')
+      } else {
+        toast.error(error.message)
+      }
     } finally {
       setLoading(false)
     }
