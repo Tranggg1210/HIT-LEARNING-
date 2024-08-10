@@ -25,7 +25,7 @@ const BasicCourse = () => {
     try {
       setLoading(true)
       const response = await getCourseById(param.id)
-      response && response.data && response.data.data
+      console.log('')
       const result = response.data.data
       setBasicCourses(result)
     } catch (error) {
@@ -50,7 +50,6 @@ const BasicCourse = () => {
       }
     } catch (error) {
       toast.error(error.message)
-      // console.log(error)
     } finally {
       setLoading(false)
     }
@@ -60,10 +59,11 @@ const BasicCourse = () => {
     try {
       setLoading(true)
       const response = await getItemBySectionId(id)
+
       const result = response.data.data.content
       setItems(result)
     } catch (error) {
-      toast.error('2222')
+      toast.error(error.message)
     } finally {
       setLoading(false)
     }
@@ -73,6 +73,7 @@ const BasicCourse = () => {
     setOpenSection(openSection === index ? null : index)
     loadDataItem(id)
   }
+  console.log('sections', sections)
   const handleCourse = () => {
     if (firstItemId) {
       navigate(`/lesson/${param.id}/detail-lesson/${firstItemId}`)
@@ -150,7 +151,7 @@ const BasicCourse = () => {
         <div className='course-basic-right'>
           <div className='course-video'>
             {determineMediaType(basicCourses.videoId) === 'video' && (
-              <video controls width='600'>
+              <video controls width='1000'>
                 <source
                   src={`${import.meta.env.VITE_API_SERVER}/stream/${basicCourses.videoId}`}
                   type='video/mp4'
