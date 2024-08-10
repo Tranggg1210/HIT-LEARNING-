@@ -9,5 +9,13 @@ const coursesApi = () => ({
   getCourseById: async (id) => apiDefault.get(`${ApiConstant.courses.getCourseById}${id}`),
   editCourse: async (id, courseData) =>
     apiDefaultUpload.put(`${ApiConstant.courses.editCourse}${id}`, courseData),
+  getCourseByUserId: async (id) => api.get(`${ApiConstant.courses.getCourseByUserId}${id}`),
 })
-export const { getAllCourse, createCourse, deleteCourse, getCourseById, editCourse } = coursesApi()
+export const {
+  getAllCourse,
+  createCourse,
+  deleteCourse,
+  getCourseById,
+  editCourse,
+  getCourseByUserId,
+} = coursesApi()

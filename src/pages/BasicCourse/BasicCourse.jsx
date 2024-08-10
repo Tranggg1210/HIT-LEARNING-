@@ -28,10 +28,8 @@ const BasicCourse = () => {
       console.log('')
       const result = response.data.data
       setBasicCourses(result)
-      toast.success('Lấy dữ liệu khoá học thành công')
     } catch (error) {
-      console.log(error)
-      toast.error(error.response?.data?.message)
+      toast.error(error.message)
     } finally {
       setLoading(false)
     }
@@ -51,8 +49,7 @@ const BasicCourse = () => {
         }
       }
     } catch (error) {
-      console.log(error)
-      toast.error(error.response?.data?.message)
+      toast.error(error.message)
     } finally {
       setLoading(false)
     }
@@ -65,11 +62,8 @@ const BasicCourse = () => {
 
       const result = response.data.data.content
       setItems(result)
-      toast.success('Lấy dữ liệu viedo buổi học theo buổi học thành công')
     } catch (error) {
-      console.log(error)
-
-      toast.error(error.response?.data?.message)
+      toast.error(error.message)
     } finally {
       setLoading(false)
     }

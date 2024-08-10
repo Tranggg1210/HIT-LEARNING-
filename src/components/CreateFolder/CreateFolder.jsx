@@ -58,10 +58,10 @@ const CreateFolder = ({ onCreate, onCancel }) => {
         setLoading(true)
         await createSection(sectionData)
         onCreate()
-        toast.success('Tạo khoá học thành công')
         onCancel()
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi tạo dữ liệu buổi học')
+        // console.log(error)
       } finally {
         setLoading(false)
       }

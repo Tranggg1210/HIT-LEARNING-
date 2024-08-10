@@ -44,7 +44,6 @@ const ForgotPassword = () => {
     try {
       const res = await resendOTP(localStorage.getItem('username'))
       if (res.data.code === 1000) {
-        toast.success('OTP resent successfully')
         startCountdown()
       } else {
         toast.error('Failed to resend OTP')

@@ -16,7 +16,6 @@ const CouresUserPublic = () => {
       setLoading(true)
       const result = await (await getAllCourse()).data.data
       setCourses(result.content)
-      toast.success('Lấy dữ liệu khoá học thành công')
     } catch (error) {
       toast.error('Đã xảy ra lỗi khi tải dữ liệu khóa học')
     } finally {
