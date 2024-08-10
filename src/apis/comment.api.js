@@ -6,7 +6,7 @@ const commentApi =() =>  ({
     createComment: async (itemId, data) => apiDefault.post(`${ApiConstant.comment.createComment}${itemId}`,
             data
     ),
-    deleteComment: async (itemId, commentId) => await apiDefault.delete(`${ApiConstant.comment.deleteComment}${commentId}`),
+    deleteComment: async (commentId) => await apiDefault.delete(`${ApiConstant.comment.deleteComment}${commentId}`),
 })
 
 export const { getComment, createComment, deleteComment } = commentApi();

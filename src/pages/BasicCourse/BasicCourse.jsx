@@ -74,9 +74,9 @@ const BasicCourse = () => {
     if (firstItemId) {
       navigate(`/lesson/${param.id}/detail-lesson/${firstItemId}`)
     } else {
-      toast.error(
-        'Khóa học này sẽ sớm được hoàn thành. Vui lòng quay lại sau một khoảng thời gian nữa',
-      )
+      toast('Khóa học này sẽ sớm được hoàn thành. Vui lòng quay lại sau một khoảng thời gian nữa', {
+        icon: '🔥',
+      });
     }
   }
   const determineMediaType = (url = '') => {

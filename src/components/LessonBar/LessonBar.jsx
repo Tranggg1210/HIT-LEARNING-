@@ -1,17 +1,16 @@
 import './LessonBar.scss'
-import { Box, Typography } from '@mui/material'
+import { Box} from '@mui/material'
 import { IconChevronUp, IconChevronDown } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
 import { getSectionByCourseId } from '../../apis/section.api'
 import { getItemBySectionId } from '../../apis/item.api'
 import { NavLink } from 'react-router-dom'
 
-
-const LessonBar = ({ param }) => {
+const LessonBar = ({ param, highLightItem }) => {
   const [sections, setSections] = useState({})
   const [items, setItems] = useState({})
   const [openSection, setOpenSection] = useState(null)
-  const cleanParam = encodeURIComponent(param).replace('%7C', '');
+  const cleanParam = encodeURIComponent(param).replace('%7C', '')
 
   const showAllSection = async () => {
     const result = await (await getSectionByCourseId(param)).data.data
@@ -46,9 +45,7 @@ const LessonBar = ({ param }) => {
   return (
     <>
       <Box m={2}>
-        <h2 className="lesson-title">
-          Nội dung khóa học
-        </h2>
+        <h2 className='lesson-title'>Nội dung khóa học</h2>
       </Box>
       <div className='lesson-content'>
         <br />
@@ -66,9 +63,9 @@ const LessonBar = ({ param }) => {
               <div className='section-content'>
                 {Array.isArray(items[sectionId]) ? (
                   items[sectionId].map((item) => (
-                    <div key={item.id} className='lesson'>
+                    <div key={item.id} className={`lesson ${item.id === highLightItem ? 'highlight' : ''}`}>
                       <NavLink to={`/lesson/${cleanParam}/detail-lesson/${item.id}`}>
-                        {item.name}
+                        {item.name} - {item.id}
                       </NavLink>
                     </div>
                   ))

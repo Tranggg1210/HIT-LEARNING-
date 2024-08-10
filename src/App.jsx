@@ -154,7 +154,14 @@ function App() {
   return (
     <>
       <div>
-        <Toaster />
+      <Toaster 
+        position="top-center" 
+        reverseOrder={false} 
+        toastOptions={{
+          duration: 980, // thời gian hiển thị mỗi toast
+        }}
+        limit={2} // Giới hạn số lượng toast hiển thị đồng thời
+      />
       </div>
       {router}
     </>

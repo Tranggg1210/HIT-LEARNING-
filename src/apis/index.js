@@ -7,8 +7,8 @@ const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}/api/v1`,
   headers: {
     'Content-Type': 'Application/json',
-    'ngrok-skip-browser-warning': '69420',
-    // 'ngrok-skip-browser-warning': '241804'
+    // 'ngrok-skip-browser-warning': '69420',
+    'ngrok-skip-browser-warning': '241804'
   },
 })
 
@@ -46,11 +46,11 @@ api.interceptors.response.use(
 )
 
 const apiDefault = axios.create({
-  baseURL: `${import.meta.env.VITE_API_SERVER}`,
+  baseURL: `${import.meta.env.VITE_API_SERVER}/auth`,
   headers: {
     'Content-Type': 'Application/json',
-    // 'ngrok-skip-browser-warning': '241804'
-    'ngrok-skip-browser-warning': '69420',
+    'ngrok-skip-browser-warning': '241804'
+    // 'ngrok-skip-browser-warning': '69420',
   },
 })
 
@@ -72,8 +72,8 @@ const apiDefaultUpload = axios.create({
   baseURL: `${import.meta.env.VITE_API_SERVER}`,
   headers: {
     'Content-Type': 'multipart/form-data',
-    'ngrok-skip-browser-warning': '69420',
-    // 'ngrok-skip-browser-warning': '241804
+    // 'ngrok-skip-browser-warning': '69420',
+    'ngrok-skip-browser-warning': '241804',
   },
 })
 
