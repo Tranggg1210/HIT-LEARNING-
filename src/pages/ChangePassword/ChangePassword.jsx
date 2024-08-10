@@ -26,7 +26,6 @@ const ChangePassword = () => {
         toast.error(response?.data?.message)
         return
       }
-      toast.success('Thay đổi mật khẩu thành công')
       navigate('/profile')
     } catch (error) {
       if (error?.code === 'ERR_NETWORK') {

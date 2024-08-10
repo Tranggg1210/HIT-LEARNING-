@@ -1,4 +1,4 @@
-import { apiDefault, apiDefaultUpload } from '.'
+import { api, apiDefault, apiDefaultUpload } from '.'
 import { ApiConstant } from '../constants/api.constant'
 
 const sectionsApi = () => ({

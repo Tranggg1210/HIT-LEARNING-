@@ -26,6 +26,9 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
 
+  const [folderNameError, setFolderNameError] = useState(false)
+  const [describeError, setDescribeError] = useState(false)
+  const [uploadError, setUploadError] = useState(false)
   useEffect(() => {
     if (courseData) {
       setFolderName(courseData.name || '')
@@ -43,6 +46,33 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
   const id_access_token = userAccess.user?.id
 
   const handleSubmit = async () => {
+    let check = false
+
+    if (!folderName.trim()) {
+      setFolderNameError(true)
+      check = true
+    } else {
+      setFolderNameError(false)
+    }
+
+    if (!describe.trim()) {
+      setDescribeError(true)
+      check = true
+    } else {
+      setDescribeError(false)
+    }
+
+    if (!upload) {
+      setUploadError(true)
+      check = true
+    } else {
+      setUploadError(false)
+    }
+
+    if (check) {
+      toast.error('Vui lòng điền đầy đủ thông tin bắt buộc.')
+      return
+    }
     if (folderName && describe && upload) {
       const baseCourseData = {
         userId: id_access_token,
@@ -56,7 +86,6 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
         setLoading(true)
         await editCourse(courseData.id, baseCourseData)
         handleCloses()
-        toast.success('Sửa khoá học thành công')
       } catch (error) {
         toast.error('Đã xảy ra lỗi khi sửa dữ liệu khoá học')
       } finally {
@@ -81,7 +110,7 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
     borderRadius: '20px',
     boxShadow: 24,
     p: 4,
-    height: 610,
+    height: 640,
   }
 
   const VisuallyHiddenInput = styled('input')({
@@ -119,7 +148,10 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
             <VisuallyHiddenInput type='file' ref={inputRef} onChange={handleFileChange} />
           </Button>
           {upload ? <p>Tên tệp: {upload?.name}</p> : <p>Chưa chọn tệp</p>}
+          {uploadError && <p className='error-text'>Vui lòng chọn một ảnh hoặc video</p>}
           <TextField
+            error={folderNameError}
+            helperText={folderNameError ? 'Tên khoá học không được để trống' : ''}
             sx={{ width: '100%', marginBottom: '24px', marginTop: '24px' }}
             id='outlined-folder-input'
             label='Tên khoá học'
@@ -135,6 +167,8 @@ const EditCourse = ({ opens, handleCloses, courseData }) => {
             }}
           />
           <TextField
+            error={describeError}
+            helperText={describeError ? 'Mô tả khoá học không được để trống' : ''}
             sx={{ width: '100%', height: '50px', marginBottom: '95px' }}
             id='outlined-describe-input'
             label='Mô tả khoá học'
