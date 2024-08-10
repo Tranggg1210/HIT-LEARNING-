@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './HeaderHL.scss'
 import Typography from '@mui/material/Typography'
@@ -11,11 +11,13 @@ import useAuth from '../../hooks/useAuth'
 import { IconLogout, IconCirclePlus } from '@tabler/icons-react'
 import Avatar from '../../assets/images/user.png'
 import Loading from '../../components/Loading/Loading'
+import { getUserById } from '../../apis/user.api'
 
 const HeaderHL = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const currentUser = useAuth()
+  const [user, setUser] = useState(null)
   const [results, setResults] = useState([])
   const [searchInput, setSearchInput] = useState('')
   const [apiEndpoint, setApiEndpoint] = useState('course')
@@ -55,6 +57,18 @@ const HeaderHL = () => {
       setLoading(false)
     }
   }
+  const getNameUserById = async () => {
+    try {
+      const reslut = await (await getUserById(currentUser?.user?.id)).data.data;
+      setUser(reslut)
+    } catch (error) {
+      console.error('Failed to fetch user data:', error);
+    }
+  }
+  useEffect(() => {
+    getNameUserById();
+
+  }, [])
 
   const handleChange = (value) => {
     setSearchInput(value)
@@ -142,7 +156,7 @@ const HeaderHL = () => {
               <PopupState variant='popover' popupId='demo-popup-popover' className='avatar'>
                 {(popupState) => (
                   <div className='box-avatar'>
-                    <h5>{currentUser?.user.name}</h5>
+                    <h5>{user?.name}</h5>
                     <Button
                       variant='contained'
                       {...bindTrigger(popupState)}

@@ -8,7 +8,7 @@ const itemsApi = () => ({
   deleteItem: async (id) => api.delete(`${ApiConstant.items.deleteItem}${id}`),
   updateItem: async (id, itemData) =>
     apiDefaultUpload.put(`${ApiConstant.items.updateItem}${id}`, itemData),
-  getItemBySectionId: async (id) => apiD.get(`${ApiConstant.items.getItemBySectionId}${id}`),
+  getItemBySectionId: async (id) => apiDefault.get(`${ApiConstant.items.getItemBySectionId}${id}`),
 })
 export const { getItemById, createItem, deleteItem, updateItem, getItemBySectionId, getAllItem } =
   itemsApi()

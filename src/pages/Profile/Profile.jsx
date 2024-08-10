@@ -15,6 +15,7 @@ import { Typography } from '@mui/material'
 import useAuth from '../../hooks/useAuth'
 import EditProfile from '../EditProfile/EditProfile'
 import { getUserById } from '../../apis/user.api'
+import toast from 'react-hot-toast'
 
 const Profile = () => {
   const [userDatas, setUserDatas] = useState(null)
@@ -31,12 +32,21 @@ const Profile = () => {
       console.error('Failed to fetch user data:', error)
     }
   }
-  const handleOpenEditModal = () => {
-    setIsEditModalOpen(true)
+  const handleCloseEditModal = async () => {
+    try{
+
+        await getDataUserById();
+        setIsEditModalOpen(false);
+
+    }catch(error){
+        toast.error('Lấy dữ liệu thất bại')
+    }
+    
+
   }
 
-  const handleCloseEditModal = () => {
-    setIsEditModalOpen(false)
+  const handleOpenEditModal = () => {
+    setIsEditModalOpen(true)
   }
 
   useEffect(() => {
