@@ -4,6 +4,8 @@ import { IconUpload } from '@tabler/icons-react'
 import { createItem, updateItem } from '../../apis/item.api'
 import { TextField } from '@mui/material'
 import toast from 'react-hot-toast'
+import Loading from '../../components/Loading/Loading'
+import { useNavigate } from 'react-router-dom'
 
 const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
   const [itemName, setItemName] = useState(editingItemData ? editingItemData.name : '')
@@ -11,6 +13,8 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
     editingItemData ? editingItemData.description : '',
   )
   const [uploadItem, setUploadItem] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const [itemNameError, setItemNameError] = useState(false)
   const [describeItemError, setDescribeItemError] = useState(false)
@@ -71,6 +75,7 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
         file: uploadItem,
       }
       try {
+        setLoading(true)
         if (editingItemData) {
           await updateItem(itemId, itemData)
         } else {
@@ -86,12 +91,16 @@ const CreateSubFolder = ({ itemId, onCancel, editingItemData, onCreate }) => {
         } else {
           toast.error(error.message)
         }
+      }finally {
+        setLoading(false)
       }
+
     }
   }
 
   return (
     <>
+      {loading && <Loading />}
       <div className='create-new-section header-hiden' >
         <h2>{editingItemData ? 'SỬA VIDEO BUỔI HỌC' : 'TẠO VIDEO BUỔI HỌC'}</h2>
         <div className='new-section-header'>

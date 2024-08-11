@@ -183,7 +183,7 @@
               padding-left: 15px;
             }
             .item-actions {
-              
+              display: flex;
               padding-right: 10px;
               .delete-icon:hover{
                 color: red;
